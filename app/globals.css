@@ -1,42 +1,190 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --dark-olive: #595E49;
-  --very-dark-green: #2A332D;
-  --light-beige: #E6E8D9;
-  --black: #231F20;
-  --dark-brown: #543F29;
+  /* Brand Colors from image */
+  --bg: #E6E8D9;  /* Off-white/cream */
+  --fg: #231F20;  /* Black */
+  --muted: #595E49;  /* Dark olive green */
+  --leaf: #2A332D;  /* Very dark green */
+  --mint: #543F29;  /* Dark brown */
+  --gold: #B48A2E;  /* Gold accent */
+  
+  /* Typography */
+  --font-serif: 'Poppins', sans-serif;
+  --font-sans: 'Poppins', sans-serif;
+  
+  /* Spacing */
+  --section-padding: 5rem 0;
+  --container-padding: 0 1.5rem;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.3s ease;
+  --transition-slow: 0.5s ease;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-dark-olive: var(--dark-olive);
-  --color-very-dark-green: var(--very-dark-green);
-  --color-light-beige: var(--light-beige);
-  --color-black: var(--black);
-  --color-dark-brown: var(--dark-brown);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-leaf: var(--leaf);
+  --color-mint: var(--mint);
+  --color-gold: var(--gold);
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: 'Lora', serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.6;
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.font-header {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
+/* Typography */
+.font-serif {
+  font-family: var(--font-serif);
 }
 
-.font-body {
-  font-family: 'Lora', serif;
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 2px;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Removed reveal animations for cleaner look */
+
+/* Button styles */
+.btn-primary {
+  background: transparent;
+  color: var(--gold);
+  padding: 0.75rem 2rem;
+  border: 2px solid var(--gold);
+  border-radius: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--gold);
+  transition: left var(--transition-smooth);
+  z-index: -1;
+}
+
+.btn-primary:hover {
+  color: var(--bg);
+  transform: translateY(-1px);
+}
+
+.btn-primary:hover::before {
+  left: 0;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--leaf);
+  padding: 0.75rem 2rem;
+  border: 2px solid var(--leaf);
+  border-radius: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-secondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--leaf);
+  transition: left var(--transition-smooth);
+  z-index: -1;
+}
+
+.btn-secondary:hover {
+  color: white;
+  transform: translateY(-1px);
+}
+
+.btn-secondary:hover::before {
+  left: 0;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--container-padding);
+}
+
+/* Section spacing */
+.section {
+  padding: var(--section-padding);
+}
+
+/* Image hover effects */
+.image-hover {
+  transition: transform var(--transition-smooth);
+}
+
+.image-hover:hover {
+  transform: scale(1.05);
 }

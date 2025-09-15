@@ -1,107 +1,214 @@
 import Image from "next/image";
+import Link from "next/link";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <Navbar />
+      
       {/* Hero Section */}
-      <section className="relative min-h-screen bg-cover bg-center bg-no-repeat" style={{backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iODAwIiBmaWxsPSIjMkEzMzJEIi8+CjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjgwMCIgZmlsbD0idXJsKCNncmFkaWVudCkiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIHgxPSIwIiB5MT0iMCIgeDI9IjEyMDAiIHkyPSI4MDAiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzJBMzMyRCIvPgo8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1OTVFNDkiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4K')"}}>
-        {/* Navigation */}
-        <nav className="relative z-10 flex justify-between items-center px-8 py-6">
-          <div className="text-white font-header text-2xl font-bold">
-            CULINARY HAVEN
-          </div>
-          <div className="hidden md:flex space-x-8 text-white">
-            <a href="#" className="hover:text-gray-300 transition-colors">HOME</a>
-            <a href="#" className="hover:text-gray-300 transition-colors">ABOUT</a>
-            <a href="#" className="hover:text-gray-300 transition-colors">MENU</a>
-            <a href="#" className="hover:text-gray-300 transition-colors">EVENTS</a>
-            <a href="#" className="hover:text-gray-300 transition-colors">ORDER ONLINE</a>
-            <button className="border border-white px-4 py-2 hover:bg-white hover:text-black transition-colors">
-              MAKE A RESERVATION
-            </button>
-          </div>
-        </nav>
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[var(--leaf)]">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+        <Image
+            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            alt="Elegant restaurant interior with warm lighting and tropical plants"
+            fill
+            className="object-cover"
+          priority
+        />
+          <div className="absolute inset-0 bg-gradient-to-b from-[var(--leaf)]/90 via-[var(--leaf)]/80 to-[var(--leaf)]/95"></div>
+        </div>
 
         {/* Hero Content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-8">
-          <h1 className="font-header text-6xl md:text-8xl font-bold mb-4">
-            WELCOME TO CULINARY HAVEN
-          </h1>
-          <p className="font-body text-xl md:text-2xl mb-8 max-w-4xl">
-            SAVOR THE CLASSICS. EMBRACE THE PRESENT.
+        <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
+          <p className="text-white text-sm uppercase tracking-widest font-medium mb-4">
+            Welcome to Woodvale
           </p>
-          <button className="bg-[#543F29] text-white px-8 py-4 text-lg font-semibold hover:bg-[#6B4F35] transition-colors">
-            RESERVE A TABLE
-          </button>
+          <h1 className="font-sans text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight">
+            Savor the Classics,<br />
+            Embrace the Present
+          </h1>
+          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Experience the perfect blend of speakeasy elegance and tropical ambiance. 
+            Where timeless flavors meet contemporary innovation.
+          </p>
+          <Link href="/banquet#calendar" className="btn-primary">
+            Reserve a Table
+          </Link>
         </div>
       </section>
 
       {/* Introduction Section */}
-      <section className="py-16 px-8 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <p className="font-body text-lg text-center mb-12 max-w-4xl mx-auto leading-relaxed">
-            Nestled in the heart of Charleston, South Carolina, Culinary Haven invites you to experience a dining journey that marries classic elegance with modern comfort. From the moment you step through our doors, you'll be enveloped in a warm and inviting ambiance that promises an unforgettable dining experience.
-          </p>
-          
-          {/* Image Carousel */}
-          <div className="flex justify-center items-center space-x-8 mb-8">
-            <button className="text-2xl text-gray-400 hover:text-gray-600">‹</button>
-            <div className="flex space-x-6">
-              <div className="w-64 h-64 rounded-lg overflow-hidden" style={{backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDI1NiAyNTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2IiBmaWxsPSIjRjVGNUY1Ii8+CjxyZWN0IHg9IjUwIiB5PSI1MCIgd2lkdGg9IjE1NiIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNGRjY2NjYiLz4KPGNpcmNsZSBjeD0iMTI4IiBjeT0iMTIwIiByPSI0MCIgZmlsbD0iI0ZGRkZGRiIvPgo8L3N2Zz4K')"}}></div>
-              <div className="w-64 h-64 rounded-lg overflow-hidden" style={{backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDI1NiAyNTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2IiBmaWxsPSIjRjVGNUY1Ii8+CjxyZWN0IHg9IjIwIiB5PSI0MCIgd2lkdGg9IjIxNiIgaGVpZ2h0PSIxNzYiIGZpbGw9IiNEOUQ5RDkiLz4KPGNpcmNsZSBjeD0iMTI4IiBjeT0iODAiIHI9IjMwIiBmaWxsPSIjQkJCQkJCIi8+CjxjaXJjbGUgY3g9IjEwMCIgY3k9IjE0MCIgcj0iMjAiIGZpbGw9IiNCQkJCQkIiLz4KPGNpcmNsZSBjeD0iMTU2IiBjeT0iMTQwIiByPSIyMCIgZmlsbD0iI0JCQkJCQiIvPgo8L3N2Zz4K')"}}></div>
-              <div className="w-64 h-64 rounded-lg overflow-hidden" style={{backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDI1NiAyNTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2IiBmaWxsPSIjRjVGNUY1Ii8+CjxjaXJjbGUgY3g9IjEyOCIgY3k9IjEyOCIgcj0iODAiIGZpbGw9IiNGRkY0RjQiLz4KPGNpcmNsZSBjeD0iMTI4IiBjeT0iMTI4IiByPSI2MCIgZmlsbD0iI0ZGRkZGRiIvPgo8Y2lyY2xlIGN4PSIxMjgiIGN5PSIxMjgiIHI9IjQwIiBmaWxsPSIjRkZCNkI2Ii8+Cjwvc3ZnPgo=')"}}></div>
+      <section className="section bg-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center max-w-4xl mx-auto">
+            <p className="text-lg leading-relaxed text-[var(--muted)] mb-16">
+              Nestled in the heart of the city, Woodvale invites you to experience a dining journey 
+              that marries classic elegance with modern comfort. From the moment you step through our doors, 
+              you'll be enveloped in a warm and inviting ambiance that promises an unforgettable dining experience.
+            </p>
+            
+            {/* Three Image Strip */}
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="group cursor-pointer">
+                <div className="relative h-64 rounded-lg overflow-hidden mb-4">
+          <Image
+                    src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                    alt="Artisanal cocktail with tropical garnish"
+                    fill
+                    className="object-cover image-hover"
+                  />
+                </div>
+                <h3 className="font-sans text-lg font-semibold text-[var(--muted)] group-hover:text-[var(--leaf)] transition-colors">
+                  Craft Cocktails
+                </h3>
+              </div>
+              
+              <div className="group cursor-pointer">
+                <div className="relative h-64 rounded-lg overflow-hidden mb-4">
+          <Image
+                    src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                    alt="Elegant restaurant interior with tropical plants"
+                    fill
+                    className="object-cover image-hover"
+                  />
+                </div>
+                <h3 className="font-sans text-lg font-semibold text-[var(--muted)] group-hover:text-[var(--leaf)] transition-colors">
+                  Tropical Ambiance
+                </h3>
+              </div>
+              
+              <div className="group cursor-pointer">
+                <div className="relative h-64 rounded-lg overflow-hidden mb-4">
+          <Image
+                    src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                    alt="Beautifully plated gourmet dish"
+                    fill
+                    className="object-cover image-hover"
+                  />
+                </div>
+                <h3 className="font-sans text-lg font-semibold text-[var(--muted)] group-hover:text-[var(--leaf)] transition-colors">
+                  Gourmet Cuisine
+                </h3>
+              </div>
             </div>
-            <button className="text-2xl text-gray-400 hover:text-gray-600">›</button>
           </div>
         </div>
       </section>
 
       {/* Time-Honored Flavors Section */}
-      <section className="py-16 px-8 bg-white">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <div className="w-full h-96 rounded-lg overflow-hidden" style={{backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjRjVGNUY1Ii8+CjxyZWN0IHg9IjUwIiB5PSI1MCIgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNEOUQ5RDkiLz4KPGNpcmNsZSBjeD0iMTUwIiBjeT0iMTAwIiByPSI0MCIgZmlsbD0iI0JCQkJCQiIvPgo8Y2lyY2xlIGN4PSIzMDAiIGN5PSIxMDAiIHI9IjQwIiBmaWxsPSIjQkJCQkJCIi8+CjxjaXJjbGUgY3g9IjQ1MCIgY3k9IjEwMCIgcj0iNDAiIGZpbGw9IiNCQkJCQkIiLz4KPGNpcmNsZSBjeD0iMTUwIiBjeT0iMjAwIiByPSI0MCIgZmlsbD0iI0JCQkJCQiIvPgo8Y2lyY2xlIGN4PSIzMDAiIGN5PSIyMDAiIHI9IjQwIiBmaWxsPSIjQkJCQkJCIi8+CjxjaXJjbGUgY3g9IjQ1MCIgY3k9IjIwMCIgcj0iNDAiIGZpbGw9IiNCQkJCQkIiLz4KPC9zdmc+Cg==')"}}></div>
-          <div className="space-y-6">
-            <h2 className="font-header text-4xl font-bold text-[#2A332D]">
-              TIME-HONORED FLAVORS. CONTEMPORARY TWISTS.
-            </h2>
-            <p className="font-body text-lg leading-relaxed">
-              Our menu is a celebration of classic recipes, thoughtfully reimagined to embrace the evolving palate of the modern connoisseur. Our talented chefs infuse their creations with a touch of innovation while preserving the authenticity and essence of timeless flavors.
-            </p>
-            <button className="border border-[#2A332D] text-[#2A332D] px-6 py-3 hover:bg-[#2A332D] hover:text-white transition-colors">
-              VIEW OUR MENU
-            </button>
+      <section className="section bg-[var(--leaf)]">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div className="relative h-96 rounded-lg overflow-hidden">
+              <Image
+                src="https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                alt="Elegant dining room with warm lighting and tropical plants"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="space-y-6">
+              <h2 className="font-sans text-4xl lg:text-5xl font-bold text-white leading-tight">
+                Time-Honored Flavors,<br />
+                Contemporary Twists
+              </h2>
+              <p className="text-lg leading-relaxed text-white/90">
+                Our menu is a celebration of classic recipes, thoughtfully reimagined to embrace 
+                the evolving palate of the modern connoisseur. Our talented chefs infuse their 
+                creations with a touch of innovation while preserving the authenticity and essence 
+                of timeless flavors.
+              </p>
+              <Link href="/menu" className="btn-secondary">
+                View Our Menu
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Private Events Section */}
-      <section className="py-16 px-8 bg-white">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6 order-2 md:order-1">
-            <h2 className="font-header text-4xl font-bold text-[#2A332D]">
-              PRIVATE EVENTS.
-            </h2>
-            <p className="font-body text-lg leading-relaxed">
-              Looking for a distinctive venue to host a special event? Our private dining area offers a cozy and elegant space that can be customized to your unique needs, whether it's an intimate celebration or a business gathering.
-            </p>
-            <button className="border border-[#2A332D] text-[#2A332D] px-6 py-3 hover:bg-[#2A332D] hover:text-white transition-colors">
-              VIEW PRIVATE DINING
-            </button>
+      <section className="section bg-white">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div className="space-y-6 order-2 lg:order-1">
+              <h2 className="font-sans text-4xl lg:text-5xl font-bold text-[var(--muted)] leading-tight">
+                Private Events
+              </h2>
+              <p className="text-lg leading-relaxed text-[var(--muted)]">
+                Looking for a distinctive venue to host a special event? Our private dining area 
+                offers a cozy and elegant space that can be customized to your unique needs, 
+                whether it's an intimate celebration or a business gathering.
+              </p>
+              <Link href="/banquet" className="btn-secondary">
+                View Private Dining
+              </Link>
+            </div>
+            <div className="relative h-96 rounded-lg overflow-hidden order-1 lg:order-2">
+              <Image
+                src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                alt="Private banquet room with elegant table setting"
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
-          <div className="w-full h-96 rounded-lg overflow-hidden order-1 md:order-2" style={{backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjRjVGNUY1Ii8+CjxyZWN0IHg9IjUwIiB5PSI1MCIgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNEOUQ5RDkiLz4KPHJlY3QgeD0iMTAwIiB5PSI4MCIgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyNDAiIGZpbGw9IiM5OTk5OTkiLz4KPGNpcmNsZSBjeD0iMTUwIiBjeT0iMTIwIiByPSIyMCIgZmlsbD0iI0JCQkJCQiIvPgo8Y2lyY2xlIGN4PSIyNTAiIGN5PSIxMjAiIHI9IjIwIiBmaWxsPSIjQkJCQkJCIi8+CjxjaXJjbGUgY3g9IjM1MCIgY3k9IjEyMCIgcj0iMjAiIGZpbGw9IiNCQkJCQkIiLz4KPGNpcmNsZSBjeD0iNDUwIiBjeT0iMTIwIiByPSIyMCIgZmlsbD0iI0JCQkJCQiIvPgo8L3N2Zz4K')"}}></div>
         </div>
       </section>
 
       {/* Bottom Gallery Section */}
-      <section className="py-16 px-8 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex justify-center space-x-6">
-            <div className="w-64 h-64 rounded-lg overflow-hidden" style={{backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDI1NiAyNTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2IiBmaWxsPSIjMzMzMzMzIi8+CjxyZWN0IHg9IjUwIiB5PSI1MCIgd2lkdGg9IjE1NiIgaGVpZ2h0PSIxNTYiIGZpbGw9IiNGRkZGRkYiLz4KPGNpcmNsZSBjeD0iMTI4IiBjeT0iMTAwIiByPSIyMCIgZmlsbD0iI0ZGRkZGRiIvPgo8Y2lyY2xlIGN4PSIxMjgiIGN5PSIxNDAiIHI9IjIwIiBmaWxsPSIjRkZGRkZGIi8+CjxjaXJjbGUgY3g9IjEyOCIgY3k9IjE4MCIgcj0iMjAiIGZpbGw9IiNGRkZGRkYiLz4KPC9zdmc+Cg==')"}}></div>
-            <div className="w-64 h-64 rounded-lg overflow-hidden" style={{backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDI1NiAyNTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2IiBmaWxsPSIjRjVGNUY1Ii8+CjxyZWN0IHg9IjUwIiB5PSI1MCIgd2lkdGg9IjE1NiIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNGRjY2NjYiLz4KPGNpcmNsZSBjeD0iMTI4IiBjeT0iMTIwIiByPSI0MCIgZmlsbD0iI0ZGRkZGRiIvPgo8L3N2Zz4K')"}}></div>
-            <div className="w-64 h-64 rounded-lg overflow-hidden" style={{backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDI1NiAyNTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2IiBmaWxsPSIjRjVGNUY1Ii8+CjxjaXJjbGUgY3g9IjEyOCIgY3k9IjEyOCIgcj0iODAiIGZpbGw9IiNGRkY0RjQiLz4KPGNpcmNsZSBjeD0iMTI4IiBjeT0iMTI4IiByPSI2MCIgZmlsbD0iI0ZGRkZGRiIvPgo8Y2lyY2xlIGN4PSIxMjgiIGN5PSIxMjgiIHI9IjQwIiBmaWxsPSIjRkZCNkI2Ii8+Cjwvc3ZnPgo=')"}}></div>
+      <section className="section bg-[var(--leaf)]">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="group cursor-pointer">
+              <div className="relative h-80 rounded-lg overflow-hidden mb-4">
+                <Image
+                  src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                  alt="Elegant table setting with fine dining presentation"
+                  fill
+                  className="object-cover image-hover"
+                />
+              </div>
+              <h3 className="font-sans text-lg font-semibold text-white group-hover:text-[var(--mint)] transition-colors">
+                Fine Dining Experience
+              </h3>
+            </div>
+            
+            <div className="group cursor-pointer">
+              <div className="relative h-80 rounded-lg overflow-hidden mb-4">
+                <Image
+                  src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                  alt="Sophisticated bar area with craft cocktails"
+                  fill
+                  className="object-cover image-hover"
+                />
+              </div>
+              <h3 className="font-sans text-lg font-semibold text-white group-hover:text-[var(--mint)] transition-colors">
+                Speakeasy Bar
+              </h3>
+            </div>
+            
+            <div className="group cursor-pointer">
+              <div className="relative h-80 rounded-lg overflow-hidden mb-4">
+                <Image
+                  src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                  alt="Artfully plated savory dish with tropical elements"
+                  fill
+                  className="object-cover image-hover"
+                />
+              </div>
+              <h3 className="font-sans text-lg font-semibold text-white group-hover:text-[var(--mint)] transition-colors">
+                Culinary Artistry
+              </h3>
+            </div>
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }
