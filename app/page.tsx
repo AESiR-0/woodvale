@@ -17,7 +17,7 @@ export default function Home() {
             alt="Elegant restaurant interior with warm lighting and tropical plants"
             fill
             className="object-cover"
-          priority
+            priority
         />
           <div className="absolute inset-0 bg-gradient-to-b from-[var(--leaf)]/90 via-[var(--leaf)]/80 to-[var(--leaf)]/95"></div>
         </div>
