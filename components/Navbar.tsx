@@ -1,14 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import cinzel from "@/utils/useFont";
 
 export default function Navbar() {
   return (
     <section className="h-20 md:h-16 flex items-center justify-center md:justify-between py-2 px-8 bg-[#f6f3ea] border-b-2 border-black">
       <div className="resName">
-        <h1 className="text-3xl">WOODVALE</h1>
+        <h1 className={`${cinzel.className} text-3xl`}>WOODVALE</h1>
       </div>
       <div className="items hidden md:flex font-light text-md">
         <div className="flex items-center gap-4">

@@ -2,60 +2,33 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Hero from "@/sections/Hero";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[var(--leaf)]">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
-        <Image
-            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-            alt="Elegant restaurant interior with warm lighting and tropical plants"
-            fill
-            className="object-cover"
-            priority
-        />
-          <div className="absolute inset-0 bg-gradient-to-b from-[var(--leaf)]/90 via-[var(--leaf)]/80 to-[var(--leaf)]/95"></div>
-        </div>
 
-        {/* Hero Content */}
-        <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
-          <p className="text-white text-sm uppercase tracking-widest font-medium mb-4">
-            Welcome to Woodvale
-          </p>
-          <h1 className="font-sans text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight">
-            Savor the Classics,<br />
-            Embrace the Present
-          </h1>
-          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Experience the perfect blend of speakeasy elegance and tropical ambiance. 
-            Where timeless flavors meet contemporary innovation.
-          </p>
-          <Link href="/banquet#calendar" className="btn-primary">
-            Reserve a Table
-          </Link>
-        </div>
-      </section>
+      {/* Hero Section */}
+      <Hero />
 
       {/* Introduction Section */}
       <section className="section bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center max-w-4xl mx-auto">
             <p className="text-lg leading-relaxed text-[var(--muted)] mb-16">
-              Nestled in the heart of the city, Woodvale invites you to experience a dining journey 
-              that marries classic elegance with modern comfort. From the moment you step through our doors, 
-              you'll be enveloped in a warm and inviting ambiance that promises an unforgettable dining experience.
+              Nestled in the heart of the city, Woodvale invites you to
+              experience a dining journey that marries classic elegance with
+              modern comfort. From the moment you step through our doors, you'll
+              be enveloped in a warm and inviting ambiance that promises an
+              unforgettable dining experience.
             </p>
-            
+
             {/* Three Image Strip */}
             <div className="grid md:grid-cols-3 gap-8">
               <div className="group cursor-pointer">
                 <div className="relative h-64 rounded-lg overflow-hidden mb-4">
-          <Image
+                  <Image
                     src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
                     alt="Artisanal cocktail with tropical garnish"
                     fill
@@ -66,10 +39,10 @@ export default function Home() {
                   Craft Cocktails
                 </h3>
               </div>
-              
+
               <div className="group cursor-pointer">
                 <div className="relative h-64 rounded-lg overflow-hidden mb-4">
-          <Image
+                  <Image
                     src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
                     alt="Elegant restaurant interior with tropical plants"
                     fill
@@ -80,10 +53,10 @@ export default function Home() {
                   Tropical Ambiance
                 </h3>
               </div>
-              
+
               <div className="group cursor-pointer">
                 <div className="relative h-64 rounded-lg overflow-hidden mb-4">
-          <Image
+                  <Image
                     src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
                     alt="Beautifully plated gourmet dish"
                     fill
@@ -113,14 +86,16 @@ export default function Home() {
             </div>
             <div className="space-y-6">
               <h2 className="font-sans text-4xl lg:text-5xl font-bold text-white leading-tight">
-                Time-Honored Flavors,<br />
+                Time-Honored Flavors,
+                <br />
                 Contemporary Twists
               </h2>
               <p className="text-lg leading-relaxed text-white/90">
-                Our menu is a celebration of classic recipes, thoughtfully reimagined to embrace 
-                the evolving palate of the modern connoisseur. Our talented chefs infuse their 
-                creations with a touch of innovation while preserving the authenticity and essence 
-                of timeless flavors.
+                Our menu is a celebration of classic recipes, thoughtfully
+                reimagined to embrace the evolving palate of the modern
+                connoisseur. Our talented chefs infuse their creations with a
+                touch of innovation while preserving the authenticity and
+                essence of timeless flavors.
               </p>
               <Link href="/menu" className="btn-secondary">
                 View Our Menu
@@ -139,9 +114,10 @@ export default function Home() {
                 Private Events
               </h2>
               <p className="text-lg leading-relaxed text-[var(--muted)]">
-                Looking for a distinctive venue to host a special event? Our private dining area 
-                offers a cozy and elegant space that can be customized to your unique needs, 
-                whether it's an intimate celebration or a business gathering.
+                Looking for a distinctive venue to host a special event? Our
+                private dining area offers a cozy and elegant space that can be
+                customized to your unique needs, whether it's an intimate
+                celebration or a business gathering.
               </p>
               <Link href="/banquet" className="btn-secondary">
                 View Private Dining
@@ -176,7 +152,7 @@ export default function Home() {
                 Fine Dining Experience
               </h3>
             </div>
-            
+
             <div className="group cursor-pointer">
               <div className="relative h-80 rounded-lg overflow-hidden mb-4">
                 <Image
@@ -190,7 +166,7 @@ export default function Home() {
                 Speakeasy Bar
               </h3>
             </div>
-            
+
             <div className="group cursor-pointer">
               <div className="relative h-80 rounded-lg overflow-hidden mb-4">
                 <Image
