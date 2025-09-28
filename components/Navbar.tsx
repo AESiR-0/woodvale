@@ -1,6 +1,6 @@
 "use client";
 
-import cinzel from "@/utils/useFont";
+import cinzel from "@/hooks/useFont";
 
 export default function Navbar() {
   return (
