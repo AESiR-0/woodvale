@@ -35,7 +35,7 @@ export default function Home() {
             Experience the perfect blend of speakeasy elegance and tropical ambiance. 
             Where timeless flavors meet contemporary innovation.
           </p>
-          <Link href="/banquet#calendar" className="btn-primary">
+          <Link href="/reserve" className="btn-primary">
             Reserve a Table
           </Link>
         </div>
