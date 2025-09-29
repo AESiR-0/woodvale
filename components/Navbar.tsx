@@ -78,7 +78,7 @@ export default function Navbar() {
 
           {/* CTA Button */}
           <Link
-            href="/banquet#calendar"
+            href="/reserve"
             className="btn-primary"
           >
             Reserve a Table
