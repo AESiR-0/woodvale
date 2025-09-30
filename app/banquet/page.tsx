@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -80,57 +80,70 @@ export default function EventBookingForm() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--leaf)] flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-[#2A332D] flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
       <Navbar />
       <form
         onSubmit={handleSubmit}
-        className="bg-white rounded-lg shadow-xl w-full sm:w-4/5 md:w-2/3 lg:w-1/2 xl:w-2/5 p-6 flex flex-col gap-6"
+        className="bg-white rounded-lg shadow-xl w-full sm:w-4/5 md:w-2/3 lg:w-1/2 xl:w-2/5 p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-5 md:gap-6 mt-20"
       >
-        <h2 className="text-xl font-semibold mb-2 flex items-center gap-2">
-          <X /> Book Your Event
+        <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2 flex items-center gap-2">
+          <X className="w-5 h-5 sm:w-6 sm:h-6" /> Book Your Event
         </h2>
 
         {/* Name & Number */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="flex flex-col gap-1">
-            <Label htmlFor="name">Name</Label>
+          <div className="flex flex-col gap-1.5 sm:gap-2">
+            <Label htmlFor="name" className="text-sm sm:text-base">
+              Name
+            </Label>
             <Input
               id="name"
               type="text"
               placeholder="Enter your name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className={errors.name ? "border-red-500" : ""}
+              className={`h-10 sm:h-11 md:h-12 text-sm sm:text-base ${
+                errors.name ? "border-red-500" : ""
+              }`}
             />
             {errors.name && (
-              <p className="text-red-500 text-sm">{errors.name}</p>
+              <p className="text-red-500 text-xs sm:text-sm">{errors.name}</p>
             )}
           </div>
 
-          <div className="flex flex-col gap-1">
-            <Label htmlFor="number">Number</Label>
+          <div className="flex flex-col gap-1.5 sm:gap-2">
+            <Label htmlFor="number" className="text-sm sm:text-base">
+              Number
+            </Label>
             <Input
               id="number"
               type="tel"
               placeholder="Enter your number"
               value={number}
               onChange={(e) => setNumber(e.target.value)}
-              className={errors.number ? "border-red-500" : ""}
+              className={`h-10 sm:h-11 md:h-12 text-sm sm:text-base ${
+                errors.number ? "border-red-500" : ""
+              }`}
             />
             {errors.number && (
-              <p className="text-red-500 text-sm">{errors.number}</p>
+              <p className="text-red-500 text-xs sm:text-sm">{errors.number}</p>
             )}
           </div>
         </div>
+        {/* grid grid-cols-1 md:grid-cols-2 gap-4 */}
 
-        {/* Event Type & Dates */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="flex flex-col gap-1">
-            <Label htmlFor="eventType">Type of Event</Label>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+          {/* Type of Event - Full Width */}
+          <div className="flex flex-col gap-1.5 sm:gap-2 w-full">
+            <Label htmlFor="eventType" className="text-sm sm:text-base">
+              Type of Event
+            </Label>
             <Select value={eventType} onValueChange={setEventType}>
               <SelectTrigger
                 id="eventType"
-                className={errors.eventType ? "border-red-500" : ""}
+                className={`h-10 sm:h-11 md:h-12 text-sm sm:text-base w-full ${
+                  errors.eventType ? "border-red-500" : ""
+                }`}
               >
                 <SelectValue placeholder="Select event type" />
               </SelectTrigger>
@@ -142,12 +155,17 @@ export default function EventBookingForm() {
               </SelectContent>
             </Select>
             {errors.eventType && (
-              <p className="text-red-500 text-sm">{errors.eventType}</p>
+              <p className="text-red-500 text-xs sm:text-sm">
+                {errors.eventType}
+              </p>
             )}
           </div>
 
-          <div className="flex flex-col gap-1">
-            <Label htmlFor="dates">Dates</Label>
+          {/* Dates - Full Width */}
+          <div className="flex flex-col gap-1.5 sm:gap-2 w-full">
+            <Label htmlFor="dates" className="text-sm sm:text-base">
+              Dates
+            </Label>
             <Select
               value=""
               onValueChange={(val) =>
@@ -156,7 +174,9 @@ export default function EventBookingForm() {
             >
               <SelectTrigger
                 id="dates"
-                className={errors.dates ? "border-red-500" : ""}
+                className={`h-10 sm:h-11 md:h-12 text-sm sm:text-base w-full ${
+                  errors.dates ? "border-red-500" : ""
+                }`}
               >
                 <SelectValue
                   placeholder={
@@ -164,44 +184,55 @@ export default function EventBookingForm() {
                   }
                 />
               </SelectTrigger>
-              <SelectContent className="max-h-60">
+              <SelectContent className="max-h-48 sm:max-h-60">
                 {days.map((d) => (
-                  <SelectItem key={d.value} value={d.value}>
+                  <SelectItem
+                    key={d.value}
+                    value={d.value}
+                    className="text-sm sm:text-base"
+                  >
                     {d.label} {dates.includes(d.value) ? "✓" : ""}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
             {errors.dates && (
-              <p className="text-red-500 text-sm">{errors.dates}</p>
+              <p className="text-red-500 text-xs sm:text-sm">{errors.dates}</p>
             )}
           </div>
         </div>
 
-        {/* Number of Guests */}
-        <div className="flex flex-col gap-1 w-full md:w-1/2">
-          <Label htmlFor="guests">Number of Guests</Label>
+        {/* Number of Guests - Full Width */}
+        <div className="flex flex-col gap-1.5 sm:gap-2 w-full">
+          <Label htmlFor="guests" className="text-sm sm:text-base">
+            Number of Guests
+          </Label>
           <Select value={guests} onValueChange={setGuests}>
             <SelectTrigger
               id="guests"
-              className={errors.guests ? "border-red-500" : ""}
+              className={`h-10 sm:h-11 md:h-12 text-sm sm:text-base w-full ${
+                errors.guests ? "border-red-500" : ""
+              }`}
             >
               <SelectValue placeholder="Select guests" />
             </SelectTrigger>
-            <SelectContent className="max-h-60">
+            <SelectContent className="max-h-48 sm:max-h-60">
               {guestsList.map((g) => (
-                <SelectItem key={g} value={g}>
+                <SelectItem key={g} value={g} className="text-sm sm:text-base">
                   {g}
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
           {errors.guests && (
-            <p className="text-red-500 text-sm">{errors.guests}</p>
+            <p className="text-red-500 text-xs sm:text-sm">{errors.guests}</p>
           )}
         </div>
 
-        <Button type="submit" className="mt-4 w-full">
+        <Button
+          type="submit"
+          className="mt-2 sm:mt-4 w-full h-10 sm:h-11 md:h-12 text-sm sm:text-base"
+        >
           Submit
         </Button>
       </form>
