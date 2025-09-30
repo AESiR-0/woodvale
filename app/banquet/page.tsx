@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/select";
 import Navbar from "@/components/Navbar";
 import { X } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function EventBookingForm() {
   const [name, setName] = useState("");
@@ -21,6 +22,7 @@ export default function EventBookingForm() {
   const [dates, setDates] = useState<string[]>([]);
   const [guests, setGuests] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const router = useRouter();
 
   const today = new Date();
   const days = Array.from({ length: 7 }, (_, i) => {
@@ -47,7 +49,8 @@ export default function EventBookingForm() {
   const validate = () => {
     const newErrors: { [key: string]: string } = {};
     if (!name.trim()) newErrors.name = "Name is required";
-    else if (name.trim().length < 2) newErrors.name = "Name must be at least 2 characters";
+    else if (name.trim().length < 2)
+      newErrors.name = "Name must be at least 2 characters";
 
     if (!number.trim()) newErrors.number = "Number is required";
     else if (!/^\d{10}$/.test(number.trim()))
@@ -67,10 +70,12 @@ export default function EventBookingForm() {
     e.preventDefault();
     if (!validate()) return;
 
-    alert(
-      `Name: ${name}\nNumber: ${number}\nEvent Type: ${eventType}\nDates: ${dates.join(
-        ", "
-      )}\nGuests: ${guests}`
+    router.push(
+      `/showDetails?title=Event Booking Summary&dateTime=${encodeURIComponent(
+        dates.join(", ")
+      )}&location=${encodeURIComponent(eventType)}&guests=${encodeURIComponent(
+        guests
+      )}`
     );
   };
 
@@ -97,7 +102,9 @@ export default function EventBookingForm() {
               onChange={(e) => setName(e.target.value)}
               className={errors.name ? "border-red-500" : ""}
             />
-            {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+            {errors.name && (
+              <p className="text-red-500 text-sm">{errors.name}</p>
+            )}
           </div>
 
           <div className="flex flex-col gap-1">
@@ -110,7 +117,9 @@ export default function EventBookingForm() {
               onChange={(e) => setNumber(e.target.value)}
               className={errors.number ? "border-red-500" : ""}
             />
-            {errors.number && <p className="text-red-500 text-sm">{errors.number}</p>}
+            {errors.number && (
+              <p className="text-red-500 text-sm">{errors.number}</p>
+            )}
           </div>
         </div>
 
@@ -132,7 +141,9 @@ export default function EventBookingForm() {
                 <SelectItem value="conference">Conference</SelectItem>
               </SelectContent>
             </Select>
-            {errors.eventType && <p className="text-red-500 text-sm">{errors.eventType}</p>}
+            {errors.eventType && (
+              <p className="text-red-500 text-sm">{errors.eventType}</p>
+            )}
           </div>
 
           <div className="flex flex-col gap-1">
@@ -148,7 +159,9 @@ export default function EventBookingForm() {
                 className={errors.dates ? "border-red-500" : ""}
               >
                 <SelectValue
-                  placeholder={dates.length > 0 ? dates.join(", ") : "Select date(s)"}
+                  placeholder={
+                    dates.length > 0 ? dates.join(", ") : "Select date(s)"
+                  }
                 />
               </SelectTrigger>
               <SelectContent className="max-h-60">
@@ -159,7 +172,9 @@ export default function EventBookingForm() {
                 ))}
               </SelectContent>
             </Select>
-            {errors.dates && <p className="text-red-500 text-sm">{errors.dates}</p>}
+            {errors.dates && (
+              <p className="text-red-500 text-sm">{errors.dates}</p>
+            )}
           </div>
         </div>
 
@@ -181,7 +196,9 @@ export default function EventBookingForm() {
               ))}
             </SelectContent>
           </Select>
-          {errors.guests && <p className="text-red-500 text-sm">{errors.guests}</p>}
+          {errors.guests && (
+            <p className="text-red-500 text-sm">{errors.guests}</p>
+          )}
         </div>
 
         <Button type="submit" className="mt-4 w-full">
