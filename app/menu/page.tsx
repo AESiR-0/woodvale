@@ -28,7 +28,7 @@ const sectionsData: SectionData[] = [
     title: "TROPICAL PARADISE",
     description:
       "Escape to paradise with a tropical blend of mango, pineapple, and coconut water — a smooth escape in every sip.",
-    mainImage: "/images/1C2AE5DD-CE4B-4B31-8B88-BD24EB05E4EC.PNG",
+    mainImage: "/images/4C9B4FE7-B572-4112-ABFA-518ABA673536.PNG",
     backgroundColor: "#FFF7E5",
     accentColor: "#FFB347",
   },
@@ -37,7 +37,7 @@ const sectionsData: SectionData[] = [
     title: "GREEN ENERGY",
     description:
       "Supercharge your day with nutrient-dense greens, spirulina, and sweet fruits. Health never tasted this good.",
-    mainImage: "/images/smoothie-green.jpg",
+    mainImage: "/images/8490C6D5-8E95-458E-AAF9-1DADF2C4400D.PNG",
     backgroundColor: "#E5F5E5",
     accentColor: "#4CAF50",
   },
@@ -46,7 +46,7 @@ const sectionsData: SectionData[] = [
     title: "BERRY FUSION",
     description:
       "Antioxidant-rich blend of blueberries, raspberries, and blackberries. Pure berry goodness in every drop.",
-    mainImage: "/images/smoothie-berry.jpg",
+    mainImage: "/images/34FA600C-5E4A-4A51-AC31-92AD9A2C86CE (1).PNG",
     backgroundColor: "#E5E5FF",
     accentColor: "#7B68EE",
   },
@@ -240,7 +240,7 @@ const FixedBackgroundSlideshow: React.FC = () => {
                   </p>
                   <div className="buttons flex gap-4">
                     <button
-                      className="px-8 py-4 rounded-full font-semibold transition-all hover:scale-105"
+                      className="cursor-pointer px-8 py-4 rounded-full font-semibold transition-all hover:scale-105"
                       style={{
                         backgroundColor: section.accentColor,
                         color: "white",
@@ -248,7 +248,7 @@ const FixedBackgroundSlideshow: React.FC = () => {
                     >
                       Order Now
                     </button>
-                    <button className="px-8 py-4 border-2 border-gray-800 text-gray-800 rounded-full font-semibold hover:bg-gray-800 hover:text-white transition-all">
+                    <button className="cursor-pointer px-8 py-4 border-2 border-gray-800 text-gray-800 rounded-full font-semibold hover:bg-gray-800 hover:text-white transition-all">
                       Learn More
                     </button>
                   </div>
@@ -273,28 +273,6 @@ const FixedBackgroundSlideshow: React.FC = () => {
           </div>
         ))}
       </div>
-
-      {/* Scroll Indicator */}
-      {currentSection === 0 && (
-        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-50">
-          <div className="text-gray-600 text-sm font-medium flex flex-col items-center gap-2">
-            <span>Scroll to explore</span>
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
-          </div>
-        </div>
-      )}
 
       {/* Section Counter */}
       <div className="fixed bottom-8 right-8 z-50 text-gray-600 font-semibold">
