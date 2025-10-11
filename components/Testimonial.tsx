@@ -1,19 +1,19 @@
-"use client";
+"use client"
 
-import { useRef, useState, MouseEvent } from "react";
+import { useRef, useState, MouseEvent } from "react"
 
 interface Testimonial {
-  text: string;
-  author: string;
-  rating: number;
+  text: string
+  author: string
+  rating: number
 }
 
 export default function TestimonialsSection() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const [activeDot, setActiveDot] = useState(0);
-  const [isDown, setIsDown] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const [activeDot, setActiveDot] = useState<number>(0)
+  const [isDown, setIsDown] = useState<boolean>(false)
+  const [startX, setStartX] = useState<number>(0)
+  const [scrollLeft, setScrollLeft] = useState<number>(0)
 
   const testimonials: Testimonial[] = [
     {
@@ -46,59 +46,55 @@ export default function TestimonialsSection() {
       author: "Yuki T., Japan",
       rating: 5,
     },
-  ];
+  ]
 
   const handleMouseDown = (e: MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
-    setIsDown(true);
-    setStartX(e.pageX - containerRef.current.offsetLeft);
-    setScrollLeft(containerRef.current.scrollLeft);
-  };
+    if (!containerRef.current) return
+    setIsDown(true)
+    setStartX(e.pageX - containerRef.current.offsetLeft)
+    setScrollLeft(containerRef.current.scrollLeft)
+  }
 
-  const handleMouseLeave = () => setIsDown(false);
-  const handleMouseUp = () => setIsDown(false);
+  const handleMouseLeave = () => setIsDown(false)
+  const handleMouseUp = () => setIsDown(false)
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!isDown || !containerRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - containerRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    containerRef.current.scrollLeft = scrollLeft - walk;
-  };
+    if (!isDown || !containerRef.current) return
+    e.preventDefault()
+    const x = e.pageX - containerRef.current.offsetLeft
+    const walk = (x - startX) * 2
+    containerRef.current.scrollLeft = scrollLeft - walk
+  }
 
-  const scrollLeftBtn = () => {
-    containerRef.current?.scrollBy({ left: -420, behavior: "smooth" });
-  };
-
-  const scrollRightBtn = () => {
-    containerRef.current?.scrollBy({ left: 420, behavior: "smooth" });
-  };
+  const scrollLeftBtn = () => containerRef.current?.scrollBy({ left: -420, behavior: "smooth" })
+  const scrollRightBtn = () => containerRef.current?.scrollBy({ left: 420, behavior: "smooth" })
 
   const handleScroll = () => {
-    const container = containerRef.current;
-    if (container) {
-      const scrollPercentage =
-        container.scrollLeft / (container.scrollWidth - container.clientWidth);
-      const newActiveDot = Math.round(scrollPercentage * 2);
-      setActiveDot(newActiveDot);
-    }
-  };
+    const container = containerRef.current
+    if (!container) return
+    const scrollPercentage =
+      container.scrollLeft / (container.scrollWidth - container.clientWidth)
+    const newActiveDot = Math.round(scrollPercentage * 2)
+    setActiveDot(newActiveDot)
+  }
 
   const scrollToDot = (index: number) => {
-    const container = containerRef.current;
-    if (!container) return;
+    const container = containerRef.current
+    if (!container) return
     const scrollAmount =
-      (container.scrollWidth - container.clientWidth) * (index / 2);
-    container.scrollTo({ left: scrollAmount, behavior: "smooth" });
-  };
+      (container.scrollWidth - container.clientWidth) * (index / 2)
+    container.scrollTo({ left: scrollAmount, behavior: "smooth" })
+  }
 
   return (
     <div className="py-16 px-0 bg-[var(--leaf)] relative overflow-hidden">
       {/* Vignette Effect */}
-      <div className="absolute inset-0 pointer-events-none bg-gradient-radial from-transparent via-transparent to-black/20" 
-           style={{
-             background: 'radial-gradient(ellipse at center, transparent 0%, transparent 40%, rgba(0,0,0,0.3) 80%, rgba(0,0,0,0.6) 100%)'
-           }}
+      <div
+        className="absolute inset-0 pointer-events-none bg-gradient-radial from-transparent via-transparent to-black/20"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, transparent 0%, transparent 40%, rgba(0,0,0,0.3) 80%, rgba(0,0,0,0.6) 100%)",
+        }}
       />
 
       <style jsx global>{`
@@ -191,7 +187,7 @@ export default function TestimonialsSection() {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className={`card-animate opacity-0 min-w-[380px] max-w-[380px] bg-[var(--leaf)] backdrop-blur-md border border-[var(--muted)]/40 rounded-2xl px-8 py-10 flex-shrink-0 relative overflow-hidden transition-all duration-300 hover:-translate-y-2.5 hover:scale-105 hover:border-[var(--muted)] group`}
+                className="card-animate opacity-0 min-w-[380px] max-w-[380px] bg-[var(--leaf)] backdrop-blur-md border border-[var(--muted)]/40 rounded-2xl px-8 py-10 flex-shrink-0 relative overflow-hidden transition-all duration-300 hover:-translate-y-2.5 hover:scale-105 hover:border-[var(--muted)] group"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -238,5 +234,5 @@ export default function TestimonialsSection() {
         </div>
       </div>
     </div>
-  );
+  )
 }

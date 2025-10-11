@@ -1,286 +1,199 @@
 "use client";
+import React, { useState, useEffect, useRef, MutableRefObject } from "react";
+import { ChevronLeft, ChevronRight, Utensils, Wine } from "lucide-react";
+import { categories } from "@/utils/dishesData";
 
-import React, { useRef, useState, useEffect } from "react";
-import Image from "next/image"; 
-import gsap from "gsap";
-
-interface SectionData {
-  id: string;
-  title: string;
-  description: string;
+interface Dish {
+  id: number;
+  name: string;
+  subtitle: string;
+  image: string;
   mainImage: string;
-  backgroundColor: string;
-  accentColor: string;
+  number: number;
+  rating: number;
+  chef: string;
+  chefTitle: string;
+  description: string;
 }
 
-const sectionsData: SectionData[] = [
-  {
-    id: "section-1",
-    title: "SMOOTHIES FRAISE",
-    description:
-      "Fresh strawberry smoothie packed with vitamins and natural sweetness. Perfect for a healthy breakfast or post-workout refreshment.",
-    mainImage: "/images/1C2AE5DD-CE4B-4B31-8B88-BD24EB05E4EC.PNG",
-    backgroundColor: "#FFE5E5",
-    accentColor: "#FF6B6B",
-  },
-  {
-    id: "section-2",
-    title: "TROPICAL PARADISE",
-    description:
-      "Escape to paradise with a tropical blend of mango, pineapple, and coconut water — a smooth escape in every sip.",
-    mainImage: "/images/4C9B4FE7-B572-4112-ABFA-518ABA673536.PNG",
-    backgroundColor: "#FFF7E5",
-    accentColor: "#FFB347",
-  },
-  {
-    id: "section-3",
-    title: "GREEN ENERGY",
-    description:
-      "Supercharge your day with nutrient-dense greens, spirulina, and sweet fruits. Health never tasted this good.",
-    mainImage: "/images/8490C6D5-8E95-458E-AAF9-1DADF2C4400D.PNG",
-    backgroundColor: "#E5F5E5",
-    accentColor: "#4CAF50",
-  },
-  {
-    id: "section-4",
-    title: "BERRY FUSION",
-    description:
-      "Antioxidant-rich blend of blueberries, raspberries, and blackberries. Pure berry goodness in every drop.",
-    mainImage: "/images/34FA600C-5E4A-4A51-AC31-92AD9A2C86CE (1).PNG",
-    backgroundColor: "#E5E5FF",
-    accentColor: "#7B68EE",
-  },
-];
+type CategoryType = "food" | "drinks" | "reviews";
 
-const FixedBackgroundSlideshow: React.FC = () => {
-  const bgRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const [currentSection, setCurrentSection] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const touchStartY = useRef(0);
+export default function FoodMenu() {
+  const [activeCategory, setActiveCategory] = useState<CategoryType>("food");
+  const [activeDish, setActiveDish] = useState<number>(1);
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const sectionRefs = useRef<Record<number, HTMLDivElement | null>>({});
+
+  const dishes: Dish[] = categories[activeCategory];
 
   useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout;
-    let lastScrollTime = 0;
+    setActiveDish(dishes[0].id);
+  }, [activeCategory, dishes]);
 
-    const handleWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      
-      const now = Date.now();
-      if (now - lastScrollTime < 1000 || isAnimating) return;
-      lastScrollTime = now;
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = scrollContainerRef.current;
+      if (!container) return;
 
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        if (e.deltaY > 0 && currentSection < sectionsData.length - 1) {
-          goToSection(currentSection + 1);
-        } else if (e.deltaY < 0 && currentSection > 0) {
-          goToSection(currentSection - 1);
-        }
-      }, 50);
-    };
+      const scrollPosition = container.scrollTop + container.clientHeight / 2;
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (isAnimating) return;
-      
-      if ((e.key === "ArrowDown" || e.key === "PageDown") && currentSection < sectionsData.length - 1) {
-        goToSection(currentSection + 1);
-      } else if ((e.key === "ArrowUp" || e.key === "PageUp") && currentSection > 0) {
-        goToSection(currentSection - 1);
-      }
-    };
-
-    const handleTouchStart = (e: TouchEvent) => {
-      touchStartY.current = e.touches[0].clientY;
-    };
-
-    const handleTouchEnd = (e: TouchEvent) => {
-      if (isAnimating) return;
-      
-      const touchEndY = e.changedTouches[0].clientY;
-      const diff = touchStartY.current - touchEndY;
-
-      if (Math.abs(diff) > 50) {
-        if (diff > 0 && currentSection < sectionsData.length - 1) {
-          goToSection(currentSection + 1);
-        } else if (diff < 0 && currentSection > 0) {
-          goToSection(currentSection - 1);
+      for (let i = 0; i < dishes.length; i++) {
+        const section = sectionRefs.current[dishes[i].id];
+        if (section) {
+          const { offsetTop, offsetHeight } = section;
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveDish(dishes[i].id);
+            break;
+          }
         }
       }
     };
 
-    window.addEventListener("wheel", handleWheel, { passive: false });
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("touchstart", handleTouchStart);
-    window.addEventListener("touchend", handleTouchEnd);
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener("scroll", handleScroll);
+      return () => container.removeEventListener("scroll", handleScroll);
+    }
+  }, [dishes]);
 
-    return () => {
-      window.removeEventListener("wheel", handleWheel);
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchend", handleTouchEnd);
-      clearTimeout(scrollTimeout);
-    };
-  }, [currentSection, isAnimating]);
-
-  const goToSection = (index: number) => {
-    if (index === currentSection || isAnimating) return;
-    setIsAnimating(true);
-
-    const direction = index > currentSection ? 1 : -1;
-    animateTransition(currentSection, index, direction);
+  const scrollToDish = (dishId: number) => {
+    setActiveDish(dishId);
+    const section = sectionRefs.current[dishId];
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
   };
 
-  const animateTransition = (fromIndex: number, toIndex: number, direction: number) => {
-    const oldSection = contentRef.current?.children[fromIndex] as HTMLElement;
-    const newSection = contentRef.current?.children[toIndex] as HTMLElement;
-
-    if (!oldSection || !newSection) return;
-
-    // Background color transition
-    gsap.to(bgRef.current, {
-      backgroundColor: sectionsData[toIndex].backgroundColor,
-      duration: 0.8,
-      ease: "power2.inOut",
-    });
-
-    const tl = gsap.timeline({
-      onComplete: () => {
-        setCurrentSection(toIndex);
-        setIsAnimating(false);
-      },
-    });
-
-    // Animate out old content only (not the card)
-    const oldMainImage = oldSection.querySelector(".main-image");
-    const oldTitle = oldSection.querySelectorAll(".title-char");
-    const oldDescription = oldSection.querySelector(".description");
-    const oldButtons = oldSection.querySelector(".buttons");
-
-    tl.to([oldMainImage, oldTitle, oldDescription, oldButtons], {
-      opacity: 0,
-      y: direction * -30,
-      stagger: 0.02,
-      duration: 0.4,
-      ease: "power2.in",
-    })
-    .set(oldSection, { display: "none" });
-
-    // Prepare new section content
-    const newMainImage = newSection.querySelector(".main-image");
-    const newTitle = newSection.querySelectorAll(".title-char");
-    const newDescription = newSection.querySelector(".description");
-    const newButtons = newSection.querySelector(".buttons");
-
-    gsap.set(newSection, { display: "flex" });
-    gsap.set(newMainImage, { opacity: 0, scale: 0.8, rotation: -10 });
-    gsap.set(newTitle, { opacity: 0, y: 30 });
-    gsap.set(newDescription, { opacity: 0, y: 20 });
-    gsap.set(newButtons, { opacity: 0, y: 20 });
-
-    // Animate in new content
-    tl.to(newMainImage, {
-      opacity: 1,
-      scale: 1,
-      rotation: 0,
-      duration: 0.8,
-      ease: "back.out(1.2)",
-    }, "-=0.2")
-    .to(newTitle, {
-      opacity: 1,
-      y: 0,
-      stagger: 0.03,
-      duration: 0.5,
-      ease: "power2.out",
-    }, "-=0.4")
-    .to(newDescription, {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      ease: "power2.out",
-    }, "-=0.3")
-    .to(newButtons, {
-      opacity: 1,
-      y: 0,
-      duration: 0.5,
-      ease: "power2.out",
-    }, "-=0.3");
-  };
+  const currentDish = dishes.find((d) => d.id === activeDish) || dishes[0];
 
   return (
-    <div className="fixed inset-0 w-full h-full overflow-hidden">
-      {/* Fixed Background Layer */}
-      <div
-        ref={bgRef}
-        className="absolute inset-0 w-full h-full transition-colors duration-700"
-        style={{ backgroundColor: sectionsData[0].backgroundColor }}
-      />
+    <div className="flex h-screen bg-[var(--leaf)] text-[var(--bg)] overflow-hidden">
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col relative">
+        {/* Fixed Content Display Area */}
+        <div className="flex-1 flex items-center justify-center px-8 relative">
+          <div className="max-w-6xl w-full">
+            {/* Title and Image Container */}
+            <div className="flex flex-row-reverse items-center justify-center gap-8 mb-8">
+              {/* Title */}
+              <div className="text-left">
+                <h1 className="text-8xl font-light  text-[var(--muted)] tracking-wide mb-4 transition-all duration-500">
+                  {currentDish.name}
+                </h1>
+                <h2 className="text-5xl font-bold  text-[var(--muted)] transition-all duration-500">
+                  {currentDish.subtitle}
+                </h2>
+              </div>
 
-      {/* Content Sections (Fixed, No Scroll) */}
-      <div ref={contentRef} className="relative z-10 w-full h-full">
-        {sectionsData.map((section, index) => (
-          <div
-            key={section.id}
-            className="absolute inset-0 w-full h-full flex items-center justify-center p-4 md:p-8"
-            style={{ display: index === 0 ? "flex" : "none" }}
-          >
-            <div className="section-card w-full h-[90vh] bg-white rounded-3xl shadow-2xl overflow-hidden">
-              <div className="w-full h-full p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8">
-                {/* Left Side - Text */}
-                <div className="flex-1 space-y-6 z-10">
-                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-gray-900 leading-none">
-                    {section.title.split("").map((char, i) => (
-                      <span key={i} className="title-char inline-block">
-                        {char === " " ? "\u00A0" : char}
-                      </span>
-                    ))}
-                  </h1>
-                  <p className="description text-lg md:text-xl text-gray-600 max-w-lg leading-relaxed">
-                    {section.description}
-                  </p>
-                  <div className="buttons flex gap-4">
-                    <button
-                      className="cursor-pointer px-8 py-4 rounded-full font-semibold transition-all hover:scale-105"
-                      style={{
-                        backgroundColor: section.accentColor,
-                        color: "white",
-                      }}
-                    >
-                      Order Now
-                    </button>
-                    <button className="cursor-pointer px-8 py-4 border-2 border-gray-800 text-gray-800 rounded-full font-semibold hover:bg-gray-800 hover:text-white transition-all">
-                      Learn More
-                    </button>
-                  </div>
-                </div>
-
-                {/* Right Side - Image */}
-                <div className="flex-1 flex items-center justify-center">
-                  <div className="main-image relative w-full max-w-md aspect-square">
-                    <div className="absolute inset-0 rounded-full overflow-hidden shadow-2xl">
-                      <Image
-                        src={section.mainImage}
-                        alt={section.title}
-                        fill
-                        className="object-cover"
-                        priority={index === 0}
-                      />
-                    </div>
-                  </div>
-                </div>
+              {/* Image */}
+              <div className="bg-white  rounded-full shadow-2xl transition-all duration-500 w-80 h-80 ">
+                <img
+                  src={currentDish.mainImage}
+                  alt={currentDish.name}
+                  className="w-full h-full object-cover rounded-full"
+                  key={currentDish.id}
+                />
               </div>
             </div>
-          </div>
-        ))}
-      </div>
 
-      {/* Section Counter */}
-      <div className="fixed bottom-8 right-8 z-50 text-gray-600 font-semibold">
-        <span className="text-2xl">{currentSection + 1}</span>
-        <span className="text-sm"> / {sectionsData.length}</span>
+            {/* Dish Selector */}
+            <div className="flex justify-center items-center gap-4">
+              <ChevronLeft
+                className="w-6 h-6 text-gray-400 cursor-pointer hover:text-gray-600 transition"
+                onClick={() => {
+                  const currentIndex = dishes.findIndex(
+                    (d) => d.id === activeDish
+                  );
+                  const prevIndex =
+                    currentIndex > 0 ? currentIndex - 1 : dishes.length - 1;
+                  scrollToDish(dishes[prevIndex].id);
+                }}
+              />
+              <div className="flex gap-4">
+                {dishes.map((d) => (
+                  <div
+                    key={d.id}
+                    onClick={() => scrollToDish(d.id)}
+                    className={`cursor-pointer transition-all duration-300 ${
+                      activeDish === d.id
+                        ? "text-[var(--muted)] scale-110 h-40 px-4 pt-2 bg-white/20 rounded-2xl"
+                        : "scale-90 opacity-60 hover:opacity-80"
+                    }`}
+                  >
+                    <div className="rounded-full overflow-hidden w-20 h-20 flex items-center justify-center">
+                      <img
+                        src={d.image}
+                        alt={d.name}
+                        className="w-full h-full object-cover rounded-full"
+                      />
+                    </div>
+                    <p className="text-sm text-center mt-2">
+                      {d.name.toLowerCase()}
+                      <br />
+                      {d.subtitle.toLowerCase()}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <ChevronRight
+                className="w-6 h-6 text-gray-400 cursor-pointer hover:text-gray-600 transition"
+                onClick={() => {
+                  const currentIndex = dishes.findIndex(
+                    (d) => d.id === activeDish
+                  );
+                  const nextIndex =
+                    currentIndex < dishes.length - 1 ? currentIndex + 1 : 0;
+                  scrollToDish(dishes[nextIndex].id);
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Invisible Scroll Container */}
+          <div
+            ref={scrollContainerRef}
+            className="absolute inset-0  overflow-y-scroll opacity-0 pointer-events-auto"
+            style={{ scrollBehavior: "smooth" }}
+          >
+            {dishes.map((dish) => (
+              <div
+                key={dish.id}
+                ref={(el) => {
+                  sectionRefs.current[dish.id] = el;
+                }}
+                className="h-screen"
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Navigation */}
+        <div className="bg-white/20 backdrop-blur-3xl px-8 py-6 flex justify-center gap-12 relative z-20">
+          <button
+            onClick={() => setActiveCategory("food")}
+            className={`py-6 px-6 rounded-full transition duration-400 ${
+              activeCategory === "food"
+                ? "bg-[var(--muted)] px-8"
+                : "bg-[var(--muted)]/60 hover:bg-[var(--muted)]/40 "
+            }`}
+          >
+            <Utensils className="w-8 h-10 text-gray-600" />
+          </button>
+          <button
+            onClick={() => setActiveCategory("drinks")}
+            className={`py-6 px-6 rounded-full transition duration-400 ${
+              activeCategory === "drinks"
+                ? "bg-[var(--muted)] px-8"
+                : "bg-[var(--muted)]/60 hover:bg-[var(--muted)]/40"
+            }`}
+          >
+            <Wine className="w-8 h-10 text-gray-600" />
+          </button>
+        </div>
       </div>
     </div>
   );
-};
-
-export default FixedBackgroundSlideshow;
+}
