@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef, MutableRefObject } from "react";
 import { ChevronLeft, ChevronRight, Utensils, Wine } from "lucide-react";
 import { categories } from "@/utils/dishesData";
+import Navbar from "@/components/Navbar";
 
 interface Dish {
   id: number;
@@ -71,6 +72,7 @@ export default function FoodMenu() {
 
   return (
     <div className="flex h-screen bg-[var(--leaf)] text-[var(--bg)] overflow-hidden">
+      <Navbar />
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col relative">
         {/* Fixed Content Display Area */}

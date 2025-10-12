@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from "react";
+import Link from "next/link";
 import { Leaf, Heart, Users, Sprout } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,20 +10,14 @@ gsap.registerPlugin(ScrollTrigger);
 export default function AboutPage() {
   const parallaxRef = useRef(null);
   const heroTitleRef = useRef(null);
-  const heroLocationRef = useRef(null);
+  const ctaSectionRef = useRef(null);
 
   useEffect(() => {
-    // Hero animations
+    // Hero animation
     gsap.fromTo(
       heroTitleRef.current,
       { opacity: 0, y: 60 },
       { opacity: 1, y: 0, duration: 1.5, ease: "power3.out" }
-    );
-
-    gsap.fromTo(
-      heroLocationRef.current,
-      { opacity: 0, y: 60 },
-      { opacity: 1, y: 0, duration: 1.5, delay: 0.3, ease: "power3.out" }
     );
 
     // Parallax effect for hero background
@@ -37,7 +32,7 @@ export default function AboutPage() {
       },
     });
 
-    // Fade in sections on scroll
+    // Fade in generic sections
     const fadeInSections = document.querySelectorAll(".fade-in-section");
     fadeInSections.forEach((section) => {
       gsap.fromTo(
@@ -57,7 +52,7 @@ export default function AboutPage() {
       );
     });
 
-    // Staggered animation for value cards
+    // Animate value cards
     const valueCards = document.querySelectorAll(".value-card");
     gsap.fromTo(
       valueCards,
@@ -76,6 +71,25 @@ export default function AboutPage() {
       }
     );
 
+    // ✨ Layered takeover for Visit Us section
+    gsap.fromTo(
+      ctaSectionRef.current,
+      { opacity: 0, y: 100, zIndex: -1 },
+      {
+        opacity: 1,
+        y: 0,
+        zIndex: 10,
+        duration: 1.5,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ctaSectionRef.current,
+          start: "top bottom", // starts when CTA just comes into view
+          end: "top 60%", // completes mid-way
+          scrub: true,
+        },
+      }
+    );
+
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
@@ -84,7 +98,6 @@ export default function AboutPage() {
   const restaurant = {
     name: "WOODVALE",
     tagline: "Where Forest Meets Table",
-    location: "Nestled in the Heart of the Valley",
     description:
       "At Woodvale, we believe that the best meals are those that connect us to the earth. Our forest-inspired dining experience brings together locally-sourced ingredients, sustainable practices, and the warmth of woodland hospitality. Every dish tells a story of the land, the seasons, and the farmers who nurture our ingredients with care.",
     mission:
@@ -142,7 +155,7 @@ export default function AboutPage() {
         }
       `}</style>
 
-      {/* Hero Section with Parallax */}
+      {/* Hero Section */}
       <section className="relative h-[90vh] min-h-[500px] flex items-center justify-center overflow-hidden">
         <div
           ref={parallaxRef}
@@ -155,14 +168,8 @@ export default function AboutPage() {
             willChange: "transform",
           }}
         />
-
-        {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#2A332D]/60 via-[#2A332D]/40 to-[#2A332D]/90" />
-
-        {/* Vignette overlay */}
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_40%,rgba(0,0,0,0.6)_100%)] z-10" />
-
-        {/* Hero Content */}
         <div className="relative z-20 text-center px-4 max-w-4xl mx-auto">
           <h1
             ref={heroTitleRef}
@@ -170,39 +177,34 @@ export default function AboutPage() {
           >
             {restaurant.name}
           </h1>
-          <p ref={heroLocationRef} className="text-lg text-white/80">
-            {restaurant.location}
-          </p>
         </div>
       </section>
 
-      {/* Philosophy Section */}
-      <section className="max-w-6xl mx-auto px-4 py-16 md:py-24">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="fade-in-section">
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-6">
-              Our Philosophy
-            </h2>
-            <p className="text-lg text-white/80 leading-relaxed mb-6">
-              {restaurant.description}
-            </p>
-            <p className="text-lg text-white/80 leading-relaxed">
-              {restaurant.mission}
-            </p>
-          </div>
-          <div className="fade-in-section relative h-[400px] md:h-[500px] rounded-lg overflow-hidden">
+      {/* Story Section */}
+      <section className="max-w-7xl mx-auto px-4 py-16 md:py-24">
+        <div className="fade-in-section text-center w-full flex gap-20 items-center">
+          <div className="relative hidden sm:h-[300px] md:h-[500px] md:flex overflow-hidden mb-8">
             <img
-              src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800"
-              alt="Fresh ingredients"
+              src="https://images.unsplash.com/photo-1511497584788-876760111969?w=800"
+              alt="Woodvale story"
               className="w-full h-full object-cover"
             />
+          </div>
+          <div className="text-left w-3/4">
+            <h1 className="text-[var(--muted)]">From Idea to Impact</h1>
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-8">
+              Our Story
+            </h2>
+            <p className="text-lg text-white/80 leading-relaxed">
+              {restaurant.story}
+            </p>
           </div>
         </div>
       </section>
 
       {/* Values Section */}
       <section className="py-16 md:py-24">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="fade-in-section text-center mb-12">
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">
               What We Stand For
@@ -232,27 +234,35 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Story Section */}
-      <section className="max-w-4xl mx-auto px-4 py-16 md:py-24">
-        <div className="fade-in-section text-center">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-8">
-            Our Story
-          </h2>
-          <div className="relative h-[300px] md:h-[400px] rounded-lg overflow-hidden mb-8">
+      {/* Philosophy Section */}
+      <section className="max-w-6xl mx-auto px-4 py-16 md:py-24 relative z-[5]">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="fade-in-section">
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-6">
+              Our Philosophy
+            </h2>
+            <p className="text-lg text-white/80 leading-relaxed mb-6">
+              {restaurant.description}
+            </p>
+            <p className="text-lg text-white/80 leading-relaxed">
+              {restaurant.mission}
+            </p>
+          </div>
+          <div className="fade-in-section relative h-[400px] md:h-[500px] rounded-lg overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1511497584788-876760111969?w=800"
-              alt="Woodvale story"
+              src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800"
+              alt="Fresh ingredients"
               className="w-full h-full object-cover"
             />
           </div>
-          <p className="text-lg text-white/80 leading-relaxed">
-            {restaurant.story}
-          </p>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-[#4A5D4E] text-white py-16 md:py-20">
+      {/* CTA Section — Reveal from beneath */}
+      <section
+        ref={ctaSectionRef}
+        className="relative bg-[#4A5D4E] text-white py-20 md:py-28 overflow-hidden z-[1]"
+      >
         <div className="fade-in-section max-w-4xl mx-auto px-4 text-center">
           <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6">
             Visit Us
@@ -261,9 +271,14 @@ export default function AboutPage() {
             We'd love to welcome you to Woodvale. Come experience our
             forest-inspired dining for yourself.
           </p>
-          <button className="cta-button cursor-pointer px-8 py-3 bg-white text-[#2A332D] rounded-md font-medium">
-            Make a Reservation
-          </button>
+          <div>
+            <Link
+              href="/reserve"
+              className="inline-block bg-white text-[#2A332D] font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:bg-[#e5e5e5]"
+            >
+              Reserve a Table
+            </Link>
+          </div>
         </div>
       </section>
 
