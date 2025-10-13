@@ -9,8 +9,24 @@ export default function Home() {
     <div className="min-h-screen">
       <Navbar />
 
-      {/* Hero Section */}
-      <Hero />
+        {/* Hero Content */}
+        <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
+          <p className="text-white text-sm uppercase tracking-widest font-medium mb-4">
+            Welcome to Woodvale
+          </p>
+          <h1 className="font-sans text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight">
+            Savor the Classics,<br />
+            Embrace the Present
+          </h1>
+          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Experience the perfect blend of speakeasy elegance and tropical ambiance. 
+            Where timeless flavors meet contemporary innovation.
+          </p>
+          <Link href="/reserve" className="btn-primary">
+            Reserve a Table
+          </Link>
+        </div>
+      </section>
 
       {/* Introduction Section */}
       <section className="section bg-white">

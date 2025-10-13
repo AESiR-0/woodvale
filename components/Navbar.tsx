@@ -53,13 +53,13 @@ export default function Navbar() {
         </button>
       </section>
 
-      {/* Mobile Menu Overlay */}
-      <div
-        className={`md:hidden fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${
-          isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={toggleMenu}
-      />
+          {/* CTA Button */}
+          <Link
+            href="/reserve"
+            className="btn-primary"
+          >
+            Reserve a Table
+          </Link>
 
       {/* Mobile Menu */}
       <div
