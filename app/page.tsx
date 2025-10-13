@@ -1,5 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
+"use client";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Hero from "@/sections/Hero";
@@ -9,24 +9,8 @@ export default function Home() {
     <div className="min-h-screen">
       <Navbar />
 
-        {/* Hero Content */}
-        <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
-          <p className="text-white text-sm uppercase tracking-widest font-medium mb-4">
-            Welcome to Woodvale
-          </p>
-          <h1 className="font-sans text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight">
-            Savor the Classics,<br />
-            Embrace the Present
-          </h1>
-          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Experience the perfect blend of speakeasy elegance and tropical ambiance. 
-            Where timeless flavors meet contemporary innovation.
-          </p>
-          <Link href="/reserve" className="btn-primary">
-            Reserve a Table
-          </Link>
-        </div>
-      </section>
+      {/* Hero Section */}
+      <Hero />
 
       {/* Introduction Section */}
       <section className="section bg-white">
@@ -89,7 +73,7 @@ export default function Home() {
       </section>
 
       {/* Time-Honored Flavors Section */}
-      <section className="section bg-[var(--leaf)]">
+      {/* <section className="section bg-[var(--leaf)]">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div className="relative h-96 rounded-lg overflow-hidden">
@@ -98,6 +82,7 @@ export default function Home() {
                 alt="Elegant dining room with warm lighting and tropical plants"
                 fill
                 className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
             <div className="space-y-6">
@@ -119,10 +104,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Private Events Section */}
-      <section className="section bg-white">
+      {/* <section className="section bg-white">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div className="space-y-6 order-2 lg:order-1">
@@ -145,11 +130,15 @@ export default function Home() {
                 alt="Private banquet room with elegant table setting"
                 fill
                 className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+
+      {/* Or use your EventBooking component here if you prefer */}
+      <EventBooking />
 
       {/* Bottom Gallery Section */}
       <section className="section bg-[var(--leaf)]">

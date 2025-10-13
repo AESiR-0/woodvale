@@ -54,10 +54,7 @@ export default function Navbar() {
       </section>
 
           {/* CTA Button */}
-          <Link
-            href="/reserve"
-            className="btn-primary"
-          >
+          <Link href="/reserve" className="btn-primary hidden md:inline-block">
             Reserve a Table
           </Link>
 
@@ -81,6 +78,32 @@ export default function Navbar() {
             </button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className={`md:hidden mt-2 space-y-4 px-4 pb-4 border-b border-[var(--muted)]/20`}>
+            {['Home', 'About', 'Menu', 'Banquet', 'Contact'].map((label, idx) => (
+              <Link
+                key={idx}
+                href={label === 'Home' ? '/' : `/${label.toLowerCase()}`}
+                className={`block ${
+                  isScrolled ? scrolledTextColor : textColor
+                } ${hoverColor} transition-colors duration-200 font-medium`}
+                onClick={() => setMobileMenuOpen(false)} // close menu on link click
+              >
+                {label}
+              </Link>
+            ))}
+
+            <Link
+              href="/reserve"
+              className="btn-primary block text-center mt-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Reserve a Table
+            </Link>
+          </div>
+        )}
       </div>
     </>
   );
