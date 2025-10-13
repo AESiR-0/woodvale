@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 
-export default function Hero() {
+export default function Hero() { 
   const [scrollY, setScrollY] = useState(0);
   const welcomeRef = useRef(null);
   const headingRef = useRef(null);
