@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import cinzel from "@/hooks/useFont";
+import Link from "next/link";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,7 +17,7 @@ export default function Navbar() {
         <div className="resName">
           <h1 className={`${cinzel.className} text-3xl`}>WOODVALE</h1>
         </div>
-        
+
         {/* Desktop Menu */}
         <div className="items hidden md:flex font-light text-md">
           <div className="flex items-center gap-4">
@@ -53,10 +54,10 @@ export default function Navbar() {
         </button>
       </section>
 
-          {/* CTA Button */}
-          <Link href="/reserve" className="btn-primary hidden md:inline-block">
-            Reserve a Table
-          </Link>
+      {/* CTA Button */}
+      <Link href="/reserve" className="btn-primary hidden md:inline-block">
+        Reserve a Table
+      </Link>
 
       {/* Mobile Menu */}
       <div
@@ -80,16 +81,14 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu */}
-        {mobileMenuOpen && (
+        {isMenuOpen && (
           <div className={`md:hidden mt-2 space-y-4 px-4 pb-4 border-b border-[var(--muted)]/20`}>
             {['Home', 'About', 'Menu', 'Banquet', 'Contact'].map((label, idx) => (
               <Link
                 key={idx}
                 href={label === 'Home' ? '/' : `/${label.toLowerCase()}`}
-                className={`block ${
-                  isScrolled ? scrolledTextColor : textColor
-                } ${hoverColor} transition-colors duration-200 font-medium`}
-                onClick={() => setMobileMenuOpen(false)} // close menu on link click
+                className={`block transition-colors duration-200 font-medium`}
+                onClick={() => setIsMenuOpen(false)} // close menu on link click
               >
                 {label}
               </Link>
@@ -98,7 +97,7 @@ export default function Navbar() {
             <Link
               href="/reserve"
               className="btn-primary block text-center mt-2"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => setIsMenuOpen(false)}
             >
               Reserve a Table
             </Link>
