@@ -1,9 +1,17 @@
-// app/summary/page.tsx
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 export default function SummaryPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SummaryContent />
+    </Suspense>
+  );
+}
+
+function SummaryContent() {
   const searchParams = useSearchParams();
   const title = searchParams.get("title") || "Booking Summary";
   const dateTime = searchParams.get("dateTime") || "";
