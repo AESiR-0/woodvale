@@ -3,7 +3,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Hero from "@/sections/Hero";
-import Image from "next/Image";
+import Image from 'next/image'
 
 export default function Home() {
   return (
