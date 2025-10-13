@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -20,14 +20,16 @@ export default function Navbar({
   hoverColor = 'hover:text-[var(--mint)]',
 }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleScroll = useCallback(() => {
+    setIsScrolled(window.scrollY > 50);
+  }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [handleScroll]);
 
   return (
     <nav
@@ -66,27 +68,55 @@ export default function Navbar({
           </div>
 
           {/* CTA Button */}
-          <Link href="/reserve" className="btn-primary">
+          <Link href="/reserve" className="btn-primary hidden md:inline-block">
             Reserve a Table
           </Link>
 
           {/* Mobile Menu Button */}
           <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={`md:hidden ${
               isScrolled ? scrolledTextColor : textColor
             } ${hoverColor} transition-colors duration-200`}
             aria-label="Toggle mobile menu"
+            aria-expanded={mobileMenuOpen}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
+                d={mobileMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
               />
             </svg>
           </button>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className={`md:hidden mt-2 space-y-4 px-4 pb-4 border-b border-[var(--muted)]/20`}>
+            {['Home', 'About', 'Menu', 'Banquet', 'Contact'].map((label, idx) => (
+              <Link
+                key={idx}
+                href={label === 'Home' ? '/' : `/${label.toLowerCase()}`}
+                className={`block ${
+                  isScrolled ? scrolledTextColor : textColor
+                } ${hoverColor} transition-colors duration-200 font-medium`}
+                onClick={() => setMobileMenuOpen(false)} // close menu on link click
+              >
+                {label}
+              </Link>
+            ))}
+
+            <Link
+              href="/reserve"
+              className="btn-primary block text-center mt-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Reserve a Table
+            </Link>
+          </div>
+        )}
       </div>
     </nav>
   );

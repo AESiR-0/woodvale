@@ -1,6 +1,5 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import TestimonialsSection from "@/components/Testimonial";
@@ -31,6 +30,7 @@ export default function Home() {
                 alt="Elegant dining room with warm lighting and tropical plants"
                 fill
                 className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
             <div className="space-y-6">
@@ -78,12 +78,15 @@ export default function Home() {
                 alt="Private banquet room with elegant table setting"
                 fill
                 className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
           </div>
         </div>
       </section> */}
-      <EventBooking/>
+
+      {/* Or use your EventBooking component here if you prefer */}
+      <EventBooking />
 
       {/* Bottom Gallery Section */}
       <ServicesSection />
