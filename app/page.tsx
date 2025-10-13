@@ -3,8 +3,8 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Hero from "@/sections/Hero";
-import Image from "next/image";
-import EventBooking from "@/components/Banquet";
+import Image from 'next/image';
+import EventBooking from '@/components/Banquet';
 
 export default function Home() {
   return (
