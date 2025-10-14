@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AboutUs from "@/components/AboutUs";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -184,7 +185,8 @@ export default function AboutPage() {
       </section>
 
       {/* Story Section */}
-      <section className="max-w-7xl mx-auto px-4 py-16 md:py-24">
+      <AboutUs />
+      {/* <section className="max-w-7xl mx-auto px-4 py-16 md:py-24">
         <div className="fade-in-section text-center w-full flex gap-20 items-center">
           <div className="relative hidden sm:h-[300px] md:h-[500px] md:flex overflow-hidden mb-8">
             <img
@@ -203,7 +205,7 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Values Section */}
       <section className="py-16 md:py-24">
