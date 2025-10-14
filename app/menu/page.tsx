@@ -23,17 +23,56 @@ export default function FoodMenu() {
   const [activeCategory, setActiveCategory] = useState<CategoryType>("food");
   const [activeDish, setActiveDish] = useState<number>(1);
   const [showScrollHint, setShowScrollHint] = useState(true);
+  const [showText, setShowText] = useState(true);
+  const [displayedDish, setDisplayedDish] = useState<Dish | null>(null);
+  const [previousDish, setPreviousDish] = useState<Dish | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const isChangingCategory = useRef(false);
+  const prevDishId = useRef<number>(1);
 
   const dishes: Dish[] = categories[activeCategory];
+
+  // Initialize displayed dish
+  useEffect(() => {
+    const current = dishes.find((d) => d.id === activeDish) || dishes[0];
+    if (!displayedDish) {
+      setDisplayedDish(current);
+    }
+  }, [dishes, activeDish, displayedDish]);
 
   // Reset scroll hint timer
   useEffect(() => {
     const timer = setTimeout(() => setShowScrollHint(false), 3000);
     return () => clearTimeout(timer);
   }, []);
+
+  // Animate dish changes
+  useEffect(() => {
+    const current = dishes.find((d) => d.id === activeDish) || dishes[0];
+    
+    if (prevDishId.current !== activeDish && displayedDish) {
+      // Hide text
+      setShowText(false);
+      
+      // Set previous dish for exit animation
+      setPreviousDish(displayedDish);
+      
+      // Small delay then update to new dish
+      const timer = setTimeout(() => {
+        setDisplayedDish(current);
+        
+        // Show text after animation
+        setTimeout(() => {
+          setShowText(true);
+          setPreviousDish(null);
+        }, 800);
+      }, 100);
+      
+      prevDishId.current = activeDish;
+      return () => clearTimeout(timer);
+    }
+  }, [activeDish, dishes, displayedDish]);
 
   // Reset active dish and scroll when category changes
   useEffect(() => {
@@ -68,14 +107,11 @@ export default function FoodMenu() {
       const scrollTop = container.scrollTop;
 
       // Check if at the very end - switch category
-      // Only trigger if we're truly at the bottom AND scrolling down
       if (scrollTop + viewportHeight >= containerHeight - 5) {
-        // Clear any existing timeout
         if (switchTimeout) {
           clearTimeout(switchTimeout);
         }
 
-        // Wait a bit to ensure user wants to continue scrolling
         switchTimeout = setTimeout(() => {
           if (isChangingCategory.current) return;
 
@@ -91,7 +127,6 @@ export default function FoodMenu() {
         return;
       }
 
-      // Clear timeout if user scrolls back up
       if (switchTimeout) {
         clearTimeout(switchTimeout);
         switchTimeout = null;
@@ -136,7 +171,12 @@ export default function FoodMenu() {
     }
   };
 
-  const currentDish = dishes.find((d) => d.id === activeDish) || dishes[0];
+  const currentDish = displayedDish || dishes[0];
+
+  // Animation classes for text
+  const getTextAnimationClass = () => {
+    return showText ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8";
+  };
 
   return (
     <div className="flex h-screen bg-[var(--leaf)] text-[var(--bg)] overflow-hidden">
@@ -149,8 +189,8 @@ export default function FoodMenu() {
           <div className="max-w-6xl w-full">
             {/* Title and Image Container */}
             <div className="flex flex-row-reverse items-center justify-center gap-8 mb-8">
-              {/* Title */}
-              <div className="text-left">
+              {/* Title - WITH ANIMATION */}
+              <div className={`text-left transition-all duration-500 ease-out ${getTextAnimationClass()}`}>
                 <h1 className="text-8xl font-light text-[var(--muted)] tracking-wide mb-4">
                   {currentDish.name}
                 </h1>
@@ -159,17 +199,31 @@ export default function FoodMenu() {
                 </h2>
               </div>
 
-              {/* Image */}
-              <div className="bg-white rounded-full shadow-2xl w-80 h-80">
-                <img
-                  src={currentDish.mainImage}
-                  alt={currentDish.name}
-                  className="w-full h-full object-cover rounded-full"
-                />
+              {/* Image Container with absolute positioning for overlay */}
+              <div className="relative w-80 h-80">
+                {/* Previous Image - Spin out to bottom left */}
+                {previousDish && (
+                  <div className="absolute inset-0 bg-white rounded-full shadow-2xl animate-spinOut">
+                    <img
+                      src={previousDish.mainImage}
+                      alt={previousDish.name}
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                  </div>
+                )}
+                
+                {/* Current Image - Spin in from top right */}
+                <div className={`absolute inset-0 bg-white rounded-full shadow-2xl ${previousDish ? 'animate-spinIn' : ''}`}>
+                  <img
+                    src={currentDish.mainImage}
+                    alt={currentDish.name}
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </div>
               </div>
             </div>
 
-            {/* Dish Selector */}
+            {/* Dish Selector - NO ANIMATION */}
             <div className="flex justify-center items-center gap-4">
               <ChevronLeft
                 className={`w-6 h-6 cursor-pointer transition ${
@@ -306,6 +360,39 @@ export default function FoodMenu() {
           </button>
         </div>
       </div>
+
+      {/* Keyframe Animations */}
+      <style jsx global>{`
+        @keyframes spinOut {
+          0% {
+            transform: translate(0, 0) rotate(0deg) scale(1);
+            opacity: 1;
+          }
+          100% {
+            transform: translate(-800%, 100%);
+            opacity: 0;
+          }
+        }
+        
+        @keyframes spinIn {
+          0% {
+            transform: translate(120%, -200%) ;
+            opacity: 0;
+          }
+          100% {
+            transform: translate(0, 0) rotate(0deg) scale(1);
+            opacity: 1;
+          }
+        }
+
+        .animate-spinOut {
+          animation: spinOut 1s ease-in-out forwards;
+        }
+
+        .animate-spinIn {
+          animation: spinIn 1s ease-in-out forwards;
+        }
+      `}</style>
     </div>
   );
 }
