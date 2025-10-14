@@ -6,7 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AboutUs from "@/components/AboutUs";
+import AboutUs from "@/components/OurStory";
 
 gsap.registerPlugin(ScrollTrigger);
 
