@@ -66,7 +66,7 @@ export default function FoodMenu() {
         setTimeout(() => {
           setShowText(true);
           setPreviousDish(null);
-        }, 1600);
+        }, 1100);
       }, 0);
 
       prevDishId.current = activeDish;
@@ -399,7 +399,7 @@ export default function FoodMenu() {
         }
 
         .animate-spinIn {
-          animation: spinIn 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+          animation: spinIn 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
       `}</style>
     </div>
