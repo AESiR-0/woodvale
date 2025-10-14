@@ -263,6 +263,22 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Video Section */}
+      <section className="w-full flex justify-center fade-in-section">
+        <div className="w-full aspect-video overflow-hidden shadow-xl relative">
+          <video
+            className="w-full h-full object-cover"
+            src="/videos/restaurant.mp4" 
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+          {/* Optional overlay for cinematic look */}
+          <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+        </div>
+      </section>
+
       {/* CTA Section — Reveal from beneath */}
       <section
         ref={ctaSectionRef}
