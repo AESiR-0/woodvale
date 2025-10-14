@@ -50,25 +50,25 @@ export default function FoodMenu() {
   // Animate dish changes
   useEffect(() => {
     const current = dishes.find((d) => d.id === activeDish) || dishes[0];
-    
+
     if (prevDishId.current !== activeDish && displayedDish) {
       // Hide text
       setShowText(false);
-      
+
       // Set previous dish for exit animation
       setPreviousDish(displayedDish);
-      
+
       // Small delay then update to new dish
       const timer = setTimeout(() => {
         setDisplayedDish(current);
-        
+
         // Show text after animation
         setTimeout(() => {
           setShowText(true);
           setPreviousDish(null);
-        }, 800);
-      }, 100);
-      
+        }, 1600);
+      }, 0);
+
       prevDishId.current = activeDish;
       return () => clearTimeout(timer);
     }
@@ -188,13 +188,15 @@ export default function FoodMenu() {
         <div className="flex-1 flex items-center justify-center px-8 pt-16 relative">
           <div className="max-w-6xl w-full">
             {/* Title and Image Container */}
-            <div className="flex flex-row-reverse items-center justify-center gap-8 mb-8">
+            <div className="flex flex-row-reverse items-center justify-center gap-18 mb-8">
               {/* Title - WITH ANIMATION */}
-              <div className={`text-left transition-all duration-500 ease-out ${getTextAnimationClass()}`}>
-                <h1 className="text-8xl font-light text-[var(--muted)] tracking-wide mb-4">
+              <div
+                className={`text-left transition-all duration-500 ease-out ${getTextAnimationClass()}`}
+              >
+                <h1 className="text-6xl font-light text-[var(--muted)] tracking-wide mb-4">
                   {currentDish.name}
                 </h1>
-                <h2 className="text-5xl font-bold text-[var(--muted)]">
+                <h2 className="text-2xl font-bold text-[var(--muted)]">
                   {currentDish.subtitle}
                 </h2>
               </div>
@@ -211,9 +213,13 @@ export default function FoodMenu() {
                     />
                   </div>
                 )}
-                
+
                 {/* Current Image - Spin in from top right */}
-                <div className={`absolute inset-0 bg-white rounded-full shadow-2xl ${previousDish ? 'animate-spinIn' : ''}`}>
+                <div
+                  className={`absolute inset-0 bg-white rounded-full shadow-2xl ${
+                    previousDish ? "animate-spinIn" : ""
+                  }`}
+                >
                   <img
                     src={currentDish.mainImage}
                     alt={currentDish.name}
@@ -240,7 +246,7 @@ export default function FoodMenu() {
                   }
                 }}
               />
-              <div className="flex gap-4">
+              <div className="flex gap-4 mt-10">
                 {dishes.map((d) => (
                   <div
                     key={`selector-${activeCategory}-${d.id}`}
@@ -365,32 +371,35 @@ export default function FoodMenu() {
       <style jsx global>{`
         @keyframes spinOut {
           0% {
-            transform: translate(0, 0) rotate(0deg) scale(1);
+            transform: translate(0, 0) scale(1);
             opacity: 1;
           }
+          20% {
+            opacity: 0;
+          }
           100% {
-            transform: translate(-800%, 100%);
+            transform: translate(-500%, 80%) scale(0.8);
             opacity: 0;
           }
         }
-        
+
         @keyframes spinIn {
           0% {
-            transform: translate(120%, -200%) ;
+            transform: translate(120%, -200%) scale(0.7);
             opacity: 0;
           }
           100% {
-            transform: translate(0, 0) rotate(0deg) scale(1);
+            transform: translate(0, 0) scale(1);
             opacity: 1;
           }
         }
 
         .animate-spinOut {
-          animation: spinOut 1s ease-in-out forwards;
+          animation: spinOut 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
 
         .animate-spinIn {
-          animation: spinIn 1s ease-in-out forwards;
+          animation: spinIn 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
       `}</style>
     </div>
