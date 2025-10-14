@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Leaf, Heart, Users, Sprout } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -156,6 +158,7 @@ export default function AboutPage() {
       `}</style>
 
       {/* Hero Section */}
+      <Navbar />
       <section className="relative h-[90vh] min-h-[500px] flex items-center justify-center overflow-hidden">
         <div
           ref={parallaxRef}
@@ -283,13 +286,14 @@ export default function AboutPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/10">
+      <Footer />
+      {/* <footer className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 py-8 text-center">
           <p className="text-white/60">
             &copy; 2025 Woodvale. All rights reserved.
           </p>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 }

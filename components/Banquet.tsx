@@ -58,13 +58,11 @@ export default function EventBooking() {
             and special event packages. Early booking ensures the best
             availability and personalized service.
           </p>
-          <Link href="/banquet" passHref>
-            <div>
-              <Link href="/reserve" className="btn-primary">
-                Reserve a Table
-              </Link>
-            </div>
-          </Link>
+          <div>
+            <Link href="/reserve" className="btn-primary">
+              Reserve a Table
+            </Link>
+          </div>
         </div>
       </div>
     </div>
