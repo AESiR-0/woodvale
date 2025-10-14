@@ -4,6 +4,9 @@ import Link from "next/link";
 import { Leaf, Heart, Users, Sprout } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import AboutUs from "@/components/OurStory";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -156,6 +159,7 @@ export default function AboutPage() {
       `}</style>
 
       {/* Hero Section */}
+      <Navbar />
       <section className="relative h-[90vh] min-h-[500px] flex items-center justify-center overflow-hidden">
         <div
           ref={parallaxRef}
@@ -181,7 +185,8 @@ export default function AboutPage() {
       </section>
 
       {/* Story Section */}
-      <section className="max-w-7xl mx-auto px-4 py-16 md:py-24">
+      <AboutUs />
+      {/* <section className="max-w-7xl mx-auto px-4 py-16 md:py-24">
         <div className="fade-in-section text-center w-full flex gap-20 items-center">
           <div className="relative hidden sm:h-[300px] md:h-[500px] md:flex overflow-hidden mb-8">
             <img
@@ -200,7 +205,7 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Values Section */}
       <section className="py-16 md:py-24">
@@ -258,6 +263,22 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Video Section */}
+      <section className="w-full flex justify-center fade-in-section">
+        <div className="w-full aspect-video overflow-hidden shadow-xl relative">
+          <video
+            className="w-full h-full object-cover"
+            src="/videos/restaurant.mp4" 
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+          {/* Optional overlay for cinematic look */}
+          <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+        </div>
+      </section>
+
       {/* CTA Section — Reveal from beneath */}
       <section
         ref={ctaSectionRef}
@@ -283,13 +304,14 @@ export default function AboutPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/10">
+      <Footer />
+      {/* <footer className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 py-8 text-center">
           <p className="text-white/60">
             &copy; 2025 Woodvale. All rights reserved.
           </p>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 }

@@ -16,10 +16,11 @@ export default function Home() {
 
       {/* Hero Section */}
       <Hero />
-      
+
 
       {/* Introduction Section */}
       <LeafScrollLanding />
+
       {/* Time-Honored Flavors Section */}
       {/* <section className="section bg-[var(--leaf)]">
         <div className="container mx-auto px-6">
