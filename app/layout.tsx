@@ -13,7 +13,11 @@ export const metadata: Metadata = {
   description: "Experience the perfect blend of speakeasy elegance and tropical ambiance at Woodvale. Savor classic flavors with contemporary twists in our warm, plant-filled dining space.",
   keywords: "restaurant, banquet, speakeasy, tropical, fine dining, private events",
   authors: [{ name: "Woodvale Restaurant" }],
-  viewport: "width=device-width, initial-scale=1",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
