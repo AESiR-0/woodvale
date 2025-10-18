@@ -5,9 +5,8 @@ import Footer from "@/components/Footer";
 import TestimonialsSection from "@/components/Testimonial";
 import Hero from "@/components/Hero";
 import ServicesSection from "@/components/WhatWeOffer";
-import LeafScrollLanding from "@/components/AboutSection";
 import ReservationForm from "@/components/ReservationForm";
-import EventBooking from "@/components/Banquet";
+import Banquet from "@/components/Banquet";
 
 export default function Home() {
   return (
@@ -16,10 +15,6 @@ export default function Home() {
 
       {/* Hero Section */}
       <Hero />
-
-
-      {/* Introduction Section */}
-      <LeafScrollLanding />
 
       {/* Time-Honored Flavors Section */}
       {/* <section className="section bg-[var(--leaf)]">
@@ -87,7 +82,7 @@ export default function Home() {
       </section> */}
 
       {/* Or use your EventBooking component here if you prefer */}
-      <EventBooking />
+      <Banquet />
 
 
       {/* Bottom Gallery Section */}

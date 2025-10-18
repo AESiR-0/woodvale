@@ -297,7 +297,7 @@ export default function AboutPage() {
               href="/reserve"
               className="inline-block bg-white text-[#2A332D] font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:bg-[#e5e5e5]"
             >
-              Reserve a Table
+              save your seat
             </Link>
           </div>
         </div>

@@ -69,7 +69,7 @@ export default function Navbar({
 
           {/* CTA Button */}
           <Link href="/reserve" className="btn-primary hidden md:inline-block">
-            Reserve a Table
+            save your seat
           </Link>
 
           {/* Mobile Menu Button */}
