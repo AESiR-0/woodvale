@@ -7,6 +7,7 @@ import Hero from "@/components/Hero";
 import ServicesSection from "@/components/WhatWeOffer";
 import ReservationForm from "@/components/ReservationForm";
 import Banquet from "@/components/Banquet";
+import FeelOrder from "@/components/FeelOrder";
 
 export default function Home() {
   return (
@@ -87,6 +88,8 @@ export default function Home() {
 
       {/* Bottom Gallery Section */}
       <ServicesSection />
+
+      <FeelOrder />
 
       <TestimonialsSection />
 

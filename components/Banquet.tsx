@@ -105,27 +105,3 @@ export default function Banquet() {
     </div>
   );
 }
-
-// {/* Content container with GSAP scroll animation */}
-//         <div
-//           ref={containerRef}
-//           className="relative z-20 text-left max-w-4xl flex flex-col items-start gap-8 px-8 mx-auto"
-//           style={{ opacity: 0 }}
-//         >
-// <h1 className="text-6xl sm:text-7xl font-extrabold text-white drop-shadow-lg">
-//   Banquet Booking
-// </h1>
-// <p className="text-2xl sm:text-3xl text-white/90 font-medium drop-shadow-md">
-//   Book your perfect banquet for weddings, birthdays, and special events.
-// </p>
-// <p className="text-xl sm:text-2xl text-[var(--muted)] drop-shadow">
-//   Reference: Kindly reach out for customized decoration, menu options,
-//   and special event packages. Early booking ensures the best
-//   availability and personalized service.
-// </p>
-// <div>
-//   <Link href="/reserve" className="btn-primary">
-//     Reserve a Table
-//   </Link>
-// </div>
-//         </div>
