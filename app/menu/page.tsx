@@ -26,10 +26,14 @@ export default function FoodMenu() {
   const [showText, setShowText] = useState(true);
   const [displayedDish, setDisplayedDish] = useState<Dish | null>(null);
   const [previousDish, setPreviousDish] = useState<Dish | null>(null);
+  const [scrollDirection, setScrollDirection] = useState<"forward" | "backward">("forward");
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const isChangingCategory = useRef(false);
   const prevDishId = useRef<number>(1);
+  const isManualNavigation = useRef(false);
+  const categoryScrollDirection = useRef<'forward' | 'backward'>('forward');
+  const lastScrollTop = useRef<number>(0);
 
   const dishes: Dish[] = categories[activeCategory];
 
@@ -52,6 +56,13 @@ export default function FoodMenu() {
     const current = dishes.find((d) => d.id === activeDish) || dishes[0];
 
     if (prevDishId.current !== activeDish && displayedDish) {
+      // Determine scroll direction
+      const currentIndex = dishes.findIndex((d) => d.id === activeDish);
+      const previousIndex = dishes.findIndex((d) => d.id === prevDishId.current);
+      const direction = currentIndex > previousIndex ? "forward" : "backward";
+      
+      setScrollDirection(direction);
+
       // Hide text
       setShowText(false);
 
@@ -66,7 +77,7 @@ export default function FoodMenu() {
         setTimeout(() => {
           setShowText(true);
           setPreviousDish(null);
-        }, 1100);
+        }, 900);
       }, 0);
 
       prevDishId.current = activeDish;
@@ -79,16 +90,48 @@ export default function FoodMenu() {
     if (scrollContainerRef.current) {
       // Disable smooth scrolling temporarily
       scrollContainerRef.current.style.scrollBehavior = "auto";
-      scrollContainerRef.current.scrollTop = 0;
-      // Re-enable smooth scrolling after reset
+      
+      // Position based on scroll direction
+      if (categoryScrollDirection.current === 'backward') {
+        // Going backward - position near the end to allow continued backward scrolling
+        const lastDishIndex = dishes.length - 1;
+        setActiveDish(dishes[lastDishIndex]?.id || 1);
+        
+        // Wait for DOM to update before positioning
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            if (scrollContainerRef.current) {
+              const scrollHeight = scrollContainerRef.current.scrollHeight;
+              const viewportHeight = scrollContainerRef.current.clientHeight;
+              // Position near the end but not at absolute end (85% to avoid immediate forward trigger)
+              const targetScroll = Math.max(0, (scrollHeight - viewportHeight) * 0.85);
+              scrollContainerRef.current.scrollTop = targetScroll;
+              lastScrollTop.current = targetScroll;
+            }
+          }, 30);
+        });
+      } else {
+        // Going forward - position near the start to allow continued forward scrolling
+        setActiveDish(dishes[0]?.id || 1);
+        // Position slightly below 0 to avoid immediate backward trigger
+        setTimeout(() => {
+          if (scrollContainerRef.current) {
+            scrollContainerRef.current.scrollTop = 150;
+            lastScrollTop.current = 150;
+          }
+        }, 10);
+      }
+      
+      // Re-enable smooth scrolling and reset flag after positioning
       setTimeout(() => {
         if (scrollContainerRef.current) {
           scrollContainerRef.current.style.scrollBehavior = "smooth";
         }
-      }, 50);
+        setTimeout(() => {
+          isChangingCategory.current = false;
+        }, 100);
+      }, 100);
     }
-    setActiveDish(dishes[0]?.id || 1);
-    isChangingCategory.current = false;
   }, [activeCategory, dishes]);
 
   // Handle scroll tracking
@@ -105,9 +148,11 @@ export default function FoodMenu() {
       const containerHeight = container.scrollHeight;
       const viewportHeight = container.clientHeight;
       const scrollTop = container.scrollTop;
+      const isScrollingUp = scrollTop < lastScrollTop.current;
+      lastScrollTop.current = scrollTop;
 
-      // Check if at the very end - switch category
-      if (scrollTop + viewportHeight >= containerHeight - 5) {
+      // Check if scrolled near the top - switch to previous category (infinite backward)
+      if (scrollTop <= 100 && isScrollingUp && !isManualNavigation.current) {
         if (switchTimeout) {
           clearTimeout(switchTimeout);
         }
@@ -116,13 +161,38 @@ export default function FoodMenu() {
           if (isChangingCategory.current) return;
 
           isChangingCategory.current = true;
+          categoryScrollDirection.current = 'backward';
 
+          // Infinite loop: Food <-> Drinks
+          if (activeCategory === "drinks") {
+            setActiveCategory("food");
+          } else if (activeCategory === "food") {
+            setActiveCategory("drinks");
+          }
+        }, 150);
+
+        return;
+      }
+
+      // Check if near the end - switch to next category (infinite forward)
+      if (scrollTop + viewportHeight >= containerHeight - 200 && !isScrollingUp && !isManualNavigation.current) {
+        if (switchTimeout) {
+          clearTimeout(switchTimeout);
+        }
+
+        switchTimeout = setTimeout(() => {
+          if (isChangingCategory.current) return;
+
+          isChangingCategory.current = true;
+          categoryScrollDirection.current = 'forward';
+
+          // Infinite loop: Food <-> Drinks
           if (activeCategory === "food") {
             setActiveCategory("drinks");
           } else if (activeCategory === "drinks") {
             setActiveCategory("food");
           }
-        }, 300);
+        }, 150);
 
         return;
       }
@@ -167,7 +237,15 @@ export default function FoodMenu() {
     const key = `${activeCategory}-${dishId}`;
     const section = sectionRefs.current[key];
     if (section) {
+      // Set manual navigation flag to prevent auto category switching
+      isManualNavigation.current = true;
+      
       section.scrollIntoView({ behavior: "smooth", block: "center" });
+      
+      // Clear the flag after scroll animation completes
+      setTimeout(() => {
+        isManualNavigation.current = false;
+      }, 1000);
     }
   };
 
@@ -186,7 +264,7 @@ export default function FoodMenu() {
       <div className="flex-1 flex flex-col relative">
         {/* Fixed Content Display Area */}
         <div className="flex-1 flex items-center justify-center px-8 pt-16 relative">
-          <div className="max-w-6xl w-full">
+          <div className="max-w-6xl w-full relative z-10">
             {/* Title and Image Container */}
             <div className="flex flex-row-reverse items-center justify-center gap-18 mb-8">
               {/* Title - WITH ANIMATION */}
@@ -203,9 +281,11 @@ export default function FoodMenu() {
 
               {/* Image Container with absolute positioning for overlay */}
               <div className="relative w-80 h-80">
-                {/* Previous Image - Spin out to bottom left */}
+                {/* Previous Image - Animate based on scroll direction */}
                 {previousDish && (
-                  <div className="absolute inset-0 bg-white rounded-full shadow-2xl animate-spinOut">
+                  <div className={`absolute inset-0 bg-white rounded-full shadow-2xl ${
+                    scrollDirection === "forward" ? "animate-spinOut" : "animate-spinOutBackward"
+                  }`}>
                     <img
                       src={previousDish.mainImage}
                       alt={previousDish.name}
@@ -214,10 +294,14 @@ export default function FoodMenu() {
                   </div>
                 )}
 
-                {/* Current Image - Spin in from top right */}
+                {/* Current Image - Animate based on scroll direction */}
                 <div
                   className={`absolute inset-0 bg-white rounded-full shadow-2xl ${
-                    previousDish ? "animate-spinIn" : ""
+                    previousDish 
+                      ? scrollDirection === "forward" 
+                        ? "animate-spinIn" 
+                        : "animate-spinInBackward"
+                      : ""
                   }`}
                 >
                   <img
@@ -294,7 +378,7 @@ export default function FoodMenu() {
           {/* Invisible Scroll Container */}
           <div
             ref={scrollContainerRef}
-            className="absolute inset-0 overflow-y-scroll opacity-0 pointer-events-auto"
+            className="absolute inset-0 overflow-y-scroll opacity-0 pointer-events-auto z-0"
           >
             {dishes.map((dish) => (
               <div
@@ -339,6 +423,7 @@ export default function FoodMenu() {
           <button
             onClick={() => {
               if (activeCategory !== "food") {
+                categoryScrollDirection.current = 'forward';
                 setActiveCategory("food");
               }
             }}
@@ -353,6 +438,7 @@ export default function FoodMenu() {
           <button
             onClick={() => {
               if (activeCategory !== "drinks") {
+                categoryScrollDirection.current = 'forward';
                 setActiveCategory("drinks");
               }
             }}
@@ -394,12 +480,45 @@ export default function FoodMenu() {
           }
         }
 
+        @keyframes spinOutBackward {
+          0% {
+            transform: translate(0, 0) scale(1);
+            opacity: 1;
+          }
+          20% {
+            opacity: 0;
+          }
+          100% {
+            transform: translate(120%, -200%) scale(0.7);
+            opacity: 0;
+          }
+        }
+
+        @keyframes spinInBackward {
+          0% {
+            transform: translate(-500%, 80%) scale(0.8);
+            opacity: 0;
+          }
+          100% {
+            transform: translate(0, 0) scale(1);
+            opacity: 1;
+          }
+        }
+
         .animate-spinOut {
-          animation: spinOut 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+          animation: spinOut 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
 
         .animate-spinIn {
-          animation: spinIn 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+          animation: spinIn 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .animate-spinOutBackward {
+          animation: spinOutBackward 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .animate-spinInBackward {
+          animation: spinInBackward 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
       `}</style>
     </div>
