@@ -32,63 +32,69 @@ export default function OurStory() {
       );
     });
 
-    // Optional: cleanup ScrollTriggers on unmount
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
   return (
-    <div className="h-[80vh] bg-[#2A332D]">
-      {/* Story Section */}
-      <section
-        ref={sectionRef}
-        className="max-w-7xl flex gap-5 flex-col items-center text-center text-[var(--muted)] mx-auto px-4 py-16 md:py-24"
-      >
-        <div className="flex flex-col gap-6 fade-in">
-          <div className="fade-in-section text-center w-full flex flex-col md:flex-row gap-6 items-center justify-center">
-            {/* Left wavy line */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 100 10"
-              fill="none"
-              stroke="white"
-              strokeWidth="2"
-              className="w-24 h-6 text-white opacity-60 hidden md:block"
-            >
-              <path d="M0 5 C20 0, 40 10, 60 5 S100 10, 120 5" />
-            </svg>
+    <section
+      ref={sectionRef}
+      className="bg-[#2A332D] w-full px-4 sm:px-6 py-12 sm:py-16 md:py-24"
+    >
+      <div className="max-w-7xl mx-auto flex flex-col gap-8 items-center text-center">
+        {/* Heading with wavy lines */}
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 fade-in">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 100 10"
+            fill="none"
+            stroke="white"
+            strokeWidth="2"
+            className="w-16 h-4 hidden md:block"
+          >
+            <path d="M0 5 C20 0, 40 10, 60 5 S100 10, 120 5" />
+          </svg>
 
-            {/* Heading */}
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-white text-center">
-              Our Story
-            </h2>
-
-            {/* Right wavy line */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 100 10"
-              fill="none"
-              stroke="white"
-              strokeWidth="2"
-              className="w-24 h-6 text-white opacity-60 hidden md:block"
-            >
-              <path d="M0 5 C20 10, 40 0, 60 5 S100 0, 120 5" />
-            </svg>
-          </div>
-
-          <h2 className="max-w-2xl text-sm fade-in">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.ea hic
-            officiis architecto ducimus illo laboriosam. Lorem ipsum dolor sit
-            amet consectetur adipisicing elit.
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+            Our Story
           </h2>
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 100 10"
+            fill="none"
+            stroke="white"
+            strokeWidth="2"
+            className="w-16 h-4 hidden md:block"
+          >
+            <path d="M0 5 C20 10, 40 0, 60 5 S100 0, 120 5" />
+          </svg>
         </div>
-        <div className="image max-w-7xl flex gap-6">
-          <div className="bg-[url('/images/image.jpg')] bg-center h-96 w-90 fade-in"></div>
-          <div className="bg-[url('/images/forestBg.jpg')] h-96 w-40 fade-in"></div>
-          <div className="bg-[url('/images/imag2.jpg')] bg-center h-96 w-90 fade-in"></div>
+
+        {/* Story text */}
+        <p className="fade-in max-w-2xl text-white/80 text-base sm:text-lg leading-relaxed">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea hic
+          officiis architecto ducimus illo laboriosam. Lorem ipsum dolor sit
+          amet consectetur adipisicing elit.
+        </p>
+
+        {/* Image gallery */}
+        <div className="fade-in grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full max-w-7xl">
+          <div
+            className="bg-center bg-cover sm:h-64 h-72 md:h-80 rounded-lg"
+            style={{ backgroundImage: "url('/images/image.jpg')" }}
+          />
+          <div
+            className="bg-center bg-cover sm:h-64 md:h-80 rounded-lg"
+            style={{ backgroundImage: "url('/images/forestBg.jpg')" }}
+          />
+          <div
+            className="bg-center bg-cover sm:h-64 md:h-80 rounded-lg"
+            style={{ backgroundImage: "url('/images/imag2.jpg')" }}
+          />
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }

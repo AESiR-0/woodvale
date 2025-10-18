@@ -74,7 +74,7 @@ export default function AboutPage() {
       }
     );
 
-    // ✨ Layered takeover for Visit Us section
+    // Layered takeover for CTA Section
     gsap.fromTo(
       ctaSectionRef.current,
       { opacity: 0, y: 100, zIndex: -1 },
@@ -86,8 +86,8 @@ export default function AboutPage() {
         ease: "power3.out",
         scrollTrigger: {
           trigger: ctaSectionRef.current,
-          start: "top bottom", // starts when CTA just comes into view
-          end: "top 60%", // completes mid-way
+          start: "top bottom",
+          end: "top 60%",
           scrub: true,
         },
       }
@@ -137,21 +137,18 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#2A332D]">
+    <div className="min-h-screen bg-[#2A332D] text-white">
       <style jsx>{`
         .value-card {
           transition: all 0.3s ease;
         }
-
         .value-card:hover {
           border-color: rgba(255, 255, 255, 0.3);
           transform: translateY(-5px);
         }
-
         .cta-button {
           transition: all 0.3s ease;
         }
-
         .cta-button:hover {
           background: rgba(42, 51, 45, 0.9);
           color: white;
@@ -160,10 +157,10 @@ export default function AboutPage() {
 
       {/* Hero Section */}
       <Navbar />
-      <section className="relative h-[90vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[80vh] sm:h-[85vh] md:h-[90vh] flex items-center justify-center overflow-hidden">
         <div
           ref={parallaxRef}
-          className="absolute inset-0 w-full h-[120%]"
+          className="absolute inset-0 w-full h-[120%] sm:h-[110%] md:h-[120%]"
           style={{
             backgroundImage:
               "url(https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920)",
@@ -174,63 +171,46 @@ export default function AboutPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#2A332D]/60 via-[#2A332D]/40 to-[#2A332D]/90" />
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_40%,rgba(0,0,0,0.6)_100%)] z-10" />
-        <div className="relative z-20 text-center px-4 max-w-4xl mx-auto">
+        <div className="relative z-20 text-center px-4 sm:px-6 max-w-3xl sm:max-w-4xl mx-auto">
           <h1
             ref={heroTitleRef}
-            className="font-serif text-5xl md:text-7xl font-bold text-white mb-4"
+            className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold"
           >
             {restaurant.name}
           </h1>
+          <p className="mt-4 text-base sm:text-lg md:text-xl text-white/80">
+            {restaurant.tagline}
+          </p>
         </div>
       </section>
 
       {/* Story Section */}
       <AboutUs />
-      {/* <section className="max-w-7xl mx-auto px-4 py-16 md:py-24">
-        <div className="fade-in-section text-center w-full flex gap-20 items-center">
-          <div className="relative hidden sm:h-[300px] md:h-[500px] md:flex overflow-hidden mb-8">
-            <img
-              src="https://images.unsplash.com/photo-1511497584788-876760111969?w=800"
-              alt="Woodvale story"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="text-left w-3/4">
-            <h1 className="text-[var(--muted)]">From Idea to Impact</h1>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-8">
-              Our Story
-            </h2>
-            <p className="text-lg text-white/80 leading-relaxed">
-              {restaurant.story}
-            </p>
-          </div>
-        </div>
-      </section> */}
 
       {/* Values Section */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="fade-in-section text-center mb-12">
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">
+      <section className="py-12 sm:py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="fade-in-section text-center mb-10 sm:mb-12">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               What We Stand For
             </h2>
-            <p className="text-white/70 text-lg max-w-2xl mx-auto">
+            <p className="text-white/70 text-base sm:text-lg max-w-2xl mx-auto">
               Our values guide every decision we make, from sourcing to service
             </p>
           </div>
-          <div className="values-grid grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="values-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {values.map((value, index) => (
               <div
                 key={index}
-                className="value-card p-6 rounded-lg border border-white/10 bg-white/5"
+                className="value-card p-4 sm:p-6 rounded-lg border border-white/10 bg-white/5"
               >
-                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-4">
-                  <value.icon className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-3 sm:mb-4">
+                  <value.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
-                <h3 className="font-serif text-xl font-bold text-white mb-3">
+                <h3 className="font-serif text-lg sm:text-xl font-bold mb-2 sm:mb-3">
                   {value.title}
                 </h3>
-                <p className="text-white/70 leading-relaxed">
+                <p className="text-white/70 text-sm sm:text-base leading-relaxed">
                   {value.description}
                 </p>
               </div>
@@ -240,20 +220,20 @@ export default function AboutPage() {
       </section>
 
       {/* Philosophy Section */}
-      <section className="max-w-6xl mx-auto px-4 py-16 md:py-24 relative z-[5]">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24 relative z-[5]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
           <div className="fade-in-section">
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
               Our Philosophy
             </h2>
-            <p className="text-lg text-white/80 leading-relaxed mb-6">
+            <p className="text-base sm:text-lg text-white/80 leading-relaxed mb-4 sm:mb-6">
               {restaurant.description}
             </p>
-            <p className="text-lg text-white/80 leading-relaxed">
+            <p className="text-base sm:text-lg text-white/80 leading-relaxed">
               {restaurant.mission}
             </p>
           </div>
-          <div className="fade-in-section relative h-[400px] md:h-[500px] rounded-lg overflow-hidden">
+          <div className="fade-in-section relative h-64 sm:h-80 md:h-96 rounded-lg overflow-hidden">
             <img
               src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800"
               alt="Fresh ingredients"
@@ -264,40 +244,58 @@ export default function AboutPage() {
       </section>
 
       {/* Video Section */}
-      <section className="w-full flex justify-center fade-in-section">
-        <div className="w-full aspect-video overflow-hidden shadow-xl relative">
+      <section className="w-full flex justify-center fade-in-section py-8 sm:py-12">
+        <div className="w-full max-w-5xl aspect-video overflow-hidden shadow-xl relative rounded-lg">
           <video
             className="w-full h-full object-cover"
-            src="/videos/restaurant.mp4" 
+            src="/videos/restaurant.mp4"
             autoPlay
             loop
             muted
             playsInline
+            onError={(e) => {
+              const target = e.currentTarget as HTMLVideoElement;
+              target.style.display = "none"; // hide video
+              const fallback = document.getElementById(
+                "video-fallback"
+              ) as HTMLDivElement;
+              if (fallback) fallback.style.display = "block";
+            }}
           />
-          {/* Optional overlay for cinematic look */}
+          {/* Fallback Image */}
+          <div
+            id="video-fallback"
+            className="w-full h-full object-cover absolute inset-0 hidden"
+            style={{
+              backgroundImage: "url('/images/forestBg.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+          {/* Overlay for cinematic look */}
           <div className="absolute inset-0 bg-black/20 pointer-events-none" />
         </div>
       </section>
 
-      {/* CTA Section — Reveal from beneath */}
+      {/* CTA Section */}
       <section
         ref={ctaSectionRef}
-        className="relative bg-[#4A5D4E] text-white py-20 md:py-28 overflow-hidden z-[1]"
+        className="relative bg-[#4A5D4E] text-white py-16 sm:py-20 md:py-28 overflow-hidden z-[1]"
       >
-        <div className="fade-in-section max-w-4xl mx-auto px-4 text-center">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6">
+        <div className="fade-in-section max-w-3xl sm:max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
             Visit Us
           </h2>
-          <p className="text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto">
             We'd love to welcome you to Woodvale. Come experience our
             forest-inspired dining for yourself.
           </p>
           <div>
             <Link
               href="/reserve"
-              className="inline-block bg-white text-[#2A332D] font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:bg-[#e5e5e5]"
+              className="inline-block bg-white text-[#2A332D] font-semibold px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base transition-all duration-300 hover:bg-[#e5e5e5]"
             >
-              save your seat
+              Save Your Seat
             </Link>
           </div>
         </div>
@@ -305,13 +303,6 @@ export default function AboutPage() {
 
       {/* Footer */}
       <Footer />
-      {/* <footer className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 py-8 text-center">
-          <p className="text-white/60">
-            &copy; 2025 Woodvale. All rights reserved.
-          </p>
-        </div>
-      </footer> */}
     </div>
   );
 }
