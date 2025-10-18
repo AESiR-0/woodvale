@@ -15,18 +15,20 @@ interface Dish {
   chef: string;
   chefTitle: string;
   description: string;
+  price?: number;
 }
 
-type CategoryType = "food" | "drinks" | "reviews";
+type CategoryType = "appetizers" | "entrees" | "drinks" | "wines" ;
 
 export default function FoodMenu() {
-  const [activeCategory, setActiveCategory] = useState<CategoryType>("food");
+  const [activeCategory, setActiveCategory] = useState<CategoryType>("appetizers");
   const [activeDish, setActiveDish] = useState<number>(1);
   const [showScrollHint, setShowScrollHint] = useState(true);
   const [showText, setShowText] = useState(true);
   const [displayedDish, setDisplayedDish] = useState<Dish | null>(null);
   const [previousDish, setPreviousDish] = useState<Dish | null>(null);
   const [scrollDirection, setScrollDirection] = useState<"forward" | "backward">("forward");
+  const [carouselIndex, setCarouselIndex] = useState<number>(0);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const isChangingCategory = useRef(false);
@@ -34,11 +36,14 @@ export default function FoodMenu() {
   const isManualNavigation = useRef(false);
   const categoryScrollDirection = useRef<'forward' | 'backward'>('forward');
   const lastScrollTop = useRef<number>(0);
+  
+  const DISHES_PER_VIEW = 4;
 
-  const dishes: Dish[] = categories[activeCategory];
+  const dishes: Dish[] = categories[activeCategory] || [];
 
   // Initialize displayed dish
   useEffect(() => {
+    if (dishes.length === 0) return;
     const current = dishes.find((d) => d.id === activeDish) || dishes[0];
     if (!displayedDish) {
       setDisplayedDish(current);
@@ -53,6 +58,7 @@ export default function FoodMenu() {
 
   // Animate dish changes
   useEffect(() => {
+    if (dishes.length === 0) return;
     const current = dishes.find((d) => d.id === activeDish) || dishes[0];
 
     if (prevDishId.current !== activeDish && displayedDish) {
@@ -85,9 +91,11 @@ export default function FoodMenu() {
     }
   }, [activeDish, dishes, displayedDish]);
 
-  // Reset active dish and scroll when category changes
+  // Reset active dish, scroll, and carousel when category changes
   useEffect(() => {
-    if (scrollContainerRef.current) {
+    setCarouselIndex(0); // Reset carousel to first page
+    
+    if (scrollContainerRef.current && dishes.length > 0) {
       // Disable smooth scrolling temporarily
       scrollContainerRef.current.style.scrollBehavior = "auto";
       
@@ -140,7 +148,7 @@ export default function FoodMenu() {
 
     const handleScroll = () => {
       const container = scrollContainerRef.current;
-      if (!container || isChangingCategory.current) return;
+      if (!container || isChangingCategory.current || dishes.length === 0) return;
 
       setShowScrollHint(false);
 
@@ -163,11 +171,15 @@ export default function FoodMenu() {
           isChangingCategory.current = true;
           categoryScrollDirection.current = 'backward';
 
-          // Infinite loop: Food <-> Drinks
-          if (activeCategory === "drinks") {
-            setActiveCategory("food");
-          } else if (activeCategory === "food") {
+          // Infinite loop backward
+          if (activeCategory === "wines") {
             setActiveCategory("drinks");
+          } else if (activeCategory === "drinks") {
+            setActiveCategory("entrees");
+          } else if (activeCategory === "entrees") {
+            setActiveCategory("appetizers");
+          } else if (activeCategory === "appetizers") {
+            setActiveCategory("wines");
           }
         }, 150);
 
@@ -186,11 +198,15 @@ export default function FoodMenu() {
           isChangingCategory.current = true;
           categoryScrollDirection.current = 'forward';
 
-          // Infinite loop: Food <-> Drinks
-          if (activeCategory === "food") {
+          // Infinite loop forward
+          if (activeCategory === "appetizers") {
+            setActiveCategory("entrees");
+          } else if (activeCategory === "entrees") {
             setActiveCategory("drinks");
           } else if (activeCategory === "drinks") {
-            setActiveCategory("food");
+            setActiveCategory("wines");
+          } else if (activeCategory === "wines") {
+            setActiveCategory("appetizers");
           }
         }, 150);
 
@@ -242,6 +258,12 @@ export default function FoodMenu() {
       
       section.scrollIntoView({ behavior: "smooth", block: "center" });
       
+      // Update carousel index to show the dish
+      const dishIndex = dishes.findIndex((d) => d.id === dishId);
+      if (dishIndex !== -1) {
+        setCarouselIndex(Math.floor(dishIndex / DISHES_PER_VIEW));
+      }
+      
       // Clear the flag after scroll animation completes
       setTimeout(() => {
         isManualNavigation.current = false;
@@ -249,7 +271,58 @@ export default function FoodMenu() {
     }
   };
 
-  const currentDish = displayedDish || dishes[0];
+  // Auto-update carousel when active dish changes
+  useEffect(() => {
+    const dishIndex = dishes.findIndex((d) => d.id === activeDish);
+    if (dishIndex !== -1) {
+      const targetPage = Math.floor(dishIndex / DISHES_PER_VIEW);
+      if (targetPage !== carouselIndex) {
+        setCarouselIndex(targetPage);
+      }
+    }
+  }, [activeDish, dishes, carouselIndex]);
+
+  const visibleDishes = dishes.slice(
+    carouselIndex * DISHES_PER_VIEW,
+    (carouselIndex + 1) * DISHES_PER_VIEW
+  );
+  const totalPages = Math.ceil(dishes.length / DISHES_PER_VIEW);
+
+  const handleCarouselPrev = () => {
+    if (carouselIndex > 0) {
+      const newIndex = carouselIndex - 1;
+      setCarouselIndex(newIndex);
+      // Navigate to the first dish of the previous page
+      const targetDish = dishes[newIndex * DISHES_PER_VIEW];
+      if (targetDish) {
+        scrollToDish(targetDish.id);
+      }
+    }
+  };
+
+  const handleCarouselNext = () => {
+    if (carouselIndex < totalPages - 1) {
+      const newIndex = carouselIndex + 1;
+      setCarouselIndex(newIndex);
+      // Navigate to the first dish of the next page
+      const targetDish = dishes[newIndex * DISHES_PER_VIEW];
+      if (targetDish) {
+        scrollToDish(targetDish.id);
+      }
+    }
+  };
+
+  const currentDish = displayedDish || (dishes.length > 0 ? dishes[0] : null);
+
+  // Guard clause for loading state
+  if (!currentDish) {
+    return (
+      <div className="flex h-screen bg-[var(--leaf)] text-[var(--bg)] items-center justify-center">
+        <Navbar />
+        <div className="text-2xl text-[var(--muted)]">Loading menu...</div>
+      </div>
+    );
+  }
 
   // Animation classes for text
   const getTextAnimationClass = () => {
@@ -277,6 +350,11 @@ export default function FoodMenu() {
                 <h2 className="text-2xl font-bold text-[var(--muted)]">
                   {currentDish.subtitle}
                 </h2>
+                {currentDish.price && (
+                  <p className="text-xl text-[var(--muted)]/80 mt-2">
+                    ${currentDish.price}
+                  </p>
+                )}
               </div>
 
               {/* Image Container with absolute positioning for overlay */}
@@ -313,66 +391,82 @@ export default function FoodMenu() {
               </div>
             </div>
 
-            {/* Dish Selector - NO ANIMATION */}
+            {/* Dish Selector with Carousel */}
             <div className="flex justify-center items-center gap-4">
               <ChevronLeft
-                className={`w-6 h-6 cursor-pointer transition ${
-                  dishes.findIndex((d) => d.id === activeDish) > 0
-                    ? "text-gray-400 hover:text-gray-600"
-                    : "text-gray-300 opacity-50 cursor-not-allowed"
+                className={`w-8 h-8 cursor-pointer transition-all duration-200 ${
+                  carouselIndex > 0
+                    ? "text-[var(--muted)] hover:text-[var(--muted)]/80 hover:scale-110"
+                    : "text-[var(--muted)]/30 opacity-50 cursor-not-allowed"
                 }`}
-                onClick={() => {
-                  const currentIndex = dishes.findIndex(
-                    (d) => d.id === activeDish
-                  );
-                  if (currentIndex > 0) {
-                    scrollToDish(dishes[currentIndex - 1].id);
-                  }
-                }}
+                onClick={handleCarouselPrev}
               />
-              <div className="flex gap-4 mt-10">
-                {dishes.map((d) => (
-                  <div
-                    key={`selector-${activeCategory}-${d.id}`}
-                    onClick={() => scrollToDish(d.id)}
-                    className={`cursor-pointer transition-all duration-300 ${
-                      activeDish === d.id
-                        ? "text-[var(--muted)] scale-110 h-40 px-4 pt-2 bg-white/20 rounded-2xl"
-                        : "scale-90 opacity-60 hover:opacity-80"
-                    }`}
-                  >
-                    <div className="rounded-full overflow-hidden w-20 h-20 flex items-center justify-center">
-                      <img
-                        src={d.image}
-                        alt={d.name}
-                        className="w-full h-full object-cover rounded-full"
-                      />
+              <div className="flex items-center justify-center gap-4 mt-10 w-3/4 h-50 overflow-hidden relative">
+                <div 
+                  className="flex gap-4 transition-transform duration-500 ease-out"
+                  style={{ transform: `translateX(0)` }}
+                >
+                  {visibleDishes.map((d, index) => (
+                    <div
+                      key={`selector-${activeCategory}-${d.id}`}
+                      onClick={() => scrollToDish(d.id)}
+                      className={`cursor-pointer w-1/4 h-40 flex flex-col items-center justify-center transition-all duration-300 ${
+                        activeDish === d.id
+                          ? "text-[var(--muted)] w-1/4 scale-110 px-4 pt-2 bg-white/20 rounded-4xl"
+                          : "scale-90 opacity-60 hover:opacity-80 hover:scale-95"
+                      }`}
+                      style={{
+                        animation: `fadeSlideIn 0.4s ease-out ${index * 0.1}s both`
+                      }}
+                    >
+                      <div className="rounded-full overflow-hidden w-20 h-20 flex items-center justify-center">
+                        <img
+                          src={d.image}
+                          alt={d.name}
+                          className="w-full h-full object-cover rounded-full"
+                        />
+                      </div>
+                      <p className="text-sm text-center mt-2">
+                        {d.name.toLowerCase()}
+                        <br />
+                        {d.subtitle.toLowerCase()}
+                      </p>
                     </div>
-                    <p className="text-sm text-center mt-2">
-                      {d.name.toLowerCase()}
-                      <br />
-                      {d.subtitle.toLowerCase()}
-                    </p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
               <ChevronRight
-                className={`w-6 h-6 cursor-pointer transition ${
-                  dishes.findIndex((d) => d.id === activeDish) <
-                  dishes.length - 1
-                    ? "text-gray-400 hover:text-gray-600"
-                    : "text-gray-300 opacity-50 cursor-not-allowed"
+                className={`w-8 h-8 cursor-pointer transition-all duration-200 ${
+                  carouselIndex < totalPages - 1
+                    ? "text-[var(--muted)] hover:text-[var(--muted)]/80 hover:scale-110"
+                    : "text-[var(--muted)]/30 opacity-50 cursor-not-allowed"
                 }`}
-                onClick={() => {
-                  const currentIndex = dishes.findIndex(
-                    (d) => d.id === activeDish
-                  );
-                  if (currentIndex < dishes.length - 1) {
-                    scrollToDish(dishes[currentIndex + 1].id);
-                  }
-                }}
+                onClick={handleCarouselNext}
               />
             </div>
+            
+            {/* Carousel Pagination Dots */}
+            {totalPages > 1 && (
+              <div className="flex justify-center gap-2 mt-6">
+                {Array.from({ length: totalPages }).map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      setCarouselIndex(idx);
+                      const targetDish = dishes[idx * DISHES_PER_VIEW];
+                      if (targetDish) {
+                        scrollToDish(targetDish.id);
+                      }
+                    }}
+                    className={`rounded-full transition-all duration-300 ${
+                      idx === carouselIndex
+                        ? "bg-[var(--muted)] w-8 h-2"
+                        : "bg-[var(--muted)]/40 hover:bg-[var(--muted)]/60 w-2 h-2"
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Invisible Scroll Container */}
@@ -419,21 +513,36 @@ export default function FoodMenu() {
         </div>
 
         {/* Bottom Navigation */}
-        <div className="backdrop-blur-3xl px-8 py-6 flex justify-center gap-12 relative z-20">
+        <div className="backdrop-blur-3xl px-8 py-6 flex justify-center gap-8 relative z-20">
           <button
             onClick={() => {
-              if (activeCategory !== "food") {
+              if (activeCategory !== "appetizers") {
                 categoryScrollDirection.current = 'forward';
-                setActiveCategory("food");
+                setActiveCategory("appetizers");
               }
             }}
-            className={`py-4 px-8 rounded-full transition-all duration-300 text-xl font-semibold ${
-              activeCategory === "food"
+            className={`py-3 px-6 rounded-full transition-all duration-300 text-lg font-semibold ${
+              activeCategory === "appetizers"
                 ? "bg-[var(--muted)] text-gray-700 scale-110"
                 : "bg-[var(--muted)]/60 text-gray-600 hover:bg-[var(--muted)]/40 hover:scale-105"
             }`}
           >
-            Food
+            Appetizers
+          </button>
+          <button
+            onClick={() => {
+              if (activeCategory !== "entrees") {
+                categoryScrollDirection.current = 'forward';
+                setActiveCategory("entrees");
+              }
+            }}
+            className={`py-3 px-6 rounded-full transition-all duration-300 text-lg font-semibold ${
+              activeCategory === "entrees"
+                ? "bg-[var(--muted)] text-gray-700 scale-110"
+                : "bg-[var(--muted)]/60 text-gray-600 hover:bg-[var(--muted)]/40 hover:scale-105"
+            }`}
+          >
+            Entrees
           </button>
           <button
             onClick={() => {
@@ -442,13 +551,28 @@ export default function FoodMenu() {
                 setActiveCategory("drinks");
               }
             }}
-            className={`py-4 px-8 rounded-full transition-all duration-300 text-xl font-semibold ${
+            className={`py-3 px-6 rounded-full transition-all duration-300 text-lg font-semibold ${
               activeCategory === "drinks"
                 ? "bg-[var(--muted)] text-gray-700 scale-110"
                 : "bg-[var(--muted)]/60 text-gray-600 hover:bg-[var(--muted)]/40 hover:scale-105"
             }`}
           >
             Drinks
+          </button>
+          <button
+            onClick={() => {
+              if (activeCategory !== "wines") {
+                categoryScrollDirection.current = 'forward';
+                setActiveCategory("wines");
+              }
+            }}
+            className={`py-3 px-6 rounded-full transition-all duration-300 text-lg font-semibold ${
+              activeCategory === "wines"
+                ? "bg-[var(--muted)] text-gray-700 scale-110"
+                : "bg-[var(--muted)]/60 text-gray-600 hover:bg-[var(--muted)]/40 hover:scale-105"
+            }`}
+          >
+            Wines
           </button>
         </div>
       </div>
@@ -502,6 +626,17 @@ export default function FoodMenu() {
           100% {
             transform: translate(0, 0) scale(1);
             opacity: 1;
+          }
+        }
+
+        @keyframes fadeSlideIn {
+          0% {
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
           }
         }
 
