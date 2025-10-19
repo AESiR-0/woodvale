@@ -328,35 +328,35 @@ export default function FoodMenu() {
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col relative">
-        {/* Fixed Content Display Area - Compact Layout */}
+        {/* Fixed Content Display Area */}
         <div
           ref={scrollContainerRef}
           onWheel={(e) => e.preventDefault()}
           onTouchMove={(e) => e.preventDefault()}
-          className="flex-1 flex items-center justify-center px-4 sm:px-6 md:px-8 py-4 sm:py-6 relative overflow-hidden touch-none select-none"
+          className="flex-1 flex flex-col items-center justify-center px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-3 md:py-4 relative overflow-hidden touch-none select-none"
         >
-          <div className="max-w-6xl w-full relative z-10 flex flex-col justify-center items-center h-full gap-8 sm:gap-10 md:gap-12">
-            {/* Title and Image Container - Compact */}
-            <div className="flex flex-col md:flex-row-reverse items-center justify-center gap-4 md:gap-8 lg:gap-12 mb-4 md:mb-6">
+          <div className="max-w-6xl w-full relative z-10 flex flex-col justify-center items-center h-full gap-6 sm:gap-4 md:gap-6 lg:gap-8">
+            {/* Title and Image Container */}
+            <div className="flex flex-col md:flex-row-reverse items-center justify-center gap-2 sm:gap-3 md:gap-6 lg:gap-8 flex-shrink-0">
               {/* Title - WITH ANIMATION */}
               <div
-                className={`text-center md:text-left transition-all duration-500 ease-out ${getTextAnimationClass()}`}
+                className={`text-center md:text-left transition-all duration-500 ease-out flex-shrink-0 ${getTextAnimationClass()}`}
               >
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-[var(--muted)] tracking-wide mb-1 md:mb-2">
+                <h1 className="text-3xl sm:text-3xl md:text-3xl lg:text-4xl font-light text-[var(--muted)] tracking-wide mb-1 md:mb-1">
                   {currentDish.name}
                 </h1>
-                <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-[var(--muted)]">
+                <h2 className="text-lg sm:text-lg md:text-lg lg:text-xl font-bold text-[var(--muted)]">
                   {currentDish.subtitle}
                 </h2>
                 {currentDish.price && (
-                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[var(--muted)]/80 mt-1">
+                  <p className="text-base sm:text-base md:text-base lg:text-lg text-[var(--muted)]/80 mt-0.5">
                     ${currentDish.price}
                   </p>
                 )}
               </div>
 
-              {/* Image Container - Compact */}
-              <div className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 flex-shrink-0">
+              {/* Image Container */}
+              <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-64 lg:h-64 flex-shrink-0">
                 {previousDish && (
                   <div
                     className={`absolute inset-0 bg-white rounded-full shadow-2xl ${
@@ -391,25 +391,25 @@ export default function FoodMenu() {
               </div>
             </div>
 
-            {/* Dish Selector with Carousel - Compact */}
-            <div className="flex justify-center items-center gap-2 sm:gap-3">
+            {/* Dish Selector with Carousel */}
+            <div className="flex justify-center items-center gap-3 sm:gap-2 md:gap-0 lg:gap-0 w-full flex-shrink-0">
               <ChevronLeft
-                className={`w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 cursor-pointer transition-all duration-200 flex-shrink-0 ${
+                className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 cursor-pointer transition-all duration-200 flex-shrink-0 ${
                   carouselIndex > 0
                     ? "text-[var(--muted)] hover:text-[var(--muted)]/80 hover:scale-110"
                     : "text-[var(--muted)]/30 opacity-50 cursor-not-allowed"
                 }`}
                 onClick={handleCarouselPrev}
               />
-              <div className="flex items-center justify-center gap-2 sm:gap-3 w-full sm:w-3/4 h-24 sm:h-28 md:h-32 overflow-hidden relative">
-                <div className="flex gap-2 sm:gap-3 transition-transform duration-500 ease-out">
+              <div className="flex items-center justify-center gap-1.5 sm:gap-2 md:gap-3 flex-1 h-24 sm:h-28 md:h-32 overflow-hidden">
+                <div className="flex gap-1.5 sm:gap-2 md:gap-3 transition-transform duration-500 ease-out">
                   {visibleDishes.map((d, index) => (
                     <div
                       key={`selector-${activeCategory}-${d.id}`}
                       onClick={() => scrollToDish(d.id)}
-                      className={`cursor-pointer w-1/4 min-w-[55px] sm:min-w-[70px] h-20 sm:h-24 md:h-28 flex flex-col items-center justify-center transition-all duration-300 ${
+                      className={`cursor-pointer flex-1 min-w-0 h-full flex flex-col items-center justify-center transition-all duration-300 ${
                         activeDish === d.id
-                          ? "text-[var(--muted)] scale-105 sm:scale-110 px-1.5 sm:px-3 pt-1 bg-white/20 rounded-xl sm:rounded-2xl"
+                          ? "text-[var(--muted)] scale-100 sm:scale-105 px-1 sm:px-2 pt-1 bg-white/20 rounded-lg sm:rounded-xl"
                           : "scale-90 opacity-60 hover:opacity-80 hover:scale-95"
                       }`}
                       style={{
@@ -418,14 +418,14 @@ export default function FoodMenu() {
                         }s both`,
                       }}
                     >
-                      <div className="rounded-full overflow-hidden w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 flex items-center justify-center">
+                      <div className="rounded-full overflow-hidden w-14 h-14 sm:w-16 sm:h-16 md:w-16 md:h-16 flex items-center justify-center flex-shrink-0">
                         <img
                           src={d.image}
                           alt={d.name}
-                          className="w-full h-full object-cover rounded-full"
+                          className="w-full h-full object-cover"
                         />
                       </div>
-                      <p className="text-[9px] sm:text-[10px] md:text-xs text-center mt-0.5 sm:mt-1 px-0.5 leading-tight">
+                      <p className="text-[10px] sm:text-[11px] md:text-xs text-center mt-1 px-0.5 leading-tight line-clamp-2">
                         {d.name.toLowerCase()}
                         <br />
                         {d.subtitle.toLowerCase()}
@@ -435,7 +435,7 @@ export default function FoodMenu() {
                 </div>
               </div>
               <ChevronRight
-                className={`w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 cursor-pointer transition-all duration-200 flex-shrink-0 ${
+                className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 cursor-pointer transition-all duration-200 flex-shrink-0 ${
                   carouselIndex < totalPages - 1
                     ? "text-[var(--muted)] hover:text-[var(--muted)]/80 hover:scale-110"
                     : "text-[var(--muted)]/30 opacity-50 cursor-not-allowed"
@@ -444,10 +444,11 @@ export default function FoodMenu() {
               />
             </div>
 
-            {/* Carousel Pagination Dots - Compact */}
-            {totalPages > 1 && (
-              <div className="flex justify-center flex-col gap-1.5 mt-3 sm:mt-4">
-                <div className="flex justify-center gap-1.5 mt-4 mb-4 sm:mt-4">
+            {/* Category Navigation and Pagination */}
+            <div className="flex flex-col gap-4 sm:gap-3 w-full flex-shrink-0">
+              {/* Carousel Pagination Dots */}
+              {totalPages > 1 && (
+                <div className="flex justify-center gap-1.5">
                   {Array.from({ length: totalPages }).map((_, idx) => (
                     <button
                       key={idx}
@@ -466,44 +467,45 @@ export default function FoodMenu() {
                     />
                   ))}
                 </div>
-<div className="backdrop-blur-3xl px-2 sm:px-4 md:px-6 py-3 sm:py-4 flex justify-center gap-2 sm:gap-3 md:gap-6 relative z-20 overflow-x-auto mb-4 sm:mb-6 scrollbar-hide">
-  {["appetizers", "entrees", "drinks", "wines"].map((cat) => (
-    <button
-      key={cat}
-      onClick={() => {
-        if (activeCategory !== cat) {
-          categoryScrollDirection.current = "forward";
-          setActiveCategory(cat as CategoryType);
-        }
-      }}
-      className={`flex-shrink-0 py-1.5 sm:py-2 px-3 sm:px-4 md:px-5 rounded-full transition-all duration-300 text-xs sm:text-sm md:text-base font-semibold whitespace-nowrap ${
-        activeCategory === cat
-          ? "bg-[var(--muted)] text-gray-700 scale-105 sm:scale-110"
-          : "bg-[var(--muted)]/60 text-gray-600 hover:bg-[var(--muted)]/40 hover:scale-105"
-      }`}
-    >
-      {cat.charAt(0).toUpperCase() + cat.slice(1)}
-    </button>
-  ))}
-</div>
+              )}
 
+              {/* Category Buttons */}
+              <div className="backdrop-blur-3xl px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 flex justify-center gap-1.5 sm:gap-2 md:gap-3 overflow-x-auto scrollbar-hide rounded-full">
+                {["appetizers", "entrees", "drinks", "wines"].map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => {
+                      if (activeCategory !== cat) {
+                        categoryScrollDirection.current = "forward";
+                        setActiveCategory(cat as CategoryType);
+                      }
+                    }}
+                    className={`flex-shrink-0 py-1 sm:py-1.5 px-2.5 sm:px-3 md:px-4 rounded-full transition-all duration-300 text-xs sm:text-sm md:text-base font-semibold whitespace-nowrap ${
+                      activeCategory === cat
+                        ? "bg-[var(--muted)] text-gray-700 scale-100 sm:scale-105"
+                        : "bg-[var(--muted)]/60 text-gray-600 hover:bg-[var(--muted)]/40 hover:scale-105"
+                    }`}
+                  >
+                    {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                  </button>
+                ))}
               </div>
-            )}
+            </div>
           </div>
         </div>
 
         {/* Scroll Hint */}
         <div
-          className={`absolute bottom-16 sm:bottom-20 left-1/2 transform -translate-x-1/2 z-30 transition-opacity duration-1000 ${
+          className={`absolute bottom-20 sm:bottom-24 md:bottom-28 left-1/2 transform -translate-x-1/2 z-30 transition-opacity duration-1000 ${
             showScrollHint ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
-          <div className="flex flex-col items-center gap-1.5 animate-bounce">
+          <div className="flex flex-col items-center gap-1 sm:gap-1.5 animate-bounce">
             <p className="text-[var(--muted)]/80 text-xs sm:text-sm font-medium">
               Scroll to explore
             </p>
             <svg
-              className="w-4 h-4 sm:w-5 sm:h-5 text-[var(--muted)]/80"
+              className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-[var(--muted)]/80"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -517,70 +519,6 @@ export default function FoodMenu() {
             </svg>
           </div>
         </div>
-
-        {/* Bottom Navigation - Compact */}
-        {/* <div className="backdrop-blur-3xl px-3 sm:px-6 md:px-8 sm:py-4 flex justify-center gap-2 sm:gap-3 md:gap-6 relative z-20 overflow-x-auto mb-6 sm:mb-8 md:mb-10">
-          <button
-            onClick={() => {
-              if (activeCategory !== "appetizers") {
-                categoryScrollDirection.current = "forward";
-                setActiveCategory("appetizers");
-              }
-            }}
-            className={`py-1.5 sm:py-2 px-3 sm:px-4 md:px-5 rounded-full transition-all duration-300 text-xs sm:text-sm md:text-base font-semibold whitespace-nowrap ${
-              activeCategory === "appetizers"
-                ? "bg-[var(--muted)] text-gray-700 scale-105 sm:scale-110"
-                : "bg-[var(--muted)]/60 text-gray-600 hover:bg-[var(--muted)]/40 hover:scale-105"
-            }`}
-          >
-            Appetizers
-          </button>
-          <button
-            onClick={() => {
-              if (activeCategory !== "entrees") {
-                categoryScrollDirection.current = "forward";
-                setActiveCategory("entrees");
-              }
-            }}
-            className={`py-1.5 sm:py-2 px-3 sm:px-4 md:px-5 rounded-full transition-all duration-300 text-xs sm:text-sm md:text-base font-semibold whitespace-nowrap ${
-              activeCategory === "entrees"
-                ? "bg-[var(--muted)] text-gray-700 scale-105 sm:scale-110"
-                : "bg-[var(--muted)]/60 text-gray-600 hover:bg-[var(--muted)]/40 hover:scale-105"
-            }`}
-          >
-            Entrees
-          </button>
-          <button
-            onClick={() => {
-              if (activeCategory !== "drinks") {
-                categoryScrollDirection.current = "forward";
-                setActiveCategory("drinks");
-              }
-            }}
-            className={`py-1.5 sm:py-2 px-3 sm:px-4 md:px-5 rounded-full transition-all duration-300 text-xs sm:text-sm md:text-base font-semibold whitespace-nowrap ${
-              activeCategory === "drinks"
-                ? "bg-[var(--muted)] text-gray-700 scale-105 sm:scale-110"
-                : "bg-[var(--muted)]/60 text-gray-600 hover:bg-[var(--muted)]/40 hover:scale-105"
-            }`}
-          >
-            Drinks
-          </button>
-          <button
-            onClick={() => {
-              if (activeCategory !== "wines") {
-                categoryScrollDirection.current = "forward";
-                setActiveCategory("wines");
-              }
-            }}
-            className={`py-1.5 sm:py-2 px-3 sm:px-4 md:px-5 rounded-full transition-all duration-300 text-xs sm:text-sm md:text-base font-semibold whitespace-nowrap ${
-              activeCategory === "wines"
-                ? "bg-[var(--muted)] text-gray-700 scale-105 sm:scale-110"
-                : "bg-[var(--muted)]/60 text-gray-600 hover:bg-[var(--muted)]/40 hover:scale-105"
-            }`}
-          >
-            Wines
-          </button>
-        </div> */}
       </div>
 
       {/* Keyframe Animations */}
@@ -662,6 +600,15 @@ export default function FoodMenu() {
         .animate-spinInBackward {
           animation: spinInBackward 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)
             forwards;
+        }
+
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
         }
       `}</style>
     </div>

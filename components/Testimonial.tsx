@@ -187,7 +187,7 @@ export default function TestimonialsSection() {
   {testimonials.map((testimonial, index) => (
     <div
       key={index}
-      className="card-animate opacity-0 min-w-[260px] sm:min-w-[300px] md:min-w-[380px] flex-1 sm:flex-none bg-[var(--leaf)] backdrop-blur-md border border-[var(--muted)]/40 rounded-2xl px-6 sm:px-8 md:px-8 py-8 sm:py-10 relative overflow-hidden transition-all duration-300 hover:-translate-y-2.5 hover:scale-105 hover:border-[var(--muted)] group"
+      className="card-animate opacity-0 min-w-[260px] sm:min-w-[300px] md:w-2/6 flex-1 sm:flex-none bg-[var(--leaf)] backdrop-blur-md border border-[var(--muted)]/40 rounded-2xl px-6 sm:px-8 md:px-8 py-8 sm:py-10 relative overflow-hidden transition-all duration-300 hover:-translate-y-2.5 hover:scale-105 hover:border-[var(--muted)] group"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       <div className="absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
