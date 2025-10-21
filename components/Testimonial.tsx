@@ -162,61 +162,65 @@ export default function TestimonialsSection() {
         <div className="relative py-5">
           <button
             onClick={scrollLeftBtn}
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-[var(--leaf)] backdrop-blur-md border border-green-600/30 text-green-100 text-2xl cursor-pointer flex items-center justify-center transition-all duration-300 hover:bg-green-700/50 hover:scale-110 z-10"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-6 h-6 sm:w-12 sm:h-12 rounded-full bg-[var(--leaf)] backdrop-blur-md border border-green-600/30 text-green-100 text-2xl cursor-pointer flex items-center justify-center transition-all duration-300 hover:bg-green-700/50 hover:scale-110 z-10"
           >
             ‹
           </button>
 
           <button
             onClick={scrollRightBtn}
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-[var(--leaf)] backdrop-blur-md border border-green-600/30 text-green-100 text-2xl cursor-pointer flex items-center justify-center transition-all duration-300 hover:bg-green-700/50 hover:scale-110 z-10"
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 sm:w-12 sm:h-12 rounded-full bg-[var(--leaf)] backdrop-blur-md border border-green-600/30 text-green-100 text-2xl cursor-pointer flex items-center justify-center transition-all duration-300 hover:bg-green-700/50 hover:scale-110 z-10"
           >
             ›
           </button>
 
-          <div
-            ref={containerRef}
-            onMouseDown={handleMouseDown}
-            onMouseLeave={handleMouseLeave}
-            onMouseUp={handleMouseUp}
-            onMouseMove={handleMouseMove}
-            onScroll={handleScroll}
-            className="testimonials-container flex gap-8 overflow-x-auto overflow-y-hidden py-5 px-10 cursor-grab active:cursor-grabbing select-none"
-            style={{ scrollBehavior: "smooth" }}
+<div
+  ref={containerRef}
+  onMouseDown={handleMouseDown}
+  onMouseLeave={handleMouseLeave}
+  onMouseUp={handleMouseUp}
+  onMouseMove={handleMouseMove}
+  onScroll={handleScroll}
+  className="testimonials-container flex gap-4 sm:gap-6 md:gap-8 overflow-x-auto overflow-y-hidden py-5 px-4 sm:px-6 md:px-10 cursor-grab active:cursor-grabbing select-none"
+  style={{ scrollBehavior: "smooth" }}
+>
+  {testimonials.map((testimonial, index) => (
+    <div
+      key={index}
+      className="card-animate opacity-0 min-w-[260px] sm:min-w-[300px] md:w-2/6 flex-1 sm:flex-none bg-[var(--leaf)] backdrop-blur-md border border-[var(--muted)]/40 rounded-2xl px-6 sm:px-8 md:px-8 py-8 sm:py-10 relative overflow-hidden transition-all duration-300 hover:-translate-y-2.5 hover:scale-105 hover:border-[var(--muted)] group"
+      style={{ animationDelay: `${index * 0.1}s` }}
+    >
+      <div className="absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+      {/* Stars */}
+      <div className="flex mb-3 relative z-10">
+        {[...Array(5)].map((_, i) => (
+          <span
+            key={i}
+            className={`text-base sm:text-lg transition-transform duration-150 ${
+              i < testimonial.rating
+                ? "text-yellow-400"
+                : "text-[var(--muted)]"
+            }`}
           >
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="card-animate opacity-0 min-w-[380px] max-w-[380px] bg-[var(--leaf)] backdrop-blur-md border border-[var(--muted)]/40 rounded-2xl px-8 py-10 flex-shrink-0 relative overflow-hidden transition-all duration-300 hover:-translate-y-2.5 hover:scale-105 hover:border-[var(--muted)] group"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            ★
+          </span>
+        ))}
+      </div>
 
-                <div className="flex mb-3 relative z-10">
-                  {[...Array(5)].map((_, i) => (
-                    <span
-                      key={i}
-                      className={`text-lg transition-transform duration-150 ${
-                        i < testimonial.rating
-                          ? "text-yellow-400"
-                          : "text-[var(--muted)]"
-                      }`}
-                    >
-                      ★
-                    </span>
-                  ))}
-                </div>
+      {/* Text */}
+      <p className="text-[13px] sm:text-[14px] md:text-[15px] leading-6 sm:leading-7 text-green-100 mb-4 sm:mb-5 relative z-10">
+        {testimonial.text}
+      </p>
 
-                <p className="text-[15px] leading-7 text-green-100 mb-5 relative z-10">
-                  {testimonial.text}
-                </p>
+      {/* Author */}
+      <p className="text-xs sm:text-sm text-[var(--muted)] italic relative z-10">
+        — {testimonial.author}
+      </p>
+    </div>
+  ))}
+</div>
 
-                <p className="text-sm text-[var(--muted)] italic relative z-10">
-                  — {testimonial.author}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
 
         <div className="flex justify-center gap-2.5 mt-4">

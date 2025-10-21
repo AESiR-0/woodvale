@@ -63,7 +63,7 @@ export default function ReservationForm() {
               trigger: bgRef.current,
               start: "top 90%",
               toggleActions: "play none none none",
-              markers: false, // Set true to debug
+              markers: false,
             },
           }
         );
@@ -104,7 +104,7 @@ export default function ReservationForm() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen overflow-hidden flex items-center justify-center">
+    <section className="relative w-full min-h-screen overflow-hidden flex items-center justify-center px-4 sm:px-6">
       {/* Background */}
       <div
         ref={bgRef}
@@ -120,19 +120,21 @@ export default function ReservationForm() {
       <form
         ref={formRef}
         onSubmit={handleSubmit}
-        className="relative z-20 text-white rounded-lg shadow-xl w-[90%] sm:w-[500px] md:w-2/4 p-6 flex flex-col gap-6 text-lg"
+        className="relative z-20 text-white rounded-lg shadow-xl w-full max-w-md sm:max-w-lg md:max-w-xl p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-6 md:gap-6 text-base sm:text-lg"
       >
-        <h1 className="text-3xl font-bold text-center mb-4">Book Your Table</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-3xl font-bold text-center mb-2 sm:mb-4">
+          Book Your Table
+        </h1>
 
         {/* First Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           <div>
             <input
               type="text"
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className={`w-full text-[var(--muted)] placeholder:text-[var(--muted)] text-2xl py-4 px-4 rounded-md border focus:outline-none ${
+              className={`w-full text-[var(--muted)] placeholder:text-[var(--muted)] text-base sm:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded-md border focus:outline-none ${
                 errors.name ? "border-red-500" : "border-gray-300"
               }`}
             />
@@ -148,7 +150,7 @@ export default function ReservationForm() {
               placeholder="Persons"
               value={person}
               onChange={(e) => setPerson(e.target.value)}
-              className={`w-full text-[var(--muted)] placeholder:text-[var(--muted)] text-2xl py-4 px-4 rounded-md border focus:outline-none ${
+              className={`w-full text-[var(--muted)] placeholder:text-[var(--muted)] text-base sm:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded-md border focus:outline-none ${
                 errors.person ? "border-red-500" : "border-gray-300"
               }`}
             />
@@ -159,13 +161,13 @@ export default function ReservationForm() {
         </div>
 
         {/* Second Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           <div>
             <input
               type="time"
               value={timing}
               onChange={(e) => setTiming(e.target.value)}
-              className={`w-full text-[var(--muted)] placeholder:text-[var(--muted)] text-2xl py-4 px-4 rounded-md border focus:outline-none ${
+              className={`w-full text-[var(--muted)] placeholder:text-[var(--muted)] text-base sm:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded-md border focus:outline-none ${
                 errors.timing ? "border-red-500" : "border-gray-300"
               }`}
             />
@@ -178,7 +180,7 @@ export default function ReservationForm() {
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className={`w-full text-[var(--muted)] placeholder:text-[var(--muted)] text-2xl py-4 px-4 rounded-md border focus:outline-none ${
+              className={`w-full text-[var(--muted)] placeholder:text-[var(--muted)] text-base sm:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded-md border focus:outline-none ${
                 errors.date ? "border-red-500" : "border-gray-300"
               }`}
             />
@@ -189,10 +191,10 @@ export default function ReservationForm() {
         </div>
 
         {/* Button */}
-        <div className="w-full">
+        <div className="w-full mt-2 sm:mt-4">
           <Button
             type="submit"
-            className="mt-4 w-full text-[var(--muted)] font-semibold text-2xl py-8 rounded-md"
+            className="w-full text-[var(--muted)] font-semibold text-lg sm:text-xl py-4 sm:py-6 rounded-md"
           >
             Submit Reservation
           </Button>
