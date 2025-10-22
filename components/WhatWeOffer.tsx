@@ -120,8 +120,8 @@ export default function ServicesSection() {
                 <div className="relative h-64 sm:h-80 lg:h-96 rounded-lg overflow-hidden mb-4 shadow-2xl">
                   <Link href="/menu#entrees">
                     <Image
-                      src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                      alt="Artfully plated savory dish with tropical elements"
+                      src="https://images.unsplash.com/photo-1761095596765-c8abe01d3aea?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687"
+                      alt="Beautifully plated gourmet dish with elegant presentation"
                       fill
                       className="object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-110"
                     />
