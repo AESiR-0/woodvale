@@ -133,19 +133,7 @@ export const categories: Record<CategoryType, Dish[]> = {
       description: "Honey and lavender infused butter / toasted pumpkin seeds / pine nuts / caramelized onion jam / flowers / crostini",
       price: 25,
     },
-    {
-      id: 10,
-      name: "Charcuterie Board",
-      subtitle: "Build Your Own",
-      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=300&fit=crop",
-      mainImage: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop",
-      number: 10,
-      rating: 4.8,
-      chef: "Chef Emma",
-      chefTitle: "Charcuterie Artist",
-      description: "Meats: Pastrami $8, Salami Tartufo Pork $9, Apple Cranberry Sausage $9, Chili Mango Sausage $9, Cured Duck Breast $13 | Cheeses: Camembert $8, Fontina $9, Oka $9, Aged Cheddar $9, Smoked Gouda $9, Herb Goat Cheese $9 | Pickled: Asparagus $4, Carrots $4, Beets $5, Blueberries $6, Chili Olives $4 | Spreads: Rosehip & Maple $5, Caramelized Onion & Mushroom $5, Saskatoon Berry & Smoked Vanilla",
-      price: 8,
-    },
+    
     {
       id: 11,
       name: "Bruschetta",
