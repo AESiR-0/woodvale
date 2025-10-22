@@ -1,217 +1,314 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import Link from "next/link";
-import { Leaf, Heart, Users, Sprout } from "lucide-react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import AboutUs from "@/components/OurStory";
-
-gsap.registerPlugin(ScrollTrigger);
+import { Leaf, Heart, Users, Sprout, MapPin, Clock, Award, Sparkles } from "lucide-react";
+import  Footer  from "@/components/Footer"
 
 export default function AboutPage() {
   const parallaxRef = useRef(null);
   const heroTitleRef = useRef(null);
-  const ctaSectionRef = useRef(null);
+  const storyCardsRef = useRef([]);
+  const statsRef = useRef(null);
 
   useEffect(() => {
-    // Hero animation
-    gsap.fromTo(
-      heroTitleRef.current,
-      { opacity: 0, y: 60 },
-      { opacity: 1, y: 0, duration: 1.5, ease: "power3.out" }
-    );
+    // Hero entrance animation
+    if (heroTitleRef.current) {
+      heroTitleRef.current.style.opacity = "0";
+      heroTitleRef.current.style.transform = "translateY(60px)";
+      
+      setTimeout(() => {
+        heroTitleRef.current.style.transition = "all 1.5s cubic-bezier(0.16, 1, 0.3, 1)";
+        heroTitleRef.current.style.opacity = "1";
+        heroTitleRef.current.style.transform = "translateY(0)";
+      }, 100);
+    }
 
-    // Parallax effect for hero background
-    gsap.to(parallaxRef.current, {
-      y: () => window.innerHeight * 0.5,
-      ease: "none",
-      scrollTrigger: {
-        trigger: parallaxRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
+    // Parallax scroll effect
+    const handleScroll = () => {
+      if (parallaxRef.current) {
+        const scrolled = window.scrollY;
+        parallaxRef.current.style.transform = `translateY(${scrolled * 0.5}px)`;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Intersection Observer for fade-in animations
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
       },
-    });
-
-    // Fade in generic sections
-    const fadeInSections = document.querySelectorAll(".fade-in-section");
-    fadeInSections.forEach((section) => {
-      gsap.fromTo(
-        section,
-        { opacity: 0, y: 60 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
-    });
-
-    // Animate value cards
-    const valueCards = document.querySelectorAll(".value-card");
-    gsap.fromTo(
-      valueCards,
-      { opacity: 0, y: 60 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".values-grid",
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      }
+      { threshold: 0.1, rootMargin: "0px 0px -100px 0px" }
     );
 
-    // Layered takeover for CTA Section
-    gsap.fromTo(
-      ctaSectionRef.current,
-      { opacity: 0, y: 100, zIndex: -1 },
-      {
-        opacity: 1,
-        y: 0,
-        zIndex: 10,
-        duration: 1.5,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ctaSectionRef.current,
-          start: "top bottom",
-          end: "top 60%",
-          scrub: true,
-        },
+    document.querySelectorAll(".fade-in-section").forEach((el) => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(60px)";
+      el.style.transition = "all 1s cubic-bezier(0.16, 1, 0.3, 1)";
+      observer.observe(el);
+    });
+
+    // Stagger animation for story cards
+    storyCardsRef.current.forEach((card, index) => {
+      if (card) {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(40px)";
+        card.style.transition = "all 0.8s cubic-bezier(0.16, 1, 0.3, 1)";
+        card.style.transitionDelay = `${index * 0.15}s`;
+        
+        setTimeout(() => {
+          card.style.opacity = "1";
+          card.style.transform = "translateY(0)";
+        }, 800);
       }
-    );
+    });
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
     };
   }, []);
 
   const restaurant = {
-    name: "WOODVALE",
-    tagline: "Where Forest Meets Table",
+    name: "The Woodvale Room",
+    tagline: "Hidden within the heart of Mill Woods",
     description:
-      "At Woodvale, we believe that the best meals are those that connect us to the earth. Our forest-inspired dining experience brings together locally-sourced ingredients, sustainable practices, and the warmth of woodland hospitality. Every dish tells a story of the land, the seasons, and the farmers who nurture our ingredients with care.",
-    mission:
-      "Our mission is to create a dining sanctuary where guests can escape the rush of modern life and reconnect with nature through thoughtfully prepared, seasonal cuisine. We partner with local farmers and foragers to bring you the freshest ingredients, prepared with techniques that honor both tradition and innovation.",
-    story:
-      "Founded in 2020, Woodvale emerged from a simple dream: to create a restaurant that feels like a retreat into the forest. Our founders, inspired by childhood memories of family gatherings in woodland cabins, designed every aspect of Woodvale to evoke the peace and beauty of nature. From our reclaimed wood tables to our living plant walls, every detail invites you to slow down, savor, and celebrate the bounty of the earth.",
+      "Hidden within the heart of Mill Woods, The Woodvale Room invites guests into an intimate escape inspired by the beauty and mystery of the forest. Nestled inside the Woodvale Community Facility, this reimagined space blends elegance with a secret-society charm.",
+    atmosphere: "A place where flickering candlelight, rich wood tones, and thoughtful details set the stage for unforgettable evenings.",
+    cuisine:
+      "Our menu draws inspiration from classic dishes, reinterpreted with a distinctly Canadian twist. Each plate tells a story of the terrain—from the forests and fields to the lakes and prairies, showcasing local ingredients and flavours that celebrate the land around us.",
+    experience:
+      "Whether you're joining us for a quiet date night, a milestone celebration, or a private gathering in The Study, our secluded dining room, every visit feels like discovering something hidden and rare.",
+    offerings:
+      "From imaginative cocktails and an extensive wine list to carefully crafted dishes that evoke both comfort and curiosity, The Woodvale Room was created as a space for the community to connect, celebrate, and savour something truly special.",
+    dedication:
+      "Our team has worked tirelessly to breathe new life into this space—for those who seek not just a meal, but an experience worth remembering.",
   };
 
-  const values = [
+  const highlights = [
+    {
+      icon: MapPin,
+      title: "Secret Location",
+      description: "Hidden gem inside Woodvale Community Facility",
+    },
     {
       icon: Leaf,
-      title: "Sustainable Sourcing",
-      description:
-        "We work exclusively with local farms practicing regenerative agriculture, ensuring every ingredient supports the health of our ecosystem.",
+      title: "Canadian Terrain",
+      description: "Ingredients from forests, fields, lakes & prairies",
     },
     {
-      icon: Heart,
-      title: "Crafted with Care",
-      description:
-        "Our chefs treat each dish as a work of art, honoring the ingredients and the hands that grew them with meticulous attention to detail.",
+      icon: Sparkles,
+      title: "The Study",
+      description: "Our exclusive private dining room",
     },
     {
-      icon: Users,
-      title: "Community First",
-      description:
-        "We're more than a restaurant—we're a gathering place where neighbors become friends and every meal is a celebration of togetherness.",
-    },
-    {
-      icon: Sprout,
-      title: "Seasonal Menus",
-      description:
-        "Our menu changes with the seasons, showcasing the best of what nature offers at each moment throughout the year.",
+      icon: Award,
+      title: "Crafted Experience",
+      description: "Imaginative cocktails & extensive wine selection",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-[#2A332D] text-white">
+    <div className="min-h-screen bg-[#1a1f1c] text-white overflow-x-hidden">
       <style jsx>{`
-        .value-card {
-          transition: all 0.3s ease;
+        .highlight-card {
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          backdrop-filter: blur(10px);
         }
-        .value-card:hover {
+        .highlight-card:hover {
+          transform: translateY(-8px) scale(1.02);
+          background: rgba(255, 255, 255, 0.12);
           border-color: rgba(255, 255, 255, 0.3);
-          transform: translateY(-5px);
         }
         .cta-button {
-          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .cta-button::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 0;
+          height: 0;
+          border-radius: 50%;
+          background: rgba(42, 51, 45, 0.3);
+          transform: translate(-50%, -50%);
+          transition: width 0.6s, height 0.6s;
+        }
+        .cta-button:hover::before {
+          width: 300px;
+          height: 300px;
         }
         .cta-button:hover {
-          background: rgba(42, 51, 45, 0.9);
-          color: white;
+          transform: scale(1.05);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        .story-section {
+          background: linear-gradient(135deg, rgba(74, 93, 78, 0.15) 0%, rgba(42, 51, 45, 0.05) 100%);
+          border-left: 3px solid rgba(255, 255, 255, 0.2);
+        }
+        .decorative-line {
+          height: 2px;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        .float-animation {
+          animation: float 6s ease-in-out infinite;
         }
       `}</style>
 
       {/* Hero Section */}
-      <Navbar />
-      <section className="relative h-[80vh] sm:h-[85vh] md:h-[90vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div
           ref={parallaxRef}
-          className="absolute inset-0 w-full h-[120%] sm:h-[110%] md:h-[120%]"
+          className="absolute inset-0 w-full h-[120%]"
           style={{
             backgroundImage:
-              "url(https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920)",
+              "url(https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80)",
             backgroundSize: "cover",
             backgroundPosition: "center",
             willChange: "transform",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#2A332D]/60 via-[#2A332D]/40 to-[#2A332D]/90" />
-        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_40%,rgba(0,0,0,0.6)_100%)] z-10" />
-        <div className="relative z-20 text-center px-4 sm:px-6 max-w-3xl sm:max-w-4xl mx-auto">
-          <h1
-            ref={heroTitleRef}
-            className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold"
-          >
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1a1f1c]/70 via-[#1a1f1c]/50 to-[#1a1f1c]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_30%,rgba(0,0,0,0.7)_100%)]" />
+        
+        <div ref={heroTitleRef} className="relative z-20 text-center px-6 max-w-5xl mx-auto">
+          <div className="mb-4 inline-block">
+            <div className="flex items-center justify-center gap-2 text-white/60 text-sm tracking-widest uppercase mb-3">
+              <div className="w-12 h-px bg-white/40"></div>
+              <span>Est. 2024</span>
+              <div className="w-12 h-px bg-white/40"></div>
+            </div>
+          </div>
+          <h1 className="font-serif text-6xl sm:text-7xl md:text-8xl font-bold mb-6 tracking-tight">
             {restaurant.name}
           </h1>
-          <p className="mt-4 text-base sm:text-lg md:text-xl text-white/80">
+          <p className="text-xl sm:text-2xl md:text-3xl text-white/90 font-light mb-8 leading-relaxed">
             {restaurant.tagline}
+          </p>
+          <div className="flex items-center justify-center gap-2 text-white/50 text-sm">
+            <MapPin className="w-4 h-4" />
+            <span>{restaurant.location}</span>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20 float-animation">
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2">
+            <div className="w-1 h-3 bg-white/50 rounded-full"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Introduction */}
+      <section className="py-32 px-6 max-w-6xl mx-auto">
+        <div className="fade-in-section text-center mb-20">
+          <h2 className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold mb-8 leading-tight">
+            Discover the Hidden
+          </h2>
+          <div className="decorative-line w-32 mx-auto mb-8"></div>
+          <p className="text-xl sm:text-2xl text-white/80 leading-relaxed max-w-4xl mx-auto">
+            {restaurant.description}
+          </p>
+        </div>
+
+        <div className="fade-in-section">
+          <p className="text-lg sm:text-xl text-white/70 leading-relaxed text-center max-w-3xl mx-auto">
+            {restaurant.atmosphere}
           </p>
         </div>
       </section>
 
-      {/* Story Section */}
-      <AboutUs />
-
-      {/* Values Section */}
-      <section className="py-12 sm:py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="fade-in-section text-center mb-10 sm:mb-12">
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-              What We Stand For
-            </h2>
-            <p className="text-white/70 text-base sm:text-lg max-w-2xl mx-auto">
-              Our values guide every decision we make, from sourcing to service
+      {/* Story Grid */}
+      <section className="py-24 px-6 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <div
+            ref={(el) => (storyCardsRef.current[0] = el)}
+            className="story-section p-8 sm:p-12 rounded-2xl"
+          >
+            <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mb-6">
+              <Leaf className="w-7 h-7 text-white" />
+            </div>
+            <h3 className="font-serif text-3xl sm:text-4xl font-bold mb-6">
+              The Canadian Table
+            </h3>
+            <p className="text-white/80 text-lg leading-relaxed">
+              {restaurant.cuisine}
             </p>
           </div>
-          <div className="values-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {values.map((value, index) => (
+
+          <div
+            ref={(el) => (storyCardsRef.current[1] = el)}
+            className="story-section p-8 sm:p-12 rounded-2xl"
+          >
+            <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mb-6">
+              <Heart className="w-7 h-7 text-white" />
+            </div>
+            <h3 className="font-serif text-3xl sm:text-4xl font-bold mb-6">
+              Every Occasion
+            </h3>
+            <p className="text-white/80 text-lg leading-relaxed">
+              {restaurant.experience}
+            </p>
+          </div>
+        </div>
+
+        <div
+          ref={(el) => (storyCardsRef.current[2] = el)}
+          className="story-section p-8 sm:p-12 rounded-2xl"
+        >
+          <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mb-6">
+            <Sparkles className="w-7 h-7 text-white" />
+          </div>
+          <h3 className="font-serif text-3xl sm:text-4xl font-bold mb-6">
+            Crafted for You
+          </h3>
+          <p className="text-white/80 text-lg leading-relaxed mb-6">
+            {restaurant.offerings}
+          </p>
+          <p className="text-white/60 text-base leading-relaxed italic">
+            {restaurant.dedication}
+          </p>
+        </div>
+      </section>
+
+      {/* Highlights Grid */}
+      <section className="py-24 px-6 bg-gradient-to-b from-transparent to-[#2a332d]/30">
+        <div className="max-w-7xl mx-auto">
+          <div className="fade-in-section text-center mb-16">
+            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+              What Makes Us Special
+            </h2>
+            <p className="text-white/60 text-lg max-w-2xl mx-auto">
+              An intimate escape where every detail tells a story
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {highlights.map((highlight, index) => (
               <div
                 key={index}
-                className="value-card p-4 sm:p-6 rounded-lg border border-white/10 bg-white/5"
+                className="fade-in-section highlight-card p-8 rounded-2xl border border-white/10 bg-white/5"
+                style={{ transitionDelay: `${index * 0.1}s` }}
               >
-                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-3 sm:mb-4">
-                  <value.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center mb-5">
+                  <highlight.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="font-serif text-lg sm:text-xl font-bold mb-2 sm:mb-3">
-                  {value.title}
+                <h3 className="font-serif text-2xl font-bold mb-3">
+                  {highlight.title}
                 </h3>
-                <p className="text-white/70 text-sm sm:text-base leading-relaxed">
-                  {value.description}
+                <p className="text-white/70 text-base leading-relaxed">
+                  {highlight.description}
                 </p>
               </div>
             ))}
@@ -219,90 +316,41 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Philosophy Section */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24 relative z-[5]">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
-          <div className="fade-in-section">
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
-              Our Philosophy
-            </h2>
-            <p className="text-base sm:text-lg text-white/80 leading-relaxed mb-4 sm:mb-6">
-              {restaurant.description}
-            </p>
-            <p className="text-base sm:text-lg text-white/80 leading-relaxed">
-              {restaurant.mission}
-            </p>
-          </div>
-          <div className="fade-in-section relative h-64 sm:h-80 md:h-96 rounded-lg overflow-hidden">
+      {/* Immersive Image Section */}
+      <section className="py-24 px-6">
+        <div className="fade-in-section max-w-7xl mx-auto">
+          <div className="relative h-[70vh] rounded-3xl overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800"
-              alt="Fresh ingredients"
+              src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1600&q=80"
+              alt="The Woodvale Room interior"
               className="w-full h-full object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1a1f1c] via-transparent to-transparent"></div>
+            <div className="absolute bottom-12 left-12 right-12 text-center">
+              <p className="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-light italic">
+                "Not just a meal, but an experience worth remembering"
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Video Section */}
-      <section className="w-full flex justify-center fade-in-section py-8 sm:py-12">
-        <div className="w-full max-w-5xl aspect-video overflow-hidden shadow-xl relative rounded-lg">
-          <video
-            className="w-full h-full object-cover"
-            src="/videos/restaurant.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            onError={(e) => {
-              const target = e.currentTarget as HTMLVideoElement;
-              target.style.display = "none"; // hide video
-              const fallback = document.getElementById(
-                "video-fallback"
-              ) as HTMLDivElement;
-              if (fallback) fallback.style.display = "block";
-            }}
-          />
-          {/* Fallback Image */}
-          <div
-            id="video-fallback"
-            className="w-full h-full object-cover absolute inset-0 hidden"
-            style={{
-              backgroundImage: "url('/images/forestBg.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          />
-          {/* Overlay for cinematic look */}
-          <div className="absolute inset-0 bg-black/20 pointer-events-none" />
         </div>
       </section>
 
       {/* CTA Section */}
-      <section
-        ref={ctaSectionRef}
-        className="relative bg-[#4A5D4E] text-white py-16 sm:py-20 md:py-28 overflow-hidden z-[1]"
-      >
-        <div className="fade-in-section max-w-3xl sm:max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
-            Visit Us
+      <section className="py-32 px-6 bg-gradient-to-b from-[#2a332d]/30 to-[#4a5d4e]/50">
+        <div className="fade-in-section max-w-4xl mx-auto text-center">
+          <h2 className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold mb-8">
+            Join Us
           </h2>
-          <p className="text-base sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto">
-            We'd love to welcome you to Woodvale. Come experience our
-            forest-inspired dining for yourself.
+          <p className="text-xl sm:text-2xl mb-12 text-white/80 max-w-2xl mx-auto leading-relaxed">
+            Discover what lies hidden in the heart of Mill Woods. Reserve your table and become part of our story.
           </p>
-          <div>
-            <Link
-              href="/reserve"
-              className="inline-block bg-white text-[#2A332D] font-semibold px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base transition-all duration-300 hover:bg-[#e5e5e5]"
-            >
-              Save Your Seat
-            </Link>
-          </div>
+          <button className="cta-button relative bg-[var(--muted)] text-[#1a1f1c] font-semibold px-7 py-4 rounded-full text-lg">
+            <span className="relative z-10">Reserve Your Experience</span>
+          </button>
         </div>
       </section>
-
-      {/* Footer */}
       <Footer />
+
     </div>
   );
 }
