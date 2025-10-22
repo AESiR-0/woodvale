@@ -1,7 +1,9 @@
 "use client";
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 import { Leaf, Heart, MapPin, Award, Sparkles } from "lucide-react";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 
 type Restaurant = {
@@ -358,18 +360,58 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section */} 
       <section className="py-32 px-6 bg-gradient-to-b from-[#2a332d]/30 to-[#4a5d4e]/50">
-        <div className="fade-in-section max-w-4xl mx-auto text-center">
-          <h2 className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold mb-8">
-            Join Us
-          </h2>
-          <p className="text-xl sm:text-2xl mb-12 text-white/80 max-w-2xl mx-auto leading-relaxed">
-            Discover what lies hidden in the heart of Mill Woods. Reserve your table and become part of our story.
-          </p>
-          <button className="cta-button relative bg-[var(--muted)] text-[#1a1f1c] font-semibold px-7 py-4 rounded-full text-lg">
-            <span className="relative z-10">Reserve Your Experience</span>
-          </button>
+        <div className="fade-in-section max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 h-full">
+            {/* Content */}
+            <div className="flex flex-col justify-center text-center lg:text-left h-full">
+              <h2 className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold mb-8">
+                Become a Volunteer
+              </h2>
+            
+              <p className="text-lg mb-12 text-white/70 leading-relaxed">
+                Our volunteers are the backbone of our community, helping us create memorable experiences 
+                and fostering connections that last a lifetime. Whether you're passionate about event planning, 
+                community outreach, or simply want to give back, there's a place for you in our Woodvale family.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Link href="https://woodvale.org" className="cta-button relative bg-white hover:bg-transparent hover:text-white border-2 border-white text-black transition-all duration-300   font-semibold px-7 py-4 rounded-full text-lg">
+                  <span className="relative z-10">Join Our Team</span>
+                </Link>
+              </div>
+            </div>
+            
+            {/* Image */}
+            <div className="flex flex-col justify-center h-full">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="https://static.wixstatic.com/media/cd50a3_3795f44175df48a08bc9f58880db97a1~mv2.jpeg/v1/crop/x_147,y_0,w_1015,h_834/fill/w_1015,h_825,al_c,q_85,enc_avif,quality_auto/Woodvale%20Volunteer%20Appreciation%202024%2020240412%20-%20P4120159-Pano-3-X5.jpeg"
+                  alt="Woodvale Volunteer Appreciation 2024 - Community volunteers celebrating together"
+                  width={600}
+                  height={500}
+                  className="w-full h-auto object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              </div>
+              
+              {/* Volunteer Stats */}
+              <div className="mt-8 grid grid-cols-3 gap-6 text-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                  <div className="text-2xl font-bold text-white mb-1">150+</div>
+                  <div className="text-sm text-white/80">Active Volunteers</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                  <div className="text-2xl font-bold text-white mb-1">50+</div>
+                  <div className="text-sm text-white/80">Events Annually</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                  <div className="text-2xl font-bold text-white mb-1">1000+</div>
+                  <div className="text-sm text-white/80">Hours Donated</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <Footer />
