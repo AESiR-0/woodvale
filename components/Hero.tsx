@@ -116,8 +116,8 @@ export default function Hero() {
             ambiance. Where timeless flavors meet contemporary innovation.
           </p>
           <div ref={buttonRef}>
-            <Link href="/reserve" className="btn-primary">
-              Reserve a Table
+            <Link href="/reserve" className="btn-primary capitalize">
+              Save Your Seat
             </Link>
           </div>
         </div>
