@@ -84,7 +84,7 @@ export default function Home() {
               <div className="group cursor-pointer">
                 <div className="relative h-64 rounded-lg overflow-hidden mb-4">
           <Image
-                    src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                  src="/https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"
                     alt="Beautifully plated gourmet dish"
                     fill
                     className="object-cover image-hover"

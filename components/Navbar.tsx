@@ -19,7 +19,7 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? 'bg-[#f0ece6] text-black backdrop-blur-sm border-b border-[var(--muted)]/20'
+        ? 'bg-[#071d18] text-black backdrop-blur-sm border-b border-[var(--muted)]/20'
         : 'bg-transparent'
         }`}
     >
@@ -30,9 +30,9 @@ export default function Navbar() {
             <Image
               src="/static/logos/2D.PNG"
               alt="Woodvale Restaurant Logo"
-              width={80}
-              height={80}
-              className="w-20 h-20"
+              width={96}
+              height={96}
+              className="w-24 h-24"
             />
 
           </Link>
@@ -41,36 +41,31 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-8">
             <Link
               href="/"
-              className={` text-black ${isScrolled
-                ? 'text-black' : 'text-white'}  hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
+              className={` text-white  hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
             >
               Home
             </Link>
             <Link
               href="/about"
-              className={` text-black ${isScrolled
-                ? 'text-black' : 'text-white'}  hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
+                  className={` text-white  hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
             >
               About
             </Link>
             <Link
               href="/menu"
-              className={` text-black ${isScrolled
-                ? 'text-black' : 'text-white'}  hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
+              className={` text-white  hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
             >
               Menu
             </Link>
             <Link
               href="/banquet"
-              className={` text-black ${isScrolled
-                ? 'text-black' : 'text-white'}  hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
+              className={` text-white  hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
             >
               Banquet
             </Link>
             <Link
               href="/contact"
-              className={` text-black ${isScrolled
-                ? 'text-black' : 'text-white'}  hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
+              className={` text-white  hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
             >
               Contact
             </Link>
