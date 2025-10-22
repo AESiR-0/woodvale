@@ -103,7 +103,7 @@ export default function Banquet() {
           </svg>
 
           {/* Heading */}
-          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-white text-center">
+          <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold text-white text-center">
             Banquet Booking
           </h2>
 
@@ -142,7 +142,7 @@ export default function Banquet() {
               Book your perfect banquet for weddings, birthdays, and special
               events.
             </p>
-            <p className="text-base sm:text-lg text-white/70 drop-shadow leading-relaxed">
+            <p className="text-lg sm:text-xl text-white/70 drop-shadow leading-relaxed">
               Reference: Kindly reach out for customized decoration, menu
               options, and special event packages. Early booking ensures the
               best availability and personalized service.

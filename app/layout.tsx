@@ -1,12 +1,31 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Lora } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const poppins = Poppins({
-  weight: ['300', '400', '500', '600', '700', '800', '900'],
+const lora = Lora({
+  weight: ['400', '500', '600', '700'],
   subsets: ["latin"],
-  variable: "--font-poppins",
+  variable: "--font-lora",
+  display: "swap"
 });
+
+const seasons = localFont({
+    src: [
+    {
+      path: "../public/fonts/Fontspring-DEMO-theseasons-lt.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Fontspring-DEMO-theseasons-bd.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-seasons",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   title: "Woodvale Restaurant & Banquet",
@@ -31,8 +50,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={` bg-[#E6E8D9] ${poppins.variable}`}>
-      <body className="font-sans antialiased">
+    <html lang="en" className={`${lora.variable} ${seasons.variable}`}>
+      <body className="font-body antialiased">
         {children}
       </body>
     </html>

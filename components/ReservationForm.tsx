@@ -122,7 +122,7 @@ export default function ReservationForm() {
         onSubmit={handleSubmit}
         className="relative z-20 text-white rounded-lg shadow-xl w-full max-w-md sm:max-w-lg md:max-w-xl p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-6 md:gap-6 text-base sm:text-lg"
       >
-        <h1 className="text-2xl sm:text-3xl md:text-3xl font-bold text-center mb-2 sm:mb-4">
+        <h1 className="font-heading text-3xl sm:text-4xl md:text-4xl font-bold text-center mb-2 sm:mb-4">
           Book Your Table
         </h1>
 

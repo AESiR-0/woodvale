@@ -93,13 +93,13 @@ export default function Hero() {
         >
           <p
             ref={welcomeRef}
-            className="text-white text-sm uppercase tracking-widest font-medium mb-4"
+            className="text-white text-base uppercase tracking-widest font-medium mb-4"
           >
             Welcome to Woodvale
           </p>
           <h1
             ref={headingRef}
-            className="font-sans text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight"
+            className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight"
           >
             Savor the{" "}
             <span className="underline" ref={classicRef}>
@@ -110,7 +110,7 @@ export default function Hero() {
           </h1>
           <p
             ref={descriptionRef}
-            className="text-lg md:text-xl text-white/90 mb-8 mx-auto leading-relaxed"
+            className="text-xl md:text-2xl text-white/90 mb-8 mx-auto leading-relaxed"
           >
             Experience the perfect blend of speakeasy elegance and tropical
             ambiance. Where timeless flavors meet contemporary innovation.
