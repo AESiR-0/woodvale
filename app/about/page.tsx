@@ -342,9 +342,9 @@ export default function AboutPage() {
       </section>
 
       {/* Immersive Image Section */}
-      <section className="py-24 px-6">
-        <div className="fade-in-section max-w-7xl mx-auto">
-          <div className="relative h-[70vh] rounded-3xl overflow-hidden">
+      <section>
+        <div className="fade-in-section mx-auto">
+          <div className="relative h-[70vh] overflow-hidden">
             <img
               src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1600&q=80"
               alt="The Woodvale Room interior"
