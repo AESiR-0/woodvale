@@ -1,24 +1,44 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import { Leaf, Heart, Users, Sprout, MapPin, Clock, Award, Sparkles } from "lucide-react";
-import  Footer  from "@/components/Footer"
+import { Leaf, Heart, MapPin, Award, Sparkles } from "lucide-react";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+
+type Restaurant = {
+  name: string;
+  tagline: string;
+  description: string;
+  atmosphere: string;
+  cuisine: string;
+  experience: string;
+  offerings: string;
+  dedication: string;
+  location?: string;
+};
+
+type Highlight = {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+};
 
 export default function AboutPage() {
-  const parallaxRef = useRef(null);
-  const heroTitleRef = useRef(null);
-  const storyCardsRef = useRef([]);
-  const statsRef = useRef(null);
+  const parallaxRef = useRef<HTMLDivElement | null>(null);
+  const heroTitleRef = useRef<HTMLDivElement | null>(null);
+  const storyCardsRef = useRef<Array<HTMLDivElement | null>>([]);
+  const statsRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     // Hero entrance animation
     if (heroTitleRef.current) {
       heroTitleRef.current.style.opacity = "0";
       heroTitleRef.current.style.transform = "translateY(60px)";
-      
+
       setTimeout(() => {
-        heroTitleRef.current.style.transition = "all 1.5s cubic-bezier(0.16, 1, 0.3, 1)";
-        heroTitleRef.current.style.opacity = "1";
-        heroTitleRef.current.style.transform = "translateY(0)";
+        heroTitleRef.current!.style.transition =
+          "all 1.5s cubic-bezier(0.16, 1, 0.3, 1)";
+        heroTitleRef.current!.style.opacity = "1";
+        heroTitleRef.current!.style.transform = "translateY(0)";
       }, 100);
     }
 
@@ -37,15 +57,16 @@ export default function AboutPage() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0)";
+            const target = entry.target as HTMLElement;
+            target.style.opacity = "1";
+            target.style.transform = "translateY(0)";
           }
         });
       },
       { threshold: 0.1, rootMargin: "0px 0px -100px 0px" }
     );
 
-    document.querySelectorAll(".fade-in-section").forEach((el) => {
+    document.querySelectorAll<HTMLElement>(".fade-in-section").forEach((el) => {
       el.style.opacity = "0";
       el.style.transform = "translateY(60px)";
       el.style.transition = "all 1s cubic-bezier(0.16, 1, 0.3, 1)";
@@ -59,7 +80,7 @@ export default function AboutPage() {
         card.style.transform = "translateY(40px)";
         card.style.transition = "all 0.8s cubic-bezier(0.16, 1, 0.3, 1)";
         card.style.transitionDelay = `${index * 0.15}s`;
-        
+
         setTimeout(() => {
           card.style.opacity = "1";
           card.style.transform = "translateY(0)";
@@ -73,12 +94,13 @@ export default function AboutPage() {
     };
   }, []);
 
-  const restaurant = {
+  const restaurant: Restaurant = {
     name: "The Woodvale Room",
     tagline: "Hidden within the heart of Mill Woods",
     description:
       "Hidden within the heart of Mill Woods, The Woodvale Room invites guests into an intimate escape inspired by the beauty and mystery of the forest. Nestled inside the Woodvale Community Facility, this reimagined space blends elegance with a secret-society charm.",
-    atmosphere: "A place where flickering candlelight, rich wood tones, and thoughtful details set the stage for unforgettable evenings.",
+    atmosphere:
+      "A place where flickering candlelight, rich wood tones, and thoughtful details set the stage for unforgettable evenings.",
     cuisine:
       "Our menu draws inspiration from classic dishes, reinterpreted with a distinctly Canadian twist. Each plate tells a story of the terrain—from the forests and fields to the lakes and prairies, showcasing local ingredients and flavours that celebrate the land around us.",
     experience:
@@ -89,7 +111,7 @@ export default function AboutPage() {
       "Our team has worked tirelessly to breathe new life into this space—for those who seek not just a meal, but an experience worth remembering.",
   };
 
-  const highlights = [
+  const highlights: Highlight[] = [
     {
       icon: MapPin,
       title: "Secret Location",
@@ -114,6 +136,7 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-[#1a1f1c] text-white overflow-x-hidden">
+      <Navbar />
       <style jsx>{`
         .highlight-card {
           transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -139,7 +162,7 @@ export default function AboutPage() {
           border-radius: 50%;
           background: rgba(42, 51, 45, 0.3);
           transform: translate(-50%, -50%);
-          transition: width 0.6s, height 0.6s;
+          transition: width 0.5s, height 0.5s;
         }
         .cta-button:hover::before {
           width: 300px;
@@ -233,7 +256,7 @@ export default function AboutPage() {
       <section className="py-24 px-6 max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           <div
-            ref={(el) => (storyCardsRef.current[0] = el)}
+            ref={(el) => {storyCardsRef.current[0] = el}}
             className="story-section p-8 sm:p-12 rounded-2xl"
           >
             <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mb-6">
@@ -248,7 +271,7 @@ export default function AboutPage() {
           </div>
 
           <div
-            ref={(el) => (storyCardsRef.current[1] = el)}
+            ref={(el) => {storyCardsRef.current[1] = el}}
             className="story-section p-8 sm:p-12 rounded-2xl"
           >
             <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mb-6">
@@ -264,7 +287,7 @@ export default function AboutPage() {
         </div>
 
         <div
-          ref={(el) => (storyCardsRef.current[2] = el)}
+          ref={(el) => {storyCardsRef.current[2] = el}}
           className="story-section p-8 sm:p-12 rounded-2xl"
         >
           <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mb-6">
@@ -350,7 +373,6 @@ export default function AboutPage() {
         </div>
       </section>
       <Footer />
-
     </div>
   );
 }
