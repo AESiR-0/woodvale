@@ -56,7 +56,7 @@ export default function OurStory() {
             <path d="M0 5 C20 0, 40 10, 60 5 S100 10, 120 5" />
           </svg>
 
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+          <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold text-white">
             Our Story
           </h2>
 

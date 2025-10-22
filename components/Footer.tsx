@@ -25,7 +25,7 @@ export default function Footer() {
 
           {/* Visit Us */}
           <div className="lg:col-span-1">
-            <h3 className="font-sans text-lg font-semibold text-white mb-4">
+            <h3 className="font-heading text-lg font-semibold text-white mb-4">
               Visit Us
             </h3>
             <div className="space-y-2 text-white/80">
@@ -37,7 +37,7 @@ export default function Footer() {
 
           {/* Hours */}
           <div className="lg:col-span-1">
-            <h3 className="font-sans text-lg font-semibold text-white mb-4">
+            <h3 className="font-heading text-lg font-semibold text-white mb-4">
               Hours
             </h3>
             <div className="space-y-1 text-white/80">
@@ -49,7 +49,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="lg:col-span-1">
-            <h3 className="font-sans text-lg font-semibold text-white mb-4">
+            <h3 className="font-heading text-lg font-semibold text-white mb-4">
               Contact
             </h3>
             <div className="space-y-2 text-white/80">
@@ -60,7 +60,7 @@ export default function Footer() {
             
             {/* Social Links */}
             <div className="mt-6">
-              <h3 className="font-sans text-lg font-semibold text-white mb-4">
+              <h3 className="font-heading text-lg font-semibold text-white mb-4">
                 Follow Us
               </h3>
               <div className="flex space-x-4">
