@@ -17,33 +17,33 @@ export default function TestimonialsSection() {
 
   const testimonials: Testimonial[] = [
     {
-      text: "I had one of the best experiences exploring the rainforest! The air was pure and every step felt like a connection to nature.",
-      author: "Sarah M., Australia",
+      text: "Top notch service, food and staff! Consistent from year to year. Accommodating staff! A really good buffet for our Oilfield Rig moving Truckers Reunion! Easy access and parking set on a beautiful golf course!",
+      author: "Hank Holowaychuk, Local Guide",
       rating: 5,
     },
     {
-      text: "Absolutely breathtaking! The sunrise through the misty trees was magical. This journey reconnected me with the earth.",
-      author: "James P., United Kingdom",
-      rating: 4,
-    },
-    {
-      text: "The lush greenery and vibrant wildlife exceeded my expectations. It's truly a paradise for nature lovers!",
-      author: "Maria G., Spain",
+      text: "We were hosting a fundraiser. The staff and event was a huge success thanks to the facility and the caterer. The facility has gorgeous exposed wooden beams and is a huge space. The bathrooms were clean and in great shape. Absolutely would go back again.",
+      author: "Mark McDonald, Local Guide",
       rating: 5,
     },
     {
-      text: "The forest felt alive — peaceful streams, singing birds, and towering trees. I left feeling refreshed and inspired.",
-      author: "David L., Canada",
+      text: "Woodvale was such a great place to host my pre wedding event. We used the full hall, they had great drinks and food. The facility is nice and clean even the bathrooms and staff are friendly. Chef Mann, my friends and family have nothing but awesome things to say about the quality of food.",
+      author: "Shyla",
+      rating: 5,
+    },
+    {
+      text: "Had our wedding here a few years ago, it was a great spot, for a good price. The clubhouse has been updated and the drink selection is very good. Service was quite good and strongly recommend the banana bread.",
+      author: "Nicholas Sedore, Local Guide",
+      rating: 5,
+    },
+    {
+      text: "Was there for a gala. The food and service was wonderful. Lots of parking and easy to find. Also, beautiful grounds.",
+      author: "N U, Local Guide",
       rating: 4,
     },
     {
-      text: "Every path was an adventure! The scents, the sights, and the silence of the woods — I could stay forever.",
-      author: "Lisa K., Germany",
-      rating: 3,
-    },
-    {
-      text: "A spiritual retreat in the heart of nature. The harmony of the forest teaches you to slow down and breathe again.",
-      author: "Yuki T., Japan",
+      text: "Excellent venue for special events! The staff goes above and beyond to make every occasion memorable. The beautiful setting and professional service make it the perfect choice for any celebration.",
+      author: "Local Community Member",
       rating: 5,
     },
   ]
@@ -152,10 +152,10 @@ export default function TestimonialsSection() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-left ml-6 mb-6 px-5 header-animate opacity-0">
           <h2 className="text-sm tracking-[2px] text-green-200 mb-2.5 uppercase">
-            learn more about
+            hear from our
           </h2>
           <h1 className="text-[42px] capitalize font-light tracking-wide text-green-100">
-            what our visitors say
+            satisfied customers
           </h1>
         </div>
 

@@ -1,18 +1,20 @@
 "use client";
 
 import React, { useRef, useEffect, FormEvent, useState } from "react";
-import { Button } from "@/components/ui/button";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface Errors {
+interface ContactErrors {
   name?: string;
-  person?: string;
-  timing?: string;
-  date?: string;
+  email?: string;
+  phone?: string;
+  subject?: string;
+  message?: string;
 }
 
 export default function Contact() {
@@ -20,32 +22,36 @@ export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
 
   const [name, setName] = useState("");
-  const [person, setPerson] = useState("");
-  const [timing, setTiming] = useState("");
-  const [date, setDate] = useState("");
-  const [errors, setErrors] = useState<Errors>({});
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [errors, setErrors] = useState<ContactErrors>({});
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const newErrors: Errors = {};
+    const newErrors: ContactErrors = {};
 
     if (!name.trim()) newErrors.name = "Name is required";
-    if (!person.trim()) newErrors.person = "Number of persons is required";
-    if (!timing.trim()) newErrors.timing = "Timing is required";
-    if (!date.trim()) newErrors.date = "Date is required";
+    if (!email.trim()) newErrors.email = "Email is required";
+    if (!subject.trim()) newErrors.subject = "Subject is required";
+    if (!message.trim()) newErrors.message = "Message is required";
+
+    // Basic email validation
+    if (email && !/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
 
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      alert(`Reservation confirmed!\n
-      Name: ${name}\n
-      Persons: ${person}\n
-      Timing: ${timing}\n
-      Date: ${date}`);
+      alert(`Thank you for your message!\n
+      We'll get back to you soon at ${email}`);
       setName("");
-      setPerson("");
-      setTiming("");
-      setDate("");
+      setEmail("");
+      setPhone("");
+      setSubject("");
+      setMessage("");
     }
   };
 
@@ -105,109 +111,223 @@ export default function Contact() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen overflow-hidden flex items-center justify-center px-4 sm:px-6">
+    <div className="min-h-screen">
       <Navbar />
-      {/* Background */}
-      <div
-        ref={bgRef}
-        className="absolute inset-0 bg-cover bg-center will-change-transform"
-      />
-{/* Dark overlay */}
-<div className="absolute inset-0 bg-[var(--leaf)]" />
+      
+      {/* Hero Section */}
+      <section className="relative min-h-[60vh] flex items-center justify-center bg-[var(--leaf)]">
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            alt="Contact us at Woodvale"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-[var(--leaf)]/80"></div>
+        </div>
+        
+        <div className="relative z-10 text-center text-white px-6">
+          <h1 className="font-sans text-4xl md:text-6xl font-bold mb-6">
+            Get In Touch
+          </h1>
+          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
+            We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+          </p>
+        </div>
+      </section>
 
-{/* Vignette overlay */}
-<div
-  className="absolute inset-0 pointer-events-none"
-  style={{
-    background:
-      "radial-gradient(ellipse at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.65) 100%)",
-  }}
-/>
+      {/* Contact Information & Form Section */}
+      <section className="section bg-[var(--bg)]">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Contact Information */}
+            <div className="space-y-8">
+              <div>
+                <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-6">
+                  Contact Information
+                </h2>
+                <p className="text-lg text-[#071d18] mb-8">
+                  Reach out to us for reservations, private events, or any questions you might have.
+                </p>
+              </div>
 
-      {/* Form */}
-      <form
-        ref={formRef}
-        onSubmit={handleSubmit}
-        className="relative z-20 text-white rounded-lg w-full max-w-md sm:max-w-lg md:max-w-xl p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-6 md:gap-6 text-base sm:text-lg"
-      >
-        <h1 className="text-2xl sm:text-3xl md:text-3xl font-bold text-center mb-2 sm:mb-4">
-          Book Your Table
-        </h1>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-[var(--gold)] rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-sans text-lg font-semibold text-[var(--mint)] mb-2">Address</h3>
+                    <p className="text-[#071d18]">
+                      Woodvale Facility and Clubhouse<br />
+                      Edmonton, AB, Canada<br />
+                      Located on beautiful golf course grounds
+                    </p>
+                  </div>
+                </div>
 
-        {/* First Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-          <div>
-            <input
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className={`w-full text-[var(--muted)] placeholder:text-[var(--muted)] text-base sm:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded-md border focus:outline-none ${
-                errors.name ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-            {errors.name && (
-              <p className="text-red-400 text-sm mt-1">{errors.name}</p>
-            )}
-          </div>
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-[var(--gold)] rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.078-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-sans text-lg font-semibold text-[var(--mint)] mb-2">Phone</h3>
+                    <p className="text-[#071d18]">
+                      (555) 123-4567<br />
+                      WhatsApp: (555) 123-4567
+                    </p>
+                  </div>
+                </div>
 
-          <div>
-            <input
-              type="number"
-              min="1"
-              placeholder="Persons"
-              value={person}
-              onChange={(e) => setPerson(e.target.value)}
-              className={`w-full text-[var(--muted)] placeholder:text-[var(--muted)] text-base sm:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded-md border focus:outline-none ${
-                errors.person ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-            {errors.person && (
-              <p className="text-red-400 text-sm mt-1">{errors.person}</p>
-            )}
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-[var(--gold)] rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-sans text-lg font-semibold text-[var(--mint)] mb-2">Email</h3>
+                    <p className="text-[#071d18]">
+                      info@woodvale.com<br />
+                      events@woodvale.com
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-[var(--gold)] rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-sans text-lg font-semibold text-[var(--mint)] mb-2">Hours</h3>
+                    <p className="text-[#071d18]">
+                      Monday - Thursday: 5:00 PM - 11:00 PM<br />
+                      Friday - Saturday: 5:00 PM - 12:00 AM<br />
+                      Sunday: 4:00 PM - 10:00 PM
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div>
+              <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-6">
+                Send Us a Message
+              </h2>
+              
+              <form
+                ref={formRef}
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-[#071d18] mb-2">
+                      Name *
+                    </label>
+                    <input
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--gold)] transition-colors ${
+                        errors.name ? "border-red-500" : "border-gray-300"
+                      }`}
+                      placeholder="Your full name"
+                    />
+                    {errors.name && (
+                      <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-[#071d18] mb-2">
+                      Email *
+                    </label>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--gold)] transition-colors ${
+                        errors.email ? "border-red-500" : "border-gray-300"
+                      }`}
+                      placeholder="your.email@example.com"
+                    />
+                    {errors.email && (
+                      <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-[#071d18] mb-2">
+                    Phone
+                  </label>
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--gold)] transition-colors"
+                    placeholder="(555) 123-4567"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-[#071d18] mb-2">
+                    Subject *
+                  </label>
+                  <input
+                    type="text"
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--gold)] transition-colors ${
+                      errors.subject ? "border-red-500" : "border-gray-300"
+                    }`}
+                    placeholder="What's this about?"
+                  />
+                  {errors.subject && (
+                    <p className="text-red-500 text-sm mt-1">{errors.subject}</p>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-[#071d18] mb-2">
+                    Message *
+                  </label>
+                  <textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    rows={6}
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--gold)] transition-colors resize-none ${
+                      errors.message ? "border-red-500" : "border-gray-300"
+                    }`}
+                    placeholder="Tell us more about your inquiry..."
+                  />
+                  {errors.message && (
+                    <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+                  )}
+                </div>
+
+                <button
+                  type="submit"
+                  className="btn-primary w-full"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* Second Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-          <div>
-            <input
-              type="time"
-              value={timing}
-              onChange={(e) => setTiming(e.target.value)}
-              className={`w-full text-[var(--muted)] placeholder:text-[var(--muted)] text-base sm:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded-md border focus:outline-none ${
-                errors.timing ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-            {errors.timing && (
-              <p className="text-red-400 text-sm mt-1">{errors.timing}</p>
-            )}
-          </div>
-          <div>
-            <input
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              className={`w-full text-[var(--muted)] placeholder:text-[var(--muted)] text-base sm:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded-md border focus:outline-none ${
-                errors.date ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-            {errors.date && (
-              <p className="text-red-400 text-sm mt-1">{errors.date}</p>
-            )}
-          </div>
-        </div>
-
-        {/* Button */}
-        <div className="w-full mt-2 sm:mt-4">
-          <Button
-            type="submit"
-            className="w-full text-[var(--muted)] font-semibold text-lg sm:text-xl py-4 sm:py-6 rounded-md"
-          >
-            Submit Reservation
-          </Button>
-        </div>
-      </form>
-    </section>
+      <Footer />
+    </div>
   );
 }
