@@ -362,26 +362,36 @@ export default function FoodMenu() {
               <div className="grid grid-cols-4 gap-8">
                 {/* Meat Column */}
                 <div>
-                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4">meat</h3>
+                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4">
+                    meat
+                  </h3>
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
                       <span className="text-[#071d18]/70">pastrami</span>
                       <span className="text-[#071d18]/70">$8</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-[#071d18]/70">salami tartufo pork</span>
+                      <span className="text-[#071d18]/70">
+                        salami tartufo pork
+                      </span>
                       <span className="text-[#071d18]/70">$9</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-[#071d18]/70">apple cranberry sausage</span>
+                      <span className="text-[#071d18]/70">
+                        apple cranberry sausage
+                      </span>
                       <span className="text-[#071d18]/70">$9</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-[#071d18]/70">chili mango sausage</span>
+                      <span className="text-[#071d18]/70">
+                        chili mango sausage
+                      </span>
                       <span className="text-[#071d18]/70">$9</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-[#071d18]/70">cured duck breast</span>
+                      <span className="text-[#071d18]/70">
+                        cured duck breast
+                      </span>
                       <span className="text-[#071d18]/70">$13</span>
                     </div>
                   </div>
@@ -389,7 +399,9 @@ export default function FoodMenu() {
 
                 {/* Cheese Column */}
                 <div>
-                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4">cheese</h3>
+                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4">
+                    cheese
+                  </h3>
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
                       <span className="text-[#071d18]/70">camembert</span>
@@ -412,7 +424,9 @@ export default function FoodMenu() {
                       <span className="text-[#071d18]/70">$9</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-[#071d18]/70">herb goat cheese</span>
+                      <span className="text-[#071d18]/70">
+                        herb goat cheese
+                      </span>
                       <span className="text-[#071d18]/70">$9</span>
                     </div>
                   </div>
@@ -420,7 +434,9 @@ export default function FoodMenu() {
 
                 {/* Pickled Column */}
                 <div>
-                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4">pickeled</h3>
+                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4">
+                    pickeled
+                  </h3>
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
                       <span className="text-[#071d18]/70">asparagus</span>
@@ -447,18 +463,24 @@ export default function FoodMenu() {
 
                 {/* Spreads Column */}
                 <div>
-                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4">spreads</h3>
+                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4">
+                    spreads
+                  </h3>
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
                       <span className="text-[#071d18]/70">rosehip & maple</span>
                       <span className="text-[#071d18]/70">$5</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-[#071d18]/70">caramelized onion & mushroom</span>
+                      <span className="text-[#071d18]/70">
+                        caramelized onion & mushroom
+                      </span>
                       <span className="text-[#071d18]/70">$5</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-[#071d18]/70">saskatoon berry & smoked vanilla</span>
+                      <span className="text-[#071d18]/70">
+                        saskatoon berry & smoked vanilla
+                      </span>
                       <span className="text-[#071d18]/70">$5</span>
                     </div>
                   </div>
@@ -475,25 +497,27 @@ export default function FoodMenu() {
             Entrees
           </h2>
           <div className="space-y-6">
-            {categories.entrees.filter(dish => !dish.name.toLowerCase().includes('additional')).map((dish) => (
-              <div key={dish.id} className="flex justify-between items-start">
-                <div className="flex-1">
-                  <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-sans text-lg font-semibold text-[#071d18]">
-                      {dish.name}
-                    </h3>
-                    {dish.price && (
-                      <span className="text-lg font-semibold text-[#071d18] ml-4">
-                        ${dish.price}
-                      </span>
-                    )}
+            {categories.entrees
+              .filter((dish) => !dish.name.toLowerCase().includes("additional"))
+              .map((dish) => (
+                <div key={dish.id} className="flex justify-between items-start">
+                  <div className="flex-1">
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="font-sans text-lg font-semibold text-[#071d18]">
+                        {dish.name}
+                      </h3>
+                      {dish.price && (
+                        <span className="text-lg font-semibold text-[#071d18] ml-4">
+                          ${dish.price}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-sm text-[#071d18]/70 ml-4 leading-relaxed">
+                      {dish.description}
+                    </p>
                   </div>
-                  <p className="text-sm text-[#071d18]/70 ml-4 leading-relaxed">
-                    {dish.description}
-                  </p>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </section>
 
@@ -505,43 +529,66 @@ export default function FoodMenu() {
           </h2>
           <div className="grid grid-cols-3 gap-8">
             <div className="space-y-4">
-              {categories.entrees.filter(dish =>
-                dish.name.toLowerCase().includes('add chicken') ||
-                dish.name.toLowerCase().includes('add salmon')
-              ).map((dish) => (
-                <div key={dish.id} className="flex justify-between items-center">
-                  <span className="text-[#071d18]/70">{dish.name.toLowerCase()}</span>
-                  <span className="text-[#071d18]/70">- {dish.price}</span>
-                </div>
-              ))}
+              {categories.entrees
+                .filter(
+                  (dish) =>
+                    dish.name.toLowerCase().includes("add chicken") ||
+                    dish.name.toLowerCase().includes("add salmon")
+                )
+                .map((dish) => (
+                  <div
+                    key={dish.id}
+                    className="flex justify-between items-center"
+                  >
+                    <span className="text-[#071d18]/70">
+                      {dish.name.toLowerCase()}
+                    </span>
+                    <span className="text-[#071d18]/70">- {dish.price}</span>
+                  </div>
+                ))}
             </div>
             <div className="space-y-4">
-              {categories.entrees.filter(dish =>
-                dish.name.toLowerCase().includes('add lobster') ||
-                dish.name.toLowerCase().includes('add shrimps')
-              ).map((dish) => (
-                <div key={dish.id} className="flex justify-between items-center">
-                  <span className="text-[#071d18]/70">{dish.name.toLowerCase()}</span>
-                  <span className="text-[#071d18]/70">- {dish.price}</span>
-                </div>
-              ))}
+              {categories.entrees
+                .filter(
+                  (dish) =>
+                    dish.name.toLowerCase().includes("add lobster") ||
+                    dish.name.toLowerCase().includes("add shrimps")
+                )
+                .map((dish) => (
+                  <div
+                    key={dish.id}
+                    className="flex justify-between items-center"
+                  >
+                    <span className="text-[#071d18]/70">
+                      {dish.name.toLowerCase()}
+                    </span>
+                    <span className="text-[#071d18]/70">- {dish.price}</span>
+                  </div>
+                ))}
             </div>
             <div className="space-y-4">
-              {categories.entrees.filter(dish =>
-                dish.name.toLowerCase().includes('gluten free pasta') ||
-                dish.name.toLowerCase().includes('gluten free bread')
-              ).map((dish) => (
-                <div key={dish.id} className="flex justify-between items-center">
-                  <span className="text-[#071d18]/70">{dish.name.toLowerCase()}</span>
-                  <span className="text-[#071d18]/70">- {dish.price}</span>
-                </div>
-              ))}
+              {categories.entrees
+                .filter(
+                  (dish) =>
+                    dish.name.toLowerCase().includes("gluten free pasta") ||
+                    dish.name.toLowerCase().includes("gluten free bread")
+                )
+                .map((dish) => (
+                  <div
+                    key={dish.id}
+                    className="flex justify-between items-center"
+                  >
+                    <span className="text-[#071d18]/70">
+                      {dish.name.toLowerCase()}
+                    </span>
+                    <span className="text-[#071d18]/70">- {dish.price}</span>
+                  </div>
+                ))}
             </div>
           </div>
         </section>
 
         {/* Build Your Own Charcuterie Section */}
-
 
         {/* Drinks Section */}
         <section className="mb-20">
@@ -553,75 +600,99 @@ export default function FoodMenu() {
           {/* Cocktails */}
           <div className="mb-12">
             <div className="flex justify-between items-center mb-6">
-              <h3 className="font-sans text-xl font-bold text-[var(--mint)]">Cocktails</h3>
+              <h3 className="font-sans text-xl font-bold text-[var(--mint)]">
+                Cocktails
+              </h3>
               <span className="text-sm text-[#071d18]/70">2 oz.</span>
             </div>
             <div className="space-y-4">
-              {categories.drinks.filter(dish => dish.subtitle === "Cocktail").map((dish) => (
-                <div key={dish.id} className="flex justify-between items-start">
-                  <div className="flex-1">
-                    <div className="flex justify-between items-start mb-1">
-                      <h4 className="font-sans text-base font-semibold text-[#071d18]">
-                        {dish.name}
-                      </h4>
-                      {dish.price && (
-                        <span className="text-base font-semibold text-[#071d18] ml-4">
-                          ${dish.price}
-                        </span>
+              {categories.drinks
+                .filter((dish) => dish.subtitle === "Cocktail")
+                .map((dish) => (
+                  <div
+                    key={dish.id}
+                    className="flex justify-between items-start"
+                  >
+                    <div className="flex-1">
+                      <div className="flex justify-between items-start mb-1">
+                        <h4 className="font-sans text-base font-semibold text-[#071d18]">
+                          {dish.name}
+                        </h4>
+                        {dish.price && (
+                          <span className="text-base font-semibold text-[#071d18] ml-4">
+                            ${dish.price}
+                          </span>
+                        )}
+                      </div>
+                      {dish.subtitle === "Cocktail" && (
+                        <p className="text-sm text-white ml-4 leading-relaxed">
+                          {dish.description}
+                        </p>
                       )}
                     </div>
-                    <p className="text-sm text-[#071d18]/70 ml-4 leading-relaxed">
-                      {dish.description}
-                    </p>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
 
           {/* Draught */}
           <div className="mb-12">
             <div className="flex justify-between items-center mb-6">
-              <h3 className="font-sans text-xl font-bold text-[var(--mint)]">Draught</h3>
+              <h3 className="font-sans text-xl font-bold text-[var(--mint)]">
+                Draught
+              </h3>
               <span className="text-sm text-[#071d18]/70">16 oz.</span>
             </div>
             <div className="space-y-4">
-              {categories.drinks.filter(dish => dish.subtitle === "Draught Beer").map((dish) => (
-                <div key={dish.id} className="flex justify-between items-center">
-                  <h4 className="font-sans text-base font-semibold text-[#071d18]">
-                    {dish.name}
-                  </h4>
-                  {dish.price && (
-                    <span className="text-base font-semibold text-[#071d18]">
-                      ${dish.price}
-                    </span>
-                  )}
-                </div>
-              ))}
+              {categories.drinks
+                .filter((dish) => dish.subtitle === "Draught Beer")
+                .map((dish) => (
+                  <div
+                    key={dish.id}
+                    className="flex justify-between items-center"
+                  >
+                    <h4 className="font-sans text-base font-semibold text-[#071d18]">
+                      {dish.name}
+                    </h4>
+                    {dish.price && (
+                      <span className="text-base font-semibold text-[#071d18]">
+                        ${dish.price}
+                      </span>
+                    )}
+                  </div>
+                ))}
             </div>
           </div>
 
           {/* Bottles and Cans */}
           <div className="mb-12">
-            <h3 className="font-sans text-xl font-bold text-[var(--mint)] mb-6">Bottles and Cans</h3>
+            <h3 className="font-sans text-xl font-bold text-[var(--mint)] mb-6">
+              Bottles and Cans
+            </h3>
             <div className="grid md:grid-cols-2 gap-4">
-              {categories.drinks.filter(dish =>
-                dish.subtitle === "Bottled Beer" ||
-                dish.subtitle === "Canned Beer" ||
-                dish.subtitle === "Canned Cocktail" ||
-                dish.subtitle === "Non-Alcoholic Beer"
-              ).map((dish) => (
-                <div key={dish.id} className="flex justify-between items-center">
-                  <h4 className="font-sans text-base font-semibold text-[#071d18]">
-                    {dish.name}
-                  </h4>
-                  {dish.price && (
-                    <span className="text-base font-semibold text-[#071d18]">
-                      ${dish.price}
-                    </span>
-                  )}
-                </div>
-              ))}
+              {categories.drinks
+                .filter(
+                  (dish) =>
+                    dish.subtitle === "Bottled Beer" ||
+                    dish.subtitle === "Canned Beer" ||
+                    dish.subtitle === "Canned Cocktail" ||
+                    dish.subtitle === "Non-Alcoholic Beer"
+                )
+                .map((dish) => (
+                  <div
+                    key={dish.id}
+                    className="flex justify-between items-center"
+                  >
+                    <h4 className="font-sans text-base font-semibold text-[#071d18]">
+                      {dish.name}
+                    </h4>
+                    {dish.price && (
+                      <span className="text-base font-semibold text-[#071d18]">
+                        ${dish.price}
+                      </span>
+                    )}
+                  </div>
+                ))}
             </div>
           </div>
         </section>
@@ -635,7 +706,9 @@ export default function FoodMenu() {
 
           {/* Rosé & Bubbles */}
           <div className="mb-12">
-            <h3 className="font-sans text-xl font-bold text-[var(--mint)] mb-6">Rosé & Bubbles</h3>
+            <h3 className="font-sans text-xl font-bold text-[var(--mint)] mb-6">
+              Rosé & Bubbles
+            </h3>
             <div className="grid grid-cols-4 gap-4 mb-4">
               <div></div>
               <div className="text-sm text-[#071d18]/70 text-center">6oz</div>
@@ -643,36 +716,48 @@ export default function FoodMenu() {
               <div className="text-sm text-[#071d18]/70 text-center">btl</div>
             </div>
             <div className="space-y-4">
-              {categories.wines.filter(dish =>
-                dish.name.toLowerCase().includes('rosé') ||
-                dish.name.toLowerCase().includes('prosecco') ||
-                dish.name.toLowerCase().includes('sparkling') ||
-                dish.name.toLowerCase().includes('brut')
-              ).map((dish) => (
-                <div key={dish.id} className="grid grid-cols-4 gap-4 items-center">
-                  <div className="flex-1">
-                    <h4 className="font-sans text-base font-semibold text-[#071d18]">
-                      {dish.name}
-                    </h4>
-                    <p className="text-sm text-[#071d18]/70">{dish.subtitle}</p>
+              {categories.wines
+                .filter(
+                  (dish) =>
+                    dish.name.toLowerCase().includes("rosé") ||
+                    dish.name.toLowerCase().includes("prosecco") ||
+                    dish.name.toLowerCase().includes("sparkling") ||
+                    dish.name.toLowerCase().includes("brut")
+                )
+                .map((dish) => (
+                  <div
+                    key={dish.id}
+                    className="grid grid-cols-4 gap-4 items-center"
+                  >
+                    <div className="flex-1">
+                      <h4 className="font-sans text-base font-semibold text-[#071d18]">
+                        {dish.name}
+                      </h4>
+                      <p className="text-sm text-[#071d18]/70">
+                        {dish.subtitle}
+                      </p>
+                    </div>
+                    <div className="text-center">
+                      {dish.price && dish.price <= 20 ? `$${dish.price}` : "-"}
+                    </div>
+                    <div className="text-center">
+                      {dish.price && dish.price > 20 && dish.price <= 30
+                        ? `$${dish.price}`
+                        : "-"}
+                    </div>
+                    <div className="text-center">
+                      {dish.price && dish.price > 30 ? `$${dish.price}` : "-"}
+                    </div>
                   </div>
-                  <div className="text-center">
-                    {dish.price && dish.price <= 20 ? `$${dish.price}` : '-'}
-                  </div>
-                  <div className="text-center">
-                    {dish.price && dish.price > 20 && dish.price <= 30 ? `$${dish.price}` : '-'}
-                  </div>
-                  <div className="text-center">
-                    {dish.price && dish.price > 30 ? `$${dish.price}` : '-'}
-                  </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
 
           {/* White Wines */}
           <div className="mb-12">
-            <h3 className="font-sans text-xl font-bold text-[var(--mint)] mb-6">White</h3>
+            <h3 className="font-sans text-xl font-bold text-[var(--mint)] mb-6">
+              White
+            </h3>
             <div className="grid grid-cols-4 gap-4 mb-4">
               <div></div>
               <div className="text-sm text-[#071d18]/70 text-center">6oz</div>
@@ -680,37 +765,50 @@ export default function FoodMenu() {
               <div className="text-sm text-[#071d18]/70 text-center">btl</div>
             </div>
             <div className="space-y-4">
-              {categories.wines.filter(dish =>
-                dish.subtitle.toLowerCase().includes('italy') ||
-                dish.subtitle.toLowerCase().includes('south africa') ||
-                dish.subtitle.toLowerCase().includes('canada') ||
-                dish.subtitle.toLowerCase().includes('france') ||
-                dish.subtitle.toLowerCase().includes('california')
-              ).slice(0, 8).map((dish) => (
-                <div key={dish.id} className="grid grid-cols-4 gap-4 items-center">
-                  <div className="flex-1">
-                    <h4 className="font-sans text-base font-semibold text-[#071d18]">
-                      {dish.name}
-                    </h4>
-                    <p className="text-sm text-[#071d18]/70">{dish.subtitle}</p>
+              {categories.wines
+                .filter(
+                  (dish) =>
+                    dish.subtitle.toLowerCase().includes("italy") ||
+                    dish.subtitle.toLowerCase().includes("south africa") ||
+                    dish.subtitle.toLowerCase().includes("canada") ||
+                    dish.subtitle.toLowerCase().includes("france") ||
+                    dish.subtitle.toLowerCase().includes("california")
+                )
+                .slice(0, 8)
+                .map((dish) => (
+                  <div
+                    key={dish.id}
+                    className="grid grid-cols-4 gap-4 items-center"
+                  >
+                    <div className="flex-1">
+                      <h4 className="font-sans text-base font-semibold text-[#071d18]">
+                        {dish.name}
+                      </h4>
+                      <p className="text-sm text-[#071d18]/70">
+                        {dish.subtitle}
+                      </p>
+                    </div>
+                    <div className="text-center">
+                      {dish.price && dish.price <= 20 ? `$${dish.price}` : "-"}
+                    </div>
+                    <div className="text-center">
+                      {dish.price && dish.price > 20 && dish.price <= 30
+                        ? `$${dish.price}`
+                        : "-"}
+                    </div>
+                    <div className="text-center">
+                      {dish.price && dish.price > 30 ? `$${dish.price}` : "-"}
+                    </div>
                   </div>
-                  <div className="text-center">
-                    {dish.price && dish.price <= 20 ? `$${dish.price}` : '-'}
-                  </div>
-                  <div className="text-center">
-                    {dish.price && dish.price > 20 && dish.price <= 30 ? `$${dish.price}` : '-'}
-                  </div>
-                  <div className="text-center">
-                    {dish.price && dish.price > 30 ? `$${dish.price}` : '-'}
-                  </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
 
           {/* Red Wines */}
           <div className="mb-12">
-            <h3 className="font-sans text-xl font-bold text-[var(--mint)] mb-6">Red</h3>
+            <h3 className="font-sans text-xl font-bold text-[var(--mint)] mb-6">
+              Red
+            </h3>
             <div className="grid grid-cols-4 gap-4 mb-4">
               <div></div>
               <div className="text-sm text-[#071d18]/70 text-center">6oz</div>
@@ -718,35 +816,46 @@ export default function FoodMenu() {
               <div className="text-sm text-[#071d18]/70 text-center">btl</div>
             </div>
             <div className="space-y-4">
-              {categories.wines.filter(dish =>
-                dish.subtitle.toLowerCase().includes('australia') ||
-                dish.subtitle.toLowerCase().includes('argentina') ||
-                dish.subtitle.toLowerCase().includes('new zealand') ||
-                dish.subtitle.toLowerCase().includes('portugal') ||
-                dish.subtitle.toLowerCase().includes('france') ||
-                dish.subtitle.toLowerCase().includes('canada') ||
-                dish.subtitle.toLowerCase().includes('italy') ||
-                dish.subtitle.toLowerCase().includes('spain') ||
-                dish.subtitle.toLowerCase().includes('california')
-              ).slice(0, 10).map((dish) => (
-                <div key={dish.id} className="grid grid-cols-4 gap-4 items-center">
-                  <div className="flex-1">
-                    <h4 className="font-sans text-base font-semibold text-[#071d18]">
-                      {dish.name}
-                    </h4>
-                    <p className="text-sm text-[#071d18]/70">{dish.subtitle}</p>
+              {categories.wines
+                .filter(
+                  (dish) =>
+                    dish.subtitle.toLowerCase().includes("australia") ||
+                    dish.subtitle.toLowerCase().includes("argentina") ||
+                    dish.subtitle.toLowerCase().includes("new zealand") ||
+                    dish.subtitle.toLowerCase().includes("portugal") ||
+                    dish.subtitle.toLowerCase().includes("france") ||
+                    dish.subtitle.toLowerCase().includes("canada") ||
+                    dish.subtitle.toLowerCase().includes("italy") ||
+                    dish.subtitle.toLowerCase().includes("spain") ||
+                    dish.subtitle.toLowerCase().includes("california")
+                )
+                .slice(0, 10)
+                .map((dish) => (
+                  <div
+                    key={dish.id}
+                    className="grid grid-cols-4 gap-4 items-center"
+                  >
+                    <div className="flex-1">
+                      <h4 className="font-sans text-base font-semibold text-[#071d18]">
+                        {dish.name}
+                      </h4>
+                      <p className="text-sm text-[#071d18]/70">
+                        {dish.subtitle}
+                      </p>
+                    </div>
+                    <div className="text-center">
+                      {dish.price && dish.price <= 20 ? `$${dish.price}` : "-"}
+                    </div>
+                    <div className="text-center">
+                      {dish.price && dish.price > 20 && dish.price <= 30
+                        ? `$${dish.price}`
+                        : "-"}
+                    </div>
+                    <div className="text-center">
+                      {dish.price && dish.price > 30 ? `$${dish.price}` : "-"}
+                    </div>
                   </div>
-                  <div className="text-center">
-                    {dish.price && dish.price <= 20 ? `$${dish.price}` : '-'}
-                  </div>
-                  <div className="text-center">
-                    {dish.price && dish.price > 20 && dish.price <= 30 ? `$${dish.price}` : '-'}
-                  </div>
-                  <div className="text-center">
-                    {dish.price && dish.price > 30 ? `$${dish.price}` : '-'}
-                  </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         </section>
@@ -762,7 +871,11 @@ export default function FoodMenu() {
       <button
         onClick={() => setIsTraditionalMenu(!isTraditionalMenu)}
         className="fixed bottom-6 right-6 z-50 bg-[var(--mint)] hover:bg-[var(--mint)]/80 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
-        aria-label={isTraditionalMenu ? "Switch to Interactive Menu" : "Switch to Traditional Menu"}
+        aria-label={
+          isTraditionalMenu
+            ? "Switch to Interactive Menu"
+            : "Switch to Traditional Menu"
+        }
       >
         {isTraditionalMenu ? (
           <Grid3X3 className="w-6 h-6" />
@@ -788,30 +901,39 @@ export default function FoodMenu() {
                 {/* Title and Image Container */}
                 <div className="flex flex-col md:flex-row-reverse items-center justify-center gap-2 sm:gap-3 md:gap-6 lg:gap-8 flex-shrink-0">
                   {/* Title - WITH ANIMATION */}
-                  <div
-                    className={`text-center md:text-left transition-all duration-500 ease-out flex-shrink-0 ${getTextAnimationClass()}`}
-                  >
-                    <h1 className="text-3xl sm:text-3xl md:text-3xl lg:text-4xl font-light text-[var(--muted)] tracking-wide mb-1 md:mb-1">
-                      {currentDish.name}
-                    </h1>
-                    <h2 className="text-lg sm:text-lg md:text-lg lg:text-xl font-bold text-[var(--muted)]">
-                      {currentDish.subtitle}
-                    </h2>
-                    {currentDish.price && (
-                      <p className="text-base sm:text-base md:text-base lg:text-lg text-[var(--muted)]/80 mt-0.5">
-                        ${currentDish.price}
-                      </p>
-                    )}
-                  </div>
+<div
+  className={`text-center md:text-left transition-all duration-500 ease-out flex-shrink-0 ${getTextAnimationClass()}`}
+>
+  <h1 className="text-3xl sm:text-3xl md:text-3xl lg:text-4xl font-light text-[var(--muted)] tracking-wide mb-1 md:mb-1">
+    {currentDish.name}
+  </h1>
+  <h2 className="text-lg sm:text-lg md:text-lg lg:text-xl font-bold text-[var(--muted)]">
+    {currentDish.subtitle}
+  </h2>
+  {currentDish.price && (
+    <p className="text-base sm:text-base md:text-base lg:text-lg text-[var(--muted)]/80 mt-0.5">
+      ${currentDish.price}
+    </p>
+  )}
+
+  {/* ✅ Show description only for cocktails */}
+  {currentDish.subtitle === "Cocktail" && currentDish.description && (
+    <p className="text-sm sm:text-base md:text-base lg:text-lg text-[var(--muted)]/70 mt-1 leading-relaxed max-w-md mx-auto md:mx-0">
+      {currentDish.description}
+    </p>
+  )}
+</div>
+
 
                   {/* Image Container */}
                   <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-64 lg:h-64 flex-shrink-0">
                     {previousDish && (
                       <div
-                        className={`absolute inset-0 bg-white rounded-full shadow-2xl ${scrollDirection === "forward"
+                        className={`absolute inset-0 bg-white rounded-full shadow-2xl ${
+                          scrollDirection === "forward"
                             ? "animate-spinOut"
                             : "animate-spinOutBackward"
-                          }`}
+                        }`}
                       >
                         <img
                           src={previousDish.mainImage}
@@ -822,12 +944,13 @@ export default function FoodMenu() {
                     )}
 
                     <div
-                      className={`absolute inset-0 bg-white rounded-full shadow-2xl ${previousDish
+                      className={`absolute inset-0 bg-white rounded-full shadow-2xl ${
+                        previousDish
                           ? scrollDirection === "forward"
                             ? "animate-spinIn"
                             : "animate-spinInBackward"
                           : ""
-                        }`}
+                      }`}
                     >
                       <img
                         src={currentDish.mainImage}
@@ -841,10 +964,11 @@ export default function FoodMenu() {
                 {/* Dish Selector with Carousel */}
                 <div className="flex justify-center items-center gap-3 sm:gap-2 md:gap-0 lg:gap-0 w-full flex-shrink-0">
                   <ChevronLeft
-                    className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 cursor-pointer transition-all duration-200 flex-shrink-0 ${carouselIndex > 0
+                    className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 cursor-pointer transition-all duration-200 flex-shrink-0 ${
+                      carouselIndex > 0
                         ? "text-[var(--muted)] hover:text-[var(--muted)]/80 hover:scale-110"
                         : "text-[var(--muted)]/30 opacity-50 cursor-not-allowed"
-                      }`}
+                    }`}
                     onClick={handleCarouselPrev}
                   />
                   <div className="flex items-center justify-center gap-1.5 sm:gap-2 md:gap-3 flex-1 h-24 sm:h-28 md:h-32 overflow-hidden">
@@ -853,13 +977,15 @@ export default function FoodMenu() {
                         <div
                           key={`selector-${activeCategory}-${d.id}`}
                           onClick={() => scrollToDish(d.id)}
-                          className={`cursor-pointer flex-1 min-w-0 h-full flex flex-col items-center justify-center transition-all duration-300 ${activeDish === d.id
+                          className={`cursor-pointer flex-1 min-w-0 h-full flex flex-col items-center justify-center transition-all duration-300 ${
+                            activeDish === d.id
                               ? "text-[var(--muted)] scale-100 sm:scale-105 px-1 sm:px-2 pt-1 bg-white/20 rounded-lg sm:rounded-xl"
                               : "scale-90 opacity-60 hover:opacity-80 hover:scale-95"
-                            }`}
+                          }`}
                           style={{
-                            animation: `fadeSlideIn 0.4s ease-out ${index * 0.1
-                              }s both`,
+                            animation: `fadeSlideIn 0.4s ease-out ${
+                              index * 0.1
+                            }s both`,
                           }}
                         >
                           <div className="rounded-full overflow-hidden w-14 h-14 sm:w-16 sm:h-16 md:w-16 md:h-16 flex items-center justify-center flex-shrink-0">
@@ -879,10 +1005,11 @@ export default function FoodMenu() {
                     </div>
                   </div>
                   <ChevronRight
-                    className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 cursor-pointer transition-all duration-200 flex-shrink-0 ${carouselIndex < totalPages - 1
+                    className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 cursor-pointer transition-all duration-200 flex-shrink-0 ${
+                      carouselIndex < totalPages - 1
                         ? "text-[var(--muted)] hover:text-[var(--muted)]/80 hover:scale-110"
                         : "text-[var(--muted)]/30 opacity-50 cursor-not-allowed"
-                      }`}
+                    }`}
                     onClick={handleCarouselNext}
                   />
                 </div>
@@ -902,15 +1029,15 @@ export default function FoodMenu() {
                               scrollToDish(targetDish.id);
                             }
                           }}
-                          className={`rounded-full transition-all duration-300 ${idx === carouselIndex
+                          className={`rounded-full transition-all duration-300 ${
+                            idx === carouselIndex
                               ? "bg-[var(--muted)] w-5 sm:w-6 h-1.5"
                               : "bg-[var(--muted)]/40 hover:bg-[var(--muted)]/60 w-1.5 h-1.5"
-                            }`}
+                          }`}
                         />
                       ))}
                     </div>
                   )}
-
 
                   {/* Category Buttons */}
                   <div className="backdrop-blur-3xl px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 flex justify-center gap-1.5 sm:gap-2 md:gap-3 overflow-x-auto scrollbar-hide rounded-full">
@@ -923,10 +1050,11 @@ export default function FoodMenu() {
                             setActiveCategory(cat as CategoryType);
                           }
                         }}
-                        className={`flex-shrink-0 py-1 sm:py-1.5 px-2.5 sm:px-3 md:px-4 rounded-full transition-all duration-300 text-xs sm:text-sm md:text-base font-semibold whitespace-nowrap ${activeCategory === cat
+                        className={`flex-shrink-0 py-1 sm:py-1.5 px-2.5 sm:px-3 md:px-4 rounded-full transition-all duration-300 text-xs sm:text-sm md:text-base font-semibold whitespace-nowrap ${
+                          activeCategory === cat
                             ? "bg-[var(--muted)] text-gray-700 scale-100 sm:scale-105"
                             : "bg-[var(--muted)]/60 text-gray-600 hover:bg-[var(--muted)]/40 hover:scale-105"
-                          }`}
+                        }`}
                       >
                         {cat.charAt(0).toUpperCase() + cat.slice(1)}
                       </button>
@@ -938,8 +1066,9 @@ export default function FoodMenu() {
 
             {/* Scroll Hint */}
             <div
-              className={`absolute bottom-20 sm:bottom-24 md:bottom-28 left-1/2 transform -translate-x-1/2 z-30 transition-opacity duration-1000 ${showScrollHint ? "opacity-100" : "opacity-0 pointer-events-none"
-                }`}
+              className={`absolute bottom-20 sm:bottom-24 md:bottom-28 left-1/2 transform -translate-x-1/2 z-30 transition-opacity duration-1000 ${
+                showScrollHint ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}
             >
               <div className="flex flex-col items-center gap-1 sm:gap-1.5 animate-bounce">
                 <p className="text-[var(--muted)]/80 text-xs sm:text-sm font-medium">
