@@ -16,6 +16,7 @@ interface Dish {
   chef: string;
   chefTitle: string;
   description: string;
+  longDescription?: string;
   price?: number;
 }
 
@@ -165,16 +166,16 @@ export default function FoodMenu() {
           isChangingCategory.current = true;
           categoryScrollDirection.current = "backward";
 
-          if (activeCategory === "wines") {
-            setActiveCategory("cocktails");
-          } else if (activeCategory === "cocktails") {
+          if (activeCategory === "cocktails") {
+            setActiveCategory("wines");
+          } else if (activeCategory === "wines") {
             setActiveCategory("drinks");
           } else if (activeCategory === "drinks") {
             setActiveCategory("entrees");
           } else if (activeCategory === "entrees") {
             setActiveCategory("appetizers");
           } else if (activeCategory === "appetizers") {
-            setActiveCategory("wines");
+            setActiveCategory("cocktails");
           }
         }
       }
@@ -622,7 +623,7 @@ export default function FoodMenu() {
                       )}
                     </div>
                     <p className="text-sm text-[#071d18]/70 ml-4 leading-relaxed">
-                      {dish.description}
+                      {dish.longDescription}
                     </p>
                   </div>
                 </div>
@@ -913,9 +914,9 @@ export default function FoodMenu() {
 
                     {/* ✅ Show description only for cocktails */}
                     {currentDish.subtitle === "Cocktail" &&
-                      currentDish.description && (
+                      currentDish.longDescription && (
                         <p className="text-sm sm:text-base md:text-base lg:text-lg text-[var(--muted)]/70 mt-1 leading-relaxed max-w-md mx-auto md:mx-0">
-                          {currentDish.description}
+                          {currentDish.longDescription}
                         </p>
                       )}
                   </div>

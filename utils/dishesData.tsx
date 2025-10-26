@@ -9,6 +9,7 @@ export interface Dish {
   chef: string;
   chefTitle: string;
   description: string;
+  longDescription?:string;
   price?: number;
 }
 
@@ -407,157 +408,166 @@ export const categories: Record<CategoryType, Dish[]> = {
       price: 4,
     },
   ],
-  cocktails: [
-    {
-      id: 27,
-      name: "Spruced Old Fashioned",
-      subtitle: "Cocktail",
-      image:
-        "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=400&h=300&fit=crop",
-      mainImage:
-        "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800&h=600&fit=crop",
-      number: 1,
-      rating: 4.8,
-      chef: "Bartender Alex",
-      chefTitle: "Mixology Master",
-      description: "Bourbon / raw sugar / angostura bitters / orange / smoked",
-      price: 15,
-    },
-    {
-      id: 28,
-      name: "Elder Collins",
-      subtitle: "Cocktail",
-      image:
-        "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&h=300&fit=crop",
-      mainImage:
-        "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&h=600&fit=crop",
-      number: 2,
-      rating: 4.7,
-      chef: "Bartender Sarah",
-      chefTitle: "Gin Specialist",
-      description:
-        "Empress gin / elderflower liqueur / lemon juice / soda / garnish",
-      price: 16,
-    },
-    {
-      id: 29,
-      name: "Honey Smoke",
-      subtitle: "Cocktail",
-      image:
-        "https://images.unsplash.com/photo-1546171753-97d7676e4602?w=400&h=300&fit=crop",
-      mainImage:
-        "https://images.unsplash.com/photo-1546171753-97d7676e4602?w=800&h=600&fit=crop",
-      number: 3,
-      rating: 4.6,
-      chef: "Bartender Mike",
-      chefTitle: "Rum Connoisseur",
-      description: "Rum / peach schnapps / pineapple juice / lime juice",
-      price: 16,
-    },
-    {
-      id: 30,
-      name: "Berry Basil",
-      subtitle: "Cocktail",
-      image:
-        "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=400&h=300&fit=crop",
-      mainImage:
-        "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&h=600&fit=crop",
-      number: 4,
-      rating: 4.8,
-      chef: "Bartender Lisa",
-      chefTitle: "Tequila Expert",
-      description: "Tequila / lime juice / cointreau / agave / jalapeño",
-      price: 16,
-    },
-    {
-      id: 31,
-      name: "Rusty Pine",
-      subtitle: "Cocktail",
-      image:
-        "https://images.unsplash.com/photo-1536935338788-846bb9981813?w=400&h=300&fit=crop",
-      mainImage:
-        "https://images.unsplash.com/photo-1536935338788-846bb9981813?w=800&h=600&fit=crop",
-      number: 5,
-      rating: 4.5,
-      chef: "Bartender Marco",
-      chefTitle: "Negroni Master",
-      description: "Gin / campari / sweet vermouth / orange",
-      price: 16,
-    },
-    {
-      id: 32,
-      name: "Molech's Mule",
-      subtitle: "Cocktail",
-      image:
-        "https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?w=400&h=300&fit=crop",
-      mainImage:
-        "https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?w=800&h=600&fit=crop",
-      number: 6,
-      rating: 4.6,
-      chef: "Bartender Ivan",
-      chefTitle: "Vodka Specialist",
-      description: "Vodka / pineapple juice / ginger beer / simple syrup",
-      price: 16,
-    },
-    {
-      id: 33,
-      name: "Margarita",
-      subtitle: "Cocktail",
-      image:
-        "https://images.unsplash.com/photo-1608885662713-4f55db8b5e2e?w=400&h=300&fit=crop",
-      mainImage:
-        "https://images.unsplash.com/photo-1608885662713-4f55db8b5e2e?w=800&h=600&fit=crop",
-      number: 7,
-      rating: 4.7,
-      chef: "Bartender Carlos",
-      chefTitle: "Margarita Master",
-      description: "Tequila / lemon juice / mint / cucumber / simple syrup",
-      price: 16,
-    },
-    {
-      id: 34,
-      name: "Dash of Dasha",
-      subtitle: "Cocktail",
-      image:
-        "https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?w=400&h=300&fit=crop",
-      mainImage:
-        "https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?w=800&h=600&fit=crop",
-      number: 8,
-      rating: 4.9,
-      chef: "Bartender Anna",
-      chefTitle: "Coffee Cocktail Expert",
-      description:
-        "Espresso vodka / coffee / kahlua / cinnamon / orange / ignited",
-      price: 16,
-    },
-
-    {
-      id: 48,
-      name: "Dillon's Gin Cocktail",
-      subtitle: "Canned Cocktail",
-      image: "placeholder",
-      mainImage: "placeholder",
-      number: 22,
-      rating: 4.5,
-      chef: "Bartender",
-      chefTitle: "Specialist",
-      description: "Gin cocktail in a can.",
-      price: undefined,
-    },
-    {
-      id: 43,
-      name: "Ole Tequila Soda",
-      subtitle: "Canned Cocktail",
-      image: "placeholder",
-      mainImage: "placeholder",
-      number: 17,
-      rating: 4.3,
-      chef: "Bartender",
-      chefTitle: "Specialist",
-      description: "Tequila soda in a can.",
-      price: 11,
-    },
-  ],
+cocktails: [
+  {
+    id: 27,
+    name: "Spruced Old Fashioned",
+    subtitle: "Cocktail",
+    image:
+      "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=400&h=300&fit=crop",
+    mainImage:
+      "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800&h=600&fit=crop",
+    number: 1,
+    rating: 4.8,
+    chef: "Bartender Alex",
+    chefTitle: "Mixology Master",
+    description: "Bourbon / raw sugar / angostura bitters / orange / smoked",
+    longDescription: "A classic old fashioned elevated with a woodland twist. Premium bourbon muddled with raw sugar and aromatic angostura bitters, garnished with fresh orange, and finished with a theatrical smoking presentation that infuses each sip with subtle wood-smoke notes.",
+    price: 15,
+  },
+  {
+    id: 28,
+    name: "Elder Collins",
+    subtitle: "Cocktail",
+    image:
+      "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&h=300&fit=crop",
+    mainImage:
+      "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&h=600&fit=crop",
+    number: 2,
+    rating: 4.7,
+    chef: "Bartender Sarah",
+    chefTitle: "Gin Specialist",
+    description:
+      "Empress gin / elderflower liqueur / lemon juice / soda / garnish",
+    longDescription: "An elegant and refreshing gin cocktail featuring the distinctive purple hue of Empress gin, perfectly balanced with delicate elderflower liqueur and bright fresh lemon juice. Topped with crisp soda water and garnished beautifully for a sophisticated drinking experience.",
+    price: 16,
+  },
+  {
+    id: 29,
+    name: "Honey Smoke",
+    subtitle: "Cocktail",
+    image:
+      "https://images.unsplash.com/photo-1546171753-97d7676e4602?w=400&h=300&fit=crop",
+    mainImage:
+      "https://images.unsplash.com/photo-1546171753-97d7676e4602?w=800&h=600&fit=crop",
+    number: 3,
+    rating: 4.6,
+    chef: "Bartender Mike",
+    chefTitle: "Rum Connoisseur",
+    description: "Rum / peach schnapps / pineapple juice / lime juice",
+    longDescription: "A tropical escape in a glass. Smooth rum harmonizes with sweet peach schnapps, vibrant pineapple juice, and tangy lime juice to create a perfectly balanced cocktail that transports you to sun-soaked beaches with every sip.",
+    price: 16,
+  },
+  {
+    id: 30,
+    name: "Berry Basil",
+    subtitle: "Cocktail",
+    image:
+      "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=400&h=300&fit=crop",
+    mainImage:
+      "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&h=600&fit=crop",
+    number: 4,
+    rating: 4.8,
+    chef: "Bartender Lisa",
+    chefTitle: "Tequila Expert",
+    description: "Tequila / lime juice / cointreau / agave / jalapeño",
+    longDescription: "A bold and adventurous margarita variation. Premium tequila shaken with fresh lime juice, orange-forward cointreau, and natural agave nectar, with a spicy kick from fresh jalapeño that builds with each sip. Perfect balance of sweet, citrus, and heat.",
+    price: 16,
+  },
+  {
+    id: 31,
+    name: "Rusty Pine",
+    subtitle: "Cocktail",
+    image:
+      "https://images.unsplash.com/photo-1536935338788-846bb9981813?w=400&h=300&fit=crop",
+    mainImage:
+      "https://images.unsplash.com/photo-1536935338788-846bb9981813?w=800&h=600&fit=crop",
+    number: 5,
+    rating: 4.5,
+    chef: "Bartender Marco",
+    chefTitle: "Negroni Master",
+    description: "Gin / campari / sweet vermouth / orange",
+    longDescription: "A woodland-inspired twist on the classic Negroni. London dry gin, bitter campari, and sweet vermouth come together in perfect harmony, garnished with fresh orange to add a bright citrus note to this sophisticated and complex aperitif.",
+    price: 16,
+  },
+  {
+    id: 32,
+    name: "Molech's Mule",
+    subtitle: "Cocktail",
+    image:
+      "https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?w=400&h=300&fit=crop",
+    mainImage:
+      "https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?w=800&h=600&fit=crop",
+    number: 6,
+    rating: 4.6,
+    chef: "Bartender Ivan",
+    chefTitle: "Vodka Specialist",
+    description: "Vodka / pineapple juice / ginger beer / simple syrup",
+    longDescription: "A tropical take on the Moscow Mule. Clean vodka combined with sweet pineapple juice, spicy ginger beer, and a touch of simple syrup for balance. Served ice-cold in traditional copper mug for maximum refreshment and a distinctive presentation.",
+    price: 16,
+  },
+  {
+    id: 33,
+    name: "Margarita",
+    subtitle: "Cocktail",
+    image:
+      "https://images.unsplash.com/photo-1608885662713-4f55db8b5e2e?w=400&h=300&fit=crop",
+    mainImage:
+      "https://images.unsplash.com/photo-1608885662713-4f55db8b5e2e?w=800&h=600&fit=crop",
+    number: 7,
+    rating: 4.7,
+    chef: "Bartender Carlos",
+    chefTitle: "Margarita Master",
+    description: "Tequila / lemon juice / mint / cucumber / simple syrup",
+    longDescription: "A refreshing garden-fresh margarita. Quality tequila shaken with bright lemon juice, fresh mint leaves, and crisp cucumber, sweetened with simple syrup for a perfectly balanced cocktail that's both invigorating and smooth. Ideal for warm evenings.",
+    price: 16,
+  },
+  {
+    id: 34,
+    name: "Dash of Dasha",
+    subtitle: "Cocktail",
+    image:
+      "https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?w=400&h=300&fit=crop",
+    mainImage:
+      "https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?w=800&h=600&fit=crop",
+    number: 8,
+    rating: 4.9,
+    chef: "Bartender Anna",
+    chefTitle: "Coffee Cocktail Expert",
+    description:
+      "Espresso vodka / coffee / kahlua / cinnamon / orange / ignited",
+    longDescription: "A dramatic coffee cocktail experience. Rich espresso vodka blended with freshly brewed coffee and sweet kahlua, accented with warming cinnamon and bright orange zest. Finished tableside with an ignited liqueur flame for a spectacular presentation that caramelizes the sugars and adds subtle toasted notes.",
+    price: 16,
+  },
+  {
+    id: 48,
+    name: "Dillon's Gin Cocktail",
+    subtitle: "Canned Cocktail",
+    image: "placeholder",
+    mainImage: "placeholder",
+    number: 22,
+    rating: 4.5,
+    chef: "Bartender",
+    chefTitle: "Specialist",
+    description: "Gin cocktail in a can.",
+    longDescription: "A convenient ready-to-drink gin cocktail from Dillon's Distillery. Perfectly balanced and crafted with quality ingredients, this canned cocktail delivers a premium bar experience anywhere. Simply chill and enjoy.",
+    price: 88
+  },
+  {
+    id: 43,
+    name: "Ole Tequila Soda",
+    subtitle: "Canned Cocktail",
+    image: "placeholder",
+    mainImage: "placeholder",
+    number: 17,
+    rating: 4.3,
+    chef: "Bartender",
+    chefTitle: "Specialist",
+    description: "Tequila soda in a can.",
+    longDescription: "A light and refreshing tequila soda in convenient canned format. Clean tequila mixed with sparkling soda water for a crisp, low-calorie cocktail option that's perfect for any occasion. Ready to drink, no mixing required.",
+    price: 11,
+  },
+],
 
   drinks: [
     {
