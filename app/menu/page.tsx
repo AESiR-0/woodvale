@@ -19,7 +19,7 @@ interface Dish {
   price?: number;
 }
 
-type CategoryType = "appetizers" | "entrees" | "drinks" | "wines";
+type CategoryType = "appetizers" | "entrees" | "drinks" | "wines" | "cocktails";
 
 export default function FoodMenu() {
   const [activeCategory, setActiveCategory] =
@@ -146,6 +146,8 @@ export default function FoodMenu() {
           } else if (activeCategory === "drinks") {
             setActiveCategory("wines");
           } else if (activeCategory === "wines") {
+            setActiveCategory("cocktails");
+          } else if (activeCategory === "cocktails") {
             setActiveCategory("appetizers");
           }
         }
@@ -164,6 +166,8 @@ export default function FoodMenu() {
           categoryScrollDirection.current = "backward";
 
           if (activeCategory === "wines") {
+            setActiveCategory("cocktails");
+          } else if (activeCategory === "cocktails") {
             setActiveCategory("drinks");
           } else if (activeCategory === "drinks") {
             setActiveCategory("entrees");
@@ -597,43 +601,34 @@ export default function FoodMenu() {
             Drinks
           </h2>
 
-          {/* Cocktails */}
-          <div className="mb-12">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="font-sans text-xl font-bold text-[var(--mint)]">
-                Cocktails
-              </h3>
-              <span className="text-sm text-[#071d18]/70">2 oz.</span>
-            </div>
-            <div className="space-y-4">
-              {categories.drinks
-                .filter((dish) => dish.subtitle === "Cocktail")
-                .map((dish) => (
-                  <div
-                    key={dish.id}
-                    className="flex justify-between items-start"
-                  >
-                    <div className="flex-1">
-                      <div className="flex justify-between items-start mb-1">
-                        <h4 className="font-sans text-base font-semibold text-[#071d18]">
-                          {dish.name}
-                        </h4>
-                        {dish.price && (
-                          <span className="text-base font-semibold text-[#071d18] ml-4">
-                            ${dish.price}
-                          </span>
-                        )}
-                      </div>
-                      {dish.subtitle === "Cocktail" && (
-                        <p className="text-sm text-white ml-4 leading-relaxed">
-                          {dish.description}
-                        </p>
+          {/* Cocktails Section */}
+          <section className="mb-20">
+            <div className="border-t border-gray-300 mb-8"></div>
+            <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center">
+              Cocktails
+            </h2>
+            <div className="space-y-6">
+              {categories.cocktails.map((dish) => (
+                <div key={dish.id} className="flex justify-between items-start">
+                  <div className="flex-1">
+                    <div className="flex justify-between items-start mb-1">
+                      <h4 className="font-sans text-base font-semibold text-[#071d18]">
+                        {dish.name}
+                      </h4>
+                      {dish.price && (
+                        <span className="text-base font-semibold text-[#071d18] ml-4">
+                          ${dish.price}
+                        </span>
                       )}
                     </div>
+                    <p className="text-sm text-[#071d18]/70 ml-4 leading-relaxed">
+                      {dish.description}
+                    </p>
                   </div>
-                ))}
+                </div>
+              ))}
             </div>
-          </div>
+          </section>
 
           {/* Draught */}
           <div className="mb-12">
@@ -901,29 +896,29 @@ export default function FoodMenu() {
                 {/* Title and Image Container */}
                 <div className="flex flex-col md:flex-row-reverse items-center justify-center gap-2 sm:gap-3 md:gap-6 lg:gap-8 flex-shrink-0">
                   {/* Title - WITH ANIMATION */}
-<div
-  className={`text-center md:text-left transition-all duration-500 ease-out flex-shrink-0 ${getTextAnimationClass()}`}
->
-  <h1 className="text-3xl sm:text-3xl md:text-3xl lg:text-4xl font-light text-[var(--muted)] tracking-wide mb-1 md:mb-1">
-    {currentDish.name}
-  </h1>
-  <h2 className="text-lg sm:text-lg md:text-lg lg:text-xl font-bold text-[var(--muted)]">
-    {currentDish.subtitle}
-  </h2>
-  {currentDish.price && (
-    <p className="text-base sm:text-base md:text-base lg:text-lg text-[var(--muted)]/80 mt-0.5">
-      ${currentDish.price}
-    </p>
-  )}
+                  <div
+                    className={`text-center md:text-left transition-all duration-500 ease-out flex-shrink-0 ${getTextAnimationClass()}`}
+                  >
+                    <h1 className="text-3xl sm:text-3xl md:text-3xl lg:text-4xl font-light text-[var(--muted)] tracking-wide mb-1 md:mb-1">
+                      {currentDish.name}
+                    </h1>
+                    <h2 className="text-lg sm:text-lg md:text-lg lg:text-xl font-bold text-[var(--muted)]">
+                      {currentDish.subtitle}
+                    </h2>
+                    {currentDish.price && (
+                      <p className="text-base sm:text-base md:text-base lg:text-lg text-[var(--muted)]/80 mt-0.5">
+                        ${currentDish.price}
+                      </p>
+                    )}
 
-  {/* ✅ Show description only for cocktails */}
-  {currentDish.subtitle === "Cocktail" && currentDish.description && (
-    <p className="text-sm sm:text-base md:text-base lg:text-lg text-[var(--muted)]/70 mt-1 leading-relaxed max-w-md mx-auto md:mx-0">
-      {currentDish.description}
-    </p>
-  )}
-</div>
-
+                    {/* ✅ Show description only for cocktails */}
+                    {currentDish.subtitle === "Cocktail" &&
+                      currentDish.description && (
+                        <p className="text-sm sm:text-base md:text-base lg:text-lg text-[var(--muted)]/70 mt-1 leading-relaxed max-w-md mx-auto md:mx-0">
+                          {currentDish.description}
+                        </p>
+                      )}
+                  </div>
 
                   {/* Image Container */}
                   <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-64 lg:h-64 flex-shrink-0">
@@ -1041,7 +1036,13 @@ export default function FoodMenu() {
 
                   {/* Category Buttons */}
                   <div className="backdrop-blur-3xl px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 flex justify-center gap-1.5 sm:gap-2 md:gap-3 overflow-x-auto scrollbar-hide rounded-full">
-                    {["appetizers", "entrees", "drinks", "wines"].map((cat) => (
+                    {[
+                      "appetizers",
+                      "entrees",
+                      "drinks",
+                      "wines",
+                      "cocktails",
+                    ].map((cat) => (
                       <button
                         key={cat}
                         onClick={() => {
