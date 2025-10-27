@@ -895,10 +895,10 @@ export default function FoodMenu() {
             >
               <div className="max-w-6xl w-full relative z-10 flex flex-col justify-center items-center h-full gap-6 sm:gap-4 md:gap-6 lg:gap-8">
                 {/* Title and Image Container */}
-                <div className="flex flex-col md:flex-row-reverse items-center justify-center gap-2 sm:gap-3 md:gap-6 lg:gap-8 flex-shrink-0">
+                <div className="flex flex-col md:flex-row-reverse items-center justify-center gap-2 sm:gap-3 md:gap-6 lg:gap-22 flex-shrink-0">
                   {/* Title - WITH ANIMATION */}
                   <div
-                    className={`text-center md:text-left transition-all duration-500 ease-out flex-shrink-0 ${getTextAnimationClass()}`}
+                    className={`text-center md:text-left transition-all flex flex-col duration-500 ease-out flex-shrink-0 ${getTextAnimationClass()}`}
                   >
                     <h1 className="text-3xl sm:text-3xl md:text-3xl lg:text-4xl font-light text-[var(--muted)] tracking-wide mb-1 md:mb-1">
                       {currentDish.name}
@@ -915,7 +915,7 @@ export default function FoodMenu() {
                     {/* ✅ Show description only for cocktails */}
                     {currentDish.subtitle === "Cocktail" &&
                       currentDish.longDescription && (
-                        <p className="text-sm sm:text-base md:text-base lg:text-lg text-[var(--muted)]/70 mt-1 leading-relaxed max-w-md mx-auto md:mx-0">
+                        <p className="text-sm sm:text-base md:text-base lg:text-lg text-[var(--muted)]/70 mt-8 leading-relaxed max-w-md mx-auto md:mx-0">
                           {currentDish.longDescription}
                         </p>
                       )}
