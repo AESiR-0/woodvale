@@ -74,9 +74,9 @@ export const categories: Record<CategoryType, Dish[]> = {
       name: "Mussels",
       subtitle: "Atlantic Fresh",
       image:
-        "https://images.unsplash.com/photo-1559095851-749ca43e6e3b?w=400&h=300&fit=crop",
+        "/images/Mussels.PNG",
       mainImage:
-        "https://images.unsplash.com/photo-1559095851-749ca43e6e3b?w=800&h=600&fit=crop",
+        "/images/Mussels.PNG",
       number: 4,
       rating: 4.7,
       chef: "Chef Pierre",
@@ -90,9 +90,9 @@ export const categories: Record<CategoryType, Dish[]> = {
       name: "Cauliflower",
       subtitle: "Tempura Style",
       image:
-        "https://images.unsplash.com/photo-1568583789064-c7d0fcb3f835?w=400&h=300&fit=crop",
+        "/images/Cauliflower.PNG",
       mainImage:
-        "https://images.unsplash.com/photo-1568583789064-c7d0fcb3f835?w=800&h=600&fit=crop",
+        "/images/Cauliflower.PNG",
       number: 5,
       rating: 4.4,
       chef: "Chef Yuki",
@@ -106,9 +106,9 @@ export const categories: Record<CategoryType, Dish[]> = {
       name: "Croquettes",
       subtitle: "Sweet & Savory",
       image:
-        "https://images.unsplash.com/photo-1509358271058-acd22cc93898?w=400&h=300&fit=crop",
+        "/images/Croquettes.PNG",
       mainImage:
-        "https://images.unsplash.com/photo-1509358271058-acd22cc93898?w=800&h=600&fit=crop",
+        "/images/Croquettes.PNG",
       number: 6,
       rating: 4.5,
       chef: "Chef Sophie",
@@ -122,9 +122,9 @@ export const categories: Record<CategoryType, Dish[]> = {
       name: "Elk Carpaccio",
       subtitle: "Wild Game",
       image:
-        "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop",
+        "/images/ElkCarpaccio.JPG",
       mainImage:
-        "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&h=600&fit=crop",
+        "/images/ElkCarpaccio.JPG",
       number: 7,
       rating: 4.9,
       chef: "Chef Marcus",
@@ -171,9 +171,9 @@ export const categories: Record<CategoryType, Dish[]> = {
       name: "Bruschetta",
       subtitle: "Forest Mushroom",
       image:
-        "https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=400&h=300&fit=crop",
+        "/images/Bruschetta.PNG",
       mainImage:
-        "https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=800&h=600&fit=crop",
+        "/images/Bruschetta.PNG",
       number: 11,
       rating: 4.5,
       chef: "Chef Luca",
@@ -190,9 +190,9 @@ export const categories: Record<CategoryType, Dish[]> = {
       name: "Beef Tenderloin",
       subtitle: "Ash Crusted",
       image:
-        "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=400&h=300&fit=crop",
+        "/images/BeefTenderloin.PNG",
       mainImage:
-        "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800&h=600&fit=crop",
+        "/images/BeefTenderloin.PNG",
       number: 1,
       rating: 4.9,
       chef: "Chef Laurent",
@@ -206,9 +206,9 @@ export const categories: Record<CategoryType, Dish[]> = {
       name: "Chicken",
       subtitle: "Roasted Perfection",
       image:
-        "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=300&fit=crop",
+        "/images/Chicken.PNG",
       mainImage:
-        "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&h=600&fit=crop",
+        "/images/Chicken.PNG",
       number: 2,
       rating: 4.6,
       chef: "Chef Sarah",
@@ -254,9 +254,9 @@ export const categories: Record<CategoryType, Dish[]> = {
       name: "Tagliatelle",
       subtitle: "Short Rib Pasta",
       image:
-        "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=300&fit=crop",
+        "/images/Tagliatelle.JPG",
       mainImage:
-        "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800&h=600&fit=crop",
+        "/images/Tagliatelle.JPG",
       number: 5,
       rating: 4.8,
       chef: "Chef Giovanni",
@@ -270,9 +270,9 @@ export const categories: Record<CategoryType, Dish[]> = {
       name: "Pescatore",
       subtitle: "Seafood Linguine",
       image:
-        "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&h=300&fit=crop",
+        "/images/Pescatore.PNG",
       mainImage:
-        "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&h=600&fit=crop",
+        "/images/Pescatore.PNG",
       number: 6,
       rating: 4.7,
       chef: "Chef Marco",
@@ -318,9 +318,9 @@ export const categories: Record<CategoryType, Dish[]> = {
       name: "Wildfire Molcajete",
       subtitle: "Tableside Experience",
       image:
-        "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=300&fit=crop",
+        "/images/WildfireMolcajete.PNG",
       mainImage:
-        "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&h=600&fit=crop",
+        "/images/WildfireMolcajete.PNG",
       number: 9,
       rating: 5.0,
       chef: "Chef Diego",
