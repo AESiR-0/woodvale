@@ -84,10 +84,10 @@ export default function ServicesSection() {
               <div className="service-card group cursor-pointer">
                 <div className="relative h-64 sm:h-80 lg:h-96 rounded-lg overflow-hidden mb-4 shadow-2xl">
                   <Link href="/reserve">
-                    <Image
-                      src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                    <img
+                      src="/static/venue/IMG_0833.JPG"
                       alt="Elegant table setting with fine dining presentation"
-                      fill
+                      
                       className="object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-110"
                     />
                   </Link>
@@ -103,7 +103,7 @@ export default function ServicesSection() {
                 <div className="relative h-64 sm:h-80 lg:h-96 rounded-lg overflow-hidden mb-4 shadow-2xl">
                   <Link href="/menu#cocktails">
                     <Image
-                      src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                      src="/static/venue/bar.jpg"
                       alt="Sophisticated bar area with craft cocktails"
                       fill
                       className="object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-110"
@@ -112,7 +112,7 @@ export default function ServicesSection() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
                 <h3 className="font-sans text-lg sm:text-xl lg:text-2xl font-semibold text-white group-hover:text-[#a8d5ba] transition-all duration-300 text-center">
-                  Speakeasy Bar
+                  Cocktail Bar
                 </h3>
               </div>
 
@@ -120,10 +120,11 @@ export default function ServicesSection() {
                 <div className="relative h-64 sm:h-80 lg:h-96 rounded-lg overflow-hidden mb-4 shadow-2xl">
                   <Link href="/menu#entrees">
                     <Image
-                      src="https://images.unsplash.com/photo-1761095596765-c8abe01d3aea?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687"
+                      src="/static/venue/culinary-artistry.jpg"
                       alt="Beautifully plated gourmet dish with elegant presentation"
                       fill
-                      className="object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-110"
+                      style={{ objectFit: "cover", objectPosition: "bottom" }}
+                      className="transition-all duration-700 ease-out brightness-75 group-hover:brightness-110"
                     />
                   </Link>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
