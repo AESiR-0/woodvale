@@ -79,12 +79,12 @@ export default function Hero() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[var(--leaf)]/50 via-[var(--leaf)]/40 to-[var(--leaf)]/50"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[var(--leaf)]/50 via-[var(--leaf)]/60 to-[var(--leaf)]/70"></div>
         </div>
 
         {/* Hero Content */}
         <div
-          className="relative z-10 text-left px-6 max-w-6xl mx-auto"
+          className="relative z-10 text-left px-6 max-w-6xl mx-auto mb-12"
           style={{
             transform: `translateY(${scrollY * 0.2}px)`,
             opacity: 1 - scrollY / 800,
@@ -116,7 +116,7 @@ export default function Hero() {
             ambiance. Where timeless flavors meet contemporary innovation.
           </p>
           <div ref={buttonRef}>
-            <Link href="/reserve" className="btn-primary mb-10 capitalize">
+            <Link href="/reserve" className="btn-primary capitalize">
               Save Your Seat
             </Link>
           </div>
