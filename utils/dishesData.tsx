@@ -27,9 +27,9 @@ export const categories: Record<CategoryType, Dish[]> = {
       name: "Soup of the Day",
       subtitle: "Chef's Selection",
       image:
-        "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&h=300&fit=crop",
+        "/images/demo1.png",
       mainImage:
-        "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&h=600&fit=crop",
+        "/images/demo1.png",
       number: 1,
       rating: 4.5,
       chef: "Chef Johnson",
@@ -575,9 +575,9 @@ cocktails: [
       name: "House Lager",
       subtitle: "Draught Beer",
       image:
-        "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=400&h=300&fit=crop",
+        "/images/Drinkkk.png",
       mainImage:
-        "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=800&h=600&fit=crop",
+        "/images/Drinkkk.png",
       number: 9,
       rating: 4.4,
       chef: "Brewmaster Tom",

@@ -104,23 +104,23 @@ export default function ReservationForm() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen overflow-hidden flex items-center justify-center px-4 sm:px-6">
+    <section className="relative w-full min-h-screen overflow-hidden flex items-center justify-center">
       {/* Background */}
       <div
         ref={bgRef}
-        className="absolute inset-0 bg-cover bg-center will-change-transform"
+        className="absolute inset-0 bg-cover bg-top will-change-transform"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2070&q=80')",
+            "url('/images/bookYourTable.JPG')",
         }}
       />
-      <div className="absolute inset-0 bg-black/70" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[var(--leaf)]/60 via-[var(--leaf)]/90 to-[var(--leaf)]/50" />
 
       {/* Form */}
       <form
         ref={formRef}
         onSubmit={handleSubmit}
-        className="relative z-20 text-white rounded-lg shadow-xl w-full max-w-md sm:max-w-lg md:max-w-xl p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-6 md:gap-6 text-base sm:text-lg"
+        className="relative z-20 mb-20 text-white rounded-lg w-full max-w-md sm:max-w-lg md:max-w-xl p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-6 md:gap-6 text-base sm:text-lg"
       >
         <h1 className="font-heading text-3xl sm:text-4xl md:text-4xl font-bold text-center mb-2 sm:mb-4">
           Book Your Table
