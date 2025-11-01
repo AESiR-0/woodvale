@@ -885,7 +885,7 @@ export default function FoodMenu() {
       ) : (
         <div className="flex h-screen bg-[var(--leaf)] text-[var(--bg)] overflow-hidden">
           {/* Main Content Area */}
-          <div className="flex-1 flex flex-col  relative">
+          <div className="flex-1 flex flex-col relative">
             {/* Fixed Content Display Area */}
             <div
               ref={scrollContainerRef}
@@ -895,7 +895,7 @@ export default function FoodMenu() {
             >
               <div className="max-w-6xl w-full relative z-10 flex flex-col justify-center items-center h-full gap-6 sm:gap-4 md:gap-6 lg:gap-8">
                 {/* Title and Image Container */}
-                <div className="flex flex-col md:flex-row-reverse items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-8 flex-shrink-0">
+                <div className="flex flex-col md:flex-row-reverse items-center justify-center gap-2 sm:gap-3 md:gap-6 lg:gap-22 flex-shrink-0">
                   {/* Title - WITH ANIMATION */}
                   <div
                     className={`text-center md:text-left transition-all flex flex-col duration-500 ease-out flex-shrink-0 ${getTextAnimationClass()}`}
@@ -922,10 +922,10 @@ export default function FoodMenu() {
                   </div>
 
                   {/* Image Container */}
-                  <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 flex-shrink-0">
+                  <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-64 lg:h-64 flex-shrink-0">
                     {previousDish && (
                       <div
-                        className={`absolute inset-0 rounded-full${
+                        className={`absolute inset-0 bg-white rounded-full shadow-2xl ${
                           scrollDirection === "forward"
                             ? "animate-spinOut"
                             : "animate-spinOutBackward"
@@ -934,13 +934,13 @@ export default function FoodMenu() {
                         <img
                           src={previousDish.mainImage}
                           alt={previousDish.name}
-                          className="w-full h-full object-cover "
+                          className="w-full h-full object-cover rounded-full"
                         />
                       </div>
                     )}
 
                     <div
-                      className={`absolute inset-0  rounded-full  ${
+                      className={`absolute inset-0 bg-white rounded-full shadow-2xl ${
                         previousDish
                           ? scrollDirection === "forward"
                             ? "animate-spinIn"
@@ -951,7 +951,7 @@ export default function FoodMenu() {
                       <img
                         src={currentDish.mainImage}
                         alt={currentDish.name}
-                        className="w-full h-full object-cover "
+                        className="w-full h-full object-cover rounded-full"
                       />
                     </div>
                   </div>
@@ -984,7 +984,7 @@ export default function FoodMenu() {
                             }s both`,
                           }}
                         >
-                          <div className="rounded-full overflow-hidden w-20 h-20 sm:w-24 sm:h-24 md:w-24 md:h-24 flex items-center justify-center flex-shrink-0">
+                          <div className="rounded-full overflow-hidden w-14 h-14 sm:w-16 sm:h-16 md:w-16 md:h-16 flex items-center justify-center flex-shrink-0">
                             <img
                               src={d.image}
                               alt={d.name}

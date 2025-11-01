@@ -211,7 +211,7 @@ export default function AboutPage() {
           <div className="mb-4 inline-block">
             <div className="flex items-center justify-center gap-2 text-white/60 text-sm tracking-widest uppercase mb-3">
               <div className="w-12 h-px bg-white/40"></div>
-              <span>Est. 1980</span>
+              <span>Est. 2024</span>
               <div className="w-12 h-px bg-white/40"></div>
             </div>
           </div>

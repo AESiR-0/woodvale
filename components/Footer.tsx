@@ -20,7 +20,7 @@ export default function Footer() {
             <div className="lg:col-span-1 space-y-6">
               <div className="flex flex-col items-start space-x-3">
                 <Image
-                  src="/static/logos/2D.PNG"
+                  src="/static/logos/2D.png"
                   alt="Woodvale Restaurant Logo"
                   width={96}
                   height={96}
