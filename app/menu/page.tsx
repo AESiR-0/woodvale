@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   ChevronLeft,
   ChevronRight,
-  Menu,
+  // Menu,
   Grid3X3,
   ScrollText,
 } from "lucide-react";
