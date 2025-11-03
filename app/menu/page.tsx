@@ -1,31 +1,10 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import {
-  ChevronLeft,
-  ChevronRight,
-  // Menu,
-  Grid3X3,
-  ScrollText,
-} from "lucide-react";
-import { categories } from "@/utils/dishesData";
+import { ChevronLeft, ChevronRight, Grid3X3, ScrollText } from "lucide-react";
+import { categories, Dish } from "@/utils/dishesData";
 import TraditionalMenu from "@/components/TraditionalManu";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
-interface Dish {
-  id: number;
-  name: string;
-  subtitle: string;
-  image: string;
-  mainImage: string;
-  number: number;
-  rating: number;
-  chef: string;
-  chefTitle: string;
-  description: string;
-  longDescription?: string;
-  price?: number;
-}
 
 type CategoryType = "appetizers" | "entrees" | "drinks" | "cocktails";
 
@@ -105,9 +84,10 @@ export default function FoodMenu() {
     setCarouselIndex(0);
     if (dishes.length > 0) {
       if (categoryScrollDirection.current === "backward") {
-        setActiveDish(dishes[dishes.length - 1]?.id || 1);
+        // Use fallback 1 if id isn't present (defensive)
+        setActiveDish(dishes[dishes.length - 1]?.id ?? 1);
       } else {
-        setActiveDish(dishes[0]?.id || 1);
+        setActiveDish(dishes[0]?.id ?? 1);
       }
       isChangingCategory.current = false;
     }
@@ -140,8 +120,8 @@ export default function FoodMenu() {
         const currentIndex = dishes.findIndex((d) => d.id === activeDish);
 
         if (currentIndex < dishes.length - 1) {
-          // Move to next dish
-          setActiveDish(dishes[currentIndex + 1].id);
+          // Move to next dish (assert id is present)
+          setActiveDish(dishes[currentIndex + 1].id!);
         } else {
           // Move to next category
           isChangingCategory.current = true;
@@ -165,7 +145,7 @@ export default function FoodMenu() {
 
         if (currentIndex > 0) {
           // Move to previous dish
-          setActiveDish(dishes[currentIndex - 1].id);
+          setActiveDish(dishes[currentIndex - 1].id!);
         } else {
           // Move to previous category
           isChangingCategory.current = true;
@@ -220,7 +200,7 @@ export default function FoodMenu() {
         const currentIndex = dishes.findIndex((d) => d.id === activeDish);
 
         if (currentIndex < dishes.length - 1) {
-          setActiveDish(dishes[currentIndex + 1].id);
+          setActiveDish(dishes[currentIndex + 1].id!);
         } else {
           isChangingCategory.current = true;
           categoryScrollDirection.current = "forward";
@@ -235,7 +215,7 @@ export default function FoodMenu() {
         const currentIndex = dishes.findIndex((d) => d.id === activeDish);
 
         if (currentIndex > 0) {
-          setActiveDish(dishes[currentIndex - 1].id);
+          setActiveDish(dishes[currentIndex - 1].id!);
         } else {
           isChangingCategory.current = true;
           categoryScrollDirection.current = "backward";
@@ -299,7 +279,7 @@ export default function FoodMenu() {
       setCarouselIndex(newIndex);
       const targetDish = dishes[newIndex * DISHES_PER_VIEW];
       if (targetDish) {
-        scrollToDish(targetDish.id);
+        scrollToDish(targetDish.id!);
       }
     }
   };
@@ -310,7 +290,7 @@ export default function FoodMenu() {
       setCarouselIndex(newIndex);
       const targetDish = dishes[newIndex * DISHES_PER_VIEW];
       if (targetDish) {
-        scrollToDish(targetDish.id);
+        scrollToDish(targetDish.id!);
       }
     }
   };
@@ -348,61 +328,6 @@ export default function FoodMenu() {
           <Grid3X3 className="w-8 h-8" />
         ) : (
           <ScrollText className="w-8 h-8" />
-          //in case the first one gets rejected
-          // <svg
-          //   xmlns="http://www.w3.org/2000/svg"
-          //   viewBox="0 0 512 512"
-          //   width="40"
-          //   height="40"
-          //   fill="white"
-          // >
-          //   {/* <!-- Main paper body --> */}
-          //   <path
-          //     d="M160 80h240v280l-80 80H160V80z"
-          //     fill="none"
-          //     stroke="white"
-          //     stroke-width="32"
-          //     stroke-linejoin="miter"
-          //   />
-
-          //   {/* <!-- Folded corner --> */}
-          //   <path
-          //     d="M320 440v-80h80"
-          //     fill="none"
-          //     stroke="white"
-          //     stroke-width="32"
-          //     stroke-linejoin="miter"
-          //   />
-
-          //   {/* <!-- Horizontal lines --> */}
-          //   <line
-          //     x1="220"
-          //     y1="200"
-          //     x2="360"
-          //     y2="200"
-          //     stroke="white"
-          //     stroke-width="18"
-          //     stroke-linecap="round"
-          //   />
-          //   <line
-          //     x1="220"
-          //     y1="240"
-          //     x2="360"
-          //     y2="240"
-          //     stroke="white"
-          //     stroke-width="18"
-          //     stroke-linecap="round"
-          //   />
-          //   <line
-          //     x1="220"
-          //     y1="280"
-          //     x2="360"
-          //     y2="280"
-          //     stroke="white"
-          //     stroke-width="18"
-          //     stroke-linecap="round"
-          //   />
-          // </svg>
         )}
       </button>
 
@@ -427,10 +352,10 @@ export default function FoodMenu() {
                     className={`text-center md:text-left transition-all flex flex-col duration-500 ease-out flex-shrink-0 ${getTextAnimationClass()}`}
                   >
                     <h1 className="text-3xl sm:text-3xl md:text-3xl lg:text-4xl font-light text-[var(--muted)] tracking-wide mb-1 md:mb-1">
-                      {currentDish.name}
+                      {currentDish.name ?? ""}
                     </h1>
                     <h2 className="text-lg sm:text-lg md:text-lg lg:text-xl font-bold text-[var(--muted)]">
-                      {currentDish.subtitle}
+                      {currentDish.subtitle ?? ""}
                     </h2>
                     {currentDish.price && (
                       <p className="text-base sm:text-base md:text-base lg:text-lg text-[var(--muted)]/80 mt-0.5">
@@ -452,9 +377,14 @@ export default function FoodMenu() {
                     className={`relative  flex-shrink-0
                     ${
                       currentDish.id === 30
-                        ? "w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-60 lg:h-60"
-                        : "w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-80 lg:h-80"
+                        ? "w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-70 lg:h-70"
+                        : "w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-100 lg:h-100"
                     }    
+                    ${
+                      currentDish.id === 31
+                        ? "w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-60 lg:h-60"
+                        : "w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-100 lg:h-100"
+                    }
                     `}
                   >
                     {previousDish && (
@@ -466,8 +396,8 @@ export default function FoodMenu() {
                         }`}
                       >
                         <img
-                          src={previousDish.mainImage}
-                          alt={previousDish.name}
+                          src={previousDish.mainImage ?? ""}
+                          alt={previousDish.name ?? ""}
                           className="w-full h-full object-contain"
                         />
                       </div>
@@ -483,18 +413,13 @@ export default function FoodMenu() {
                       }`}
                     >
                       <img
-                        src={currentDish.mainImage}
-                        alt={currentDish.name}
+                        src={currentDish.mainImage ?? ""}
+                        alt={currentDish.name ?? ""}
                         className={`absolute inset-0 w-full h-full ${
-                          currentDish.id === 34 || 28
+                          currentDish.id == 33 || 34 || 28
                             ? "object-contain"
-                            : "object-cover"
+                            : "object-contain"
                         }
-                            ${
-                              currentDish.id === 29
-                                ? "object-contain"
-                                : "object-cover"
-                            }
                           `}
                       />
                     </div>
@@ -515,8 +440,8 @@ export default function FoodMenu() {
                     <div className="flex gap-1.5 sm:gap-2 md:gap-3 transition-transform duration-500 ease-out">
                       {visibleDishes.map((d, index) => (
                         <div
-                          key={`selector-${activeCategory}-${d.id}`}
-                          onClick={() => scrollToDish(d.id)}
+                          key={`selector-${activeCategory}-${d.id ?? index}`}
+                          onClick={() => scrollToDish(d.id!)}
                           className={`cursor-pointer flex-1 min-w-0 h-full flex flex-col items-center justify-center transition-all duration-300 ${
                             activeDish === d.id
                               ? "text-[var(--muted)] scale-100 sm:scale-105 px-1 sm:px-2 pt-1 bg-white/20 rounded-lg sm:rounded-xl"
@@ -530,15 +455,15 @@ export default function FoodMenu() {
                         >
                           <div className="rounded-full overflow-hidden w-14 h-14 sm:w-16 sm:h-16 md:w-16 md:h-16 flex items-center justify-center flex-shrink-0">
                             <img
-                              src={d.image}
-                              alt={d.name}
+                              src={d.image ?? ""}
+                              alt={d.name ?? ""}
                               className="w-full h-full object-cover"
                             />
                           </div>
                           <p className="text-[10px] sm:text-[11px] md:text-xs text-center mt-1 px-0.5 leading-tight line-clamp-2">
-                            {d.name.toLowerCase()}
+                            {(d.name ?? "").toLowerCase()}
                             <br />
-                            {d.subtitle.toLowerCase()}
+                            {(d.subtitle ?? "").toLowerCase()}
                           </p>
                         </div>
                       ))}
@@ -566,7 +491,7 @@ export default function FoodMenu() {
                             setCarouselIndex(idx);
                             const targetDish = dishes[idx * DISHES_PER_VIEW];
                             if (targetDish) {
-                              scrollToDish(targetDish.id);
+                              scrollToDish(targetDish.id!);
                             }
                           }}
                           className={`rounded-full transition-all duration-300 ${
