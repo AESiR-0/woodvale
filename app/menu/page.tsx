@@ -151,8 +151,7 @@ export default function FoodMenu() {
             setActiveCategory("entrees");
           } else if (activeCategory === "entrees") {
             setActiveCategory("drinks");
-          }
-          else if (activeCategory === "drinks") {
+          } else if (activeCategory === "drinks") {
             setActiveCategory("cocktails");
           } else if (activeCategory === "cocktails") {
             setActiveCategory("appetizers");
@@ -331,7 +330,6 @@ export default function FoodMenu() {
     return showText ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8";
   };
 
-
   return (
     <div className="min-h-screen bg-[#E6E8D9]">
       <Navbar />
@@ -442,18 +440,25 @@ export default function FoodMenu() {
 
                     {/* ✅ Show description only for cocktails */}
                     {currentDish.subtitle === "Cocktail" &&
-                      currentDish.longDescription && (
-                        <p className="text-sm sm:text-base md:text-base lg:text-lg text-[var(--muted)]/70 mt-8 leading-relaxed max-w-md mx-auto md:mx-0">
-                          {currentDish.longDescription}
+                      currentDish.description && (
+                        <p className="text-sm sm:text-base md:text-base lg:text-md text-[var(--muted)]/70 mt-8 leading-relaxed max-w-md mx-auto md:mx-0">
+                          {currentDish.description}
                         </p>
                       )}
                   </div>
 
                   {/* Image Container */}
-                  <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-64 lg:h-64 flex-shrink-0">
+                  <div
+                    className={`relative  flex-shrink-0
+                    ${
+                      currentDish.id === 30 ? 
+                      "w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-60 lg:h-60" : "w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-80 lg:h-80"
+                    }    
+                    `}
+                  >
                     {previousDish && (
                       <div
-                        className={`absolute inset-0 bg-white rounded-full shadow-2xl ${
+                        className={`absolute inset-0 ${
                           scrollDirection === "forward"
                             ? "animate-spinOut"
                             : "animate-spinOutBackward"
@@ -462,13 +467,13 @@ export default function FoodMenu() {
                         <img
                           src={previousDish.mainImage}
                           alt={previousDish.name}
-                          className="w-full h-full object-cover rounded-full"
+                          className="w-full h-full object-contain"
                         />
                       </div>
                     )}
 
                     <div
-                      className={`absolute inset-0 bg-white rounded-full shadow-2xl ${
+                      className={`absolute inset-0 ${
                         previousDish
                           ? scrollDirection === "forward"
                             ? "animate-spinIn"
@@ -479,7 +484,12 @@ export default function FoodMenu() {
                       <img
                         src={currentDish.mainImage}
                         alt={currentDish.name}
-                        className="w-full h-full object-cover rounded-full"
+                        className={`absolute inset-0 w-full h-full ${
+                          currentDish.id === 34 || 28
+                            ? "object-contain"
+                            : "object-cover"
+                        }
+                          `}
                       />
                     </div>
                   </div>
@@ -565,29 +575,26 @@ export default function FoodMenu() {
 
                   {/* Category Buttons */}
                   <div className="backdrop-blur-3xl px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 flex justify-center gap-1.5 sm:gap-2 md:gap-3 overflow-x-auto scrollbar-hide rounded-full">
-                    {[
-                      "appetizers",
-                      "entrees",
-                      "drinks",
-                      "cocktails",
-                    ].map((cat) => (
-                      <button
-                        key={cat}
-                        onClick={() => {
-                          if (activeCategory !== cat) {
-                            categoryScrollDirection.current = "forward";
-                            setActiveCategory(cat as CategoryType);
-                          }
-                        }}
-                        className={`flex-shrink-0 py-1 sm:py-1.5 px-2.5 sm:px-3 md:px-4 rounded-full transition-all duration-300 text-xs sm:text-sm md:text-base font-semibold whitespace-nowrap ${
-                          activeCategory === cat
-                            ? "bg-[var(--muted)] text-gray-700 scale-100 sm:scale-105"
-                            : "bg-[var(--muted)]/60 text-gray-600 hover:bg-[var(--muted)]/40 hover:scale-105"
-                        }`}
-                      >
-                        {cat.charAt(0).toUpperCase() + cat.slice(1)}
-                      </button>
-                    ))}
+                    {["appetizers", "entrees", "drinks", "cocktails"].map(
+                      (cat) => (
+                        <button
+                          key={cat}
+                          onClick={() => {
+                            if (activeCategory !== cat) {
+                              categoryScrollDirection.current = "forward";
+                              setActiveCategory(cat as CategoryType);
+                            }
+                          }}
+                          className={`flex-shrink-0 py-1 sm:py-1.5 px-2.5 sm:px-3 md:px-4 rounded-full transition-all duration-300 text-xs sm:text-sm md:text-base font-semibold whitespace-nowrap ${
+                            activeCategory === cat
+                              ? "bg-[var(--muted)] text-gray-700 scale-100 sm:scale-105"
+                              : "bg-[var(--muted)]/60 text-gray-600 hover:bg-[var(--muted)]/40 hover:scale-105"
+                          }`}
+                        >
+                          {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                        </button>
+                      )
+                    )}
                   </div>
                 </div>
               </div>
