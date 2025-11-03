@@ -27,7 +27,7 @@ interface Dish {
   price?: number;
 }
 
-type CategoryType = "appetizers" | "entrees" | "drinks" | "wines" | "cocktails";
+type CategoryType = "appetizers" | "entrees" | "drinks" | "cocktails";
 
 export default function FoodMenu() {
   const [activeCategory, setActiveCategory] =
@@ -151,9 +151,8 @@ export default function FoodMenu() {
             setActiveCategory("entrees");
           } else if (activeCategory === "entrees") {
             setActiveCategory("drinks");
-          } else if (activeCategory === "drinks") {
-            setActiveCategory("wines");
-          } else if (activeCategory === "wines") {
+          }
+          else if (activeCategory === "drinks") {
             setActiveCategory("cocktails");
           } else if (activeCategory === "cocktails") {
             setActiveCategory("appetizers");
@@ -174,8 +173,6 @@ export default function FoodMenu() {
           categoryScrollDirection.current = "backward";
 
           if (activeCategory === "cocktails") {
-            setActiveCategory("wines");
-          } else if (activeCategory === "wines") {
             setActiveCategory("drinks");
           } else if (activeCategory === "drinks") {
             setActiveCategory("entrees");
@@ -231,8 +228,7 @@ export default function FoodMenu() {
 
           if (activeCategory === "appetizers") setActiveCategory("entrees");
           else if (activeCategory === "entrees") setActiveCategory("drinks");
-          else if (activeCategory === "drinks") setActiveCategory("wines");
-          else if (activeCategory === "wines") setActiveCategory("appetizers");
+          else if (activeCategory === "drinks") setActiveCategory("appetizers");
         }
       }
       // Swipe down → backward
@@ -245,11 +241,10 @@ export default function FoodMenu() {
           isChangingCategory.current = true;
           categoryScrollDirection.current = "backward";
 
-          if (activeCategory === "wines") setActiveCategory("drinks");
+          if (activeCategory === "appetizers") setActiveCategory("drinks");
           else if (activeCategory === "drinks") setActiveCategory("entrees");
           else if (activeCategory === "entrees")
             setActiveCategory("appetizers");
-          else if (activeCategory === "appetizers") setActiveCategory("wines");
         }
       }
     };
@@ -574,7 +569,6 @@ export default function FoodMenu() {
                       "appetizers",
                       "entrees",
                       "drinks",
-                      "wines",
                       "cocktails",
                     ].map((cat) => (
                       <button
