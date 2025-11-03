@@ -24,7 +24,7 @@ const TraditionalMenu = () => {
         {/* Appetizers Section */}
         <section className="mt-20">
           <div className="border-t border-gray-300 mb-8"></div>
-          <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center font-medium">
+          <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center">
             Appetizers
           </h2>
           <div className="space-y-6">
@@ -99,16 +99,16 @@ const TraditionalMenu = () => {
               <div key={dish.id} className="flex justify-between items-start">
                 <div className="flex-1">
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-sans text-lg font-semibold text-[#071d18] font-medium">
+                    <h3 className="font-sans text-lg font-semibold text-[#071d18]">
                       {dish.name}
                     </h3>
                     {dish.priceDisplay || (
-                      <span className="text-lg font-semibold text-[#071d18] ml-4 font-medium">
+                      <span className="text-lg font-semibold text-[#071d18] ml-4">
                         ${dish.priceDisplay}
                       </span>
                     )}
                   </div>
-                  <p className="text-sm text-[#071d18]/70 ml-4 leading-relaxed font-medium">
+                  <p className="text-sm text-[#071d18]/70 ml-4 leading-relaxed">
                     {dish.description}
                   </p>
                 </div>
@@ -118,16 +118,16 @@ const TraditionalMenu = () => {
             {/* Build Your Own Charcuterie */}
             <section className="mb-20">
               <div className="border-t border-gray-300 mb-8"></div>
-              <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center font-medium">
+              <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center">
                 Build Your Own Charcuterie
               </h2>
               <div className="grid grid-cols-4 gap-8">
                 {/* Meat */}
                 <div>
-                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4 font-medium">
+                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4">
                     Meat
                   </h3>
-                  <div className="space-y-3 font-medium">
+                  <div className="space-y-3">
                     <div className="flex justify-between">
                       <span className="text-[#071d18]/70">
                         Red wine prosciutto
@@ -161,10 +161,10 @@ const TraditionalMenu = () => {
 
                 {/* Cheese */}
                 <div>
-                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4 font-medium">
+                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4">
                     Cheese
                   </h3>
-                  <div className="space-y-3 font-medium">
+                  <div className="space-y-3">
                     <div className="flex justify-between">
                       <span className="text-[#071d18]/70">Brie</span>
                       <span className="text-[#071d18]/70">$8</span>
@@ -198,10 +198,10 @@ const TraditionalMenu = () => {
 
                 {/* Pickled */}
                 <div>
-                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4 font-medium">
+                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4">
                     Pickled
                   </h3>
-                  <div className="space-y-3 font-medium">
+                  <div className="space-y-3">
                     <div className="flex justify-between">
                       <span className="text-[#071d18]/70">Asparagus</span>
                       <span className="text-[#071d18]/70">$4</span>
@@ -227,10 +227,10 @@ const TraditionalMenu = () => {
 
                 {/* Spreads */}
                 <div>
-                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4 font-medium">
+                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4">
                     Spreads
                   </h3>
-                  <div className="space-y-3 font-medium">
+                  <div className="space-y-3">
                     <div className="flex justify-between">
                       <span className="text-[#071d18]/70">Rosehip & maple</span>
                       <span className="text-[#071d18]/70">$4</span>
@@ -253,7 +253,7 @@ const TraditionalMenu = () => {
         {/* Entrées Section (Updated from PDF) */}
         <section className="mb-20">
           <div className="border-t border-gray-300 mb-8"></div>
-          <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center font-medium">
+          <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center">
             Entrées
           </h2>
 
@@ -317,14 +317,14 @@ const TraditionalMenu = () => {
               <div key={index} className="flex justify-between items-start">
                 <div className="flex-1">
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-sans text-lg font-semibold text-[#071d18] font-medium">
+                    <h3 className="font-sans text-lg font-semibold text-[#071d18]">
                       {dish.name}
                     </h3>
-                    <span className="text-lg font-semibold text-[#071d18] ml-4 font-medium">
+                    <span className="text-lg font-semibold text-[#071d18] ml-4">
                       ${dish.price}
                     </span>
                   </div>
-                  <p className="text-sm text-[#071d18]/70 ml-4 leading-relaxed font-medium">
+                  <p className="text-sm text-[#071d18]/70 ml-4 leading-relaxed">
                     {dish.description}
                   </p>
                 </div>
@@ -336,11 +336,11 @@ const TraditionalMenu = () => {
         {/* Additional Section (synced with PDF) */}
         <section className="mb-20">
           <div className="border-t border-gray-300 mb-8"></div>
-          <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center font-medium">
+          <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center">
             Additional
           </h2>
 
-          <div className="grid grid-cols-3 gap-8 font-medium">
+          <div className="grid grid-cols-3 gap-8">
             <div className="space-y-4 text-[#071d18]/70">
               <div className="flex justify-between">
                 <span>add chicken</span>
@@ -382,10 +382,10 @@ const TraditionalMenu = () => {
 {/* Brunch Section */}
 <section className="mb-20">
   <div className="border-t border-gray-300 mb-8"></div>
-  <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-2 text-center font-medium">
+  <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-2 text-center">
     Brunch
   </h2>
-  <p className="text-center text-[#071d18]/70 font-medium mb-12">
+  <p className="text-center text-[#071d18]/70 mb-12">
     served from 9:30 a.m – 3:00 p.m
   </p>
 
@@ -436,14 +436,14 @@ const TraditionalMenu = () => {
       <div key={i} className="flex justify-between items-start">
         <div className="flex-1">
           <div className="flex justify-between items-start mb-2">
-            <h3 className="font-sans text-lg font-semibold text-[#071d18] font-medium">
+            <h3 className="font-sans text-lg font-semibold text-[#071d18]">
               {dish.name}
             </h3>
-            <span className="text-lg font-semibold text-[#071d18] ml-4 font-medium">
+            <span className="text-lg font-semibold text-[#071d18] ml-4">
               ${dish.price}
             </span>
           </div>
-          <p className="text-sm text-[#071d18]/70 ml-4 leading-relaxed font-medium">
+          <p className="text-sm text-[#071d18]/70 ml-4 leading-relaxed">
             {dish.description}
           </p>
         </div>
@@ -453,11 +453,11 @@ const TraditionalMenu = () => {
 
   {/* Add-ons Section */}
   <div className="border-t border-gray-300 mt-16 mb-8"></div>
-  <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6 text-center font-medium">
+  <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6 text-center">
     Add-ons
   </h3>
 
-  <div className="grid md:grid-cols-3 gap-8 text-[#071d18]/80 font-medium">
+  <div className="grid md:grid-cols-3 gap-8 text-[#071d18]/80">
     <div className="space-y-2">
       <p>add bacon - 3</p>
       <p>add smoked salmon - 7</p>
@@ -481,16 +481,16 @@ const TraditionalMenu = () => {
         {/* Drinks Section */}
         <section className="mb-20">
           <div className="border-t border-gray-300 mb-8"></div>
-          <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center font-medium">
+          <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center">
             Drinks
           </h2>
 
           {/* Cocktails */}
           <div className="mb-16">
-            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6 font-medium">
+            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6">
               Cocktails
             </h3>
-            <div className="space-y-6 font-medium text-[#071d18]/80">
+            <div className="space-y-6 text-[#071d18]/80">
               {[
                 {
                   name: "Forest Ember Old Fashioned",
@@ -571,10 +571,10 @@ const TraditionalMenu = () => {
 
           {/* Draught Section */}
           <div className="mb-16">
-            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6 font-medium">
+            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6">
               Draught
             </h3>
-            <div className="space-y-3 text-[#071d18]/80 font-medium">
+            <div className="space-y-3 text-[#071d18]/80">
               {[
                 { name: "House Lager", price: 9.75 },
                 { name: "SeaChange “The Wolf” Hazy Pale Ale", price: 10 },
@@ -591,10 +591,10 @@ const TraditionalMenu = () => {
 
           {/* Bottles & Cans */}
           <div className="mb-16">
-            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6 font-medium">
+            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6">
               Bottles & Cans
             </h3>
-            <div className="space-y-3 text-[#071d18]/80 font-medium">
+            <div className="space-y-3 text-[#071d18]/80">
               {[
                 { name: "88 Brewing Vietnamese Coffee Stout", price: 11 },
                 { name: "Sapporo", price: 10 },
@@ -617,7 +617,7 @@ const TraditionalMenu = () => {
 
           {/* Gin & Tonics */}
           <div className="mb-16">
-            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6 text-center font-medium">
+            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6 text-center">
               Gin & Tonics
               <div className="flex justify-center text-[#071d18]/80 text-base font-2xl mb-8">
                 <span>1 oz. / 9 &nbsp;&nbsp;•&nbsp;&nbsp; 2 oz. / 17</span>
@@ -626,7 +626,7 @@ const TraditionalMenu = () => {
 
             {/* Gin List */}
 {/* Gin List */}
-<div className="grid md:grid-cols-2 gap-6 text-center text-[#071d18]/80 font-medium mb-8">
+<div className="grid md:grid-cols-2 gap-6 text-center text-[#071d18]/80 mb-8">
   {[
     { name: "Park Alpine Dry Gin", region: "Canada", notes: "juniper, citrus, spruce pine, herbs" },
     { name: "Bulldog", region: "UK", notes: "floral, exotic fruit, citrus, juniper" },
@@ -658,11 +658,11 @@ const TraditionalMenu = () => {
     <div key={i} className="mb-4">
       <h4 className="font-sans text-base font-semibold text-[#071d18] capitalize">
         {gin.name}{" "}
-        <span className="text-[#071d18]/70 font-medium lowercase">
+        <span className="text-[#071d18]/70 lowercase">
           ({gin.region})
         </span>
       </h4>
-      <p className="text-sm text-[#071d18]/70 ml-4 leading-relaxed font-medium">
+      <p className="text-sm text-[#071d18]/70 ml-4 leading-relaxed">
         {gin.notes}
       </p>
     </div>
@@ -674,7 +674,7 @@ const TraditionalMenu = () => {
             <div className="border-t border-gray-300 my-6"></div>
 
             {/* Tonics and Ice Section */}
-            <div className="grid md:grid-cols-2 gap-12 text-center text-[#071d18]/80 font-medium">
+            <div className="grid md:grid-cols-2 gap-12 text-center text-[#071d18]/80">
               <div>
                 <h4 className="text-xl font-semibold text-[var(--mint)] mb-3">
                   Tonics
@@ -707,13 +707,13 @@ const TraditionalMenu = () => {
         {/* Wines Section */}
         <section className="mb-20">
           <div className="border-t border-gray-300 mb-8"></div>
-          <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center font-medium">
+          <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center">
             Wines
           </h2>
 
           {/* Rosé & Bubbles */}
           <div className="mb-16">
-            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6 font-medium">
+            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6">
               Rosé & Bubbles
             </h3>
             <div className="grid grid-cols-4 gap-4 mb-2 text-sm text-[#071d18]/70">
@@ -782,7 +782,7 @@ const TraditionalMenu = () => {
 
           {/* White Wines */}
           <div className="mb-16">
-            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6 font-medium">
+            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6">
               White
             </h3>
             <div className="grid grid-cols-4 gap-4 mb-2 text-sm text-[#071d18]/70">
@@ -828,7 +828,7 @@ const TraditionalMenu = () => {
 
           {/* Red Wines */}
           <div className="mb-16">
-            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6 font-medium">
+            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6">
               Red
             </h3>
             <div className="grid grid-cols-4 gap-4 mb-2 text-sm text-[#071d18]/70">
