@@ -451,8 +451,9 @@ export default function FoodMenu() {
                   <div
                     className={`relative  flex-shrink-0
                     ${
-                      currentDish.id === 30 ? 
-                      "w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-60 lg:h-60" : "w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-80 lg:h-80"
+                      currentDish.id === 30
+                        ? "w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-60 lg:h-60"
+                        : "w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-80 lg:h-80"
                     }    
                     `}
                   >
@@ -489,6 +490,11 @@ export default function FoodMenu() {
                             ? "object-contain"
                             : "object-cover"
                         }
+                            ${
+                              currentDish.id === 29
+                                ? "object-contain"
+                                : "object-cover"
+                            }
                           `}
                       />
                     </div>
