@@ -73,13 +73,13 @@ export default function Hero() {
           }}
         >
           <Image
-            src="/images/bg-image.jpg"
+            src="/static/venue/IMG_6620.CR2"
             alt="Elegant restaurant interior with warm lighting and tropical plants"
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[var(--leaf)]/50 via-[var(--leaf)]/60 to-[var(--leaf)]/70"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[var(--leaf)]/50 via-[var(--leaf)]/50 to-[var(--leaf)]/60"></div>
         </div>
 
         {/* Hero Content */}

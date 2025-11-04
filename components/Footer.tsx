@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-[var(--leaf)] to-[var(--leaf)]/90 text-white relative overflow-hidden" role="contentinfo">
+    <footer className="bg-gradient-to-br from-[var(--leaf)] to-[var(--leaf)]/90 pt-5 text-white relative overflow-hidden" role="contentinfo">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -219,7 +219,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/20 bg-black/20 backdrop-blur-sm">
+        <div className="border-t py-2 mt-5 border-white/20 bg-black/20 backdrop-blur-sm">
           <div className="container mx-auto px-6 py-8">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <p className="text-white/80 text-sm">
