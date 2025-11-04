@@ -1,6 +1,7 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, Suspense } from "react";
 import { ChevronLeft, ChevronRight, Menu, Grid3X3 } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 import { categories } from "@/utils/dishesData";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -21,7 +22,8 @@ interface Dish {
 
 type CategoryType = "appetizers" | "entrees" | "drinks" | "wines";
 
-export default function FoodMenu() {
+function FoodMenuContent() {
+  const searchParams = useSearchParams();
   const [activeCategory, setActiveCategory] =
     useState<CategoryType>("appetizers");
   const [activeDish, setActiveDish] = useState<number>(1);
@@ -47,6 +49,14 @@ export default function FoodMenu() {
   const DISHES_PER_VIEW = 4;
 
   const dishes: Dish[] = categories[activeCategory] || [];
+
+  // Handle URL parameter for category
+  useEffect(() => {
+    const categoryParam = searchParams.get("category");
+    if (categoryParam && ["appetizers", "entrees", "drinks", "wines"].includes(categoryParam)) {
+      setActiveCategory(categoryParam as CategoryType);
+    }
+  }, [searchParams]);
 
   // Initialize displayed dish
   useEffect(() => {
@@ -1057,5 +1067,13 @@ export default function FoodMenu() {
         }
       `}</style>
     </div>
+  );
+}
+
+export default function FoodMenu() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <FoodMenuContent />
+    </Suspense>
   );
 }
