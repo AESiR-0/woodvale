@@ -80,162 +80,186 @@ export default function EventBookingForm() {
   };
 
   return (
-    <div className="min-h-screen bg-[#2A332D] flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
-      <Navbar />
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white rounded-lg shadow-xl w-full sm:w-4/5 md:w-2/3 lg:w-1/2 xl:w-2/5 p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-5 md:gap-6 mt-20"
-      >
-        <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2 flex items-center gap-2">
-          <X className="w-5 h-5 sm:w-6 sm:h-6" /> Book Your Event
-        </h2>
+    <div className="relative min-h-screen">
+      {/* Background Image */}
+      <div className="absolute inset-0 bg-[url('/images/bookYourTable.JPG')] bg-top bg-cover" />
+      
+      {/* Gradient Overlays */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,black_100%)] opacity-40 pointer-events-none" />
+      
+      {/* Content */}
+      <div className="relative min-h-screen text-[var(--muted)] flex flex-col items-start justify-start p-4 lg:ml-24 sm:p-6 md:p-8">
+        <Navbar />
 
-        {/* Name & Number */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="flex flex-col gap-1.5 sm:gap-2">
-            <Label htmlFor="name" className="text-sm sm:text-base">
-              Name
-            </Label>
-            <Input
-              id="name"
-              type="text"
-              placeholder="Enter your name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className={`h-10 sm:h-11 md:h-12 text-sm sm:text-base ${
-                errors.name ? "border-red-500" : ""
-              }`}
-            />
-            {errors.name && (
-              <p className="text-red-500 text-xs sm:text-sm">{errors.name}</p>
-            )}
+        <form
+          onSubmit={handleSubmit}
+          className="rounded-lg text-[var(--muted)] sm:w-4/5 md:w-2/3 lg:w-1/2 xl:w-2/5 lg:mt-24 p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-5 md:gap-6 mt-20 bg-black/30 backdrop-blur-sm"
+        >
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2 flex items-center gap-2">
+            <X className="w-5 h-5 sm:w-6 sm:h-6" /> Book Your Event
+          </h2>
+
+          {/* Name & Number */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5 sm:gap-2">
+              <Label htmlFor="name" className="text-sm sm:text-base">
+                Name
+              </Label>
+              <Input
+                id="name"
+                type="text"
+                placeholder="Enter your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className={`h-10 sm:h-11 md:h-12 text-sm sm:text-base ${
+                  errors.name ? "border-red-500" : ""
+                }`}
+              />
+              {errors.name && (
+                <p className="text-red-500 text-xs sm:text-sm">
+                  {errors.name}
+                </p>
+              )}
+            </div>
+
+            <div className="flex flex-col gap-1.5 sm:gap-2">
+              <Label htmlFor="number" className="text-sm sm:text-base">
+                Number
+              </Label>
+              <Input
+                id="number"
+                type="tel"
+                placeholder="Enter your number"
+                value={number}
+                onChange={(e) => setNumber(e.target.value)}
+                className={`h-10 sm:h-11 md:h-12 text-sm sm:text-base ${
+                  errors.number ? "border-red-500" : ""
+                }`}
+              />
+              {errors.number && (
+                <p className="text-red-500 text-xs sm:text-sm">
+                  {errors.number}
+                </p>
+              )}
+            </div>
           </div>
 
-          <div className="flex flex-col gap-1.5 sm:gap-2">
-            <Label htmlFor="number" className="text-sm sm:text-base">
-              Number
-            </Label>
-            <Input
-              id="number"
-              type="tel"
-              placeholder="Enter your number"
-              value={number}
-              onChange={(e) => setNumber(e.target.value)}
-              className={`h-10 sm:h-11 md:h-12 text-sm sm:text-base ${
-                errors.number ? "border-red-500" : ""
-              }`}
-            />
-            {errors.number && (
-              <p className="text-red-500 text-xs sm:text-sm">{errors.number}</p>
-            )}
-          </div>
-        </div>
-        {/* grid grid-cols-1 md:grid-cols-2 gap-4 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+            {/* Type of Event */}
+            <div className="flex flex-col gap-1.5 sm:gap-2 w-full">
+              <Label htmlFor="eventType" className="text-sm sm:text-base">
+                Type of Event
+              </Label>
+              <Select value={eventType} onValueChange={setEventType}>
+                <SelectTrigger
+                  id="eventType"
+                  className={`h-10 sm:h-11 md:h-12 text-sm sm:text-base w-full ${
+                    errors.eventType ? "border-red-500" : ""
+                  }`}
+                >
+                  <SelectValue placeholder="Select event type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="birthday">Birthday</SelectItem>
+                  <SelectItem value="wedding">Wedding</SelectItem>
+                  <SelectItem value="meeting">Meeting</SelectItem>
+                  <SelectItem value="conference">Conference</SelectItem>
+                </SelectContent>
+              </Select>
+              {errors.eventType && (
+                <p className="text-red-500 text-xs sm:text-sm">
+                  {errors.eventType}
+                </p>
+              )}
+            </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
-          {/* Type of Event - Full Width */}
+            {/* Dates */}
+            <div className="flex flex-col gap-1.5 sm:gap-2 w-full">
+              <Label htmlFor="dates" className="text-sm sm:text-base">
+                Dates
+              </Label>
+              <Select
+                value=""
+                onValueChange={(val) =>
+                  setDates((prev) =>
+                    prev.includes(val) ? prev : [...prev, val]
+                  )
+                }
+              >
+                <SelectTrigger
+                  id="dates"
+                  className={`h-10 sm:h-11 md:h-12 text-sm sm:text-base w-full ${
+                    errors.dates ? "border-red-500" : ""
+                  }`}
+                >
+                  <SelectValue
+                    placeholder={
+                      dates.length > 0 ? dates.join(", ") : "Select date(s)"
+                    }
+                  />
+                </SelectTrigger>
+                <SelectContent className="max-h-48 sm:max-h-60">
+                  {days.map((d) => (
+                    <SelectItem
+                      key={d.value}
+                      value={d.value}
+                      className="text-sm sm:text-base"
+                    >
+                      {d.label} {dates.includes(d.value) ? "✓" : ""}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.dates && (
+                <p className="text-red-500 text-xs sm:text-sm">
+                  {errors.dates}
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Number of Guests */}
           <div className="flex flex-col gap-1.5 sm:gap-2 w-full">
-            <Label htmlFor="eventType" className="text-sm sm:text-base">
-              Type of Event
+            <Label htmlFor="guests" className="text-sm sm:text-base">
+              Number of Guests
             </Label>
-            <Select value={eventType} onValueChange={setEventType}>
+            <Select value={guests} onValueChange={setGuests}>
               <SelectTrigger
-                id="eventType"
+                id="guests"
                 className={`h-10 sm:h-11 md:h-12 text-sm sm:text-base w-full ${
-                  errors.eventType ? "border-red-500" : ""
+                  errors.guests ? "border-red-500" : ""
                 }`}
               >
-                <SelectValue placeholder="Select event type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="birthday">Birthday</SelectItem>
-                <SelectItem value="wedding">Wedding</SelectItem>
-                <SelectItem value="meeting">Meeting</SelectItem>
-                <SelectItem value="conference">Conference</SelectItem>
-              </SelectContent>
-            </Select>
-            {errors.eventType && (
-              <p className="text-red-500 text-xs sm:text-sm">
-                {errors.eventType}
-              </p>
-            )}
-          </div>
-
-          {/* Dates - Full Width */}
-          <div className="flex flex-col gap-1.5 sm:gap-2 w-full">
-            <Label htmlFor="dates" className="text-sm sm:text-base">
-              Dates
-            </Label>
-            <Select
-              value=""
-              onValueChange={(val) =>
-                setDates((prev) => (prev.includes(val) ? prev : [...prev, val]))
-              }
-            >
-              <SelectTrigger
-                id="dates"
-                className={`h-10 sm:h-11 md:h-12 text-sm sm:text-base w-full ${
-                  errors.dates ? "border-red-500" : ""
-                }`}
-              >
-                <SelectValue
-                  placeholder={
-                    dates.length > 0 ? dates.join(", ") : "Select date(s)"
-                  }
-                />
+                <SelectValue placeholder="Select guests" />
               </SelectTrigger>
               <SelectContent className="max-h-48 sm:max-h-60">
-                {days.map((d) => (
+                {guestsList.map((g) => (
                   <SelectItem
-                    key={d.value}
-                    value={d.value}
+                    key={g}
+                    value={g}
                     className="text-sm sm:text-base"
                   >
-                    {d.label} {dates.includes(d.value) ? "✓" : ""}
+                    {g}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
-            {errors.dates && (
-              <p className="text-red-500 text-xs sm:text-sm">{errors.dates}</p>
+            {errors.guests && (
+              <p className="text-red-500 text-xs sm:text-sm">
+                {errors.guests}
+              </p>
             )}
           </div>
-        </div>
 
-        {/* Number of Guests - Full Width */}
-        <div className="flex flex-col gap-1.5 sm:gap-2 w-full">
-          <Label htmlFor="guests" className="text-sm sm:text-base">
-            Number of Guests
-          </Label>
-          <Select value={guests} onValueChange={setGuests}>
-            <SelectTrigger
-              id="guests"
-              className={`h-10 sm:h-11 md:h-12 text-sm sm:text-base w-full ${
-                errors.guests ? "border-red-500" : ""
-              }`}
-            >
-              <SelectValue placeholder="Select guests" />
-            </SelectTrigger>
-            <SelectContent className="max-h-48 sm:max-h-60">
-              {guestsList.map((g) => (
-                <SelectItem key={g} value={g} className="text-sm sm:text-base">
-                  {g}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          {errors.guests && (
-            <p className="text-red-500 text-xs sm:text-sm">{errors.guests}</p>
-          )}
-        </div>
-
-        <Button
-          type="submit"
-          className="mt-2 sm:mt-4 w-full h-10 sm:h-11 md:h-12 text-sm sm:text-base"
-        >
-          Submit
-        </Button>
-      </form>
+          <Button
+            type="submit"
+            className="mt-2 sm:mt-4 w-full h-10 sm:h-11 md:h-12 text-sm sm:text-base"
+          >
+            Submit
+          </Button>
+        </form>
+      </div>
     </div>
   );
 }

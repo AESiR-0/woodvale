@@ -104,7 +104,7 @@ export default function ReservationForm() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen overflow-hidden flex items-center justify-center px-4 sm:px-6">
+    <section className="relative w-full min-h-screen overflow-hidden flex items-center justify-center">
       {/* Background */}
       <div
         ref={bgRef}

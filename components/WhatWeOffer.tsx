@@ -74,15 +74,15 @@ export default function ServicesSection() {
                 Our Great Services
               </h2>
               <p className="text-white/70 text-base sm:text-lg lg:text-base leading-relaxed">
-                The atmosphere sets the stage. It's about more than just a dining room away from home. Food takes the spotlight as guests.
+                The atmosphere sets the stage. It's about more than just a
+                dining room away from home. Food takes the spotlight as guests.
               </p>
             </div>
 
             {/* Service Cards */}
             <div className="flex flex-col gap-6 sm:gap-8 lg:gap-12 lg:w-3/5">
-              {/* Example Card */}
-              <div className="service-card group cursor-pointer">
-                <div className="relative h-64 sm:h-80 lg:h-96 rounded-lg overflow-hidden mb-4 shadow-2xl">
+              <div className="service-card group cursor-pointer ">
+                <div className="relative h-64 sm:h-80 lg:h-96  rounded-lg overflow-hidden mb-4 shadow-2xl">
                   <Link href="/reserve">
                     <img
                       src="/static/venue/IMG_0833.JPG"
@@ -98,10 +98,9 @@ export default function ServicesSection() {
                 </h3>
               </div>
 
-              {/* Duplicate for other cards */}
-              <div className="service-card group cursor-pointer">
-                <div className="relative h-64 sm:h-80 lg:h-96 rounded-lg overflow-hidden mb-4 shadow-2xl">
-                  <Link href="/menu#cocktails">
+              <div className="service-card group cursor-pointer ">
+                <div className="relative h-64 sm:h-80 lg:h-96  rounded-lg overflow-hidden mb-4 shadow-2xl">
+                  <Link href="/menu#entrees">
                     <Image
                       src="/static/venue/bar.jpg"
                       alt="Sophisticated bar area with craft cocktails"
@@ -109,16 +108,17 @@ export default function ServicesSection() {
                       className="object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-110"
                     />
                   </Link>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 </div>
                 <h3 className="font-sans text-lg sm:text-xl lg:text-2xl font-semibold text-white group-hover:text-[#a8d5ba] transition-all duration-300 text-center">
                   Cocktail Bar
                 </h3>
               </div>
 
+              {/* Duplicate for other cards */}
               <div className="service-card group cursor-pointer">
                 <div className="relative h-64 sm:h-80 lg:h-96 rounded-lg overflow-hidden mb-4 shadow-2xl">
-                  <Link href="/menu#entrees">
+                  <Link href="/menu#cocktails">
                     <Image
                       src="/static/venue/culinary-artistry.jpg"
                       alt="Beautifully plated gourmet dish with elegant presentation"
@@ -130,7 +130,7 @@ export default function ServicesSection() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
                 <h3 className="font-sans text-lg sm:text-xl lg:text-2xl font-semibold text-white group-hover:text-[#a8d5ba] transition-all duration-300 text-center">
-                  Culinary Artistry
+                  Cocktail Bar
                 </h3>
               </div>
             </div>
@@ -138,6 +138,5 @@ export default function ServicesSection() {
         </div>
       </div>
     </section>
-
   );
 }
