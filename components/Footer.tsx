@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-[var(--leaf)] to-[var(--leaf)]/90 pt-5 text-white relative overflow-hidden" role="contentinfo">
+    <footer className="bg-gradient-to-br from-[var(--leaf)]/99 to-[var(--leaf)]/86 pt-5 text-white relative overflow-hidden" role="contentinfo">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -191,7 +191,7 @@ export default function Footer() {
                   href="/banquet#calendar"
                   className="btn-primary inline-block"
                 >
-                  Reserve a Table
+                  Save Your Seat
                 </Link>
               </div>
             </div>
