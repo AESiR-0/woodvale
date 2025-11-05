@@ -37,7 +37,7 @@ export default function FeelOrder() {
   }, []);
 
   return (
-<div className="relative min-h-screen flex items-center bg-no-repeat bg-[url('/static/venue/IMG_6627.CR2')] bg-bottom bg-cover text-[var(--muted)] overflow-hidden px-4">
+<div className="relative min-h-screen flex items-center bg-no-repeat bg-[url('/static/venue/IMG_6627.png')] bg-bottom bg-cover text-[var(--muted)] overflow-hidden px-4">
   {/* Vignette overlay */}
   <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_10%,rgba(0,0,0,0.5)_100%)] z-10" />
 
