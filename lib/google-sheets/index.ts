@@ -32,7 +32,7 @@ export class GoogleSheetsService {
       }
 
       this.auth = new google.auth.GoogleAuth({
-        credentials: config.credentials,
+        credentials: config.credentials as any,
         scopes: ['https://www.googleapis.com/auth/spreadsheets'],
       });
 

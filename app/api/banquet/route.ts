@@ -75,6 +75,7 @@ export const POST = withManagerAuth(async (request: NextRequest, user) => {
       .values({
         ...validatedData,
         eventDate: new Date(validatedData.eventDate),
+        budget: validatedData.budget ? String(validatedData.budget) : null,
       })
       .returning();
 

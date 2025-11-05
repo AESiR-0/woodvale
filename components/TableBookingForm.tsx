@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar, Users, X } from "lucide-react";
 import { useRouter } from "next/navigation";
+import ReservationDetailsForm, { ReservationFormData } from "@/components/ReservationDetailsForm";
 
 interface TimeSlotProps {
   time: string;
@@ -52,11 +53,17 @@ export default function TableBookingForm({
   const router = useRouter();
   const glassEffect = variant === "glass";
 
-  const today = new Date();
+  // Get current Edmonton time
+  const getEdmontonTime = () => {
+    return new Date(new Date().toLocaleString("en-US", { timeZone: "America/Edmonton" }));
+  };
+
+  const todayEdmonton = getEdmontonTime();
+  const todayEdmontonStr = `${todayEdmonton.getFullYear()}-${String(todayEdmonton.getMonth() + 1).padStart(2, "0")}-${String(todayEdmonton.getDate()).padStart(2, "0")}`;
 
   const days: Day[] = Array.from({ length: 8 }, (_, i) => {
-    const d = new Date();
-    d.setDate(today.getDate() + i);
+    const d = new Date(todayEdmonton);
+    d.setDate(todayEdmonton.getDate() + i);
 
     const yyyy = d.getFullYear();
     const mm = String(d.getMonth() + 1).padStart(2, "0");
@@ -113,31 +120,143 @@ export default function TableBookingForm({
   const [meal, setMeal] = useState<"lunch" | "dinner">("lunch");
   const [showExtraSlots, setShowExtraSlots] = useState<boolean>(false);
   const [selectedTime, setSelectedTime] = useState<string>("");
+  const [showDetailsForm, setShowDetailsForm] = useState<boolean>(false);
 
-  // Get time slots based on meal selection
+  // Filter time slots based on Edmonton time - hide past times for today
+  const isTimeSlotPast = (timeStr: string, dateStr: string): boolean => {
+    const currentEdmonton = getEdmontonTime();
+    const currentEdmontonStr = `${currentEdmonton.getFullYear()}-${String(currentEdmonton.getMonth() + 1).padStart(2, "0")}-${String(currentEdmonton.getDate()).padStart(2, "0")}`;
+    
+    if (dateStr !== currentEdmontonStr) return false; // Not today, so not past
+    
+    const now = currentEdmonton;
+    const [time, period] = timeStr.split(" ");
+    const [hours, minutes] = time.split(":").map(Number);
+    let hour24 = hours;
+    if (period === "PM" && hour24 !== 12) hour24 += 12;
+    if (period === "AM" && hour24 === 12) hour24 = 0;
+
+    const slotTime = new Date(currentEdmonton);
+    slotTime.setHours(hour24, minutes, 0, 0);
+
+    return slotTime <= now;
+  };
+
+  const getAvailableTimeSlots = (slots: string[]): string[] => {
+    if (!selectedDate) {
+      return slots; // No date selected, show all slots
+    }
+    
+    const currentEdmonton = getEdmontonTime();
+    const currentEdmontonStr = `${currentEdmonton.getFullYear()}-${String(currentEdmonton.getMonth() + 1).padStart(2, "0")}-${String(currentEdmonton.getDate()).padStart(2, "0")}`;
+    
+    if (selectedDate !== currentEdmontonStr) {
+      return slots; // Not today, show all slots
+    }
+    // Filter out past times for today
+    return slots.filter(slot => !isTimeSlotPast(slot, selectedDate));
+  };
+
+  // Get time slots based on meal selection, filtered by Edmonton time
   const allTimeSlots = meal === "lunch" ? lunchTimeSlots : dinnerTimeSlots;
-  const initialSlots = allTimeSlots.slice(0, 8);
-  const extraSlots = allTimeSlots.slice(8);
+  const availableSlots = getAvailableTimeSlots(allTimeSlots);
+  const initialSlots = availableSlots.slice(0, 8);
+  const extraSlots = availableSlots.slice(8);
 
-  // Reset selected time when meal changes
+  // Reset selected time when meal changes or if current selection is invalid
+  useEffect(() => {
+    if (selectedDate && selectedTime) {
+      const allTimeSlots = meal === "lunch" ? lunchTimeSlots : dinnerTimeSlots;
+      const availableSlots = getAvailableTimeSlots(allTimeSlots);
+      if (!availableSlots.includes(selectedTime)) {
+        setSelectedTime(""); // Reset if selected time is no longer available
+      }
+    }
+  }, [selectedDate, meal]);
+
   const handleMealChange = (newMeal: "lunch" | "dinner") => {
     setMeal(newMeal);
     setSelectedTime(""); // Reset selected time when meal changes
     setShowExtraSlots(false); // Reset extra slots visibility
   };
 
+  // Reset time when date changes
+  useEffect(() => {
+    setSelectedTime("");
+    setShowExtraSlots(false);
+  }, [selectedDate]);
+
   const isProceedEnabled = selectedDate && guests && selectedTime;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (isProceedEnabled) {
+      setShowDetailsForm(true);
+    }
+  };
+
+  const handleDetailsComplete = async (formData: any) => {
+    // Convert time from "6:00 PM" to "18:00"
+    const convertTimeTo24Hour = (timeStr: string): string => {
+      const [time, period] = timeStr.split(" ");
+      const [hours, minutes] = time.split(":");
+      let hour24 = parseInt(hours);
+      if (period === "PM" && hour24 !== 12) hour24 += 12;
+      if (period === "AM" && hour24 === 12) hour24 = 0;
+      return `${String(hour24).padStart(2, "0")}:${minutes}`;
+    };
+
+    try {
+      // Calculate duration based on party size
+      const guestCount = parseInt(guests);
+      let duration = 120; // 2 hours default
+      if (guestCount <= 4) duration = 120;
+      else if (guestCount <= 6) duration = 150;
+      else duration = 180;
+
+      const reservationDateTime = new Date(selectedDate);
+      const [hours, minutes] = convertTimeTo24Hour(selectedTime).split(":").map(Number);
+      reservationDateTime.setHours(hours, minutes, 0, 0);
+
+      const response = await fetch('/api/reservations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          customerName: `${formData.firstName} ${formData.lastName}`,
+          customerEmail: formData.email,
+          customerPhone: formData.phone,
+          phoneCountryCode: formData.phoneCountryCode,
+          numberOfGuests: guestCount,
+          reservationDate: reservationDateTime.toISOString(),
+          reservationTime: convertTimeTo24Hour(selectedTime),
+          duration,
+          occasion: formData.occasion,
+          specialRequests: formData.specialRequests,
+          restaurantMarketingConsent: formData.restaurantMarketingConsent,
+          openTableMarketingConsent: formData.openTableMarketingConsent,
+          textUpdatesConsent: formData.textUpdatesConsent,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to create reservation');
+      }
+
+      // Success - redirect to confirmation
       router.push(
-        `/showDetails?title=Reservation Details&dateTime=${encodeURIComponent(
-          `${selectedDate} at ${selectedTime}`,
-        )}&location=${encodeURIComponent(
-          "123 Forest Avenue Downtown District City, State 12345",
-        )}&guests=${encodeURIComponent(guests)}`,
+        `/showDetails?title=Reservation Confirmed&dateTime=${encodeURIComponent(
+          `${new Date(selectedDate).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })} at ${selectedTime}`,
+        )}&guests=${encodeURIComponent(guests)}&email=${encodeURIComponent(formData.email)}`,
       );
+    } catch (error) {
+      console.error('Error creating reservation:', error);
+      alert(error instanceof Error ? error.message : 'Failed to create reservation. Please try again.');
     }
   };
 
@@ -156,6 +275,21 @@ export default function TableBookingForm({
   const buttonClassName = glassEffect
     ? "w-full mt-2 sm:mt-3 h-11 sm:h-12 md:h-13 text-sm sm:text-base md:text-lg font-semibold bg-white/20 backdrop-blur-md text-white border border-white/30 hover:bg-white/30 !text-white"
     : "w-full mt-2 sm:mt-3 h-11 sm:h-12 md:h-13 text-sm sm:text-base md:text-lg font-semibold bg-[#2A332D] hover:bg-[#2A332D]/90 text-white";
+
+  // Show details form if step 1 is complete
+  if (showDetailsForm && selectedDate && guests && selectedTime) {
+    const guestCount = parseInt(guests);
+    return (
+      <ReservationDetailsForm
+        selectedDate={selectedDate}
+        selectedTime={selectedTime}
+        numberOfGuests={guestCount}
+        onComplete={handleDetailsComplete}
+        onBack={() => setShowDetailsForm(false)}
+        variant={variant}
+      />
+    );
+  }
 
   return (
     <form

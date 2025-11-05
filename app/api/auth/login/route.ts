@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create Supabase session
-    const supabase = createClient();
+    const supabase = await createClient();
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password: 'dummy', // We handle auth in our DB

@@ -27,6 +27,8 @@ export default function EventBookingForm() {
   const [guests, setGuests] = useState("");
   const [notes, setNotes] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const router = useRouter();
 
   // Get today's date in YYYY-MM-DD format for min date
@@ -88,22 +90,56 @@ export default function EventBookingForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
-    const finalEventType = eventType === "other" ? otherEventType : eventType;
-    const dateRange = startDate === endDate 
-      ? startDate 
-      : `${startDate} to ${endDate}`;
+    setIsSubmitting(true);
+    setSubmitError(null);
 
-    router.push(
-      `/showDetails?title=Event Booking Summary&dateTime=${encodeURIComponent(
-        dateRange
-      )}&location=${encodeURIComponent(finalEventType)}&guests=${encodeURIComponent(
-        guests
-      )}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent(notes)}`
-    );
+    try {
+      const finalEventType = eventType === "other" ? otherEventType : eventType;
+      
+      const response = await fetch('/api/banquet/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          customerName: name.trim(),
+          customerEmail: email.trim(),
+          customerPhone: number.trim(),
+          eventType: finalEventType,
+          startDate: startDate,
+          endDate: endDate,
+          numberOfGuests: parseInt(guests),
+          specialRequests: notes.trim() || undefined,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit booking');
+      }
+
+      // Success - redirect to showDetails page
+      const dateRange = startDate === endDate 
+        ? startDate 
+        : `${startDate} to ${endDate}`;
+      
+      router.push(
+        `/showDetails?title=Event Booking Summary&dateTime=${encodeURIComponent(
+          dateRange
+        )}&location=${encodeURIComponent(finalEventType)}&guests=${encodeURIComponent(
+          guests
+        )}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent(notes)}`
+      );
+    } catch (error) {
+      console.error('Error submitting booking:', error);
+      setSubmitError(error instanceof Error ? error.message : 'Failed to submit booking. Please try again.');
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -116,16 +152,26 @@ export default function EventBookingForm() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,black_100%)] opacity-40 pointer-events-none" />
       
       {/* Content */}
-      <div className="relative min-h-screen text-[var(--muted)] flex flex-col items-start justify-start p-4 lg:ml-24 sm:p-6 md:p-8">
+      <div className="relative min-h-screen text-[var(--muted)] flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
         <Navbar />
 
         <form
           onSubmit={handleSubmit}
-          className="rounded-lg text-[var(--muted)] sm:w-4/5 md:w-2/3 lg:w-1/2 xl:w-2/5 lg:mt-24 p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-5 md:gap-6 mt-20 bg-black/30 backdrop-blur-sm"
+          className="rounded-lg text-[var(--muted)] w-full max-w-2xl p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-5 md:gap-6 mt-20 bg-black/30 backdrop-blur-sm"
         >
-          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2 flex items-center gap-2">
-            <X className="w-5 h-5 sm:w-6 sm:h-6" /> Book Your Event
-          </h2>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold flex items-center gap-2">
+              Book Your Event
+            </h2>
+            <button
+              type="button"
+              onClick={() => router.back()}
+              className="p-2 hover:bg-white/10 rounded-full transition-colors"
+              aria-label="Close"
+            >
+              <X className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
+          </div>
 
           {/* Name & Email */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -352,11 +398,18 @@ export default function EventBookingForm() {
             )}
           </div>
 
+          {submitError && (
+            <div className="mt-4 p-3 bg-red-500/10 border border-red-500 rounded-lg">
+              <p className="text-red-500 text-sm">{submitError}</p>
+            </div>
+          )}
+
           <Button
             type="submit"
-            className="mt-2 sm:mt-4 w-full h-10 sm:h-11 md:h-12 text-sm sm:text-base"
+            disabled={isSubmitting}
+            className="mt-2 sm:mt-4 w-full h-10 sm:h-11 md:h-12 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Submit
+            {isSubmitting ? 'Submitting...' : 'Submit'}
           </Button>
         </form>
       </div>

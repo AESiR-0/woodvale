@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db, reservations, tables } from '@/lib/db';
 import { createReservationSchema, paginationSchema, dateRangeSchema } from '@/lib/validations/schemas';
 import { eq, and, gte, lte, desc, sql } from 'drizzle-orm';
+import { openTableService } from '@/lib/opentable';
 
 // GET /api/reservations - Get all reservations with pagination and filtering
 export async function GET(request: NextRequest) {
@@ -142,14 +143,67 @@ export async function POST(request: NextRequest) {
     }
 
     // Create reservation
+    // Combine firstName and lastName for customerName if not provided
+    const customerName = validatedData.customerName || `${validatedData.firstName} ${validatedData.lastName}`;
+    
     const [newReservation] = await db
       .insert(reservations)
       .values({
-        ...validatedData,
-        tableId,
+        firstName: validatedData.firstName,
+        lastName: validatedData.lastName,
+        customerName,
+        customerEmail: validatedData.customerEmail,
+        customerPhone: validatedData.customerPhone,
+        phoneCountryCode: validatedData.phoneCountryCode || '+1',
+        numberOfGuests: validatedData.numberOfGuests,
         reservationDate: new Date(validatedData.reservationDate),
+        reservationTime: validatedData.reservationTime,
+        duration: validatedData.duration,
+        occasion: validatedData.occasion,
+        specialRequests: validatedData.specialRequests,
+        restaurantMarketingConsent: validatedData.restaurantMarketingConsent || false,
+        openTableMarketingConsent: validatedData.openTableMarketingConsent || false,
+        textUpdatesConsent: validatedData.textUpdatesConsent || false,
+        tableId,
+        openTableSynced: false,
       })
       .returning();
+
+    // Sync to OpenTable (don't fail if OpenTable sync fails)
+    if (openTableService.isConfigured()) {
+      try {
+        const openTableReservationId = await openTableService.createReservation({
+          firstName: validatedData.firstName,
+          lastName: validatedData.lastName,
+          customerName,
+          customerEmail: validatedData.customerEmail,
+          customerPhone: validatedData.customerPhone,
+          phoneCountryCode: validatedData.phoneCountryCode,
+          numberOfGuests: validatedData.numberOfGuests,
+          reservationDate: new Date(validatedData.reservationDate),
+          reservationTime: validatedData.reservationTime,
+          occasion: validatedData.occasion,
+          specialRequests: validatedData.specialRequests,
+        });
+
+        if (openTableReservationId) {
+          // Update reservation with OpenTable ID
+          await db
+            .update(reservations)
+            .set({
+              openTableReservationId,
+              openTableSynced: true,
+            })
+            .where(eq(reservations.id, newReservation.id));
+          
+          newReservation.openTableReservationId = openTableReservationId;
+          newReservation.openTableSynced = true;
+        }
+      } catch (openTableError) {
+        // Log error but don't fail the reservation
+        console.error('Failed to sync reservation to OpenTable (reservation still saved):', openTableError);
+      }
+    }
 
     return NextResponse.json(newReservation, { status: 201 });
   } catch (error) {

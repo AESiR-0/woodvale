@@ -11,7 +11,7 @@ export function createEmailTransporter() {
     return null;
   }
 
-  return nodemailer.createTransporter({
+  return nodemailer.createTransport({
     host: smtpHost,
     port: parseInt(smtpPort),
     secure: parseInt(smtpPort) === 465, // true for 465, false for other ports
@@ -29,7 +29,7 @@ export function createEmailTransporter() {
   });
 }
 
-export async function sendEmailNotification(to: string, subject: string, html: string) {
+export async function sendEmailNotification(to: string | string[], subject: string, html: string) {
   const transporter = createEmailTransporter();
   
   if (!transporter) {
@@ -38,13 +38,14 @@ export async function sendEmailNotification(to: string, subject: string, html: s
   }
 
   try {
+    const recipients = Array.isArray(to) ? to.join(', ') : to;
     await transporter.sendMail({
       from: process.env.SMTP_USER,
-      to,
+      to: recipients,
       subject,
       html,
     });
-    console.log('✅ Email sent successfully');
+    console.log('✅ Email sent successfully to:', recipients);
   } catch (error) {
     console.error('❌ Error sending email:', error);
   }
