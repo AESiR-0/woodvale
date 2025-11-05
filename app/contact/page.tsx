@@ -162,9 +162,9 @@ export default function Contact() {
                   <div>
                     <h3 className="font-sans text-lg font-semibold text-[var(--mint)] mb-2">Address</h3>
                     <p className="text-[#071d18]">
-                      Woodvale Facility and Clubhouse<br />
-                      Edmonton, AB, Canada<br />
-                      Located on beautiful golf course grounds
+                      4540 50 street NW<br />
+                      Edmonton, AB T6L 6B6<br />
+                      Canada
                     </p>
                   </div>
                 </div>
@@ -178,8 +178,9 @@ export default function Contact() {
                   <div>
                     <h3 className="font-sans text-lg font-semibold text-[var(--mint)] mb-2">Phone</h3>
                     <p className="text-[#071d18]">
-                      (555) 123-4567<br />
-                      WhatsApp: (555) 123-4567
+                      <a href="tel:+17804622101" className="hover:text-[var(--mint)] transition-colors">
+                        780-462-2101
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -275,7 +276,7 @@ export default function Contact() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--gold)] transition-colors"
-                    placeholder="(555) 123-4567"
+                    placeholder="780-462-2101"
                   />
                 </div>
 

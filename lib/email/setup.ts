@@ -14,11 +14,18 @@ export function createEmailTransporter() {
   return nodemailer.createTransporter({
     host: smtpHost,
     port: parseInt(smtpPort),
-    secure: false,
+    secure: parseInt(smtpPort) === 465, // true for 465, false for other ports
     auth: {
       user: smtpUser,
       pass: smtpPass,
     },
+    // Enable TLS for port 587
+    ...(parseInt(smtpPort) === 587 && {
+      requireTLS: true,
+      tls: {
+        rejectUnauthorized: false,
+      },
+    }),
   });
 }
 

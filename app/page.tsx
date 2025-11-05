@@ -93,7 +93,7 @@ export default function Home() {
 
       <TestimonialsSection />
 
-      <ReservationForm /> 
+      {/* <ReservationForm />  */}
 
       <Footer />
     </div>

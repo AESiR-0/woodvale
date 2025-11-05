@@ -74,7 +74,8 @@ export default function ServicesSection() {
                 Our Great Services
               </h2>
               <p className="text-white/70 text-base sm:text-lg lg:text-base leading-relaxed">
-                The atmosphere sets the stage. It's about more than just a dining room away from home. Food takes the spotlight as guests.
+                The atmosphere sets the stage. It's about more than just a
+                dining room away from home. Food takes the spotlight as guests.
               </p>
             </div>
 
@@ -123,14 +124,12 @@ export default function ServicesSection() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                 </div>
                 <h3 className="font-sans text-lg sm:text-xl lg:text-2xl font-semibold text-white group-hover:text-[#a8d5ba] transition-all duration-300 text-center">
-                  Culinary Artistry
-                </h3>
+Culinary Artistry                </h3>
               </Link>
             </div>
           </div>
         </div>
       </div>
     </section>
-
   );
 }
