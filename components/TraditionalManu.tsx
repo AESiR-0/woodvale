@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { categories } from "@/utils/dishesData";
 
 interface Dish {
@@ -18,6 +19,7 @@ interface Dish {
 }
 
 const TraditionalMenu = () => {
+  
   return (
     <div className="min-h-screen bg-[#E6E8D9]">
       <div className="container mx-auto px-6 pt-32 pb-20 bg-[#E6E8D9]">
@@ -476,8 +478,6 @@ const TraditionalMenu = () => {
   </div>
 </section>
 
-
-        {/* Drinks Section */}
         {/* Drinks Section */}
         <section className="mb-20">
           <div className="border-t border-gray-300 mb-8"></div>
@@ -764,7 +764,7 @@ const TraditionalMenu = () => {
                 className="grid grid-cols-4 gap-4 items-center font-medium text-[#071d18]/80"
               >
                 <div>
-                  <h4 className="font-semibold">{wine.name}</h4>
+                  <h4 className="font-light">{wine.name}</h4>
                   <p className="text-sm">{wine.region}</p>
                 </div>
                 <div className="text-center">
@@ -795,7 +795,7 @@ const TraditionalMenu = () => {
   { name: "Perlage Pinot Grigio", region: "Italy", price6: 13, price9: 18, bottle: 52 },
   { name: "Ken Forrester Sauvignon Blanc", region: "South Africa", price6: 12, price9: 16, bottle: 48 },
   { name: "Bread & Butter Chardonnay", region: "California", price6: 13, price9: 18, bottle: 52 },
-  { name: "Pillitteri Gewurztraminer/Riesling", region: "Canada", price6: 13, price9: 18, bottle: 52 },
+  { name: "Pillitteri Gewurztraminer / Riesling", region: "Canada", price6: 13, price9: 18, bottle: 52 },
   { name: "Pierre Sparr Gewurztraminer", region: "France", price6: "-", price9: "-", bottle: 63 },
   { name: "Honey Bee Chenin Blanc", region: "South Africa", price6: "-", price9: "-", bottle: 39 },
   { name: "Mission Hill Reserve Sauvignon Blanc", region: "Canada", price6: "-", price9: "-", bottle: 69 },
@@ -810,7 +810,17 @@ const TraditionalMenu = () => {
                 className="grid grid-cols-4 gap-4 items-center font-medium text-[#071d18]/80"
               >
                 <div>
-                  <h4 className="font-semibold">{wine.name}</h4>
+<h4 className="font-lore font-light text-3xl">
+  {wine?.name
+    ?.split(/([&/])/)
+    .map((part, i) =>
+      part === "&" || part === "/" ? (
+        <span key={i} className="font-sans font-sm"> {part} </span>
+      ) : (
+        <React.Fragment key={i}>{part.trim()}</React.Fragment>
+      )
+    )}
+</h4>
                   <p className="text-sm">{wine.region}</p>
                 </div>
                 <div className="text-center">
@@ -867,7 +877,17 @@ const TraditionalMenu = () => {
                 className="grid grid-cols-4 gap-4 items-center font-medium text-[#071d18]/80"
               >
                 <div>
-                  <h4 className="font-semibold">{wine.name}</h4>
+<h4 className="font-lore font-light text-3xl">
+  {wine?.name
+    ?.split(/([&/])/)
+    .map((part, i) =>
+      part === "&" || part === "/" ? (
+        <span key={i} className="font-sans"> {part} </span>
+      ) : (
+        <React.Fragment key={i}>{part.trim()}</React.Fragment>
+      )
+    )}
+</h4>
                   <p className="text-sm">{wine.region}</p>
                 </div>
                 <div className="text-center">

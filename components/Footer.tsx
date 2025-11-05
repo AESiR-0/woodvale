@@ -184,7 +184,7 @@ export default function Footer() {
                   href="/banquet#calendar"
                   className="btn-primary inline-block"
                 >
-                  Reserve a Table
+                  Save Your Seat
                 </Link>
               </div>
             </div>
