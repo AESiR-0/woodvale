@@ -159,91 +159,94 @@ function FoodMenuContent() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-[var(--leaf)] to-[var(--leaf)]/90">
+    <>
       <Navbar />
 
-      {isTraditionalMenu ? (
-        <div className="w-full flex-1">
-          {/* Close button when traditional menu is open */}
-          <button
-            onClick={() => setIsTraditionalMenu(false)}
-            className="fixed top-24 right-6 z-50 bg-[var(--mint)] hover:bg-[var(--mint)]/80 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
-            aria-label="Show Interactive Menu"
-          >
-            <X className="w-6 h-6" />
-          </button>
-          <TraditionalMenu />
-        </div>
-      ) : (
-        <div className="flex flex-1 bg-gradient-to-br from-[var(--leaf)] to-[var(--leaf)]/90 text-[var(--bg)] relative" style={{ minHeight: "calc(100vh - 200px)" }}>
-          {/* Paper Scroll Button - At bottom right of menu container */}
-          <button
-            onClick={() => setIsTraditionalMenu(true)}
-            className="paper-scroll-button absolute bottom-4 right-4 z-50 cursor-pointer"
-            aria-label="Show Traditional Menu"
-          >
-            <div className="paper-scroll">
-              <div className="scroll-content">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-            </div>
-          </button>
-          {/* Main Content Area */}
-          <div className="flex-1 flex flex-col relative w-full">
-            {/* Fixed Content Display Area */}
-            <div
-              ref={scrollContainerRef}
-              className="flex-1 flex flex-col items-center justify-center px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-3 md:py-4 relative select-none"
+      <div className="flex flex-col min-h-screen bg-gradient-to-br from-[var(--leaf)] to-[var(--leaf)]/90">
+
+        {isTraditionalMenu ? (
+          <div className="w-full flex-1">
+            {/* Close button when traditional menu is open */}
+            <button
+              onClick={() => setIsTraditionalMenu(false)}
+              className="fixed top-24 right-6 z-50 bg-[var(--mint)] hover:bg-[var(--mint)]/80 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+              aria-label="Show Interactive Menu"
             >
-              <div className="max-w-6xl w-full relative z-10 flex flex-col justify-center items-center h-full gap-6 sm:gap-4 md:gap-6 lg:gap-8">
-                <DishDisplay
-                  currentDish={currentDish}
-                  previousDish={previousDish}
-                  scrollDirection={scrollDirection}
-                  showText={showText}
-                />
+              <X className="w-6 h-6" />
+            </button>
+            <TraditionalMenu />
+          </div>
+        ) : (
+          <div className="flex flex-1 bg-gradient-to-br from-[var(--leaf)] to-[var(--leaf)]/90 text-[var(--bg)] relative" style={{ minHeight: "calc(100vh - 200px)" }}>
+            {/* Paper Scroll Button - At bottom right of menu container */}
+            <button
+              onClick={() => setIsTraditionalMenu(true)}
+              className="paper-scroll-button absolute bottom-4 right-4 z-50 cursor-pointer"
+              aria-label="Show Traditional Menu"
+            >
+              <div className="paper-scroll">
+                <div className="scroll-content">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+              </div>
+            </button>
+            {/* Main Content Area */}
+            <div className="flex-1 flex flex-col relative w-full">
+              {/* Fixed Content Display Area */}
+              <div
+                ref={scrollContainerRef}
+                className="flex-1 flex flex-col items-center justify-center px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-3 md:py-4 relative select-none"
+              >
+                <div className="max-w-6xl w-full relative z-10 flex flex-col justify-center items-center h-full gap-6 sm:gap-4 md:gap-6 lg:gap-8">
+                  <DishDisplay
+                    currentDish={currentDish}
+                    previousDish={previousDish}
+                    scrollDirection={scrollDirection}
+                    showText={showText}
+                  />
 
-                <DishSelector
-                  dishes={dishes}
-                  visibleDishes={visibleDishes}
-                  activeDish={activeDish}
-                  carouselIndex={carouselIndex}
-                  totalPages={totalPages}
-                  onDishClick={scrollToDish}
-                  onPrevClick={handleCarouselPrev}
-                  onNextClick={handleCarouselNext}
-                />
+                  <DishSelector
+                    dishes={dishes}
+                    visibleDishes={visibleDishes}
+                    activeDish={activeDish}
+                    carouselIndex={carouselIndex}
+                    totalPages={totalPages}
+                    onDishClick={scrollToDish}
+                    onPrevClick={handleCarouselPrev}
+                    onNextClick={handleCarouselNext}
+                  />
 
-                <CategoryNavigation
-                  activeCategory={activeCategory}
-                  dishes={dishes}
-                  carouselIndex={carouselIndex}
-                  totalPages={totalPages}
-                  DISHES_PER_VIEW={DISHES_PER_VIEW}
-                  onCategoryChange={(cat) => {
-                    categoryScrollDirection.current = "forward";
-                    setActiveCategory(cat);
-                  }}
-                  onPageClick={(idx) => {
-                    setCarouselIndex(idx);
-                    const targetDish = dishes[idx * DISHES_PER_VIEW];
-                    if (targetDish) {
-                      scrollToDish(targetDish.id!);
-                    }
-                  }}
-                />
+                  <CategoryNavigation
+                    activeCategory={activeCategory}
+                    dishes={dishes}
+                    carouselIndex={carouselIndex}
+                    totalPages={totalPages}
+                    DISHES_PER_VIEW={DISHES_PER_VIEW}
+                    onCategoryChange={(cat) => {
+                      categoryScrollDirection.current = "forward";
+                      setActiveCategory(cat);
+                    }}
+                    onPageClick={(idx) => {
+                      setCarouselIndex(idx);
+                      const targetDish = dishes[idx * DISHES_PER_VIEW];
+                      if (targetDish) {
+                        scrollToDish(targetDish.id!);
+                      }
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <Footer />
 
+      </div>
       <MenuAnimations />
-    </div>
+      <Footer />
+    </>
   );
 }
 
