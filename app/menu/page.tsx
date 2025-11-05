@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef, Suspense } from "react";
 import { X } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { categories, Dish } from "@/utils/dishesData";
+import { categories, Dish, CategoryType } from "@/utils/dishesData";
 import TraditionalMenu from "@/components/TraditionalManu";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -11,12 +11,10 @@ import DishSelector from "@/components/menu/DishSelector";
 import CategoryNavigation from "@/components/menu/CategoryNavigation";
 import MenuAnimations from "@/components/menu/MenuAnimations";
 
-type CategoryType = "food" | "cocktails";
-
 function FoodMenuContent() {
   const searchParams = useSearchParams();
   const [activeCategory, setActiveCategory] =
-    useState<CategoryType>("appetizers");
+    useState<CategoryType>("food");
   const [activeDish, setActiveDish] = useState<number>(1);
   const [showScrollHint, setShowScrollHint] = useState(true);
   const [showText, setShowText] = useState(true);
@@ -28,14 +26,10 @@ function FoodMenuContent() {
   const [carouselIndex, setCarouselIndex] = useState<number>(0);
   const [isTraditionalMenu, setIsTraditionalMenu] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
-  // const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const isChangingCategory = useRef(false);
   const prevDishId = useRef<number>(1);
   const isManualNavigation = useRef(false);
   const categoryScrollDirection = useRef<"forward" | "backward">("forward");
-  // const lastScrollTop = useRef<number>(0);
-  // const wheelAccumulator = useRef<number>(0);
-  // const lastWheelTime = useRef<number>(0);
 
   const DISHES_PER_VIEW = 4;
 
@@ -44,7 +38,7 @@ function FoodMenuContent() {
   // Handle URL parameter for category
   useEffect(() => {
     const categoryParam = searchParams.get("category");
-    if (categoryParam && ["appetizers", "entrees", "drinks", "wines"].includes(categoryParam)) {
+    if (categoryParam && ["food", "entrees", "drinks", "cocktails", "brunch"].includes(categoryParam)) {
       setActiveCategory(categoryParam as CategoryType);
     }
   }, [searchParams]);
@@ -105,21 +99,6 @@ function FoodMenuContent() {
       isChangingCategory.current = false;
     }
   }, [activeCategory, dishes]);
-
-  // Disabled: Handle wheel scrolling on the main container
-  // Navigation now only works via arrow buttons and dish clicks
-  // useEffect(() => {
-  //   const handleWheel = (e: WheelEvent) => {
-  //     if (isChangingCategory.current || dishes.length === 0) return;
-  //     // ... wheel scroll handler removed
-  //   };
-  // }, [dishes, activeDish, activeCategory]);
-
-  // Disabled: Handle touch swipes for mobile
-  // Navigation now only works via arrow buttons and dish clicks
-  // useEffect(() => {
-  //   // ... touch swipe handler removed
-  // }, [dishes, activeDish, activeCategory]);
 
   const scrollToDish = (dishId: number) => {
     setActiveDish(dishId);
@@ -259,21 +238,8 @@ function FoodMenuContent() {
             </div>
           </div>
         </div>
-      </div>
-      {/* // ) : (
-      //   <TraditionalMenu />
-      // )} */}
-
-      {!showFlip ? (
-        <button
-          onClick={() => setShowFlip(true)}
-          className="absolute inset-0 bg-[var(--leaf)] z-[5] overflow-y-auto no-scrollbar rounded-tl-3xl shadow-2xl flex flex-col items-center justify-start backface-hidden"
-        >
-          Peek To Seek
-        </button>
-      ) : (
-        <PageFlip isTraditionalMenu={true} />
       )}
+
       <Footer />
 
       <MenuAnimations />

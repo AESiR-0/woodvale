@@ -1,7 +1,5 @@
 import React from "react";
-import { Dish } from "@/utils/dishesData";
-
-type CategoryType = "appetizers" | "entrees" | "drinks" | "cocktails";
+import { Dish, CategoryType } from "@/utils/dishesData";
 
 interface CategoryNavigationProps {
   activeCategory: CategoryType;
@@ -43,7 +41,7 @@ export default function CategoryNavigation({
 
       {/* Category Buttons */}
       <div className="backdrop-blur-3xl px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 flex justify-center gap-1.5 sm:gap-2 md:gap-3 overflow-x-auto scrollbar-hide rounded-full">
-        {(["appetizers", "entrees", "drinks", "cocktails"] as CategoryType[]).map(
+        {(["food", "entrees", "drinks", "cocktails", "brunch"] as CategoryType[]).map(
           (cat) => (
             <button
               key={cat}
