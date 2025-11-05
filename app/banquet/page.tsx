@@ -152,12 +152,12 @@ export default function EventBookingForm() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,black_100%)] opacity-40 pointer-events-none" />
       
       {/* Content */}
-      <div className="relative min-h-screen text-[var(--muted)] flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
+      <div className="relative min-h-screen text-[var(--muted)] flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 pt-24 sm:pt-24 md:pt-8">
         <Navbar />
 
         <form
           onSubmit={handleSubmit}
-          className="rounded-lg text-[var(--muted)] w-full max-w-2xl p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-5 md:gap-6 mt-20 bg-black/30 backdrop-blur-sm"
+          className="rounded-lg text-[var(--muted)] w-full max-w-2xl p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-5 md:gap-6 mt-20 sm:mt-20 md:mt-20 bg-black/30 backdrop-blur-sm"
         >
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg sm:text-xl md:text-2xl font-semibold flex items-center gap-2">

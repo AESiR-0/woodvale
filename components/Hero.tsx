@@ -63,7 +63,7 @@ export default function Hero() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-[var(--leaf)]">
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-[var(--leaf)] pt-20 sm:pt-20 md:pt-0">
         {/* Background Image with Overlay and Parallax */}
         <div
           className="absolute inset-0 z-0"
@@ -73,7 +73,7 @@ export default function Hero() {
           }}
         >
           <Image
-            src="/static/venue/IMG_6620.CR2"
+            src="/static/venue/IMG_6620.png"
             alt="Elegant restaurant interior with warm lighting and tropical plants"
             fill
             className="object-cover"

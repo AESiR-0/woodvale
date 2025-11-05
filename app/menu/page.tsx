@@ -177,7 +177,7 @@ function FoodMenuContent() {
             <TraditionalMenu />
           </div>
         ) : (
-          <div className="flex flex-1 bg-gradient-to-br from-[var(--leaf)] to-[var(--leaf)]/90 text-[var(--bg)] relative" style={{ minHeight: "calc(100vh - 200px)" }}>
+          <div className="flex flex-1 bg-gradient-to-br from-[var(--leaf)] to-[var(--leaf)]/90 text-[var(--bg)] relative pt-20 sm:pt-20 md:pt-0" style={{ minHeight: "calc(100vh - 200px)" }}>
             {/* Paper Scroll Button - At bottom right of menu container */}
             <button
               onClick={() => setIsTraditionalMenu(true)}
@@ -241,8 +241,6 @@ function FoodMenuContent() {
             </div>
           </div>
         )}
-
-
       </div>
       <MenuAnimations />
       <Footer />

@@ -193,7 +193,7 @@ export default function AboutPage() {
       `}</style>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-20 md:pt-0">
         <div
           ref={parallaxRef}
           className="absolute inset-0 w-full h-[120%]"
@@ -347,7 +347,7 @@ export default function AboutPage() {
         <div className="fade-in-section mx-auto">
           <div className="relative h-[70vh] overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1600&q=80"
+              src="/static/venue/IMG_6627.png"
               alt="The Woodvale Room interior"
               className="w-full h-full object-cover"
             />
