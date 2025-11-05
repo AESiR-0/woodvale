@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from './index';
 
-export async function withAuth(
-  handler: (request: NextRequest, user: any) => Promise<NextResponse>,
+export function withAuth(
+  handler: (request: NextRequest, user: any, context?: { params?: Promise<any> }) => Promise<NextResponse>,
   roles: string[] = []
 ) {
-  return async (request: NextRequest) => {
+  return async (request: NextRequest, context?: { params?: Promise<any> }) => {
     const authResult = await requireAuth(roles)(request);
     
     if ('error' in authResult) {
@@ -15,7 +15,7 @@ export async function withAuth(
       );
     }
 
-    return handler(request, authResult.user);
+    return handler(request, authResult.user, context);
   };
 }
 

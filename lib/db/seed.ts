@@ -33,16 +33,16 @@ export async function seedDatabase() {
 
     // Create sample tables
     const tablesData = [
-      { number: 1, capacity: 2, location: 'Main Dining', status: 'available' },
-      { number: 2, capacity: 4, location: 'Main Dining', status: 'available' },
-      { number: 3, capacity: 4, location: 'Main Dining', status: 'available' },
-      { number: 4, capacity: 6, location: 'Main Dining', status: 'available' },
-      { number: 5, capacity: 8, location: 'Main Dining', status: 'available' },
-      { number: 6, capacity: 2, location: 'Patio', status: 'available' },
-      { number: 7, capacity: 4, location: 'Patio', status: 'available' },
-      { number: 8, capacity: 6, location: 'Patio', status: 'available' },
-      { number: 9, capacity: 4, location: 'Private Room', status: 'available' },
-      { number: 10, capacity: 12, location: 'Private Room', status: 'available' },
+      { number: 1, capacity: 2, location: 'Main Dining', status: 'available' as const },
+      { number: 2, capacity: 4, location: 'Main Dining', status: 'available' as const },
+      { number: 3, capacity: 4, location: 'Main Dining', status: 'available' as const },
+      { number: 4, capacity: 6, location: 'Main Dining', status: 'available' as const },
+      { number: 5, capacity: 8, location: 'Main Dining', status: 'available' as const },
+      { number: 6, capacity: 2, location: 'Patio', status: 'available' as const },
+      { number: 7, capacity: 4, location: 'Patio', status: 'available' as const },
+      { number: 8, capacity: 6, location: 'Patio', status: 'available' as const },
+      { number: 9, capacity: 4, location: 'Private Room', status: 'available' as const },
+      { number: 10, capacity: 12, location: 'Private Room', status: 'available' as const },
     ];
 
     for (const tableData of tablesData) {

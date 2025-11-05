@@ -6,13 +6,14 @@ import { eq } from 'drizzle-orm';
 // GET /api/banquet/[id] - Get single banquet booking
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const [booking] = await db
       .select()
       .from(banquetBookings)
-      .where(eq(banquetBookings.id, params.id));
+      .where(eq(banquetBookings.id, id));
 
     if (!booking) {
       return NextResponse.json(
@@ -34,9 +35,10 @@ export async function GET(
 // PUT /api/banquet/[id] - Update banquet booking
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const body = await request.json();
     const validatedData = updateBanquetBookingSchema.parse(body);
 
@@ -46,7 +48,7 @@ export async function PUT(
         ...validatedData,
         updatedAt: new Date(),
       })
-      .where(eq(banquetBookings.id, params.id))
+      .where(eq(banquetBookings.id, id))
       .returning();
 
     if (!updatedBooking) {
@@ -75,12 +77,13 @@ export async function PUT(
 // DELETE /api/banquet/[id] - Delete banquet booking
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const [deletedBooking] = await db
       .delete(banquetBookings)
-      .where(eq(banquetBookings.id, params.id))
+      .where(eq(banquetBookings.id, id))
       .returning();
 
     if (!deletedBooking) {

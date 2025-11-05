@@ -62,14 +62,21 @@ export const updateContactMessageSchema = z.object({
 // Reservation schemas
 export const createReservationSchema = z.object({
   tableId: z.string().uuid('Invalid table ID').optional(),
-  customerName: z.string().min(1, 'Customer name is required').max(255),
+  firstName: z.string().min(1, 'First name is required').max(255),
+  lastName: z.string().min(1, 'Last name is required').max(255),
+  customerName: z.string().max(255).optional(), // For backward compatibility, will be generated from firstName + lastName
   customerEmail: z.string().email('Invalid email format'),
   customerPhone: z.string().optional(),
+  phoneCountryCode: z.string().optional().default('+1'),
   numberOfGuests: z.number().int().positive('Number of guests must be positive'),
   reservationDate: z.string().datetime(),
   reservationTime: z.string().regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format'),
   duration: z.number().int().positive().default(120),
+  occasion: z.enum(['birthday', 'anniversary', 'business', 'date', 'celebration', 'other']).optional(),
   specialRequests: z.string().optional(),
+  restaurantMarketingConsent: z.boolean().optional().default(false),
+  openTableMarketingConsent: z.boolean().optional().default(false),
+  textUpdatesConsent: z.boolean().optional().default(false),
 });
 
 export const updateReservationSchema = z.object({

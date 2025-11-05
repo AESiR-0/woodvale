@@ -28,7 +28,11 @@ export default function Contact() {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<ContactErrors>({});
 
-  const handleSubmit = (e: FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const newErrors: ContactErrors = {};
 
@@ -43,15 +47,56 @@ export default function Contact() {
     }
 
     setErrors(newErrors);
+    setSubmitError(null);
+    setSubmitSuccess(false);
 
     if (Object.keys(newErrors).length === 0) {
-      alert(`Thank you for your message!\n
-      We'll get back to you soon at ${email}`);
-      setName("");
-      setEmail("");
-      setPhone("");
-      setSubject("");
-      setMessage("");
+      setIsSubmitting(true);
+      
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: name.trim(),
+            email: email.trim(),
+            ...(phone.trim() ? { phone: phone.trim() } : {}),
+            subject: subject.trim(),
+            message: message.trim(),
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          // Show validation errors if available
+          if (data.issues && Array.isArray(data.issues) && data.issues.length > 0) {
+            const errorMessages = data.issues.map((issue: any) => 
+              `${issue.path}: ${issue.message}`
+            ).join(', ');
+            throw new Error(errorMessages);
+          }
+          throw new Error(data.error || 'Failed to send message');
+        }
+
+        // Success
+        setSubmitSuccess(true);
+        setName("");
+        setEmail("");
+        setPhone("");
+        setSubject("");
+        setMessage("");
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => setSubmitSuccess(false), 5000);
+      } catch (error) {
+        console.error('Error submitting contact form:', error);
+        setSubmitError(error instanceof Error ? error.message : 'Failed to send message. Please try again.');
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -162,9 +207,9 @@ export default function Contact() {
                   <div>
                     <h3 className="font-sans text-lg font-semibold text-[var(--mint)] mb-2">Address</h3>
                     <p className="text-[#071d18]">
-                      Woodvale Facility and Clubhouse<br />
-                      Edmonton, AB, Canada<br />
-                      Located on beautiful golf course grounds
+                      4540 50 street NW<br />
+                      Edmonton, AB T6L 6B6<br />
+                      Canada
                     </p>
                   </div>
                 </div>
@@ -178,8 +223,9 @@ export default function Contact() {
                   <div>
                     <h3 className="font-sans text-lg font-semibold text-[var(--mint)] mb-2">Phone</h3>
                     <p className="text-[#071d18]">
-                      (555) 123-4567<br />
-                      WhatsApp: (555) 123-4567
+                      <a href="tel:+17804622101" className="hover:text-[var(--mint)] transition-colors">
+                        780-462-2101
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -208,9 +254,9 @@ export default function Contact() {
                   <div>
                     <h3 className="font-sans text-lg font-semibold text-[var(--mint)] mb-2">Hours</h3>
                     <p className="text-[#071d18]">
-                      Monday - Thursday: 5:00 PM - 11:00 PM<br />
-                      Friday - Saturday: 5:00 PM - 12:00 AM<br />
-                      Sunday: 4:00 PM - 10:00 PM
+                      Tuesday - Thursday: 4:00 PM - 10:00 PM<br />
+                      Friday, Saturday: 4:00 PM - 11:00 PM<br />
+                      Sunday: 9:30 AM - 8:00 PM
                     </p>
                   </div>
                 </div>
@@ -275,7 +321,7 @@ export default function Contact() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--gold)] transition-colors"
-                    placeholder="(555) 123-4567"
+                    placeholder="780-462-2101"
                   />
                 </div>
 
@@ -315,11 +361,26 @@ export default function Contact() {
                   )}
                 </div>
 
+                {submitSuccess && (
+                  <div className="p-4 bg-green-500/10 border border-green-500 rounded-lg">
+                    <p className="text-green-600 text-sm">
+                      Thank you for your message! We'll get back to you soon.
+                    </p>
+                  </div>
+                )}
+
+                {submitError && (
+                  <div className="p-4 bg-red-500/10 border border-red-500 rounded-lg">
+                    <p className="text-red-500 text-sm">{submitError}</p>
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="btn-primary w-full"
+                  disabled={isSubmitting}
+                  className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>

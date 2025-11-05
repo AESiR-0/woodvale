@@ -1,18 +1,22 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight, Grid3X3, ScrollText } from "lucide-react";
+import React, { useState, useEffect, useRef, Suspense } from "react";
+import { X } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 import { categories, Dish } from "@/utils/dishesData";
 import TraditionalMenu from "@/components/TraditionalManu";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import PageFlip from "@/components/PageFlip";
+import DishDisplay from "@/components/menu/DishDisplay";
+import DishSelector from "@/components/menu/DishSelector";
+import CategoryNavigation from "@/components/menu/CategoryNavigation";
+import MenuAnimations from "@/components/menu/MenuAnimations";
 
 type CategoryType = "food" | "cocktails";
 
-export default function FoodMenu() {
-    const [showFlip, setShowFlip] = useState(false);
-
-  const [activeCategory, setActiveCategory] = useState<CategoryType>("food");
+function FoodMenuContent() {
+  const searchParams = useSearchParams();
+  const [activeCategory, setActiveCategory] =
+    useState<CategoryType>("appetizers");
   const [activeDish, setActiveDish] = useState<number>(1);
   const [showScrollHint, setShowScrollHint] = useState(true);
   const [showText, setShowText] = useState(true);
@@ -36,6 +40,14 @@ export default function FoodMenu() {
   const DISHES_PER_VIEW = 4;
 
   const dishes: Dish[] = categories[activeCategory] || [];
+
+  // Handle URL parameter for category
+  useEffect(() => {
+    const categoryParam = searchParams.get("category");
+    if (categoryParam && ["appetizers", "entrees", "drinks", "wines"].includes(categoryParam)) {
+      setActiveCategory(categoryParam as CategoryType);
+    }
+  }, [searchParams]);
 
   // Initialize displayed dish
   useEffect(() => {
@@ -94,53 +106,20 @@ export default function FoodMenu() {
     }
   }, [activeCategory, dishes]);
 
-  // Handle keyboard arrow navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (isChangingCategory.current || dishes.length === 0) return;
+  // Disabled: Handle wheel scrolling on the main container
+  // Navigation now only works via arrow buttons and dish clicks
+  // useEffect(() => {
+  //   const handleWheel = (e: WheelEvent) => {
+  //     if (isChangingCategory.current || dishes.length === 0) return;
+  //     // ... wheel scroll handler removed
+  //   };
+  // }, [dishes, activeDish, activeCategory]);
 
-      if (e.key === "ArrowDown" || e.key === "ArrowRight") {
-        e.preventDefault();
-        handleNextDish();
-      } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
-        e.preventDefault();
-        handlePrevDish();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [dishes, activeDish, activeCategory]);
-
-  const handleNextDish = () => {
-    setShowScrollHint(false);
-    const currentIndex = dishes.findIndex((d) => d.id === activeDish);
-
-    if (currentIndex < dishes.length - 1) {
-      setActiveDish(dishes[currentIndex + 1].id!);
-    } else {
-      // Infinite scrolling: wrap to the other category
-      isChangingCategory.current = true;
-      categoryScrollDirection.current = "forward";
-      setActiveCategory(activeCategory === "food" ? "cocktails" : "food");
-    }
-  };
-
-  const handlePrevDish = () => {
-    setShowScrollHint(false);
-    const currentIndex = dishes.findIndex((d) => d.id === activeDish);
-
-    if (currentIndex > 0) {
-      setActiveDish(dishes[currentIndex - 1].id!);
-    } else {
-      // Infinite scrolling: wrap to the other category
-      isChangingCategory.current = true;
-      categoryScrollDirection.current = "backward";
-      setActiveCategory(activeCategory === "cocktails" ? "food" : "cocktails");
-    }
-  };
+  // Disabled: Handle touch swipes for mobile
+  // Navigation now only works via arrow buttons and dish clicks
+  // useEffect(() => {
+  //   // ... touch swipe handler removed
+  // }, [dishes, activeDish, activeCategory]);
 
   const scrollToDish = (dishId: number) => {
     setActiveDish(dishId);
@@ -200,253 +179,83 @@ export default function FoodMenu() {
     );
   }
 
-  const getTextAnimationClass = () => {
-    return showText ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8";
-  };
-
-  const currentIndex = dishes.findIndex((d) => d.id === activeDish);
-  const isFirstDish = currentIndex === 0 && activeCategory === "food";
-  const isLastDish =
-    currentIndex === dishes.length - 1 && activeCategory === "cocktails";
-
   return (
-    <div className="min-h-screen bg-[#E6E8D9]">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-[var(--leaf)] to-[var(--leaf)]/90">
       <Navbar />
 
-      {/* Toggle Button - Fixed Position
-        <button
-        onClick={() => setIsTraditionalMenu(!isTraditionalMenu)}
-        className="fixed bottom-6 right-6 z-50 bg-[var(--mint)] hover:bg-[var(--mint)]/80 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
-        aria-label={
-          isTraditionalMenu
-            ? "Switch to Interactive Menu"
-            : "Switch to Traditional Menu"
-        }
-      >
-         {isTraditionalMenu ? (
-           <Grid3X3 className="w-8 h-8" />
-         ) : (
-           <ScrollText className="w-8 h-8" />
-         )}
-      </button> */}
-
-      {/* {!isTraditionalMenu ? ( */}
-      <div className="flex h-screen bg-linear-to-br from-[var(--leaf)] to-[var(--leaf)]/92 text-[var(--bg)] overflow-hidden">
-        {/* Main Content Area */}
-        <div className="flex-1 flex flex-col relative">
-          {/* Fixed Content Display Area */}
-          <div
-            ref={scrollContainerRef}
-            className="flex-1 flex flex-col items-center justify-center px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-3 md:py-4 relative overflow-hidden select-none"
+      {isTraditionalMenu ? (
+        <div className="w-full flex-1">
+          {/* Close button when traditional menu is open */}
+          <button
+            onClick={() => setIsTraditionalMenu(false)}
+            className="fixed top-24 right-6 z-50 bg-[var(--mint)] hover:bg-[var(--mint)]/80 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+            aria-label="Show Interactive Menu"
           >
-            <div className="max-w-6xl w-full relative z-10 flex flex-col justify-center items-center h-full gap-6 sm:gap-4 md:gap-6 lg:gap-8">
-              {/* Title and Image Container */}
-              <div className="flex flex-col md:flex-row-reverse items-center justify-center gap-2 sm:gap-3 md:gap-6 lg:gap-22 flex-shrink-0">
-                {/* Title - WITH ANIMATION */}
-                <div
-                  className={`text-center md:text-left transition-all flex flex-col duration-500 ease-out flex-shrink-0 ${getTextAnimationClass()}`}
-                >
-                  <h1 className="text-3xl sm:text-3xl md:text-3xl lg:text-4xl font-light text-[var(--muted)] tracking-wide mb-1 md:mb-1">
-                    {currentDish.name ?? ""}
-                  </h1>
-                  <h2 className="text-lg sm:text-lg md:text-lg lg:text-xl font-bold text-[var(--muted)]">
-                    {currentDish.subtitle ?? ""}
-                  </h2>
-                  {currentDish.price && (
-                    <p className="text-base sm:text-base md:text-base lg:text-lg text-[var(--muted)]/80 mt-0.5">
-                      ${currentDish.price}
-                    </p>
-                  )}
-
-                  {/* Show description only for cocktails */}
-                  {currentDish.subtitle === "Cocktail" &&
-                    currentDish.description && (
-                      <p className="text-sm sm:text-base md:text-base lg:text-md text-[var(--muted)]/70 mt-8 leading-relaxed max-w-md mx-auto md:mx-0">
-                        {currentDish.description}
-                      </p>
-                    )}
-                </div>
-
-                {/* Image Container */}
-                <div
-                  className={`relative flex-shrink-0
-                    ${
-                      currentDish.id === 30
-                        ? "w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-70 lg:h-70"
-                        : "w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-100 lg:h-100"
-                    }    
-                    ${
-                      currentDish.id === 31
-                        ? "w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-60 lg:h-60"
-                        : "w-48 h-48 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-100 lg:h-100"
-                    }
-                    `}
-                >
-                  {previousDish && (
-                    <div
-                      className={`absolute inset-0 ${
-                        scrollDirection === "forward"
-                          ? "animate-spinOut"
-                          : "animate-spinOutBackward"
-                      }`}
-                    >
-                      <img
-                        src={previousDish.mainImage ?? ""}
-                        alt={previousDish.name ?? ""}
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                  )}
-
-                  <div
-                    className={`absolute inset-0 ${
-                      previousDish
-                        ? scrollDirection === "forward"
-                          ? "animate-spinIn"
-                          : "animate-spinInBackward"
-                        : ""
-                    }`}
-                  >
-                    <img
-                      src={currentDish.mainImage ?? ""}
-                      alt={currentDish.name ?? ""}
-                      className="absolute inset-0 w-full h-full object-contain"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Dish Selector with Carousel */}
-              <div className="flex justify-center items-center gap-3 sm:gap-2 md:gap-0 lg:gap-0 w-full flex-shrink-0">
-                {/* <ChevronLeft
-                    className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 cursor-pointer transition-all duration-200 flex-shrink-0 ${
-                      carouselIndex > 0
-                        ? "text-[var(--muted)] hover:text-[var(--muted)]/80 hover:scale-110"
-                        : "text-[var(--muted)]/30 opacity-50 cursor-not-allowed"
-                    }`}
-                    onClick={handleCarouselPrev}
-                  /> */}
-                <div className="flex items-center justify-center gap-1.5 sm:gap-2 md:gap-3 flex-1 h-24 sm:h-28 md:h-32 overflow-hidden">
-                  <div className="flex gap-1.5 sm:gap-2 md:gap-3 transition-transform duration-500 ease-out">
-                    {visibleDishes.map((d, index) => (
-                      <div
-                        key={`selector-${activeCategory}-${d.id ?? index}`}
-                        onClick={() => scrollToDish(d.id!)}
-                        className={`cursor-pointer flex-1 min-w-0 h-full flex flex-col items-center justify-center transition-all duration-300 ${
-                          activeDish === d.id
-                            ? "text-[var(--muted)] scale-100 sm:scale-105 px-1 sm:px-2 pt-1 bg-white/20 rounded-lg sm:rounded-xl"
-                            : "scale-90 opacity-60 hover:opacity-80 hover:scale-95"
-                        }`}
-                        style={{
-                          animation: `fadeSlideIn 0.4s ease-out ${
-                            index * 0.1
-                          }s both`,
-                        }}
-                      >
-                        <div className="rounded-full overflow-hidden w-14 h-14 sm:w-16 sm:h-16 md:w-16 md:h-16 flex items-center justify-center flex-shrink-0">
-                          <img
-                            src={d.image ?? ""}
-                            alt={d.name ?? ""}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <p className="text-[10px] sm:text-[11px] md:text-xs text-center mt-1 px-0.5 leading-tight line-clamp-2">
-                          {(d.name ?? "").toLowerCase()}
-                          <br />
-                          {(d.subtitle ?? "").toLowerCase()}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                {/* <ChevronRight
-                    className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 cursor-pointer transition-all duration-200 flex-shrink-0 ${
-                      carouselIndex < totalPages - 1
-                        ? "text-[var(--muted)] hover:text-[var(--muted)]/80 hover:scale-110"
-                        : "text-[var(--muted)]/30 opacity-50 cursor-not-allowed"
-                    }`}
-                    onClick={handleCarouselNext}
-                  /> */}
-              </div>
-
-              {/* Navigation Buttons and Category */}
-              <div className="flex flex-col gap-4 z-11 sm:gap-3 w-full flex-shrink-0">
-                {/* Previous/Next Navigation Buttons */}
-                <div className="flex justify-center items-center gap-4">
-                  <button
-                    onClick={handlePrevDish}
-                    // disabled={isFirstDish}
-                    className={
-                      "flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 text-white"
-                    }
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                    <span className="text-sm font-semibold">Previous</span>
-                  </button>
-
-                  <button
-                    onClick={handleNextDish}
-                    // disabled={isLastDish}
-                    className={
-                      "flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 text-white"
-                    }
-                  >
-                    <span className="text-sm font-semibold">Next</span>
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
-                </div>
-
-                {/* Category Buttons */}
-                <div className="backdrop-blur-3xl px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 flex justify-center gap-1.5 sm:gap-2 md:gap-3 overflow-x-auto scrollbar-hide rounded-full">
-                  {[
-                    { key: "food", label: "Food" },
-                    { key: "cocktails", label: "Cocktails" },
-                  ].map(({ key, label }) => (
-                    <button
-                      key={key}
-                      onClick={() => {
-                        if (activeCategory !== key) {
-                          categoryScrollDirection.current = "forward";
-                          setActiveCategory(key as CategoryType);
-                        }
-                      }}
-                      className={`flex-shrink-0 py-1 sm:py-1.5 px-2.5 sm:px-3 md:px-4 rounded-full transition-all duration-300 text-xs sm:text-sm md:text-base font-semibold whitespace-nowrap ${
-                        activeCategory === key
-                          ? "bg-[var(--muted)] text-gray-700 scale-100 sm:scale-105"
-                          : "bg-[var(--muted)]/60 text-gray-600 hover:bg-[var(--muted)]/40 hover:scale-105"
-                      }`}
-                    >
-                      {label}
-                    </button>
-                  ))}
-                </div>
+            <X className="w-6 h-6" />
+          </button>
+          <TraditionalMenu />
+        </div>
+      ) : (
+        <div className="flex flex-1 bg-gradient-to-br from-[var(--leaf)] to-[var(--leaf)]/90 text-[var(--bg)] relative" style={{ minHeight: "calc(100vh - 200px)" }}>
+          {/* Paper Scroll Button - At bottom right of menu container */}
+          <button
+            onClick={() => setIsTraditionalMenu(true)}
+            className="paper-scroll-button absolute bottom-4 right-4 z-50 cursor-pointer"
+            aria-label="Show Traditional Menu"
+          >
+            <div className="paper-scroll">
+              <div className="scroll-content">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
               </div>
             </div>
-          </div>
-
-          {/* Scroll Hint */}
-          <div
-            className={`absolute bottom-20 sm:bottom-24 md:bottom-28 left-1/2 transform -translate-x-1/2 z-30 transition-opacity duration-1000 ${
-              showScrollHint ? "opacity-100" : "opacity-0 pointer-events-none"
-            }`}
-          >
-            <div className="flex flex-col items-center gap-1 sm:gap-1.5 animate-bounce">
-              <p className="text-[var(--muted)]/80 text-xs sm:text-sm font-medium">
-                Use arrows to navigate
-              </p>
-              <svg
-                className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-[var(--muted)]/80"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+          </button>
+          {/* Main Content Area */}
+          <div className="flex-1 flex flex-col relative w-full">
+            {/* Fixed Content Display Area */}
+            <div
+              ref={scrollContainerRef}
+              className="flex-1 flex flex-col items-center justify-center px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-3 md:py-4 relative select-none"
+            >
+              <div className="max-w-6xl w-full relative z-10 flex flex-col justify-center items-center h-full gap-6 sm:gap-4 md:gap-6 lg:gap-8">
+                <DishDisplay
+                  currentDish={currentDish}
+                  previousDish={previousDish}
+                  scrollDirection={scrollDirection}
+                  showText={showText}
                 />
-              </svg>
+
+                <DishSelector
+                  dishes={dishes}
+                  visibleDishes={visibleDishes}
+                  activeDish={activeDish}
+                  carouselIndex={carouselIndex}
+                  totalPages={totalPages}
+                  onDishClick={scrollToDish}
+                  onPrevClick={handleCarouselPrev}
+                  onNextClick={handleCarouselNext}
+                />
+
+                <CategoryNavigation
+                  activeCategory={activeCategory}
+                  dishes={dishes}
+                  carouselIndex={carouselIndex}
+                  totalPages={totalPages}
+                  DISHES_PER_VIEW={DISHES_PER_VIEW}
+                  onCategoryChange={(cat) => {
+                    categoryScrollDirection.current = "forward";
+                    setActiveCategory(cat);
+                  }}
+                  onPageClick={(idx) => {
+                    setCarouselIndex(idx);
+                    const targetDish = dishes[idx * DISHES_PER_VIEW];
+                    if (targetDish) {
+                      scrollToDish(targetDish.id!);
+                    }
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -467,96 +276,15 @@ export default function FoodMenu() {
       )}
       <Footer />
 
-      {/* Keyframe Animations */}
-      <style jsx global>{`
-        @keyframes spinOut {
-          0% {
-            transform: translate(0, 0) scale(1);
-            opacity: 1;
-          }
-          20% {
-            opacity: 0;
-          }
-          100% {
-            transform: translate(-500%, 80%) scale(0.8);
-            opacity: 0;
-          }
-        }
-
-        @keyframes spinIn {
-          0% {
-            transform: translate(120%, -200%) scale(0.7);
-            opacity: 0;
-          }
-          100% {
-            transform: translate(0, 0) scale(1);
-            opacity: 1;
-          }
-        }
-
-        @keyframes spinOutBackward {
-          0% {
-            transform: translate(0, 0) scale(1);
-            opacity: 1;
-          }
-          20% {
-            opacity: 0;
-          }
-          100% {
-            transform: translate(120%, -200%) scale(0.7);
-            opacity: 0;
-          }
-        }
-
-        @keyframes spinInBackward {
-          0% {
-            transform: translate(-500%, 80%) scale(0.8);
-            opacity: 0;
-          }
-          100% {
-            transform: translate(0, 0) scale(1);
-            opacity: 1;
-          }
-        }
-
-        @keyframes fadeSlideIn {
-          0% {
-            opacity: 0;
-            transform: translateY(20px) scale(0.9);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
-
-        .animate-spinOut {
-          animation: spinOut 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-        }
-
-        .animate-spinIn {
-          animation: spinIn 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-        }
-
-        .animate-spinOutBackward {
-          animation: spinOutBackward 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-            forwards;
-        }
-
-        .animate-spinInBackward {
-          animation: spinInBackward 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-            forwards;
-        }
-
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
+      <MenuAnimations />
     </div>
+  );
+}
+
+export default function FoodMenu() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <FoodMenuContent />
+    </Suspense>
   );
 }

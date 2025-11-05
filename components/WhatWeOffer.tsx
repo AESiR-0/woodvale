@@ -23,7 +23,7 @@ export default function ServicesSection() {
           scrollTrigger: {
             trigger: ".services-header",
             start: "top 85%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
           },
         }
       );
@@ -81,58 +81,51 @@ export default function ServicesSection() {
 
             {/* Service Cards */}
             <div className="flex flex-col gap-6 sm:gap-8 lg:gap-12 lg:w-3/5">
-              <div className="service-card group cursor-pointer ">
-                <div className="relative h-64 sm:h-80 lg:h-96  rounded-lg overflow-hidden mb-4 shadow-2xl">
-                  <Link href="/reserve">
-                    <img
-                      src="/static/venue/IMG_0833.JPG"
-                      alt="Elegant table setting with fine dining presentation"
-                      
-                      className="object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-110"
-                    />
-                  </Link>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              {/* Example Card */}
+              <Link href="/about" className="service-card group cursor-pointer">
+                <div className="relative h-64 sm:h-80 lg:h-96 rounded-lg overflow-hidden mb-4 shadow-2xl">
+                  <img
+                    src="/static/venue/IMG_0833.JPG"
+                    alt="Elegant table setting with fine dining presentation"
+                    className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                 </div>
                 <h3 className="font-sans text-lg sm:text-xl lg:text-2xl font-semibold text-white group-hover:text-[#a8d5ba] transition-all duration-300 text-center">
                   Fine Dining Experience
                 </h3>
-              </div>
-
-              <div className="service-card group cursor-pointer ">
-                <div className="relative h-64 sm:h-80 lg:h-96  rounded-lg overflow-hidden mb-4 shadow-2xl">
-                  <Link href="/menu#entrees">
-                    <Image
-                      src="/static/venue/bar.jpg"
-                      alt="Sophisticated bar area with craft cocktails"
-                      fill
-                      className="object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-110"
-                    />
-                  </Link>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                </div>
-                <h3 className="font-sans text-lg sm:text-xl lg:text-2xl font-semibold text-white group-hover:text-[#a8d5ba] transition-all duration-300 text-center">
-                  Cocktail Bar
-                </h3>
-              </div>
+              </Link>
 
               {/* Duplicate for other cards */}
-              <div className="service-card group cursor-pointer">
+              <Link href="/menu?category=drinks" className="service-card group cursor-pointer">
                 <div className="relative h-64 sm:h-80 lg:h-96 rounded-lg overflow-hidden mb-4 shadow-2xl">
-                  <Link href="/menu#cocktails">
-                    <Image
-                      src="/static/venue/culinary-artistry.jpg"
-                      alt="Beautifully plated gourmet dish with elegant presentation"
-                      fill
-                      style={{ objectFit: "cover", objectPosition: "bottom" }}
-                      className="transition-all duration-700 ease-out brightness-75 group-hover:brightness-110"
-                    />
-                  </Link>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <Image
+                    src="/static/venue/bar.jpg"
+                    alt="Sophisticated bar area with craft cocktails"
+                    fill
+                    className="object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                 </div>
                 <h3 className="font-sans text-lg sm:text-xl lg:text-2xl font-semibold text-white group-hover:text-[#a8d5ba] transition-all duration-300 text-center">
                   Cocktail Bar
                 </h3>
-              </div>
+              </Link>
+
+              <Link href="/menu?category=appetizers" className="service-card group cursor-pointer">
+                <div className="relative h-64 sm:h-80 lg:h-96 rounded-lg overflow-hidden mb-4 shadow-2xl">
+                  <Image
+                    src="/static/venue/culinary-artistry.jpg"
+                    alt="Beautifully plated gourmet dish with elegant presentation"
+                    fill
+                    style={{ objectFit: "cover", objectPosition: "bottom" }}
+                    className="transition-all duration-700 ease-out brightness-75 group-hover:brightness-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                </div>
+                <h3 className="font-sans text-lg sm:text-xl lg:text-2xl font-semibold text-white group-hover:text-[#a8d5ba] transition-all duration-300 text-center">
+Culinary Artistry                </h3>
+              </Link>
             </div>
           </div>
         </div>

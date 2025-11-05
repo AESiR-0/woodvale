@@ -69,15 +69,25 @@ export const contactMessages = pgTable('contact_messages', {
 export const reservations = pgTable('reservations', {
   id: uuid('id').primaryKey().defaultRandom(),
   tableId: uuid('table_id').notNull().references(() => tables.id),
-  customerName: varchar('customer_name', { length: 255 }).notNull(),
+  firstName: varchar('first_name', { length: 255 }).notNull(),
+  lastName: varchar('last_name', { length: 255 }).notNull(),
+  customerName: varchar('customer_name', { length: 255 }).notNull(), // Full name for backward compatibility
   customerEmail: varchar('customer_email', { length: 255 }).notNull(),
   customerPhone: varchar('customer_phone', { length: 20 }),
+  phoneCountryCode: varchar('phone_country_code', { length: 5 }).default('+1'), // Country code for phone
   numberOfGuests: integer('number_of_guests').notNull(),
   reservationDate: timestamp('reservation_date').notNull(),
   reservationTime: varchar('reservation_time', { length: 10 }).notNull(), // HH:MM format
   duration: integer('duration').notNull().default(120), // minutes
+  occasion: varchar('occasion', { length: 100 }), // e.g., birthday, anniversary, business, etc.
   status: reservationStatusEnum('status').notNull().default('pending'),
   specialRequests: text('special_requests'),
+  // Marketing preferences
+  restaurantMarketingConsent: boolean('restaurant_marketing_consent').notNull().default(false),
+  openTableMarketingConsent: boolean('opentable_marketing_consent').notNull().default(false),
+  textUpdatesConsent: boolean('text_updates_consent').notNull().default(false),
+  openTableReservationId: varchar('opentable_reservation_id', { length: 255 }), // OpenTable reservation ID
+  openTableSynced: boolean('opentable_synced').notNull().default(false), // Whether synced to OpenTable
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });

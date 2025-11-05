@@ -111,6 +111,7 @@ export default function AboutPage() {
       "From imaginative cocktails and an extensive wine list to carefully crafted dishes that evoke both comfort and curiosity, The Woodvale Room was created as a space for the community to connect, celebrate, and savour something truly special.",
     dedication:
       "Our team has worked tirelessly to breathe new life into this space—for those who seek not just a meal, but an experience worth remembering.",
+    location: "4540 50 street NW, Edmonton, AB T6L 6B6",
   };
 
   const highlights: Highlight[] = [
@@ -211,7 +212,7 @@ export default function AboutPage() {
           <div className="mb-4 inline-block">
             <div className="flex items-center justify-center gap-2 text-white/60 text-sm tracking-widest uppercase mb-3">
               <div className="w-12 h-px bg-white/40"></div>
-              <span>Est. 1990</span>
+              <span>Est. 2025</span>
               <div className="w-12 h-px bg-white/40"></div>
             </div>
           </div>
@@ -223,7 +224,7 @@ export default function AboutPage() {
           </p>
           <div className="flex items-center justify-center gap-2 text-white/50 text-sm">
             <MapPin className="w-4 h-4" />
-            <span>{restaurant.location}</span>
+            <span>{restaurant.location || "4540 50 street NW, Edmonton, AB T6L 6B6"}</span>
           </div>
         </div>
 
@@ -361,7 +362,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */} 
-      <section className="py-32 px-6 bg-gradient-to-b from-[#2a332d]/30 to-[#4a5d4e]/50">
+      <section className="py-32 px-6 bg-[#2a332d] ">
         <div className="fade-in-section max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 h-full">
             {/* Content */}
@@ -376,7 +377,7 @@ export default function AboutPage() {
                 community outreach, or simply want to give back, there's a place for you in our Woodvale family.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Link href="https://woodvale.org" className="cta-button relative bg-white hover:bg-transparent hover:text-white border-2 border-white text-black transition-all duration-300   font-semibold px-7 py-4 rounded-full text-lg">
+                <Link href="https://www.woodvale.org/membership" className="cta-button relative bg-white hover:bg-transparent hover:text-white border-2 border-white text-black transition-all duration-300   font-semibold px-7 py-4 rounded-full text-lg">
                   <span className="relative z-10">Join Our Team</span>
                 </Link>
               </div>

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-[var(--leaf)]/99 to-[var(--leaf)]/86 pt-5 text-white relative overflow-hidden" role="contentinfo">
+    <footer className="bg-gradient-to-br from-[var(--leaf)] to-[var(--leaf)]/90 pt-5 text-white relative overflow-hidden z-30" role="contentinfo">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -38,7 +38,7 @@ export default function Footer() {
               {/* Social Links */}
               <div className="flex space-x-4">
                 <Link 
-                  href="https://instagram.com/woodvale" 
+                  href="https://www.instagram.com/woodvalecommunityfacility/" 
                   className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[var(--mint)] transition-colors duration-200 group"
                   aria-label="Follow us on Instagram"
                 >
@@ -47,7 +47,7 @@ export default function Footer() {
                   </svg>
                 </Link>
                 <Link 
-                  href="https://facebook.com/woodvale" 
+                  href="https://www.facebook.com/woodvalecommunityleague/" 
                   className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[var(--mint)] transition-colors duration-200 group"
                   aria-label="Follow us on Facebook"
                 >
@@ -55,15 +55,7 @@ export default function Footer() {
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                   </svg>
                 </Link>
-                <Link 
-                  href="https://twitter.com/woodvale" 
-                  className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[var(--mint)] transition-colors duration-200 group"
-                  aria-label="Follow us on Twitter"
-                >
-                  <svg className="w-5 h-5 text-white group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                  </svg>
-                </Link>
+               
               </div>
             </div>
 
@@ -131,8 +123,9 @@ export default function Footer() {
                   </svg>
                   <div>
                     <p className="text-white/80">
-                      Woodvale Facility and Clubhouse<br />
-                      Edmonton, AB, Canada
+                      4540 50 street NW<br />
+                      Edmonton, AB T6L 6B6<br />
+                      Canada
                     </p>
                   </div>
                 </div>
@@ -143,8 +136,8 @@ export default function Footer() {
                   </svg>
                   <div>
                     <p className="text-white/80">
-                      <a href="tel:+15551234567" className="hover:text-[var(--mint)] transition-colors">
-                        (555) 123-4567
+                      <a href="tel:+17804622101" className="hover:text-[var(--mint)] transition-colors">
+                        780-462-2101
                       </a>
                     </p>
                   </div>
@@ -170,18 +163,18 @@ export default function Footer() {
               <h3 className="font-sans text-lg font-semibold text-white mb-6">
                 Hours
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <div className="flex justify-between">
-                  <span className="text-white/80">Mon - Thu</span>
-                  <span className="text-white/80">5:00 PM - 11:00 PM</span>
+                  <span className="text-white/80">Tuesday - Thursday</span>
+                  <span className="text-white/80">4:00 PM - 10:00 PM</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-white/80">Fri - Sat</span>
-                  <span className="text-white/80">5:00 PM - 12:00 AM</span>
+                  <span className="text-white/80">Friday, Saturday</span>
+                  <span className="text-white/80">4:00 PM - 11:00 PM</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-white/80">Sunday</span>
-                  <span className="text-white/80">4:00 PM - 10:00 PM</span>
+                  <span className="text-white/80">9:30 AM - 8:00 PM</span>
                 </div>
               </div>
               
@@ -223,7 +216,7 @@ export default function Footer() {
           <div className="container mx-auto px-6 py-8">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <p className="text-white/80 text-sm">
-                &copy; 2024 Woodvale Restaurant & Banquet. All rights reserved.
+                &copy; 2025 Woodvale Restaurant & Banquet. All rights reserved.
               </p>
               <div className="flex space-x-8 text-sm">
                 <Link 

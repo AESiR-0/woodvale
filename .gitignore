@@ -11,9 +11,11 @@
 !.yarn/versions
 pnpm-lock.yaml
 package-lock.json
+env.example
 
 # testing
 /coverage
+
 
 # next.js
 /.next/

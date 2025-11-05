@@ -1,52 +1,15 @@
 "use client";
 
-import React, { useRef, useEffect, FormEvent, useState } from "react";
-import { Button } from "@/components/ui/button";
+import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import TableBookingForm from "@/components/TableBookingForm";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface Errors {
-  name?: string;
-  person?: string;
-  timing?: string;
-  date?: string;
-}
-
 export default function ReservationForm() {
   const bgRef = useRef<HTMLDivElement>(null);
-  const formRef = useRef<HTMLFormElement>(null);
-
-  const [name, setName] = useState("");
-  const [person, setPerson] = useState("");
-  const [timing, setTiming] = useState("");
-  const [date, setDate] = useState("");
-  const [errors, setErrors] = useState<Errors>({});
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    const newErrors: Errors = {};
-
-    if (!name.trim()) newErrors.name = "Name is required";
-    if (!person.trim()) newErrors.person = "Number of persons is required";
-    if (!timing.trim()) newErrors.timing = "Timing is required";
-    if (!date.trim()) newErrors.date = "Date is required";
-
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length === 0) {
-      alert(`Reservation confirmed!\n
-      Name: ${name}\n
-      Persons: ${person}\n
-      Timing: ${timing}\n
-      Date: ${date}`);
-      setName("");
-      setPerson("");
-      setTiming("");
-      setDate("");
-    }
-  };
+  const formRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -70,10 +33,16 @@ export default function ReservationForm() {
       }
 
       if (formRef.current) {
-        gsap.from(formRef.current.querySelectorAll("input, h1"), {
+        // Ensure buttons are always visible
+        const buttons = formRef.current.querySelectorAll("button");
+        buttons.forEach((btn) => {
+          gsap.set(btn, { opacity: 1, visibility: 'visible' });
+        });
+        
+        gsap.from(formRef.current.querySelectorAll("h1, label, [role='combobox']"), {
           opacity: 0,
           y: 30,
-          stagger: 0.15,
+          stagger: 0.1,
           duration: 0.8,
           ease: "power2.out",
           scrollTrigger: {
@@ -83,13 +52,14 @@ export default function ReservationForm() {
             markers: false,
           },
         });
-
-        gsap.from(formRef.current.querySelectorAll("button"), {
-          opacity: 0,
-          y: 30,
+        
+        // Animate buttons with fade-in but keep them visible and centered
+        gsap.from(buttons, {
+          opacity: 0.3,
+          y: 0,
+          stagger: 0.1,
           duration: 0.8,
           ease: "power2.out",
-          delay: 0.5,
           scrollTrigger: {
             trigger: formRef.current,
             start: "top 85%",
@@ -110,96 +80,15 @@ export default function ReservationForm() {
         ref={bgRef}
         className="absolute inset-0 bg-cover bg-top will-change-transform"
         style={{
-          backgroundImage:
-            "url('/static/venue/banquet.jpg')",
+          backgroundImage: "url('/static/venue/banquet.jpg')",
         }}
       />
-          <div className="absolute inset-0 bg-gradient-to-b from-[var(--leaf)]/70 via-[var(--leaf)]/70 to-[var(--leaf)]/70"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-[var(--leaf)]/70 via-[var(--leaf)]/70 to-[var(--leaf)]/70"></div>
 
-      {/* Form */}
-      <form
-        ref={formRef}
-        onSubmit={handleSubmit}
-        className="relative z-20 text-white rounded-lg  w-full max-w-md sm:max-w-lg md:max-w-xl p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-6 md:gap-6 text-base sm:text-lg"
-      >
-        <h1 className="font-heading text-3xl sm:text-4xl md:text-4xl font-bold text-center mb-2 sm:mb-4">
-          Book Your Table
-        </h1>
-
-        {/* First Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-          <div>
-            <input
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className={`w-full text-[var(--muted)] placeholder:text-[var(--muted)] text-base sm:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded-md border focus:outline-none ${
-                errors.name ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-            {errors.name && (
-              <p className="text-red-400 text-sm mt-1">{errors.name}</p>
-            )}
-          </div>
-
-          <div>
-            <input
-              type="number"
-              min="1"
-              placeholder="Persons"
-              value={person}
-              onChange={(e) => setPerson(e.target.value)}
-              className={`w-full text-[var(--muted)] placeholder:text-[var(--muted)] text-base sm:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded-md border focus:outline-none ${
-                errors.person ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-            {errors.person && (
-              <p className="text-red-400 text-sm mt-1">{errors.person}</p>
-            )}
-          </div>
-        </div>
-
-        {/* Second Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-          <div>
-            <input
-              type="time"
-              value={timing}
-              onChange={(e) => setTiming(e.target.value)}
-              className={`w-full text-[var(--muted)] placeholder:text-[var(--muted)] text-base sm:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded-md border focus:outline-none ${
-                errors.timing ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-            {errors.timing && (
-              <p className="text-red-400 text-sm mt-1">{errors.timing}</p>
-            )}
-          </div>
-          <div>
-            <input
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              className={`w-full text-[var(--muted)] placeholder:text-[var(--muted)] text-base sm:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded-md border focus:outline-none ${
-                errors.date ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-            {errors.date && (
-              <p className="text-red-400 text-sm mt-1">{errors.date}</p>
-            )}
-          </div>
-        </div>
-
-        {/* Button */}
-        <div className="w-full mt-2 sm:mt-4">
-          <Button
-            type="submit"
-            className="w-full text-[var(--muted)] font-semibold text-lg sm:text-xl py-4 sm:py-6 rounded-md"
-          >
-            Submit Reservation
-          </Button>
-        </div>
-      </form>
+      {/* Form with Glass Effect */}
+      <div ref={formRef} className="relative flex justify-center items-center z-20 w-full">
+        <TableBookingForm variant="glass" />
+      </div>
     </section>
   );
 }

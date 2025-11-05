@@ -6,13 +6,14 @@ import { eq } from 'drizzle-orm';
 // GET /api/contact/[id] - Get single contact message
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const [message] = await db
       .select()
       .from(contactMessages)
-      .where(eq(contactMessages.id, params.id));
+      .where(eq(contactMessages.id, id));
 
     if (!message) {
       return NextResponse.json(
@@ -34,9 +35,10 @@ export async function GET(
 // PUT /api/contact/[id] - Update contact message
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const body = await request.json();
     const validatedData = updateContactMessageSchema.parse(body);
 
@@ -46,7 +48,7 @@ export async function PUT(
         ...validatedData,
         updatedAt: new Date(),
       })
-      .where(eq(contactMessages.id, params.id))
+      .where(eq(contactMessages.id, id))
       .returning();
 
     if (!updatedMessage) {
@@ -75,12 +77,13 @@ export async function PUT(
 // DELETE /api/contact/[id] - Delete contact message
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const [deletedMessage] = await db
       .delete(contactMessages)
-      .where(eq(contactMessages.id, params.id))
+      .where(eq(contactMessages.id, id))
       .returning();
 
     if (!deletedMessage) {
