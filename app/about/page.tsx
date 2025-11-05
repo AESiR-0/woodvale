@@ -309,7 +309,7 @@ export default function AboutPage() {
       </section>
 
       {/* Highlights Grid */}
-      <section className="py-24 px-6 bg-gradient-to-b from-transparent to-[#2a332d]/30">
+      {/* <section className="py-24 px-6 bg-gradient-to-b from-transparent to-[#2a332d]/30">
         <div className="max-w-7xl mx-auto">
           <div className="fade-in-section text-center mb-16">
             <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
@@ -340,7 +340,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Immersive Image Section */}
       <section>
