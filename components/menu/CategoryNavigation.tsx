@@ -41,7 +41,7 @@ export default function CategoryNavigation({
 
       {/* Category Buttons */}
       <div className="backdrop-blur-3xl px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 flex justify-center gap-1.5 sm:gap-2 md:gap-3 overflow-x-auto scrollbar-hide rounded-full">
-        {(["food", "entrees", "drinks", "cocktails", "brunch"] as CategoryType[]).map(
+        {(["food",  "drinks"] as CategoryType[]).map(
           (cat) => (
             <button
               key={cat}

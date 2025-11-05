@@ -112,7 +112,7 @@ export default function ServicesSection() {
                 </h3>
               </Link>
 
-              <Link href="/menu?category=appetizers" className="service-card group cursor-pointer">
+              <Link href="/menu?category=food" className="service-card group cursor-pointer">
                 <div className="relative h-64 sm:h-80 lg:h-96 rounded-lg overflow-hidden mb-4 shadow-2xl">
                   <Image
                     src="/static/venue/culinary-artistry.jpg"
