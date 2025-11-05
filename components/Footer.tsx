@@ -38,7 +38,7 @@ export default function Footer() {
               {/* Social Links */}
               <div className="flex space-x-4">
                 <Link 
-                  href="https://www.instagram.com/woodvalecommunityfacility/" 
+                  href="https://www.instagram.com/thewoodvaleroomyeg/" 
                   className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[var(--mint)] transition-colors duration-200 group"
                   aria-label="Follow us on Instagram"
                 >
