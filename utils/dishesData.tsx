@@ -241,7 +241,7 @@ export const categories: Record<string, Dish[]> = {
     //   price: 4,
     // },
   ],
-  cocktails: [
+  drinks: [
     {
       id: 27,
       name: "Golden Smoke",
@@ -249,7 +249,7 @@ export const categories: Record<string, Dish[]> = {
       image: "/cocktailDrinks/goldenSmoke-removebg-preview.png",
       mainImage: "/cocktailDrinks/goldenSmoke-removebg-preview.png",
       description:
-        "a warm whisper of bourbon and honey drifts through rosemary mist — where sweetness meets the forest fire’s last glow.",
+        "a warm whisper of bourbon and honey drifts through rosemary mist — where sweetness meets the forest fire's last glow.",
     },
     {
       id: 28,
@@ -317,7 +317,7 @@ export const categories: Record<string, Dish[]> = {
     },
     {
       id: 35,
-      name: "Molech’s Mule",
+      name: "Molech's Mule",
       subtitle: "Cocktail",
       image: "/cocktailDrinks/molechsMule-removebg-preview.png",
       mainImage: "/cocktailDrinks/molechsMule-removebg-preview.png",
@@ -325,6 +325,7 @@ export const categories: Record<string, Dish[]> = {
         "bright lime and crisp cucumber rise through ginger fire — a refreshing spark born from earth and flame.",
     },
   ],
+  cocktails: [],
   // drinks: [
   //   {
   //     id: 35,
