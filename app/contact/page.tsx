@@ -223,8 +223,8 @@ export default function Contact() {
                   <div>
                     <h3 className="font-sans text-lg font-semibold text-[var(--mint)] mb-2">Phone</h3>
                     <p className="text-[#071d18]">
-                      <a href="tel:+17804622101" className="hover:text-[var(--mint)] transition-colors">
-                        780-462-2101
+                      <a href="tel:+17804623782" className="hover:text-[var(--mint)] transition-colors">
+                        780-462-3782
                       </a>
                     </p>
                   </div>
@@ -239,8 +239,9 @@ export default function Contact() {
                   <div>
                     <h3 className="font-sans text-lg font-semibold text-[var(--mint)] mb-2">Email</h3>
                     <p className="text-[#071d18]">
-                      info@woodvale.com<br />
-                      events@woodvale.com
+                      <a href="mailto:padon@woodvalefacility.ca" className="hover:text-[var(--mint)] transition-colors">
+                        padon@woodvalefacility.ca
+                      </a>
                     </p>
                   </div>
                 </div>

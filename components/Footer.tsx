@@ -136,8 +136,8 @@ export default function Footer() {
                   </svg>
                   <div>
                     <p className="text-white/80">
-                      <a href="tel:+17804622101" className="hover:text-[var(--mint)] transition-colors">
-                        780-462-2101
+                      <a href="tel:+17804623782" className="hover:text-[var(--mint)] transition-colors">
+                        780-462-3782
                       </a>
                     </p>
                   </div>
@@ -149,8 +149,8 @@ export default function Footer() {
                   </svg>
                   <div>
                     <p className="text-white/80">
-                      <a href="mailto:info@woodvale.com" className="hover:text-[var(--mint)] transition-colors">
-                        info@woodvale.com
+                      <a href="mailto:padon@woodvalefacility.ca" className="hover:text-[var(--mint)] transition-colors">
+                        padon@woodvalefacility.ca
                       </a>
                     </p>
                   </div>
