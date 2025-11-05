@@ -13,12 +13,11 @@ export default function FoldedPaperCard({ onClick }: FoldedPaperCardProps) {
   return (
     <>
       <div 
-        className="absolute bottom-4 right-4 z-[9999]" 
+        className="absolute bottom-4 right-0 z-[9999]" 
         style={{ 
           perspective: "2000px",
           position: "absolute",
           bottom: "1rem",
-          right: "1rem",
           pointerEvents: "auto",
           isolation: "isolate"
         }}

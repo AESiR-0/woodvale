@@ -163,18 +163,18 @@ export default function Footer() {
               <h3 className="font-sans text-lg font-semibold text-white mb-6">
                 Hours
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <div className="flex justify-between">
-                  <span className="text-white/80">Mon - Thu</span>
-                  <span className="text-white/80">5:00 PM - 11:00 PM</span>
+                  <span className="text-white/80">Tuesday - Thursday</span>
+                  <span className="text-white/80">4:00 PM - 10:00 PM</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-white/80">Fri - Sat</span>
-                  <span className="text-white/80">5:00 PM - 12:00 AM</span>
+                  <span className="text-white/80">Friday, Saturday</span>
+                  <span className="text-white/80">4:00 PM - 11:00 PM</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-white/80">Sunday</span>
-                  <span className="text-white/80">4:00 PM - 10:00 PM</span>
+                  <span className="text-white/80">9:30 AM - 8:00 PM</span>
                 </div>
               </div>
               
@@ -216,7 +216,7 @@ export default function Footer() {
           <div className="container mx-auto px-6 py-8">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <p className="text-white/80 text-sm">
-                &copy; 2024 Woodvale Restaurant & Banquet. All rights reserved.
+                &copy; 2025 Woodvale Restaurant & Banquet. All rights reserved.
               </p>
               <div className="flex space-x-8 text-sm">
                 <Link 

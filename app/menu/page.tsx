@@ -6,7 +6,6 @@ import { categories, Dish } from "@/utils/dishesData";
 import TraditionalMenu from "@/components/TraditionalManu";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import FoldedPaperCard from "@/components/menu/FoldedPaperCard";
 import DishDisplay from "@/components/menu/DishDisplay";
 import DishSelector from "@/components/menu/DishSelector";
 import CategoryNavigation from "@/components/menu/CategoryNavigation";
@@ -28,7 +27,6 @@ function FoodMenuContent() {
   >("forward");
   const [carouselIndex, setCarouselIndex] = useState<number>(0);
   const [isTraditionalMenu, setIsTraditionalMenu] = useState(false);
-  const [isFlipping, setIsFlipping] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const isChangingCategory = useRef(false);
@@ -183,47 +181,43 @@ function FoodMenuContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[var(--leaf)] to-[var(--leaf)]/90" style={{ perspective: "2000px" }}>
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-[var(--leaf)] to-[var(--leaf)]/90">
       <Navbar />
 
-      {/* Close button when traditional menu is open */}
-      {isTraditionalMenu && (
-        <button
-          onClick={() => setIsTraditionalMenu(false)}
-          className="fixed top-24 right-6 z-50 bg-[var(--mint)] hover:bg-[var(--mint)]/80 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
-          aria-label="Close Traditional Menu"
-        >
-          <X className="w-6 h-6" />
-        </button>
-      )}
-
       {isTraditionalMenu ? (
-        <div className="w-full animate-pageFlip">
+        <div className="w-full flex-1">
+          {/* Close button when traditional menu is open */}
+          <button
+            onClick={() => setIsTraditionalMenu(false)}
+            className="fixed top-24 right-6 z-50 bg-[var(--mint)] hover:bg-[var(--mint)]/80 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+            aria-label="Show Interactive Menu"
+          >
+            <X className="w-6 h-6" />
+          </button>
           <TraditionalMenu />
         </div>
       ) : (
-        <div 
-          className={`flex h-screen bg-gradient-to-br from-[var(--leaf)] to-[var(--leaf)]/90 text-[var(--bg)] overflow-hidden relative ${
-            isFlipping ? "page-flip-out" : ""
-          }`}
-          style={{ transformOrigin: "bottom right", transformStyle: "preserve-3d" }}
-        >
-          {/* Folded Paper Card - At bottom of menu container */}
-          <FoldedPaperCard 
-            onClick={() => {
-              setIsFlipping(true);
-              setTimeout(() => {
-                setIsTraditionalMenu(true);
-                setIsFlipping(false);
-              }, 600);
-            }} 
-          />
+        <div className="flex flex-1 bg-gradient-to-br from-[var(--leaf)] to-[var(--leaf)]/90 text-[var(--bg)] relative" style={{ minHeight: "calc(100vh - 200px)" }}>
+          {/* Paper Scroll Button - At bottom right of menu container */}
+          <button
+            onClick={() => setIsTraditionalMenu(true)}
+            className="paper-scroll-button absolute bottom-4 right-4 z-50 cursor-pointer"
+            aria-label="Show Traditional Menu"
+          >
+            <div className="paper-scroll">
+              <div className="scroll-content">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+            </div>
+          </button>
           {/* Main Content Area */}
-          <div className="flex-1 flex flex-col relative">
+          <div className="flex-1 flex flex-col relative w-full">
             {/* Fixed Content Display Area */}
             <div
               ref={scrollContainerRef}
-              className="flex-1 flex flex-col items-center justify-center px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-3 md:py-4 relative overflow-hidden select-none"
+              className="flex-1 flex flex-col items-center justify-center px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-3 md:py-4 relative select-none"
             >
               <div className="max-w-6xl w-full relative z-10 flex flex-col justify-center items-center h-full gap-6 sm:gap-4 md:gap-6 lg:gap-8">
                 <DishDisplay
@@ -264,8 +258,6 @@ function FoodMenuContent() {
                 />
               </div>
             </div>
-
-          
           </div>
         </div>
       )}

@@ -209,9 +209,9 @@ export default function Contact() {
                   <div>
                     <h3 className="font-sans text-lg font-semibold text-[var(--mint)] mb-2">Hours</h3>
                     <p className="text-[#071d18]">
-                      Monday - Thursday: 5:00 PM - 11:00 PM<br />
-                      Friday - Saturday: 5:00 PM - 12:00 AM<br />
-                      Sunday: 4:00 PM - 10:00 PM
+                      Tuesday - Thursday: 4:00 PM - 10:00 PM<br />
+                      Friday, Saturday: 4:00 PM - 11:00 PM<br />
+                      Sunday: 9:30 AM - 8:00 PM
                     </p>
                   </div>
                 </div>
