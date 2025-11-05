@@ -79,7 +79,7 @@ export default function Footer() {
                       href="/about" 
                       className="text-white/80 hover:text-[var(--mint)] transition-colors duration-200 block"
                     >
-                      About Us
+                      About
                     </Link>
                   </li>
                   <li>
@@ -95,8 +95,8 @@ export default function Footer() {
                       href="/banquet" 
                       className="text-white/80 hover:text-[var(--mint)] transition-colors duration-200 block"
                     >
-                      Private Events
-                    </Link>
+                        Banquet
+                      </Link>
                   </li>
                   <li>
                     <Link 

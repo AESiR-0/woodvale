@@ -123,7 +123,7 @@ const TraditionalMenu = () => {
               <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center">
                 Build Your Own Charcuterie
               </h2>
-              <div className="grid grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                 {/* Meat */}
                 <div>
                   <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4">

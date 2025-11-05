@@ -165,7 +165,7 @@ function FoodMenuContent() {
       <div className="flex flex-col min-h-screen bg-gradient-to-br from-[var(--leaf)] to-[var(--leaf)]/90">
 
         {isTraditionalMenu ? (
-          <div className="w-full flex-1">
+          <div className="w-full flex-1 bg-[#E6E8D9]">
             {/* Close button when traditional menu is open */}
             <button
               onClick={() => setIsTraditionalMenu(false)}
