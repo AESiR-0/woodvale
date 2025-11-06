@@ -490,7 +490,7 @@ const TraditionalMenu = () => {
             <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6">
               Cocktails
             </h3>
-            <div className="space-y-6 text-[#071d18]/70">
+            <div className="space-y-6">
               {[
                 {
                   name: "Forest Ember Old Fashioned",
