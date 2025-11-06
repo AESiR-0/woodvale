@@ -100,7 +100,7 @@ export default function AboutPage() {
     name: "The Woodvale Room",
     tagline: "Hidden within the heart of Mill Woods",
     description:
-      "Hidden within the heart of Mill Woods, The Woodvale Room invites guests into an intimate escape inspired by the beauty and mystery of the forest. Nestled inside the Woodvale Community Facility, this reimagined space blends elegance with a secret-society charm.",
+      "Hidden within the heart of the Mill Woods golf course, The Woodvale Room invites guests into an intimate escape inspired by the beauty and mystery of the forest. Nestled inside the Woodvale Community Facility, this reimagined space blends elegance with a secret-society charm.",
     atmosphere:
       "A place where flickering candlelight, rich wood tones, and thoughtful details set the stage for unforgettable evenings.",
     cuisine:

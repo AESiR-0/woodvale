@@ -322,7 +322,7 @@ export default function Contact() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--gold)] transition-colors"
-                    placeholder="780-462-2101"
+                    placeholder="780-462-3782"
                   />
                 </div>
 

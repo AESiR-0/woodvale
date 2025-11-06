@@ -35,7 +35,7 @@ const TraditionalMenu = () => {
                 id: 1,
                 name: "Soup of the Day",
                 priceDisplay: "$10",
-                description: "Ask your server for today’s selection.",
+                description: "Ask your server for today's selection.",
               },
               {
                 id: 2,
@@ -505,7 +505,7 @@ const TraditionalMenu = () => {
                     "Empress gin / violet liqueur / triple sec / lemon juice / egg white / garnish.",
                 },
                 {
-                  name: "Molech’s Mule",
+                  name: "Molech's Mule",
                   price: 16,
                   description:
                     "Cucumber vodka / lime juice / ginger beer / lime.",
@@ -605,7 +605,7 @@ const TraditionalMenu = () => {
                 { name: "Rock Creek Dry Apple Cider", price: 11 },
                 { name: "Big Rock Non-Alcoholic Golden Ale", price: 11 },
                 { name: "Ole Tequila Soda", price: 9.5 },
-                { name: "Dillon’s Gin Cocktail", price: 6 },
+                { name: "Dillon's Gin Cocktail", price: 6 },
               ].map((bottle, index) => (
                 <div key={index} className="flex justify-between">
                   <span>{bottle.name}</span>
@@ -630,14 +630,14 @@ const TraditionalMenu = () => {
   {[
     { name: "Park Alpine Dry Gin", region: "Canada", notes: "juniper, citrus, spruce pine, herbs" },
     { name: "Bulldog", region: "UK", notes: "floral, exotic fruit, citrus, juniper" },
-    { name: "Dillon’s", region: "Canada", notes: "juniper, unfiltered, complex" },
+    { name: "Dillon's", region: "Canada", notes: "juniper, unfiltered, complex" },
     { name: "Gin Mare", region: "Spain", notes: "juniper, olives, rosemary, thyme" },
     { name: "Empress", region: "Canada", notes: "bold juniper, citrus, floral" },
     { name: "Drumshanbo Gunpowder", region: "Ireland", notes: "green tea, asian botanicals" },
-    { name: "Brockman’s", region: "UK", notes: "coriander, blackberry, valencia orange" },
+    { name: "Brockman's", region: "UK", notes: "coriander, blackberry, valencia orange" },
     { name: "Strathcona Spirits Badland", region: "Canada", notes: "juniper, seaberry, dry" },
-    { name: "Hayman’s Sloe Gin", region: "UK", notes: "almond, frangipane, and berries" },
-    { name: "Hendrick’s", region: "Scotland", notes: "cucumber, rose, honeyed citrus, juniper" },
+    { name: "Hayman's Sloe Gin", region: "UK", notes: "almond, frangipane, and berries" },
+    { name: "Hendrick's", region: "Scotland", notes: "cucumber, rose, honeyed citrus, juniper" },
     { name: "Collective Arts", region: "Canada", notes: "juniper, rosemary, basil, cardamom" },
     { name: "The Botanist", region: "Scotland", notes: "orris root, cassia bark, coriander, and juniper" },
     { name: "Aviation", region: "USA", notes: "juniper, lavender, sarsaparilla" },
@@ -646,7 +646,7 @@ const TraditionalMenu = () => {
     { name: "Noteworthy", region: "Canada", notes: "orange, botanicals, tang crystals" },
     { name: "Lind & Lime", region: "Scotland", notes: "juniper, lime" },
     { name: "Blossom Peach", region: "Spain", notes: "peach, juniper, citrus" },
-    { name: "Romeo’s X", region: "Canada", notes: "watermelon, lavender, cucumber" },
+    { name: "Romeo's X", region: "Canada", notes: "watermelon, lavender, cucumber" },
     { name: "Sorgin", region: "France", notes: "sauvignon blanc grapes, juniper, violet, broom flower, grapefruit" },
     { name: "Tanqueray 10", region: "UK", notes: "juniper, citrus peel, grapefruit, chamomile" },
     { name: "Caorunn", region: "UK", notes: "lavender, marijuana, pepper" },
@@ -865,7 +865,7 @@ const TraditionalMenu = () => {
   { name: "Roberto Voerzio Barbera d'Alba", region: "Italy", price6: "-", price9: "-", bottle: 97 },
   { name: "Halos de Jupiter Grenache", region: "France", price6: "-", price9: "-", bottle: 52 },
   { name: 'Daou "The Pessimist" Red Blend', region: "California", price6: "-", price9: "-", bottle: 87 },
-  { name: "Henschke Henry’s Seven Red Blend", region: "Australia", price6: "-", price9: "-", bottle: 129 },
+  { name: "Henschke Henry's Seven Red Blend", region: "Australia", price6: "-", price9: "-", bottle: 129 },
   { name: "La Ragose Della Valpolicella Amarone", region: "Italy", price6: "-", price9: "-", bottle: 199 },
   { name: "Justin Cabernet Sauvignon", region: "California", price6: "-", price9: "-", bottle: 109 },
   { name: "Sequoia Grove Cabernet Sauvignon", region: "California", price6: "-", price9: "-", bottle: 189 },

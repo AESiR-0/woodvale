@@ -143,7 +143,7 @@ export default function Banquet() {
               events.
             </p>
             <p className="text-lg sm:text-xl text-white/70 drop-shadow leading-relaxed">
-              Reference: Kindly reach out for customized decoration, menu
+              Kindly reach out for customized decoration, menu
               options, and special event packages. Early booking ensures the
               best availability and personalized service.
             </p>

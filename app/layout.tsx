@@ -29,7 +29,7 @@ const seasons = localFont({
 
 export const metadata: Metadata = {
   title: "Woodvale Restaurant & Banquet",
-  description: "Experience the perfect blend of speakeasy elegance and tropical ambiance at Woodvale. Savor classic flavors with contemporary twists in our warm, plant-filled dining space.",
+  description: "Experience the perfect blend of speakeasy elegance and exotic-grove ambiance at Woodvale. Savor classic flavors with contemporary twists in our warm, plant-filled dining space.",
   keywords: "restaurant, banquet, speakeasy, tropical, fine dining, private events",
   authors: [{ name: "Woodvale Restaurant" }],
   icons: {

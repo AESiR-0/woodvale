@@ -74,8 +74,12 @@ export default function ServicesSection() {
                 Our Great Services
               </h2>
               <p className="text-white/70 text-base sm:text-lg lg:text-base leading-relaxed">
-                The atmosphere sets the stage. It's about more than just a
-                dining room away from home. Food takes the spotlight as guests.
+                The atmosphere sets the stage. 
+                It's about more than just a dining room away from home, it's a curated experience where every detail is considered.
+                From the warm lighting to attentive service, each touch is designed to welcome you in and let the outside world fade away. 
+                Here, food takes the spotlight as guests savour thoughtful flavours, crafted cocktails, and moments that unfold with ease, comfort, and understated elegance.
+                
+                Whether you're joining us for a celebration, a quiet evening, or a refined night out, The Woodvale Room offers an elevated escape built around connection, culinary artistry, and timeless hospitality.
               </p>
             </div>
 

@@ -31,8 +31,8 @@ export default function Footer() {
                 </span>
               </div>
               <p className="text-white/80 leading-relaxed max-w-sm">
-                Experience the perfect blend of speakeasy elegance and tropical ambiance. 
-                Where classic flavors meet contemporary innovation.
+                A seamless fusion of speakeasy elegance and exotic-grove ambiance, 
+                where timeless flavors are reimagined through contemporary innovation.
               </p>
               
               {/* Social Links */}

@@ -112,8 +112,8 @@ export default function Hero() {
             ref={descriptionRef}
             className="text-xl md:text-2xl text-white/90 mb-8 mx-auto leading-relaxed"
           >
-            Experience the perfect blend of speakeasy elegance and tropical
-            ambiance. Where timeless flavors meet contemporary innovation.
+            A seamless fusion of speakeasy elegance and exotic-grove ambiance, 
+            where timeless flavors are reimagined through contemporary innovation.
           </p>
           <div ref={buttonRef}>
             <Link href="/reserve" className="btn-primary capitalize">
