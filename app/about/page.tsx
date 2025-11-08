@@ -237,9 +237,9 @@ export default function AboutPage() {
       </section>
 
       {/* Introduction */}
-      <section className="py-32 px-6 max-w-6xl mx-auto">
+      <section className="pt-22 px-6 max-w-6xl mx-auto">
         <div className="fade-in-section text-center mb-20">
-          <h2 className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold mb-8 leading-tight">
+          <h2 className="font-serif text-6xl sm:text-6xl md:text-7xl font-bold mb-8 leading-tight">
             Discover the Hidden
           </h2>
           <div className="decorative-line w-32 mx-auto mb-8"></div>
@@ -265,9 +265,9 @@ export default function AboutPage() {
             <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mb-6">
               <Leaf className="w-7 h-7 text-white" />
             </div>
-            <h3 className="font-serif text-3xl sm:text-4xl font-bold mb-6">
+            <h4 className="font-serif text-3xl sm:text-4xl font-bold mb-6">
               The Canadian Table
-            </h3>
+            </h4>
             <p className="text-white/80 text-lg leading-relaxed">
               {restaurant.cuisine}
             </p>
@@ -280,9 +280,9 @@ export default function AboutPage() {
             <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mb-6">
               <Heart className="w-7 h-7 text-white" />
             </div>
-            <h3 className="font-serif text-3xl sm:text-4xl font-bold mb-6">
+            <h4 className="font-serif text-3xl sm:text-4xl font-bold mb-6">
               Every Occasion
-            </h3>
+            </h4>
             <p className="text-white/80 text-lg leading-relaxed">
               {restaurant.experience}
             </p>
@@ -296,9 +296,9 @@ export default function AboutPage() {
           <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mb-6">
             <Sparkles className="w-7 h-7 text-white" />
           </div>
-          <h3 className="font-serif text-3xl sm:text-4xl font-bold mb-6">
+          <h4 className="font-serif text-3xl sm:text-4xl font-bold mb-6">
             Crafted for You
-          </h3>
+          </h4>
           <p className="text-white/80 text-lg leading-relaxed mb-6">
             {restaurant.offerings}
           </p>

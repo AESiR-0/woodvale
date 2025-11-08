@@ -66,20 +66,25 @@ export default function ServicesSection() {
         <div className="container mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-start lg:gap-16">
             {/* Section Header */}
-            <div className="services-header mb-12 lg:mb-0 lg:w-2/5 lg:sticky lg:top-32 text-center lg:text-left">
+            <div className="services-header mb-12 text-3xl lg:mb-0 lg:w-2/5 lg:sticky lg:top-32 text-center lg:text-left">
               <p className="text-white/80 text-sm uppercase tracking-wider mb-3">
                 What we offer
               </p>
-              <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
+              <h3 className="font-sans text-2xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
                 Our Great Services
-              </h2>
-              <p className="text-white/70 text-base sm:text-lg lg:text-base leading-relaxed">
-                The atmosphere sets the stage. 
-                It's about more than just a dining room away from home, it's a curated experience where every detail is considered.
-                From the warm lighting to attentive service, each touch is designed to welcome you in and let the outside world fade away. 
-                Here, food takes the spotlight as guests savour thoughtful flavours, crafted cocktails, and moments that unfold with ease, comfort, and understated elegance.
-                
-                Whether you're joining us for a celebration, a quiet evening, or a refined night out, The Woodvale Room offers an elevated escape built around connection, culinary artistry, and timeless hospitality.
+              </h3>
+              <p className="text-white/70 text-sm sm:text-lg lg:text-base leading-relaxed">
+                The atmosphere sets the stage. It's about more than just a
+                dining room away from home, it's a curated experience where
+                every detail is considered. From the warm lighting to attentive
+                service, each touch is designed to welcome you in and let the
+                outside world fade away. Here, food takes the spotlight as
+                guests savour thoughtful flavours, crafted cocktails, and
+                moments that unfold with ease, comfort, and understated
+                elegance. Whether you're joining us for a celebration, a quiet
+                evening, or a refined night out, The Woodvale Room offers an
+                elevated escape built around connection, culinary artistry, and
+                timeless hospitality.
               </p>
             </div>
 
@@ -95,13 +100,16 @@ export default function ServicesSection() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                 </div>
-                <h3 className="font-sans text-lg sm:text-xl lg:text-2xl font-semibold text-white group-hover:text-[#a8d5ba] transition-all duration-300 text-center">
+                <h4 className="font-sans text-lg sm:text-xl lg:text-2xl font-semibold text-white group-hover:text-[#a8d5ba] transition-all duration-300 text-center">
                   Fine Dining Experience
-                </h3>
+                </h4>
               </Link>
 
               {/* Duplicate for other cards */}
-              <Link href="/menu?category=drinks" className="service-card group cursor-pointer">
+              <Link
+                href="/menu?category=drinks"
+                className="service-card group cursor-pointer"
+              >
                 <div className="relative h-64 sm:h-80 lg:h-96 rounded-lg overflow-hidden mb-4 shadow-2xl">
                   <Image
                     src="/static/venue/bar.jpg"
@@ -111,12 +119,15 @@ export default function ServicesSection() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                 </div>
-                <h3 className="font-sans text-lg sm:text-xl lg:text-2xl font-semibold text-white group-hover:text-[#a8d5ba] transition-all duration-300 text-center">
+                <h4 className="font-sans text-lg sm:text-xl lg:text-2xl font-semibold text-white group-hover:text-[#a8d5ba] transition-all duration-300 text-center">
                   Cocktail Bar
-                </h3>
+                </h4>
               </Link>
 
-              <Link href="/menu?category=food" className="service-card group cursor-pointer">
+              <Link
+                href="/menu?category=food"
+                className="service-card group cursor-pointer"
+              >
                 <div className="relative h-64 sm:h-80 lg:h-96 rounded-lg overflow-hidden mb-4 shadow-2xl">
                   <Image
                     src="/static/venue/culinary-artistry.jpg"
@@ -127,8 +138,9 @@ export default function ServicesSection() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                 </div>
-                <h3 className="font-sans text-lg sm:text-xl lg:text-2xl font-semibold text-white group-hover:text-[#a8d5ba] transition-all duration-300 text-center">
-Culinary Artistry                </h3>
+                <h4 className="font-sans text-lg sm:text-xl lg:text-2xl font-semibold text-white group-hover:text-[#a8d5ba] transition-all duration-300 text-center">
+                  Culinary Artistry{" "}
+                </h4>
               </Link>
             </div>
           </div>

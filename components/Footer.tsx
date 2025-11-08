@@ -15,9 +15,9 @@ export default function Footer() {
       <div className="relative z-10">
         <div className="container mx-auto px-6 py-20">
           {/* Main Footer Content */}
-          <div className="flex flex-col lg:flex-row items-center justify-around w-screen lg:gap-8">
+          <div className="flex flex-col lg:flex-row items-start md:items-center justify-around w-screen lg:gap-8">
             {/* Brand Section */}
-            <div className="lg:col-span-1 space-y-6 px-4">
+            <div className="lg:col-span-1 space-y-6">
               <div className="flex flex-col items-start space-x-3">
                 <Image
                   src="/static/logos/2D.PNG"
@@ -166,15 +166,15 @@ export default function Footer() {
               </h3>
               <div className="space-y-4 break-all md:break-all lg:break-normal">
                 <div className="flex justify-between pr-4 lg:pr-0">
-                  <span className="text-white/80 md:mr-1 lg:mr-3">Tuesday - Thursday</span>
+                  <span className="text-white/80 mr-2 md:mr-1 lg:mr-3">Tuesday - Thursday</span>
                   <span className="text-white/80 text-lg">4:00 PM - 10:00 PM</span>
                 </div>
                 <div className="flex justify-between pr-4 lg:pr-0">
-                  <span className="text-white/80 md:mr-1 lg:mr-3">Friday , Saturday</span>
+                  <span className="text-white/80 mr-1 md:mr-1 lg:mr-3">Friday , Saturday</span>
                   <span className="text-white/80 text-lg">4:00 PM - 11:00 PM</span>
                 </div>
                 <div className="flex justify-between pr-4 lg:pr-0">
-                  <span className="text-white/80 md:mr-1 lg:mr-3">Sunday</span>
+                  <span className="text-white/80 mr-1 md:mr-1 lg:mr-3">Sunday</span>
                   <span className="text-white/80 text-lg">9:30 AM - 8:00 PM</span>
                 </div>
               </div>
