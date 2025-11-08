@@ -163,12 +163,12 @@ export default function Contact() {
       <section className="relative min-h-[60vh] flex items-center justify-center bg-[var(--leaf)] pt-20 sm:pt-20 md:pt-0">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            src="/images/contactImage.JPG"
             alt="Contact us at Woodvale"
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-[var(--leaf)]/80"></div>
+          <div className="absolute inset-0 bg-[var(--leaf)]/50"></div>
         </div>
         
         <div className="relative z-10 text-center text-white px-6">

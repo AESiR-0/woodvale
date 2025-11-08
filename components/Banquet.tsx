@@ -14,6 +14,21 @@ export default function Banquet() {
   const imageRef = useRef(null);
   const descRef = useRef(null);
 
+  const handleDownload = () => {
+    const fileUrl = "/cateringPdf/The_Woodvale_Room_Catering_Package.pdf";
+
+    // Open PDF in new tab
+    window.open(fileUrl, "_blank");
+
+    // Trigger file download
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.download = "Banquet_Info.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Heading fade in from top
@@ -142,17 +157,18 @@ export default function Banquet() {
               Book your perfect banquet for weddings, birthdays, and special
               events.
             </p>
-            <p className="text-lg sm:text-xl text-white/70 drop-shadow leading-relaxed">
-              Kindly reach out for customized decoration, menu
-              options, and special event packages. Early booking ensures the
-              best availability and personalized service.
+            <p className="text-lg sm:text-xl text-white/70  leading-relaxed">
+              Kindly reach out for customized decoration, menu options, and
+              special event packages. Early booking ensures the best
+              availability and personalized service.
             </p>
             <div className="mt-2 w-full flex justify-center">
               <Link
                 href="/banquet"
-                className="inline-block btn-primary px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-md transition-all duration-300 backdrop-blur-sm border border-white/20 hover:border-white/40"
+                onClick={handleDownload}
+                className="inline-block text-sm sm:text-base md:text-lg btn-primary px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-md transition-all duration-300 backdrop-blur-sm border border-white/20 hover:border-white/40"
               >
-                Booking a private event?
+                Banquet Catering Packages: download here
               </Link>
             </div>
           </div>

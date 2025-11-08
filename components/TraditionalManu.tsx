@@ -21,12 +21,12 @@ interface Dish {
 const TraditionalMenu = () => {
   
   return (
-    <div className="min-h-screen bg-[#E6E8D9]">
+    <div className="min-h-screen bg-[#E6E8D9] font-lora">
       <div className="container mx-auto px-6 pt-32 pb-20 bg-[#E6E8D9]">
         {/* Appetizers Section */}
         <section className="mt-20">
           <div className="border-t border-gray-300 mb-8"></div>
-          <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center">
+          <h2 className="text-3xl font-bold text-[var(--mint)] mb-8 text-center">
             Appetizers
           </h2>
           <div className="space-y-6">
@@ -101,7 +101,7 @@ const TraditionalMenu = () => {
               <div key={dish.id} className="flex justify-between items-start">
                 <div className="flex-1">
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-sans text-lg font-semibold text-[#071d18]">
+                    <h3 className=" text-lg font-semibold text-[#071d18]">
                       {dish.name}
                     </h3>
                     {dish.priceDisplay || (
@@ -120,40 +120,40 @@ const TraditionalMenu = () => {
             {/* Build Your Own Charcuterie */}
             <section className="mb-20">
               <div className="border-t border-gray-300 mb-8"></div>
-              <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center">
+              <h2 className="font-lora text-3xl font-bold text-[var(--mint)] mb-8 text-center">
                 Build Your Own Charcuterie
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                 {/* Meat */}
-                <div>
-                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4">
+                <div className="font-lora">
+                  <h3 className="font-lora text-lg font-bold text-[#071d18] mb-4">
                     Meat
                   </h3>
                   <div className="space-y-4">
-                    <div className="flex justify-between">
-                      <span className="text-[#071d18]/70">
+                    <div className="flex  justify-between">
+                      <span className="text-[#071d18]/70 ">
                         Red wine prosciutto
                       </span>
                       <span className="text-[#071d18]/70">$8</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#071d18]/70">Smoked turkey</span>
+                    <div className="flex  justify-between">
+                      <span className="text-[#071d18]/70 ">Smoked turkey</span>
                       <span className="text-[#071d18]/70">$9</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#071d18]/70">
+                    <div className="flex  justify-between">
+                      <span className="text-[#071d18]/70 ">
                         Pistachio-apricot & cherry pâté
                       </span>
                       <span className="text-[#071d18]/70">$10</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#071d18]/70">
+                    <div className="flex  justify-between">
+                      <span className="text-[#071d18]/70 ">
                         Cranberry walnut salami
                       </span>
                       <span className="text-[#071d18]/70">$10</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#071d18]/70">
+                    <div className="flex  justify-between">
+                      <span className="text-[#071d18]/70 ">
                         Elk green peppercorn salami
                       </span>
                       <span className="text-[#071d18]/70">$12</span>
@@ -163,7 +163,7 @@ const TraditionalMenu = () => {
 
                 {/* Cheese */}
                 <div>
-                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4">
+                  <h3 className="font-lora text-lg font-bold text-[#071d18] mb-4">
                     Cheese
                   </h3>
                   <div className="space-y-4">
@@ -200,7 +200,7 @@ const TraditionalMenu = () => {
 
                 {/* Pickled */}
                 <div>
-                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4">
+                  <h3 className="font-lora text-lg font-bold text-[#071d18] mb-4">
                     Pickled
                   </h3>
                   <div className="space-y-4">
@@ -229,7 +229,7 @@ const TraditionalMenu = () => {
 
                 {/* Spreads */}
                 <div>
-                  <h3 className="font-sans text-lg font-bold text-[#071d18] mb-4">
+                  <h3 className="font-lora text-lg font-bold text-[#071d18] mb-4">
                     Spreads
                   </h3>
                   <div className="space-y-4">
@@ -255,7 +255,7 @@ const TraditionalMenu = () => {
         {/* Entrées Section (Updated from PDF) */}
         <section className="mb-20">
           <div className="border-t border-gray-300 mb-8"></div>
-          <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center">
+          <h2 className="font-lora text-3xl font-bold text-[var(--mint)] mb-8 text-center">
             Entrées
           </h2>
 
@@ -319,7 +319,7 @@ const TraditionalMenu = () => {
               <div key={index} className="flex justify-between items-start">
                 <div className="flex-1">
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-sans text-lg font-semibold text-[#071d18]">
+                    <h3 className="font-lora text-lg font-semibold text-[#071d18]">
                       {dish.name}
                     </h3>
                     <span className="text-lg font-semibold text-[#071d18] ml-4">
@@ -338,7 +338,7 @@ const TraditionalMenu = () => {
         {/* Additional Section (synced with PDF) */}
         <section className="mb-20">
           <div className="border-t border-gray-300 mb-8"></div>
-          <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center">
+          <h2 className="font-lora text-3xl font-bold text-[var(--mint)] mb-8 text-center">
             Additional
           </h2>
 
@@ -384,7 +384,7 @@ const TraditionalMenu = () => {
 {/* Brunch Section */}
 <section className="mb-20">
   <div className="border-t border-gray-300 mb-8"></div>
-  <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-4 text-center">
+  <h2 className="font-lora text-3xl font-bold text-[var(--mint)] mb-4 text-center">
     Brunch
   </h2>
   <p className="text-center text-[#071d18]/70 mb-12">
@@ -438,7 +438,7 @@ const TraditionalMenu = () => {
       <div key={i} className="flex justify-between items-start">
         <div className="flex-1">
           <div className="flex justify-between items-start mb-2">
-            <h3 className="font-sans text-lg font-semibold text-[#071d18]">
+            <h3 className="font-lora text-lg font-semibold text-[#071d18]">
               {dish.name}
             </h3>
             <span className="text-lg font-semibold text-[#071d18] ml-4">
@@ -455,7 +455,7 @@ const TraditionalMenu = () => {
 
   {/* Add-ons Section */}
   <div className="border-t border-gray-300 mt-16 mb-8"></div>
-  <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6 text-center">
+  <h3 className="font-lora text-2xl font-bold text-[var(--mint)] mb-6 text-center">
     Add-ons
   </h3>
 
@@ -481,13 +481,13 @@ const TraditionalMenu = () => {
         {/* Drinks Section */}
         <section className="mb-20">
           <div className="border-t border-gray-300 mb-8"></div>
-          <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center">
+          <h2 className="font-lora text-3xl font-bold text-[var(--mint)] mb-8 text-center">
             Drinks
           </h2>
 
           {/* Cocktails */}
           <div className="mb-16">
-            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6">
+            <h3 className="font-lora text-2xl font-bold text-[var(--mint)] mb-6">
               Cocktails
             </h3>
             <div className="space-y-6">
@@ -571,19 +571,19 @@ const TraditionalMenu = () => {
 
           {/* Draught Section */}
           <div className="mb-16">
-            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6">
+            <h3 className="font-lora text-2xl font-bold text-[var(--mint)] mb-6">
               Draught
             </h3>
-            <div className="space-y-4 text-[#071d18]/80">
+            <div className="space-y-4 text-2xl md:text-3xl font-lora">
               {[
                 { name: "House Lager", price: 9.75 },
                 { name: "SeaChange “The Wolf” Hazy Pale Ale", price: 10 },
                 { name: "SeaChange Irish Red", price: 10 },
                 { name: "Odd Company Mandarin Sour", price: 10 },
               ].map((beer, i) => (
-                <div key={i} className="flex justify-between">
-                  <span>{beer.name}</span>
-                  <span>{beer.price}</span>
+                <div key={i} className="flex text-base justify-between">
+                  <span className="text-3xl">{beer.name}</span>
+                  <span className="text-2xl ml-1.5 mb-4">${beer.price}</span>
                 </div>
               ))}
             </div>
@@ -591,10 +591,10 @@ const TraditionalMenu = () => {
 
           {/* Bottles & Cans */}
           <div className="mb-16">
-            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6">
+            <h3 className="font-lora text-2xl font-bold text-[var(--mint)] mb-6">
               Bottles & Cans
             </h3>
-            <div className="space-y-4 text-[#071d18]/80">
+            <div className="space-y-4 text-2xl md:text-3xl ">
               {[
                 { name: "88 Brewing Vietnamese Coffee Stout", price: 11 },
                 { name: "Sapporo", price: 10 },
@@ -608,8 +608,8 @@ const TraditionalMenu = () => {
                 { name: "Dillon's Gin Cocktail", price: 6 },
               ].map((bottle, index) => (
                 <div key={index} className="flex justify-between">
-                  <span>{bottle.name}</span>
-                  <span>${bottle.price}</span>
+                  <span className="text-3xl ">{bottle.name}</span>
+                  <span className="text-2xl ml-1.5 mb-4">${bottle.price}</span>
                 </div>
               ))}
             </div>
@@ -617,7 +617,7 @@ const TraditionalMenu = () => {
 
           {/* Gin & Tonics */}
           <div className="mb-16">
-            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6 text-center">
+            <h3 className="font-lora text-2xl font-bold text-[var(--mint)] mb-6 text-center">
               Gin & Tonics
               <div className="flex justify-center text-[#071d18]/80 text-base font-2xl mb-8">
                 <span>1 oz. / 9 &nbsp;&nbsp;•&nbsp;&nbsp; 2 oz. / 17</span>
@@ -656,7 +656,7 @@ const TraditionalMenu = () => {
     { name: "Malfy Arancia", region: "Italy", notes: "blood orange peel, juniper, coriander, citrus zest" },
   ].map((gin, i) => (
     <div key={i} className="mb-4">
-      <h4 className="font-sans text-base font-semibold text-[#071d18] capitalize">
+      <h4 className="font-lora text-base font-semibold text-[#071d18] capitalize">
         {gin.name}{" "}
         <span className="text-[#071d18]/70 lowercase">
           ({gin.region})
@@ -707,13 +707,13 @@ const TraditionalMenu = () => {
         {/* Wines Section */}
         <section className="mb-20">
           <div className="border-t border-gray-300 mb-8"></div>
-          <h2 className="font-sans text-3xl font-bold text-[var(--mint)] mb-8 text-center">
+          <h2 className="font-lora text-3xl font-bold text-[var(--mint)] mb-8 text-center">
             Wines
           </h2>
 
           {/* Rosé & Bubbles */}
           <div className="mb-16">
-            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6">
+            <h3 className="font-lora text-2xl font-bold text-[var(--mint)] mb-6">
               Rosé & Bubbles
             </h3>
             <div className="grid grid-cols-4 gap-4 mb-2 text-sm text-[#071d18]/70">
@@ -782,7 +782,7 @@ const TraditionalMenu = () => {
 
           {/* White Wines */}
           <div className="mb-16">
-            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6">
+            <h3 className="font-lora text-2xl font-bold text-[var(--mint)] mb-6">
               White
             </h3>
             <div className="grid grid-cols-4 gap-4 mb-2 text-sm text-[#071d18]/70">
@@ -815,7 +815,7 @@ const TraditionalMenu = () => {
     ?.split(/([&/])/)
     .map((part, i) =>
       part === "&" || part === "/" ? (
-        <span key={i} className="font-sans font-sm"> {part} </span>
+        <span key={i} className="font-lora font-sm"> {part} </span>
       ) : (
         <React.Fragment key={i}>{part.trim()}</React.Fragment>
       )
@@ -838,7 +838,7 @@ const TraditionalMenu = () => {
 
           {/* Red Wines */}
           <div className="mb-16">
-            <h3 className="font-sans text-2xl font-bold text-[var(--mint)] mb-6">
+            <h3 className="font-lora text-2xl font-bold text-[var(--mint)] mb-6">
               Red
             </h3>
             <div className="grid grid-cols-4 gap-4 mb-2 text-sm text-[#071d18]/70">
@@ -882,7 +882,7 @@ const TraditionalMenu = () => {
     ?.split(/([&/])/)
     .map((part, i) =>
       part === "&" || part === "/" ? (
-        <span key={i} className="font-sans"> {part} </span>
+        <span key={i} className="font-lora"> {part} </span>
       ) : (
         <React.Fragment key={i}>{part.trim()}</React.Fragment>
       )

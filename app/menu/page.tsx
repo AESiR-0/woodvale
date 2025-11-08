@@ -181,7 +181,7 @@ function FoodMenuContent() {
             {/* Paper Scroll Button - At bottom right of menu container */}
             <button
               onClick={() => setIsTraditionalMenu(true)}
-              className="paper-scroll-button absolute bottom-4 right-4 z-50 cursor-pointer"
+              className="paper-scroll-button absolute bottom-4 right-4 z-20 cursor-pointer"
               aria-label="Show Traditional Menu"
             >
               <div className="paper-scroll">

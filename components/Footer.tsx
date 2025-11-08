@@ -15,9 +15,9 @@ export default function Footer() {
       <div className="relative z-10">
         <div className="container mx-auto px-6 py-20">
           {/* Main Footer Content */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          <div className="flex flex-col lg:flex-row items-center justify-around w-screen lg:gap-8">
             {/* Brand Section */}
-            <div className="lg:col-span-1 space-y-6">
+            <div className="lg:col-span-1 space-y-6 px-4">
               <div className="flex flex-col items-start space-x-3">
                 <Image
                   src="/static/logos/2D.PNG"
@@ -59,9 +59,10 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Quick Links */}
+<div className='flex flex-col md:flex-row items-start  md:flex md:w-full gap-6 '>
+              {/* Quick Links */}
             <div className="lg:col-span-1 mt-5  ">
-              <h3 className="font-sans text-lg font-semibold text-white mb-6">
+              <h3 className="font-sans md:text-md lg:text-lg font-semibold text-white mb-6">
                 Quick Links
               </h3>
               <nav aria-label="Footer navigation">
@@ -163,18 +164,18 @@ export default function Footer() {
               <h3 className="font-sans text-lg font-semibold text-white mb-6">
                 Hours
               </h3>
-              <div className="space-y-4">
-                <div className="flex justify-between">
-                  <span className="text-white/80">Tuesday - Thursday</span>
-                  <span className="text-white/80">4:00 PM - 10:00 PM</span>
+              <div className="space-y-4 break-all md:break-all lg:break-normal">
+                <div className="flex justify-between pr-4 lg:pr-0">
+                  <span className="text-white/80 md:mr-1 lg:mr-3">Tuesday - Thursday</span>
+                  <span className="text-white/80 text-lg">4:00 PM - 10:00 PM</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-white/80">Friday, Saturday</span>
-                  <span className="text-white/80">4:00 PM - 11:00 PM</span>
+                <div className="flex justify-between pr-4 lg:pr-0">
+                  <span className="text-white/80 md:mr-1 lg:mr-3">Friday , Saturday</span>
+                  <span className="text-white/80 text-lg">4:00 PM - 11:00 PM</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-white/80">Sunday</span>
-                  <span className="text-white/80">9:30 AM - 8:00 PM</span>
+                <div className="flex justify-between pr-4 lg:pr-0">
+                  <span className="text-white/80 md:mr-1 lg:mr-3">Sunday</span>
+                  <span className="text-white/80 text-lg">9:30 AM - 8:00 PM</span>
                 </div>
               </div>
               
@@ -188,10 +189,11 @@ export default function Footer() {
                 </Link>
               </div>
             </div>
+</div>
           </div>
 
           {/* Google Maps - Below Contact Section */}
-          <div className="mt-16">
+          <div className="mt-16 flex flex-col">
             <h3 className="font-sans text-lg font-semibold text-white mb-6 text-center">
               Find Us
             </h3>
