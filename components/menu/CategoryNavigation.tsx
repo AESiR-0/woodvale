@@ -50,7 +50,7 @@ export default function CategoryNavigation({
                   onCategoryChange(cat);
                 }
               }}
-              className={`flex-shrink-0 py-1 sm:py-1.5 px-2.5 sm:px-3 md:px-4 rounded-full transition-all duration-300 text-xs sm:text-sm md:text-base font-semibold whitespace-nowrap ${
+              className={`flex-shrink-0 py-2 px-4 md:px-6 rounded-full transition-all duration-300 text-sm md:text-lg font-semibold whitespace-nowrap ${
                 activeCategory === cat
                   ? "bg-[var(--muted)] text-gray-700 scale-100 sm:scale-105"
                   : "bg-[var(--muted)]/60 text-gray-600 hover:bg-[var(--muted)]/40 hover:scale-105"

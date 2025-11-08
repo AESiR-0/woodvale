@@ -4,14 +4,14 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 const lora = Lora({
-  weight: ['400', '500', '600', '700'],
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-lora",
-  display: "swap"
+  display: "swap",
 });
 
 const seasons = localFont({
-    src: [
+  src: [
     {
       path: "../public/fonts/Fontspring-DEMO-theseasons-lt.otf",
       weight: "400",
@@ -25,17 +25,19 @@ const seasons = localFont({
   ],
   variable: "--font-seasons",
   display: "swap",
-})
+});
 
 export const metadata: Metadata = {
   title: "Woodvale Restaurant & Banquet",
-  description: "Experience the perfect blend of speakeasy elegance and exotic-grove ambiance at Woodvale. Savor classic flavors with contemporary twists in our warm, plant-filled dining space.",
-  keywords: "restaurant, banquet, speakeasy, tropical, fine dining, private events",
+  description:
+    "Experience the perfect blend of speakeasy elegance and exotic-grove ambiance at Woodvale. Savor classic flavors with contemporary twists in our warm, plant-filled dining space.",
+  keywords:
+    "restaurant, banquet, speakeasy, tropical, fine dining, private events",
   authors: [{ name: "Woodvale Restaurant" }],
   icons: {
-    icon: "/static/logo/2D.png",
-    shortcut: "/static/logo/2D.png",
-    apple: "/static/logo/2D.png",
+    icon: "/static/logos/2D.PNG",
+    shortcut: "/static/logos/2D.PNG",
+    apple: "/static/logos/2D.PNG",
   },
 };
 
@@ -51,9 +53,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${lora.variable} ${seasons.variable}`}>
-      <body className="font-body antialiased">
-        {children}
-      </body>
+      <head>
+        <meta property="og:image" content="/images/bg-image.jpg" />
+      </head>
+      <body className="font-body antialiased">{children}</body>
     </html>
   );
 }

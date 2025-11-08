@@ -57,7 +57,7 @@ export default function ServicesSection() {
   return (
     <section ref={sectionRef} className="bg-[var(--leaf)]">
       <div
-        className="bg-gradient-radial py-16 md:py-20 lg:py-24 px-4 md:px-6"
+        className="bg-gradient-radial pb-16 md:py-20 lg:py-24 px-4 md:px-6"
         style={{
           background:
             "radial-gradient(ellipse at center, transparent 0%, transparent 40%, rgba(0,0,0,0.3) 80%, rgba(0,0,0,0.6) 100%)",

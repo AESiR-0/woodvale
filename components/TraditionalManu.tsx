@@ -100,9 +100,9 @@ const TraditionalMenu = () => {
               <div key={dish.id} className="flex justify-between items-start">
                 <div className="flex-1">
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className=" text-lg font-semibold text-[#071d18]">
+                    <h4 className=" text-lg font-semibold text-[#071d18]">
                       {dish.name}
-                    </h3>
+                    </h4>
                     {dish.priceDisplay || (
                       <span className="text-lg font-semibold text-[#071d18] ml-4">
                         ${dish.priceDisplay}
@@ -318,9 +318,9 @@ const TraditionalMenu = () => {
               <div key={index} className="flex justify-between items-start">
                 <div className="flex-1">
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-lora text-lg font-semibold text-[#071d18]">
+                    <h4 className="font-lora text-lg font-semibold text-[#071d18]">
                       {dish.name}
-                    </h3>
+                    </h4>
                     <span className="text-lg font-semibold text-[#071d18] ml-4">
                       ${dish.price}
                     </span>
@@ -341,7 +341,7 @@ const TraditionalMenu = () => {
             Additional
           </h2>
 
-          <div className="flex flex-col lg:flex gap-8">
+          <div className="flex flex-col lg:flex lg:flex-row lg:justify-around gap-8">
             <div className="space-y-4 text-[#071d18]/70">
               <div className="flex justify-between">
                 <span>add chicken</span>
@@ -379,7 +379,6 @@ const TraditionalMenu = () => {
           </div>
         </section>
 
-        {/* Brunch Section */}
         {/* Brunch Section */}
         <section className="mb-20">
           <div className="border-t border-gray-300 mb-8"></div>
@@ -444,9 +443,9 @@ const TraditionalMenu = () => {
               <div key={i} className="flex justify-between items-start">
                 <div className="flex-1">
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-lora text-lg font-semibold text-[#071d18]">
+                    <h4 className="font-lora text-lg font-semibold text-[#071d18]">
                       {dish.name}
-                    </h3>
+                    </h4>
                     <span className="text-lg font-semibold text-[#071d18] ml-4">
                       ${dish.price}
                     </span>
@@ -465,7 +464,7 @@ const TraditionalMenu = () => {
             Add-ons
           </h3>
 
-          <div className="grid md:grid-cols-3 gap-8 text-[#071d18]/80">
+          <div className="flex flex-col lg:flex-row lg:justify-around gap-8 text-[#071d18]/80">
             <div className="space-y-2">
               <p>add bacon - 3</p>
               <p>add smoked salmon - 7</p>
@@ -580,7 +579,7 @@ const TraditionalMenu = () => {
             <h3 className="font-lora text-2xl font-bold text-[var(--mint)] mb-6">
               Draught
             </h3>
-            <div className="space-y-4 text-2xl md:text-3xl font-lora">
+            <div className="space-y-4  font-lora">
               {[
                 { name: "House Lager", price: 9.75 },
                 { name: "SeaChange “The Wolf” Hazy Pale Ale", price: 10 },
@@ -588,7 +587,7 @@ const TraditionalMenu = () => {
                 { name: "Odd Company Mandarin Sour", price: 10 },
               ].map((beer, i) => (
                 <div key={i} className="flex text-base justify-between">
-                  <span className="text-2xl md:text-3xl">{beer.name}</span>
+                  <h4 className="text-3xl md:text-4xl">{beer.name}</h4>
                   <span className="text-2xl ml-1.5 mb-4">${beer.price}</span>
                 </div>
               ))}
@@ -614,7 +613,7 @@ const TraditionalMenu = () => {
                 { name: "Dillon's Gin Cocktail", price: 6 },
               ].map((bottle, index) => (
                 <div key={index} className="flex justify-between">
-                  <span className="text-2xl md:text-3xl ">{bottle.name}</span>
+                  <h4 className="text-2xl md:text-3xl ">{bottle.name}</h4>
                   <span className="text-2xl ml-1.5 mb-4">${bottle.price}</span>
                 </div>
               ))}
@@ -873,7 +872,7 @@ const TraditionalMenu = () => {
                 className="grid grid-cols-4 gap-4 items-center font-medium text-[#071d18]/80"
               >
                 <div className="mb-6">
-                  <h5 className="font-light">{wine.name}</h5>
+                  <h4 className="font-light">{wine.name}</h4>
                   <p className="text-sm">{wine.region}</p>
                 </div>
                 <div className="text-center">
@@ -984,7 +983,7 @@ const TraditionalMenu = () => {
                 className="grid grid-cols-4 gap-4 items-center font-medium text-[#071d18]/80"
               >
                 <div>
-                  <h5 className="font-lore font-light text-3xl">
+                  <h6 className="font-lore font-light mr-8 text-3xl">
                     {wine?.name?.split(/([&/])/).map((part, i) =>
                       part === "&" || part === "/" ? (
                         <span key={i} className="font-lora font-sm">
@@ -995,7 +994,7 @@ const TraditionalMenu = () => {
                         <React.Fragment key={i}>{part.trim()}</React.Fragment>
                       )
                     )}
-                  </h5>
+                  </h6>
                   <p className="text-sm mb-6">{wine.region}</p>
                 </div>
                   <div className="text-center">

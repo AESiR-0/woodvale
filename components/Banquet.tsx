@@ -138,7 +138,7 @@ export default function Banquet() {
         {/* Content Section */}
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 w-full">
           {/* Image - Hidden below md */}
-          <div ref={imageRef} className="hidden md:block w-full lg:w-1/2">
+          <div ref={imageRef} className="block w-full lg:w-1/2">
             <Image
               src="/images/image.jpg"
               width={600}
@@ -157,7 +157,7 @@ export default function Banquet() {
               Book your perfect banquet for weddings, birthdays, and special
               events.
             </p>
-            <p className="text-lg sm:text-xl text-white/70  leading-relaxed">
+            <p className="text-lg sm:text-xl text-white/70 leading-relaxed">
               Kindly reach out for customized decoration, menu options, and
               special event packages. Early booking ensures the best
               availability and personalized service.
