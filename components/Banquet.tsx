@@ -140,7 +140,7 @@ export default function Banquet() {
           {/* Image - Hidden below md */}
           <div ref={imageRef} className="block w-full lg:w-1/2">
             <Image
-              src="/images/image.jpg"
+              src="/images/BanquetBooking.jpg"
               width={600}
               height={600}
               alt="Banquet hall interior"

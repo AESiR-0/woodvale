@@ -163,7 +163,7 @@ export default function Contact() {
       <section className="relative min-h-[60vh] flex items-center justify-center bg-[var(--leaf)] pt-20 sm:pt-20 md:pt-0">
         <div className="absolute inset-0">
           <Image
-            src="/images/contactImage.JPG"
+            src="/images/GetInTouch2.jpg"
             alt="Contact us at Woodvale"
             fill
             className="object-cover"
@@ -257,7 +257,7 @@ export default function Contact() {
                     <p className="text-[#071d18]">
                       Tuesday - Thursday: 4:00 PM - 10:00 PM<br />
                       Friday, Saturday: 4:00 PM - 11:00 PM<br />
-                      Sunday: 9:30 AM - 8:00 PM
+                      Sunday: 4:00 PM - 9:00 PM
                     </p>
                   </div>
                 </div>
