@@ -347,7 +347,7 @@ export default function AboutPage() {
         <div className="fade-in-section mx-auto">
           <div className="relative h-[70vh] overflow-hidden">
             <img
-              src="/static/venue/IMG_6627.png"
+              src="/static/venue/About.jpg"
               alt="The Woodvale Room interior"
               className="w-full h-full object-cover"
             />
