@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import TestimonialsSection from "@/components/Testimonial";
 import Hero from "@/components/Hero";
 import ServicesSection from "@/components/WhatWeOffer";
-import ReservationForm from "@/components/ReservationForm";
+// import ReservationForm from "@/components/ReservationForm";
 import Banquet from "@/components/Banquet";
 import FeelOrder from "@/components/FeelOrder";
 

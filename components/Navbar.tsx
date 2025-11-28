@@ -16,7 +16,7 @@ export default function Navbar({
   bgColor = "bg-transparent",
   scrolledBgColor = "bg-[#f0ece6]",
   textColor = "text-white",
-  scrolledTextColor = "text-black",
+  scrolledTextColor = "text-white",
   hoverColor = "hover:text-[var(--mint)]",
 }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,7 +34,7 @@ export default function Navbar({
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? 'bg-[#071d18] text-black backdrop-blur-sm '
+        ? `bg-[#071d18] backdrop-blur-sm `
         : 'bg-transparent'
         }`}
     >
@@ -55,31 +55,41 @@ export default function Navbar({
           <div className="hidden md:flex items-center space-x-8">
             <Link
               href="/"
-              className={` text-white  hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
+              className={`${
+                isScrolled ? scrolledTextColor : textColor
+              } hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
             >
               Home
             </Link>
             <Link
               href="/about"
-                  className={` text-white  hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
+              className={`${
+                isScrolled ? scrolledTextColor : textColor
+              } hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
             >
               About
             </Link>
             <Link
               href="/menu"
-              className={` text-white  hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
+              className={`${
+                isScrolled ? scrolledTextColor : textColor
+              } hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
             >
               Menu
             </Link>
             <Link
               href="/banquet"
-              className={` text-white  hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
+              className={`${
+                isScrolled ? scrolledTextColor : textColor
+              } hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
             >
               Banquet
             </Link>
             <Link
               href="/contact"
-              className={` text-white  hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
+              className={`${
+                isScrolled ? scrolledTextColor : textColor
+              } hover:text-[var(--mint)] transition-colors duration-200 font-medium`}
             >
               Contact
             </Link>

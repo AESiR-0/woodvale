@@ -250,9 +250,18 @@ import TraditionalMenu from "@/components/TraditionalManu";
 
 export default function FoodMenu() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
-      {/* <FoodMenuContent /> */}
-      <TraditionalMenu />
-    </Suspense>
+    <>
+      <Suspense
+        fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            Loading...
+          </div>
+        }
+      >
+        <TraditionalMenu />
+      </Suspense>
+    </>
   );
 }
+
+// {/* <FoodMenuContent /> */}
