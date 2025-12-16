@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Lora, Bodoni_Moda } from "next/font/google";
+import { Lora } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const lora = Lora({
@@ -9,11 +10,20 @@ const lora = Lora({
   display: "swap",
 });
 
-// Replaced Seasons with Bodoni Moda (Google Fonts)
-const bodoni = Bodoni_Moda({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-  variable: "--font-bodoni",
+const seasons = localFont({
+  src: [
+    {
+      path: "../public/fonts/Fontspring-DEMO-theseasons-lt.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Fontspring-DEMO-theseasons-bd.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-seasons",
   display: "swap",
 });
 
@@ -42,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${lora.variable} ${bodoni.variable}`}>
+    <html lang="en" className={`${lora.variable} ${seasons.variable}`}>
       <head>
         <meta property="og:image" content="/images/bg-image.jpg" />
       </head>
