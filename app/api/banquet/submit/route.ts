@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
 
     // Send emails to all recipients (including test email) - don't fail if email fails
     try {
-      const recipients = ['padon@woodvalefacility.ca', 'bobbi-jo@woodvalefacility.ca', 'workbyprat@gmail.com'];
+      const recipients = ['padon@woodvalefacility.ca', 'bobbi-jo@woodvalefacility.ca', 'info@thewoodvaleroom.com'];
       await sendEmailNotification(
         recipients,
         `New Event Booking Request - ${validatedData.customerName}`,

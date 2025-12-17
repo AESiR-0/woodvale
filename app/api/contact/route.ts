@@ -99,7 +99,7 @@ export async function POST(request: NextRequest) {
     // Send email notification (don't fail if email fails)
     try {
       await sendEmailNotification(
-        ['padon@woodvalefacility.ca', 'workbyprat@gmail.com'],
+        ['padon@woodvalefacility.ca', 'info@thewoodvaleroom.com'],
         `Contact Form: ${validatedData.subject}`,
         emailHtml
       );
