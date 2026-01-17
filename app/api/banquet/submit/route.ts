@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
     const startDate = new Date(validatedData.startDate);
     const endDate = new Date(validatedData.endDate);
     
-    // Use start date as event date, default times to 4:00 PM - 10:00 PM
+    // Use start date as event date, default times to 5:00 PM - 10:00 PM
     const mappedEventType = mapEventType(validatedData.eventType);
 
     // Create banquet booking
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
         customerPhone: validatedData.customerPhone,
         eventType: mappedEventType,
         eventDate: startDate,
-        startTime: '16:00', // 4:00 PM default
+        startTime: '17:00', // 5:00 PM default
         endTime: '22:00', // 10:00 PM default
         numberOfGuests: validatedData.numberOfGuests,
         specialRequests: validatedData.specialRequests || null,

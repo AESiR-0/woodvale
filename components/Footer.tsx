@@ -227,7 +227,7 @@ export default function Footer() {
                       Tuesday - Thursday
                     </span>
                     <span className="text-white/80 text-lg">
-                      4:00 PM - 10:00 PM
+                      5:00 PM - 09:00 PM
                     </span>
                   </div>
                   <div className="flex justify-between pr-4 lg:pr-0">
@@ -235,7 +235,7 @@ export default function Footer() {
                       Friday , Saturday
                     </span>
                     <span className="text-white/80 text-lg">
-                      4:00 PM - 11:00 PM
+                      5:00 PM - 10:00 PM
                     </span>
                   </div>
                   <div className="flex justify-between pr-4 lg:pr-0">
@@ -243,7 +243,7 @@ export default function Footer() {
                       Sunday
                     </span>
                     <span className="text-white/80 text-lg">
-                      4:00 PM - 9:00 PM
+                      5:00 PM - 09:00 PM
                     </span>
                   </div>
                 </div>
