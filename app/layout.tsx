@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Lora } from "next/font/google";
-import localFont from "next/font/local";
+import { Lora, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const lora = Lora({
@@ -10,19 +9,9 @@ const lora = Lora({
   display: "swap",
 });
 
-const seasons = localFont({
-  src: [
-    {
-      path: "../public/fonts/Fontspring-DEMO-theseasons-lt.otf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/Fontspring-DEMO-theseasons-bd.otf",
-      weight: "700",
-      style: "normal",
-    },
-  ],
+const playfair = Playfair_Display({
+  weight: ["400", "700"],
+  subsets: ["latin"],
   variable: "--font-seasons",
   display: "swap",
 });
@@ -52,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${lora.variable} ${seasons.variable}`}>
+    <html lang="en" className={`${lora.variable} ${playfair.variable}`}>
       <head>
         <meta property="og:image" content="/images/bg-image.jpg" />
       </head>
