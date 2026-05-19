@@ -17,68 +17,71 @@ const TraditionalMenu = () => {
               {
                 id: 1,
                 name: "Soup of the Day",
-                priceDisplay: "$10",
+                priceDisplay: "$11",
                 description: "Ask your server for today's selection.",
               },
               {
                 id: 2,
                 name: "Caesar Salad",
-                priceDisplay: "$9 / $14",
+                priceDisplay: "$10 / $16",
                 description:
                   "Romaine hearts / house dressing / shaved parmesan / capers / grilled lemon / garlic herb croutons.",
               },
               {
                 id: 3,
+                name: "Beet Salad",
+                priceDisplay: "$19",
+                description:
+                  "Pickled beets / pesto fromage blanc / candied walnuts / orange segments / vinaigrette.",
+              },
+              {
+                id: 4,
                 name: "Mussels",
                 priceDisplay: "$24",
                 description:
                   "Atlantic mussels / fire roasted tomato and smoked paprika sauce / crostini / garlic and juniper oil.",
               },
               {
-                id: 4,
+                id: 5,
                 name: "Cauliflower",
                 priceDisplay: "$17",
                 description:
                   "Tempura fried / porcini powdered / tajin / romesco / garlic aioli.",
               },
               {
-                id: 5,
-                name: "Croquettes",
-                priceDisplay: "$19",
+                id: 6,
+                name: "Bruschetta",
+                priceDisplay: "$18",
                 description:
-                  "Sweet potato blend / bocconcini / carrot / brown sugar / lavender infused wildberry compote.",
+                  "Foraged mushroom medley / confit baby tomatoes / fromage blanc / balsamic glaze.",
               },
               {
-                id: 5,
-
+                id: 7,
                 name: "Elk Carpaccio",
-                priceDisplay: "$21",
+                priceDisplay: "$23",
                 description:
                   "Sliced elk / smoked miso aioli drizzle / pickled blueberries & onions / shaved parmesan / crostini.",
               },
               {
-                id: 5,
-
+                id: 8,
                 name: "Bison Sliders",
-                priceDisplay: "$19",
+                priceDisplay: "$21",
                 description:
                   "Grilled bison patties / smoked gouda / caramelized onions / lavender infused wildberry compote.",
               },
               {
-                id: 5,
-
-                name: "Butter Board",
-                priceDisplay: "$25",
+                id: 9,
+                name: "Prawns",
+                priceDisplay: "$22",
                 description:
-                  "Honey and lavender infused butter / toasted pumpkin seeds / pine nuts / caramelized onion jam / flowers / crostini.",
+                  "Jumbo prawns / house-made cocktail sauce / cucumber gremolata / mixed greens.",
               },
               {
-                id: 5,
-
-                name: "Bruschetta",
-                priceDisplay: "$16",
+                id: 10,
+                name: "Butter Board",
+                priceDisplay: "$28",
                 description:
-                  "Foraged mushroom medley / confit baby tomatoes / fromage blanc / balsamic glaze.",
+                  "Honey and lavender infused butter / toasted pumpkin seeds / pine nuts / caramelized onion jam / flowers / crostini.",
               },
             ].map((dish) => (
               <div key={dish.id} className="flex justify-between items-start">
@@ -87,11 +90,9 @@ const TraditionalMenu = () => {
                     <h4 className=" text-lg font-semibold text-[#071d18]">
                       {dish.name}
                     </h4>
-                    {dish.priceDisplay || (
-                      <span className="text-lg font-semibold text-[#071d18] ml-4">
-                        ${dish.priceDisplay}
-                      </span>
-                    )}
+                    <span className="text-lg font-semibold text-[#071d18] ml-4">
+                      {dish.priceDisplay}
+                    </span>
                   </div>
                   <p className="text-sm text-[#071d18]/70 ml-4 leading-relaxed">
                     {dish.description}
@@ -112,46 +113,16 @@ const TraditionalMenu = () => {
           <div className="space-y-6">
             {[
               {
-                name: "Chicken",
-                price: 39,
+                name: "Bison Burger",
+                price: 26,
                 description:
-                  "Roasted chicken breast / creamy chestnut and foraged mushroom risotto / thyme jus / pomme gastrique",
-              },
-              {
-                name: "Striploin",
-                price: 53,
-                description:
-                  "10 oz New York striploin / wild mushroom and truffle mashed potato / glazed seasonal vegetables / thyme and black garlic jus",
-              },
-              {
-                name: "Salmon",
-                price: 41,
-                description:
-                  "Grilled B.C. salmon / fingerling potatoes / spruced gremolata / pine and lemon butter baste",
-              },
-              {
-                name: "Tagliatelle",
-                price: 37,
-                description:
-                  "Slow braised short rib / tagliatelle pasta / roasted mushrooms / confit baby tomatoes / dill cream sauce",
+                  "Seasoned bison patty / served classic style or woodvale style / crispy fries",
               },
               {
                 name: "Pescatore",
-                price: 37,
-                description:
-                  "Linguine / mussels / jumbo shrimp / baby scallops / capers / lemon cream sauce or spicy tomato sauce",
-              },
-              {
-                name: "Bison Lasagna",
                 price: 39,
                 description:
-                  "Seasoned ground bison / spinach / cottage cheese / mozzarella / housemade tomato sauce",
-              },
-              {
-                name: "Campfire Molcajete",
-                price: 99,
-                description:
-                  "Beef striploin / lobster tail / chicken / mussels / shrimp / scallops / roasted tomatillo broth / smoked herb / ignited liqueur / serves two guests in stone molcajete bowl",
+                  "Linguine / mussels / jumbo shrimp / baby scallops / capers / lemon cream sauce or spicy tomato sauce",
               },
               {
                 name: "Risotto",
@@ -160,10 +131,75 @@ const TraditionalMenu = () => {
                   "Foraged wild mushrooms / cauliflower / baby zucchini / juniper emulsion",
               },
               {
-                name: "Short Rib",
+                name: "Salmon",
                 price: 45,
                 description:
-                  "Slow braised short rib / wild mushroom and truffle mashed potato / glazed seasonal vegetables / root brew jus",
+                  "Grilled B.C. salmon / juniper roasted potatoes / spruced gremolata / pine and lemon butter baste",
+              },
+              {
+                name: "Tagliatelle",
+                price: 39,
+                description:
+                  "Slow braised short rib / tagliatelle pasta / roasted mushrooms / confit baby tomatoes / dill cream sauce",
+              },
+              {
+                name: "Chicken",
+                price: 42,
+                description:
+                  "Roasted chicken breast / creamy chestnut and foraged mushroom risotto / thyme jus / Stolen Harvest saskatoon berry mead reduction",
+              },
+              {
+                name: "Duck",
+                price: 45,
+                description:
+                  "Cauliflower puree / truffle parmesan brussels / Stolen Harvest saskatoon berry mead reduction / orange glaze",
+              },
+              {
+                name: "Short Rib",
+                price: 49,
+                description:
+                  "Slow braised short rib / juniper roasted potatoes / house-made coleslaw / smokey bbq sauce",
+              },
+              {
+                name: "Striploin",
+                price: 59,
+                description:
+                  "10 oz New York striploin / wild mushroom and truffle mashed potatoes / glazed seasonal vegetables / thyme and black garlic jus",
+              },
+            ].map((dish, index) => (
+              <div key={index} className="flex justify-between items-start">
+                <div className="flex-1">
+                  <div className="flex justify-between items-start mb-2">
+                    <h4 className="font-lora text-lg font-semibold text-[#071d18]">
+                      {dish.name}
+                    </h4>
+                    <span className="text-lg font-semibold text-[#071d18] ml-4">
+                      ${dish.price}
+                    </span>
+                  </div>
+                  <p className="text-sm text-[#071d18]/70 ml-4 leading-relaxed">
+                    {dish.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Signature Dish Section */}
+        <section className="mb-20">
+          <div className="border-t border-gray-300 mb-8"></div>
+          <h2 className="font-lora text-3xl font-bold text-[var(--mint)] mb-8 text-center">
+            Signature Dish
+          </h2>
+
+          <div className="space-y-6">
+            {[
+              {
+                name: "Campfire Molcajete",
+                price: 119,
+                description:
+                  "Beef striploin / lobster tail / octopus / chicken / mussels / shrimp / scallops / rice / roasted tomatillo broth / smoked herb / ignited liqueur / serves two guests in stone molcajete bowl",
               },
             ].map((dish, index) => (
               <div key={index} className="flex justify-between items-start">
@@ -212,6 +248,10 @@ const TraditionalMenu = () => {
                 <span>add shrimps (3)</span>
                 <span>- $9</span>
               </div>
+              <div className="flex justify-between">
+                <span>add crostini</span>
+                <span>- $3</span>
+              </div>
             </div>
             <div className="space-y-4 text-[#071d18]/70">
               <div className="flex justify-between">
@@ -221,10 +261,6 @@ const TraditionalMenu = () => {
               <div className="flex justify-between">
                 <span>gluten free bread</span>
                 <span>- $4</span>
-              </div>
-              <div className="flex justify-between">
-                <span>add crostini</span>
-                <span>- $3</span>
               </div>
             </div>
           </div>
@@ -246,7 +282,7 @@ const TraditionalMenu = () => {
               {[
                 {
                   name: "Forest Ember Old Fashioned",
-                  price: 16,
+                  price: 17,
                   description:
                     "Bourbon / spruce tip syrup / Angostura bitters / lapsang tea / smoked.",
                 },
@@ -264,13 +300,13 @@ const TraditionalMenu = () => {
                 },
                 {
                   name: "Golden Smoke",
-                  price: 17,
+                  price: 16,
                   description:
                     "Bourbon / honey & rosemary syrup / orange juice / egg white / smoked salt.",
                 },
                 {
                   name: "Wild Grove",
-                  price: 17,
+                  price: 16,
                   description:
                     "Fruity gin / blackcurrant & basil syrup / tonic / garnish.",
                 },
@@ -284,7 +320,7 @@ const TraditionalMenu = () => {
                   name: "Orchard Stroll",
                   price: 17,
                   description:
-                    "Spiced rum / Amaro Nonino / apricot liqueur / egg white / apple / fall spices.",
+                    "Spiced rum / Amaro Nonino / apricot liqueur / apple-fall spices.",
                 },
                 {
                   name: "Echo of the Forest",
@@ -299,7 +335,7 @@ const TraditionalMenu = () => {
                 },
                 {
                   name: "Dash of Dasha",
-                  price: 16,
+                  price: 18,
                   description:
                     "Espresso vodka / coffee / Kahlua / pinch of ground cinnamon / ignited.",
                 },
@@ -328,10 +364,10 @@ const TraditionalMenu = () => {
             </h3>
             <div className="space-y-4  font-lora">
               {[
-                { name: "House Lager", price: 9.75 },
-                { name: "SeaChange “The Wolf” Hazy Pale Ale", price: 10 },
+                { name: "Woodvale House Lager", price: 9.75 },
+                { name: 'SeaChange "The Wolf" Hazy Pale Ale', price: 10 },
                 { name: "SeaChange Irish Red", price: 10 },
-                { name: "Odd Company Mandarin Sour", price: 10 },
+                { name: "Odd Company Good Chemistry IPA", price: 10 },
               ].map((beer, i) => (
                 <div key={i} className="flex text-base justify-between">
                   <h4 className="text-3xl md:text-4xl">{beer.name}</h4>
@@ -348,16 +384,14 @@ const TraditionalMenu = () => {
             </h3>
             <div className="space-y-4 text-2xl md:text-3xl ">
               {[
-                { name: "88 Brewing Vietnamese Coffee Stout", price: 11 },
-                { name: "Sapporo", price: 10 },
-                { name: "Troubled Monk Open Road Brown Ale", price: 10 },
-                { name: "Odd Company Good Chemistry IPA", price: 10 },
-                { name: "Alley Kat Pumpkin Pie Spiced Ale", price: 13 },
-                { name: "SeaChange Death Wave Light Lager", price: 11 },
-                { name: "Rock Creek Dry Apple Cider", price: 11 },
-                { name: "Big Rock Non-Alcoholic Golden Ale", price: 11 },
+                { name: "Guinness", price: 9.5 },
+                { name: "Green's GF Lager", price: 9.75 },
+                { name: "Odd Company Sour", price: 10.75 },
+                { name: "Big Rock Non-Alcoholic Golden Ale", price: 6.5 },
+                { name: "SeaChange Death Wave Light Lager", price: 10.75 },
+                { name: "Rock Creek Dry Apple Cider", price: 8 },
                 { name: "Ole Tequila Soda", price: 9.5 },
-                { name: "Dillon's Gin Cocktail", price: 6 },
+                { name: "Dillon's Gin Cocktail", price: 9.5 },
               ].map((bottle, index) => (
                 <div key={index} className="flex justify-between">
                   <h4 className="text-2xl md:text-3xl ">{bottle.name}</h4>
@@ -407,7 +441,7 @@ const TraditionalMenu = () => {
                 {
                   name: "Drumshanbo Gunpowder",
                   region: "Ireland",
-                  notes: "green tea, asian botanicals",
+                  notes: "ask your server for today's selection",
                 },
                 {
                   name: "Brockman's",
@@ -432,7 +466,7 @@ const TraditionalMenu = () => {
                 {
                   name: "Collective Arts",
                   region: "Canada",
-                  notes: "juniper, rosemary, basil, cardamom",
+                  notes: "cucumber, rosemary, basil, cardamom",
                 },
                 {
                   name: "The Botanist",
@@ -443,6 +477,11 @@ const TraditionalMenu = () => {
                   name: "Aviation",
                   region: "USA",
                   notes: "juniper, lavender, sarsaparilla",
+                },
+                {
+                  name: "Condesa Clasica",
+                  region: "Mexico",
+                  notes: "juniper, citrus, herbal, fresh",
                 },
                 {
                   name: "Citadelle",
@@ -488,7 +527,7 @@ const TraditionalMenu = () => {
                 {
                   name: "Caorunn",
                   region: "UK",
-                  notes: "lavender, marijuana, pepper",
+                  notes: "juniper, apple, citrus, floral, pepper",
                 },
                 {
                   name: "Dingle",
@@ -497,7 +536,7 @@ const TraditionalMenu = () => {
                 },
                 {
                   name: "Roku",
-                  region: "Japan",
+                  region: "Japanese",
                   notes: "sakura, yuzu, green tea",
                 },
                 {
@@ -509,6 +548,11 @@ const TraditionalMenu = () => {
                   name: "Malfy Arancia",
                   region: "Italy",
                   notes: "blood orange peel, juniper, coriander, citrus zest",
+                },
+                {
+                  name: "Condesa",
+                  region: "Mexico",
+                  notes: "prickly pear, orange blossom, citrus, floral",
                 },
               ].map((gin, i) => (
                 <div key={i} className="mb-4">
@@ -535,13 +579,9 @@ const TraditionalMenu = () => {
                   Tonics
                 </h4>
                 <ul className="space-y-2 text-xl text-[#071d18]/80">
-                  <li>
-                    Green Remedy – cucumber, rosemary, basil, lime, black pepper
-                  </li>
-                  <li>
-                    Velvet Bloom – lavender, hibiscus, orange, lemongrass, clove
-                  </li>
-                  <li>Sunburst – grapefruit, orange, lemon, ginger, juniper</li>
+                  <li>Green Remedy – cucumber, rosemary</li>
+                  <li>Velvet Bloom – blackcurrant, lavender</li>
+                  <li>Sunburst – lemon, lime, orange</li>
                 </ul>
               </div>
               <div>
@@ -549,10 +589,9 @@ const TraditionalMenu = () => {
                   Ice
                 </h4>
                 <ul className="space-y-2 text-xl text-[#071d18]/80">
-                  <li>Standard Cubes</li>
-                  <li>Large Cubes</li>
-                  <li>Shaved Ice</li>
-                  <li>Smoked Ice</li>
+                  <li>Crushed</li>
+                  <li>Cubes</li>
+                  <li>Big Cube</li>
                 </ul>
               </div>
             </div>
@@ -579,25 +618,25 @@ const TraditionalMenu = () => {
             </div>
             {[
               {
-                name: "Ken Forrester ‘Petit’ Rosé",
-                region: "South Africa",
-                price6: 12,
-                price9: 16,
-                bottle: 48,
+                name: "Lucy in the Sky Rose",
+                region: "France",
+                price6: 13,
+                price9: 18,
+                bottle: 52,
               },
               {
-                name: "Gerard Bertrand ‘Cote de Roses’ Rosé",
+                name: "Gerard Bertrand 'Cote de Roses' Rose",
                 region: "France",
                 price6: "-",
                 price9: "-",
                 bottle: 65,
               },
               {
-                name: "Lamarcca Prosecco",
+                name: "Lamarca Prosecco",
                 region: "Italy",
-                price6: 12,
+                price6: 13,
                 price9: "-",
-                bottle: 48,
+                bottle: 52,
               },
               {
                 name: "Frind Sparkling Brut",
@@ -648,7 +687,7 @@ const TraditionalMenu = () => {
             </div>
             {[
               {
-                name: "Perlage Pinot Grigio",
+                name: "Cantina Zaccagnini Pinot Grigio",
                 region: "Italy",
                 price6: 13,
                 price9: 18,
@@ -662,8 +701,8 @@ const TraditionalMenu = () => {
                 bottle: 48,
               },
               {
-                name: "Bread & Butter Chardonnay",
-                region: "California",
+                name: "Lucy in the Sky Chardonnay",
+                region: "France",
                 price6: 13,
                 price9: 18,
                 bottle: 52,
@@ -683,11 +722,11 @@ const TraditionalMenu = () => {
                 bottle: 63,
               },
               {
-                name: "Honey Bee Chenin Blanc",
+                name: "Ken Forrester Chenin Blanc",
                 region: "South Africa",
                 price6: "-",
                 price9: "-",
-                bottle: 39,
+                bottle: 48,
               },
               {
                 name: "Mission Hill Reserve Sauvignon Blanc",
@@ -718,7 +757,7 @@ const TraditionalMenu = () => {
                 bottle: 99,
               },
               {
-                name: "Joseph Drouhin Côte de Beaune Chardonnay",
+                name: "Joseph Drouhin Cote de Beaune Chardonnay",
                 region: "France",
                 price6: "-",
                 price9: "-",
@@ -744,15 +783,15 @@ const TraditionalMenu = () => {
                   </h6>
                   <p className="text-sm mb-6">{wine.region}</p>
                 </div>
-                  <div className="text-center">
-                    {wine.price6 !== "-" ? `$${wine.price6}` : "-"}
-                  </div>
-                  <div className="text-center">
-                    {wine.price9 !== "-" ? `$${wine.price9}` : "-"}
-                  </div>
-                  <div className="text-center">
-                    {wine.bottle ? `$${wine.bottle}` : "-"}
-                  </div>
+                <div className="text-center">
+                  {wine.price6 !== "-" ? `$${wine.price6}` : "-"}
+                </div>
+                <div className="text-center">
+                  {wine.price9 !== "-" ? `$${wine.price9}` : "-"}
+                </div>
+                <div className="text-center">
+                  {wine.bottle ? `$${wine.bottle}` : "-"}
+                </div>
               </div>
             ))}
           </div>
@@ -777,18 +816,18 @@ const TraditionalMenu = () => {
                 bottle: 52,
               },
               {
-                name: "Killka Malbec",
+                name: 'Luigi Bosca "La Linda" Malbec',
                 region: "Argentina",
                 price6: 14,
                 price9: 19,
                 bottle: 54,
               },
               {
-                name: "Bread & Butter Pinot Noir",
-                region: "California",
-                price6: 14,
-                price9: 19,
-                bottle: 54,
+                name: "Lucy in the Sky Pinot Noir",
+                region: "France",
+                price6: 13,
+                price9: 18,
+                bottle: 52,
               },
               {
                 name: "Porta 6 Red Blend",
@@ -798,6 +837,13 @@ const TraditionalMenu = () => {
                 bottle: 52,
               },
               {
+                name: "Chateau la Grande Metairie Bordeaux",
+                region: "France",
+                price6: 15,
+                price9: 20,
+                bottle: 60,
+              },
+              {
                 name: "Guardian Peak Merlot",
                 region: "Canada",
                 price6: "-",
@@ -805,36 +851,29 @@ const TraditionalMenu = () => {
                 bottle: 59,
               },
               {
-                name: 'Frind "The Premier" Bordeaux Blend',
-                region: "Canada",
-                price6: "-",
-                price9: "-",
-                bottle: 89,
-              },
-              {
                 name: "Botter Gran Passione Baby Amarone",
-                region: "Italy",
+                region: "Canada",
                 price6: "-",
                 price9: "-",
                 bottle: 57,
               },
               {
                 name: "Hugo Shiraz",
-                region: "Australia",
+                region: "Italy",
                 price6: "-",
                 price9: "-",
-                bottle: 49,
+                bottle: 59,
               },
               {
                 name: "Louis Jadot Beaujolais-Villages",
-                region: "France",
+                region: "Australia",
                 price6: "-",
                 price9: "-",
-                bottle: 49,
+                bottle: 52,
               },
               {
                 name: "Il Bruciato Super Tuscan",
-                region: "Italy",
+                region: "France",
                 price6: "-",
                 price9: "-",
                 bottle: 89,
@@ -844,67 +883,74 @@ const TraditionalMenu = () => {
                 region: "Italy",
                 price6: "-",
                 price9: "-",
-                bottle: 75,
+                bottle: 97,
               },
               {
                 name: "Tantalus Vineyards Pinot Noir",
-                region: "Canada",
+                region: "Italy",
                 price6: "-",
                 price9: "-",
                 bottle: 119,
               },
               {
                 name: "Volpaia Chianti Classico",
-                region: "Italy",
+                region: "Canada",
                 price6: "-",
                 price9: "-",
-                bottle: 77,
+                bottle: 89,
               },
               {
                 name: "Buehler Zinfandel",
                 region: "Italy",
                 price6: "-",
                 price9: "-",
-                bottle: 75,
-              },
-              {
-                name: "Roberto Voerzio Barbera d'Alba",
-                region: "Italy",
-                price6: "-",
-                price9: "-",
                 bottle: 97,
               },
               {
-                name: "Halos de Jupiter Grenache",
+                name: "Roberto Voerzio Barbera d'Alba",
                 region: "France",
+                price6: "-",
+                price9: "-",
+                bottle: 75,
+              },
+              {
+                name: "Halos de Jupiter Grenache",
+                region: "Italy",
                 price6: "-",
                 price9: "-",
                 bottle: 52,
               },
               {
                 name: 'Daou "The Pessimist" Red Blend',
-                region: "California",
+                region: "France",
                 price6: "-",
                 price9: "-",
                 bottle: 87,
               },
               {
                 name: "Henschke Henry's Seven Red Blend",
-                region: "Australia",
+                region: "California",
                 price6: "-",
                 price9: "-",
                 bottle: 129,
               },
               {
-                name: "La Ragose Della Valpolicella Amarone",
-                region: "Italy",
+                name: "La Ragose della Valpolicella Amarone",
+                region: "Australia",
                 price6: "-",
                 price9: "-",
                 bottle: 199,
               },
               {
+                name: "John Duval Cabernet Sauvignon",
+                region: "Italy",
+                price6: "-",
+                price9: "-",
+                bottle: 129,
+              },
+              {
                 name: "Justin Cabernet Sauvignon",
-                region: "California",
+                region: "Australia",
                 price6: "-",
                 price9: "-",
                 bottle: 109,
@@ -917,8 +963,8 @@ const TraditionalMenu = () => {
                 bottle: 189,
               },
               {
-                name: "Catena Zapata Argentino Malbec",
-                region: "Argentina",
+                name: "Catena Zapata Agrentino Malbec",
+                region: "California",
                 price6: "-",
                 price9: "-",
                 bottle: 275,
