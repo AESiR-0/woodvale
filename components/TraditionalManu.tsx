@@ -2,123 +2,6 @@
 
 import React from "react";
 
-const appetizers = [
-  {
-    name: "Soup of the Day",
-    priceDisplay: "$10 / $16",
-    description: "Ask your server for today's selection.",
-  },
-  {
-    name: "Caesar Salad",
-    priceDisplay: "$9 / $14",
-    description:
-      "Romaine hearts / house dressing / shaved parmesan / capers / grilled lemon / garlic herb croutons.",
-  },
-  {
-    name: "Beet Salad",
-    description: "Seasonal beet salad. Ask your server for today's preparation.",
-  },
-  {
-    name: "Mussels",
-    priceDisplay: "$24",
-    description:
-      "Atlantic mussels / fire roasted tomato and smoked paprika sauce / crostini / garlic and juniper oil.",
-  },
-  {
-    name: "Cauliflower",
-    priceDisplay: "$17",
-    description:
-      "Tempura fried / porcini powdered / tajin / romesco / garlic aioli.",
-  },
-  {
-    name: "Bruschetta",
-    priceDisplay: "$16",
-    description:
-      "Foraged mushroom medley / confit baby tomatoes / fromage blanc / balsamic glaze.",
-  },
-  {
-    name: "Butter Board",
-    priceDisplay: "$25",
-    description:
-      "Honey and lavender infused butter / toasted pumpkin seeds / pine nuts / caramelized onion jam / flowers / crostini.",
-  },
-  {
-    name: "Elk Carpaccio",
-    priceDisplay: "$21",
-    description:
-      "Sliced elk / smoked miso aioli drizzle / pickled blueberries & onions / shaved parmesan / crostini.",
-  },
-  {
-    name: "Bison Sliders",
-    priceDisplay: "$19",
-    description:
-      "Grilled bison patties / smoked gouda / caramelized onions / lavender infused wildberry compote.",
-  },
-  {
-    name: "Prawns",
-    description: "House prawns feature. Ask your server for today's preparation.",
-  },
-];
-
-const entrees = [
-  {
-    name: "Salmon",
-    priceDisplay: "$41",
-    description:
-      "Grilled B.C. salmon / fingerling potatoes / spruced gremolata / pine and lemon butter baste",
-  },
-  {
-    name: "Chicken",
-    priceDisplay: "$39",
-    description:
-      "Roasted chicken breast / creamy chestnut and foraged mushroom risotto / thyme jus / pomme gastrique",
-  },
-  {
-    name: "Tagliatelle",
-    priceDisplay: "$37",
-    description:
-      "Slow braised short rib / tagliatelle pasta / roasted mushrooms / confit baby tomatoes / dill cream sauce",
-  },
-  {
-    name: "Striploin",
-    priceDisplay: "$53",
-    description:
-      "10 oz New York striploin / wild mushroom and truffle mashed potato / glazed seasonal vegetables / thyme and black garlic jus",
-  },
-  {
-    name: "Bison Burger",
-    description: "House bison burger. Ask your server for today's preparation.",
-  },
-  {
-    name: "Pescatore",
-    priceDisplay: "$37",
-    description:
-      "Linguine / mussels / jumbo shrimp / baby scallops / capers / lemon cream sauce or spicy tomato sauce",
-  },
-  {
-    name: "Short Rib",
-    priceDisplay: "$45",
-    description:
-      "Slow braised short rib / wild mushroom and truffle mashed potato / glazed seasonal vegetables / root brew jus",
-  },
-  {
-    name: "Risotto",
-    priceDisplay: "$29",
-    description:
-      "Foraged wild mushrooms / cauliflower / baby zucchini / juniper emulsion",
-  },
-  {
-    name: "Duck",
-    description: "House duck feature. Ask your server for today's preparation.",
-  },
-  {
-    name: "Campfire Molcajete",
-    priceDisplay: "$119",
-    description:
-      "Beef striploin / lobster tail / chicken / mussels / shrimp / scallops / roasted tomatillo broth / smoked herb / ignited liqueur / serves two guests in stone molcajete bowl",
-  },
-];
-
 const TraditionalMenu = () => {
   return (
     <div className="min-h-screen bg-[#E6E8D9] font-lora">
@@ -130,18 +13,85 @@ const TraditionalMenu = () => {
             Appetizers
           </h2>
           <div className="space-y-6">
-            {appetizers.map((dish) => (
-              <div key={dish.name} className="flex justify-between items-start">
+            {[
+              {
+                id: 1,
+                name: "Soup of the Day",
+                priceDisplay: "$10",
+                description: "Ask your server for today's selection.",
+              },
+              {
+                id: 2,
+                name: "Caesar Salad",
+                priceDisplay: "$9 / $14",
+                description:
+                  "Romaine hearts / house dressing / shaved parmesan / capers / grilled lemon / garlic herb croutons.",
+              },
+              {
+                id: 3,
+                name: "Mussels",
+                priceDisplay: "$24",
+                description:
+                  "Atlantic mussels / fire roasted tomato and smoked paprika sauce / crostini / garlic and juniper oil.",
+              },
+              {
+                id: 4,
+                name: "Cauliflower",
+                priceDisplay: "$17",
+                description:
+                  "Tempura fried / porcini powdered / tajin / romesco / garlic aioli.",
+              },
+              {
+                id: 5,
+                name: "Croquettes",
+                priceDisplay: "$19",
+                description:
+                  "Sweet potato blend / bocconcini / carrot / brown sugar / lavender infused wildberry compote.",
+              },
+              {
+                id: 5,
+
+                name: "Elk Carpaccio",
+                priceDisplay: "$21",
+                description:
+                  "Sliced elk / smoked miso aioli drizzle / pickled blueberries & onions / shaved parmesan / crostini.",
+              },
+              {
+                id: 5,
+
+                name: "Bison Sliders",
+                priceDisplay: "$19",
+                description:
+                  "Grilled bison patties / smoked gouda / caramelized onions / lavender infused wildberry compote.",
+              },
+              {
+                id: 5,
+
+                name: "Butter Board",
+                priceDisplay: "$25",
+                description:
+                  "Honey and lavender infused butter / toasted pumpkin seeds / pine nuts / caramelized onion jam / flowers / crostini.",
+              },
+              {
+                id: 5,
+
+                name: "Bruschetta",
+                priceDisplay: "$16",
+                description:
+                  "Foraged mushroom medley / confit baby tomatoes / fromage blanc / balsamic glaze.",
+              },
+            ].map((dish) => (
+              <div key={dish.id} className="flex justify-between items-start">
                 <div className="flex-1">
                   <div className="flex justify-between items-start mb-2">
                     <h4 className=" text-lg font-semibold text-[#071d18]">
                       {dish.name}
                     </h4>
-                    {dish.priceDisplay ? (
+                    {dish.priceDisplay || (
                       <span className="text-lg font-semibold text-[#071d18] ml-4">
-                        {dish.priceDisplay}
+                        ${dish.priceDisplay}
                       </span>
-                    ) : null}
+                    )}
                   </div>
                   <p className="text-sm text-[#071d18]/70 ml-4 leading-relaxed">
                     {dish.description}
@@ -160,18 +110,71 @@ const TraditionalMenu = () => {
           </h2>
 
           <div className="space-y-6">
-            {entrees.map((dish) => (
-              <div key={dish.name} className="flex justify-between items-start">
+            {[
+              {
+                name: "Chicken",
+                price: 39,
+                description:
+                  "Roasted chicken breast / creamy chestnut and foraged mushroom risotto / thyme jus / pomme gastrique",
+              },
+              {
+                name: "Striploin",
+                price: 53,
+                description:
+                  "10 oz New York striploin / wild mushroom and truffle mashed potato / glazed seasonal vegetables / thyme and black garlic jus",
+              },
+              {
+                name: "Salmon",
+                price: 41,
+                description:
+                  "Grilled B.C. salmon / fingerling potatoes / spruced gremolata / pine and lemon butter baste",
+              },
+              {
+                name: "Tagliatelle",
+                price: 37,
+                description:
+                  "Slow braised short rib / tagliatelle pasta / roasted mushrooms / confit baby tomatoes / dill cream sauce",
+              },
+              {
+                name: "Pescatore",
+                price: 37,
+                description:
+                  "Linguine / mussels / jumbo shrimp / baby scallops / capers / lemon cream sauce or spicy tomato sauce",
+              },
+              {
+                name: "Bison Lasagna",
+                price: 39,
+                description:
+                  "Seasoned ground bison / spinach / cottage cheese / mozzarella / housemade tomato sauce",
+              },
+              {
+                name: "Campfire Molcajete",
+                price: 99,
+                description:
+                  "Beef striploin / lobster tail / chicken / mussels / shrimp / scallops / roasted tomatillo broth / smoked herb / ignited liqueur / serves two guests in stone molcajete bowl",
+              },
+              {
+                name: "Risotto",
+                price: 29,
+                description:
+                  "Foraged wild mushrooms / cauliflower / baby zucchini / juniper emulsion",
+              },
+              {
+                name: "Short Rib",
+                price: 45,
+                description:
+                  "Slow braised short rib / wild mushroom and truffle mashed potato / glazed seasonal vegetables / root brew jus",
+              },
+            ].map((dish, index) => (
+              <div key={index} className="flex justify-between items-start">
                 <div className="flex-1">
                   <div className="flex justify-between items-start mb-2">
                     <h4 className="font-lora text-lg font-semibold text-[#071d18]">
                       {dish.name}
                     </h4>
-                    {dish.priceDisplay ? (
-                      <span className="text-lg font-semibold text-[#071d18] ml-4">
-                        {dish.priceDisplay}
-                      </span>
-                    ) : null}
+                    <span className="text-lg font-semibold text-[#071d18] ml-4">
+                      ${dish.price}
+                    </span>
                   </div>
                   <p className="text-sm text-[#071d18]/70 ml-4 leading-relaxed">
                     {dish.description}
