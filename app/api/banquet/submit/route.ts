@@ -92,7 +92,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ 
       success: true,
       booking: newBooking,
-      message: 'Booking submitted successfully'
+      message: 'Booking inquiry submitted successfully'
     }, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
